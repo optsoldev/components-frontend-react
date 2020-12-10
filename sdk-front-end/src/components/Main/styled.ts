@@ -29,7 +29,7 @@ export const LogoContainer = styled.div`
 export const Title = styled.h1`
   color: #fff;
   margin-left: 2rem;
-  font-size: 5rem;
+  font-size: 3rem;
 `;
 
 export const Description = styled.h2`
@@ -37,9 +37,9 @@ export const Description = styled.h2`
   font-weight: 400;
   margin-top: 9rem;
   margin-bottom: 9rem;
-  font-size: 5rem;
+  font-size: 3rem;
 `;
 
 export const Banner = styled.img`
-  width: min(200rem, 100%);
+  width: min(120rem, 100%);
 `;

@@ -6,7 +6,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -36,6 +38,12 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.1.10",
+    "@storybook/addon-essentials": "^6.1.10",
+    "@storybook/addon-links": "^6.1.10",
+    "@storybook/node-logger": "^6.1.10",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.1.10",
     "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
