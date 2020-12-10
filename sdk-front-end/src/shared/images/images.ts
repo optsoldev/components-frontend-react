@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const BannerImg = require('../../assets/images/banner.png');
-const LaptopImg = require('../../assets/images/laptop.png');
+import BannerImg from '../../assets/Banner.svg';
+import LaptopImg from '../../assets/Laptop.svg';
 
 export const Images = {
   BannerImg,

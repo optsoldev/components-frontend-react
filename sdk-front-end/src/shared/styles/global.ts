@@ -14,6 +14,10 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif // Reseta para fonts padrões dos dispositivos
   }
+
+  html, body, #root {
+    height: 100%;
+  }
 `;
 
 export default GlobalStyles;
