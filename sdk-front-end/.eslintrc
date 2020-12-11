@@ -20,7 +20,10 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
-    "prettier/prettier": "error",
+    "no-empty-interface": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "prefer-template": "off",
+    "prettier/prettier": "warn",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "no-console": "off",
