@@ -9,7 +9,7 @@ export default {
   component: Main,
 } as Meta;
 
-export const StoryBookTest: Story = args => <Main {...args} />;
+export const StoryBookTest: Story = (args) => <Main {...args} />;
 
 /** Alterar os argumentos do componente para o stories */
 
