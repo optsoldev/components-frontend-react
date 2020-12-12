@@ -20,6 +20,10 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "lines-between-class-members": "off",
+    "no-debugger": "warn",
+    "no-param-reassign": "off",
     "no-empty-interface": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "prefer-template": "off",

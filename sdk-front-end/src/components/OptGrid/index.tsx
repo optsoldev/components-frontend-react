@@ -1,5 +1,5 @@
 import MaterialTable, { Localization, MaterialTableProps, Options, Query, QueryResult } from 'material-table';
-import React from 'react';
+import React, { createRef } from 'react';
 import * as S from './styles';
 
 export interface OptGridResponse<T extends object> extends Promise<QueryResult<T>> {}
@@ -43,10 +43,34 @@ const localization: Localization = {
   },
 };
 
-export const OptGrid = <T extends object>({ options, ...props }: OptGridProps<T>) => {
-  return (
-    <S.GridContainer>
-      <MaterialTable {...props} icons={S.tableIcons} options={options} localization={localization} />
-    </S.GridContainer>
-  );
+export type OptGridRef = {
+  refresh: () => void;
 };
+export class OptGrid<T extends object> extends React.Component<OptGridProps<T>> {
+  private isRemote = false;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private tableRef = createRef<any>();
+
+  constructor(props: OptGridProps<T>) {
+    super(props);
+    const { data } = props;
+    this.isRemote = !Array.isArray(data);
+  }
+
+  public refresh() {
+    if (this.isRemote && this.tableRef.current) {
+      this.tableRef.current.onQueryChange({} as any);
+    } else {
+      this.forceUpdate();
+    }
+  }
+
+  render() {
+    return (
+      <S.GridContainer>
+        <MaterialTable {...this.props} icons={S.tableIcons} localization={localization} tableRef={this.tableRef} />
+      </S.GridContainer>
+    );
+  }
+}
