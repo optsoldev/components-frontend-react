@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React, { createRef } from 'react';
+import Delete from '@material-ui/icons/Delete';
 import { OptGrid, OptGridOptions, OptGridProps, OptGridRequest, OptGridResponse } from '.';
 
 interface Pessoa {
@@ -34,12 +35,12 @@ function carregar(query: OptGridRequest<Pessoa>): OptGridResponse<Pessoa> {
 interface OptGridArgs extends OptGridProps<Pessoa> {
   title: string;
   search: boolean;
+  onDelete: (data: Pessoa) => string;
 }
 
-export const OptGridRemota: Story<OptGridArgs> = ({ title, search, isLoading, onRowClick }) => {
+export const OptGridRemota: Story<OptGridArgs> = ({ title, search, isLoading, onRowClick, onDelete }) => {
   const options: OptGridOptions<Pessoa> = {
     search,
-    tableLayout: 'fixed',
   };
 
   const ref = createRef<OptGrid<Pessoa>>();
@@ -61,44 +62,44 @@ export const OptGridRemota: Story<OptGridArgs> = ({ title, search, isLoading, on
         ref={ref}
         columns={[
           {
+            ...(true && ({ width: 120 } as object)),
             title: 'Avatar',
             field: 'avatar',
             render: (rowData) => (
               <img style={{ height: 36, borderRadius: '50%' }} src={rowData.avatar} alt={rowData.avatar} />
             ),
-            headerStyle: {
-              width: 160,
-            },
+            width: 80,
           },
           {
             title: 'Id',
             field: 'id',
             type: 'string',
-            headerStyle: {
-              width: 160,
-            },
+            width: 80,
           },
           {
             title: 'Nome',
             field: 'first_name',
             type: 'string',
-            headerStyle: {
-              width: 'auto',
-            },
           },
           {
             title: 'Sobrenome',
             field: 'last_name',
             type: 'string',
-            headerStyle: {
-              width: 'auto',
-            },
           },
         ]}
         data={carregar}
         options={options}
         isLoading={isLoading}
         onRowClick={onRowClick}
+        actions={[
+          (rowData) => ({
+            icon: () => <Delete />,
+            tooltip: 'Deletar usuário',
+            onClick: () => onDelete(rowData),
+            disabled: false,
+          }),
+        ]}
+        actionsPosition="end"
       />
     </>
   );
@@ -131,7 +132,15 @@ OptGridRemota.argTypes = {
   options: {
     table: { disable: true },
   },
+  actions: {
+    table: { disable: true },
+  },
   onRowClick: {
     action: 'onRowClick clicked',
+    table: { disable: true },
+  },
+  onDelete: {
+    action: (data: Pessoa) => 'onDelete clicked' + data,
+    table: { disable: true },
   },
 };
