@@ -36,11 +36,22 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   title: string;
   search: boolean;
   onDelete: (data: Pessoa) => string;
+  actionsPosition: 'start' | 'end';
+  selection: boolean;
 }
 
-export const OptGridRemota: Story<OptGridArgs> = ({ title, search, isLoading, onRowClick, onDelete }) => {
+export const OptGridRemota: Story<OptGridArgs> = ({
+  title,
+  search,
+  isLoading,
+  actionsPosition,
+  onRowClick,
+  onDelete,
+  selection,
+}) => {
   const options: OptGridOptions<Pessoa> = {
     search,
+    selection,
   };
 
   const ref = createRef<OptGrid<Pessoa>>();
@@ -99,7 +110,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({ title, search, isLoading, on
             disabled: false,
           }),
         ]}
-        actionsPosition="end"
+        actionsPosition={actionsPosition}
       />
     </>
   );
@@ -111,6 +122,8 @@ OptGridRemota.args = {
   title: 'Grid remota',
   search: true,
   isLoading: false,
+  actionsPosition: 'start',
+  selection: false,
 };
 
 OptGridRemota.argTypes = {
@@ -126,6 +139,14 @@ OptGridRemota.argTypes = {
     defaultValue: false,
     name: 'Carregando',
   },
+  actionsPosition: {
+    defaultValue: 'start',
+    name: 'Posição da coluna de ações',
+  },
+  selection: {
+    defaultValue: false,
+    name: 'Selecionável',
+  },
   data: {
     table: { disable: true },
   },
@@ -133,6 +154,9 @@ OptGridRemota.argTypes = {
     table: { disable: true },
   },
   actions: {
+    table: { disable: true },
+  },
+  columns: {
     table: { disable: true },
   },
   onRowClick: {
