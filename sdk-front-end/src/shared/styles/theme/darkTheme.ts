@@ -66,7 +66,7 @@ export const DarkTheme: OptTheme = {
 
   drawer: {
     docked: {
-      borderColor: ColorPalette.grey4,
+      borderColor: ColorPalette.dark,
     },
 
     close: {

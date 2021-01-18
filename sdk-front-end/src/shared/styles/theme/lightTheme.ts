@@ -70,7 +70,7 @@ export const LightTheme: OptTheme = {
 
     close: {
       color: ColorPalette.primary,
-      background: ColorPalette.grey2,
+      background: 'inherit',
     },
 
     versionColor: ColorPalette.grey5,

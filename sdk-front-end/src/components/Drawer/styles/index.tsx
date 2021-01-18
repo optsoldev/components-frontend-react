@@ -1,4 +1,4 @@
-import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Scrollbar } from '../../../shared/styles/generic';
@@ -18,13 +18,16 @@ export const DrawerMenuContainer = styled.div`
   ${Scrollbar}
 `;
 
-export const CloseDrawerList = styled(List)`
+export const CloseDrawerContainer = styled.div`
   padding-top: 0;
   padding-bottom: 0;
+  display: flex;
+  justify-content: flex-end;
 
-  &:hover svg {
-    opacity: 0.8;
+  & .MuiIconButton-root {
+    padding: 0;
   }
+
   & svg {
     background: ${({ theme }) => theme.drawer.close.background};
     color: ${({ theme }) => theme.drawer.close.color};

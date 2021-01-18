@@ -18,11 +18,11 @@ export const OptDrawerMenu = ({ sections, onHideDrawer, onToggleDockDrawer, dock
   return (
     <S.DrawerMenuContainer>
       {!docked && (
-        <S.CloseDrawerList>
-          <ListItem button style={{ justifyContent: 'flex-end' }} onClick={onHideDrawer}>
+        <S.CloseDrawerContainer>
+          <IconButton onClick={onHideDrawer}>
             <Icon size={1.8} path={mdiArrowLeft} color={Theme.drawer.close.color} />
-          </ListItem>
-        </S.CloseDrawerList>
+          </IconButton>
+        </S.CloseDrawerContainer>
       )}
 
       {sections.map((section, index) => (
