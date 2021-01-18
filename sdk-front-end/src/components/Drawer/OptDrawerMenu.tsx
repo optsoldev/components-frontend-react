@@ -1,10 +1,10 @@
-import { IconButton, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { IconButton, List, ListItemIcon, ListItemText } from '@material-ui/core';
 import { mdiArrowLeft, mdiPin, mdiPinOff } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import React from 'react';
+import { OptMenuSection } from '.';
 import { Images } from '../../shared/images/images';
 import { Theme } from '../../shared/styles/theme';
-import { OptMenuSection } from '.';
 import * as S from './styles';
 
 interface OptDrawerMenuProps {
