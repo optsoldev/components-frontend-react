@@ -1,7 +1,9 @@
 import BannerImg from '../../assets/Banner.svg';
 import LaptopImg from '../../assets/Laptop.svg';
+import LogoDrawerImg from '../../assets/LogoDrawer.svg';
 
 export const Images = {
-  BannerImg,
-  LaptopImg,
+  Banner: BannerImg,
+  Laptop: LaptopImg,
+  LogoDrawer: LogoDrawerImg,
 } as const;

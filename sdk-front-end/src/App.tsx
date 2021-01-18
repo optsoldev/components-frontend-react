@@ -1,16 +1,144 @@
+import { mdiAbTesting, mdiIdeogramCjk, mdiPacMan } from '@mdi/js';
+import Icon from '@mdi/react';
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { OptMenuSection } from './components/Drawer';
+import { OptLayout } from './components/Layout/OptLayout';
+import { RotaListaRegistro } from './RotaListaRegistro';
+import { RotaNaoEncontrada } from './RotaNaoEncontrada';
+import { RotaPrincipal } from './RotaPrincipal';
+import { RotaRegistro } from './RotaRegistro';
+import { Theme } from './shared/styles/theme';
 
-import { Main } from './components/Main';
+const LazyRotaTeste = React.lazy(() => {
+  return import('./RotaLazy');
+});
 
-import GlobalStyles from './shared/styles/global';
+const sections: OptMenuSection[] = [
+  {
+    items: [
+      {
+        icon: <Icon size={1} path={mdiPacMan} color={Theme.secondary} />,
+        path: '/',
+        title: 'Início',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiAbTesting} color={Theme.primary} />,
+        path: '/lazy',
+        title: 'Lazy',
+        activeShouldBeExact: true,
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro',
+        title: 'Registros',
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/1/item/1/editar',
+        title: 'Registro 1 Item 1',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/1/item/2/editar',
+        title: 'Registro 1 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+      {
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        path: '/registro/2/item/2/editar',
+        title: 'Registro 2 Item 2',
+        activeShouldBeExact: true,
+      },
+    ],
+  },
+];
 
-function App() {
+const routes = (
+  <Switch>
+    <Route path="/lazy" component={LazyRotaTeste} />
+    <Route path="/registro/:id/item/:itemId/editar" component={RotaRegistro} />
+    <Route path="/registro/:id/item/:itemId" component={RotaRegistro} />
+    <Route path="/registro/:id" component={RotaRegistro} />
+    <Route path="/registro" component={RotaListaRegistro} />
+    <Route exact path="/" component={RotaPrincipal} />
+    <Route component={RotaNaoEncontrada} />
+  </Switch>
+);
+
+const App = () => {
   return (
-    <>
-      <GlobalStyles />
-      <Main />
-    </>
+    <OptLayout
+      sections={sections}
+      routes={routes}
+      onLogout={() => {
+        console.log('onLogout');
+      }}
+      onConfigurarPerfil={() => {
+        console.log('onConfigurarPerfil');
+      }}
+      profile={{
+        email: 'usuario@optsol.com.br',
+        name: 'Usuário',
+        avatarSrc: undefined,
+        alternativeColor: Theme.appBar.avatar.background,
+      }}
+    />
   );
-}
+};
 
 export default App;

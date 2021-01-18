@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { ColorsOptSol } from '../../shared/styles/colors';
+import { Theme } from '../../shared/styles/theme';
 
 export const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
-  background-color: ${ColorsOptSol.OptBlack};
+  background-color: ${({ theme }) => theme.background};
   width: 100%;
   height: 100%;
   text-align: center;
@@ -16,7 +16,7 @@ export const Wrapper = styled.main`
 export const LaptopIcon = styled.img`
   width: 16rem;
   height: 16rem;
-  color: ${ColorsOptSol.OptWhite};
+  color: ${({ theme }) => theme.primary};
 `;
 
 export const LogoContainer = styled.div`
@@ -28,13 +28,13 @@ export const LogoContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: ${ColorsOptSol.OptWhite};
+  color: ${({ theme }) => theme.color};
   margin-left: 2rem;
   font-size: 3rem;
 `;
 
 export const Description = styled.h2`
-  color: ${ColorsOptSol.OptWhite};
+  color: ${({ theme }) => theme.color};
   font-weight: 400;
   margin-top: 9rem;
   margin-bottom: 9rem;
