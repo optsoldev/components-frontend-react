@@ -20,6 +20,13 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "lines-between-class-members": "off",
+    "no-debugger": "warn",
+    "no-param-reassign": "off",
+    "no-empty-interface": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "prefer-template": "off",
     "prettier/prettier": "warn",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
@@ -32,6 +39,7 @@
     "import/prefer-default-export": "off",
     "camelcase": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/static-property-placement": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "import/extensions": [
