@@ -1,10 +1,17 @@
 {
-  "name": "components-frontend-react",
+  "name": "@optsol/react",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/optsoldev/components-frontend-react"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "clean:lib": "node .\\src\\lib\\clean.js",
+    "build:lib": "node .\\src\\lib\\build-pack.js",
+    "rebuild:lib": "npm run clean:lib && npm run build:lib",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
@@ -14,26 +21,22 @@
     "extends": "react-app"
   },
   "dependencies": {
+    "@storybook/react": "^6.1.10",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@mdi/js": "^5.8.55",
     "@mdi/react": "^1.4.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
     "material-table": "^1.69.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-    "styled-components": "^5.2.1",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4",
-    "@storybook/react": "^6.1.10"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "browserslist": {
     "production": [
@@ -48,6 +51,10 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
     "@storybook/addon-actions": "^6.1.10",
     "@storybook/addon-essentials": "^6.1.10",
     "@storybook/addon-links": "^6.1.10",
@@ -57,6 +64,7 @@
     "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
+    "babel-cli": "^6.26.0",
     "eslint": "^7.15.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^7.0.0",
@@ -67,5 +75,14 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4",
     "prettier": "^2.2.1"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "@mdi/js": "^5.8.55",
+    "@mdi/react": "^1.4.0",
+    "material-table": "^1.69.0",
+    "styled-components": "^5.2.1",
+    "react-router-dom": "^5.2.0"
   }
 }

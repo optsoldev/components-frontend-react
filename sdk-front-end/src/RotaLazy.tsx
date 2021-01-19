@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useBreadcrumb } from './contexts/breadcrumb/breadcrumbContext';
+import { useBreadcrumb } from './lib/contexts/breadcrumb/breadcrumbContext';
 
 export const RotaLazy = () => {
   const { setDictionary } = useBreadcrumb();

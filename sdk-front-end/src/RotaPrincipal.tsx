@@ -1,8 +1,8 @@
 import { Switch } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { useBreadcrumb } from './contexts/breadcrumb/breadcrumbContext';
-import { useOptTheme } from './contexts/theme/themeContext';
-import { ColorPalette } from './shared/styles/colors';
+import { useBreadcrumb } from './lib/contexts/breadcrumb/breadcrumbContext';
+import { useOptTheme } from './lib/contexts/theme/themeContext';
+import { ColorPalette } from './lib/shared/styles/colors';
 
 export const RotaPrincipal = () => {
   const { setDictionary } = useBreadcrumb();
