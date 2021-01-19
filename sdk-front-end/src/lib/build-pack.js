@@ -26,12 +26,11 @@ function copyFolderRecursiveSync(source, target) {
 
   // Copy
   if (fs.lstatSync(source).isDirectory()) {
-    console.log('copy');
     files = fs.readdirSync(source);
 
     files.forEach(function (file) {
       var curSource = path.join(source, file);
-      console.log(curSource);
+      
       if (fs.lstatSync(curSource).isDirectory()) {
         copyFolderRecursiveSync(curSource, targetFolder);
       } else {
@@ -45,8 +44,8 @@ function copyAssets() {
   copyFolderRecursiveSync('./src/lib/assets', './dist/otpsol-react/assets');
 }
 
-console.log('[OPTSOL-REACT] Copiando assets...');
-copyAssets();
+// console.log('[OPTSOL-REACT] Copiando assets...');
+// copyAssets();
 
 console.log('[OPTSOL-REACT] Executando npm pack...');
 execSync('cd dist/otpsol-react && npm pack');

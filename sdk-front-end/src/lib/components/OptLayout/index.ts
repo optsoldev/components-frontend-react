@@ -24,4 +24,8 @@ export interface OptLayoutProps {
   onLogout: () => void;
   onNotificationsClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onModulesClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+
+  /** Suggested max width of 136px */
+  drawerLogo?: JSX.Element;
+  version: string;
 }

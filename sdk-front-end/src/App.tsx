@@ -9,6 +9,8 @@ import { RotaListaRegistro } from './RotaListaRegistro';
 import { RotaNaoEncontrada } from './RotaNaoEncontrada';
 import { RotaPrincipal } from './RotaPrincipal';
 import { RotaRegistro } from './RotaRegistro';
+import { version } from '../package.json';
+import { Images } from './shared/images/images';
 
 const LazyRotaTeste = React.lazy(() => {
   return import('./RotaLazy');
@@ -137,6 +139,8 @@ const App = () => {
         avatarSrc: undefined,
         alternativeColor: Theme.appBar.avatar.background,
       }}
+      version={`Versão ${version}`}
+      drawerLogo={<img src={Images.LogoDrawer} alt="Banner da OPTSOL" />}
     />
   );
 };

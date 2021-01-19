@@ -1,5 +1,5 @@
 import React from 'react';
-import { Images } from '../lib/shared/images/images';
+import { Images } from '../shared/images/images';
 import * as S from './styled';
 
 export const Main = ({ title = 'OptSol', description = 'Erat nullam malesuada faucibus nullam donec.' }) => {

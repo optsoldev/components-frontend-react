@@ -3,7 +3,6 @@ import { mdiArrowLeft, mdiPin, mdiPinOff } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import React from 'react';
 import { OptMenuSection } from '.';
-import { Images } from '../../shared/images/images';
 import { Theme } from '../../shared/styles/theme';
 import * as S from './styles';
 
@@ -12,9 +11,20 @@ interface OptDrawerMenuProps {
   onHideDrawer?: () => void;
   onToggleDockDrawer: () => void;
   docked?: boolean;
+  drawerLogo?: JSX.Element;
+  version: string;
 }
 
-export const OptDrawerMenu = ({ sections, onHideDrawer, onToggleDockDrawer, docked }: OptDrawerMenuProps) => {
+export const OptDrawerMenu = ({
+  sections,
+  onHideDrawer,
+  onToggleDockDrawer,
+  docked,
+  drawerLogo,
+  version,
+}: OptDrawerMenuProps) => {
+  drawerLogo = drawerLogo ?? <div></div>;
+
   return (
     <S.DrawerMenuContainer>
       {!docked && (
@@ -48,14 +58,14 @@ export const OptDrawerMenu = ({ sections, onHideDrawer, onToggleDockDrawer, dock
 
       <S.Footer>
         <S.FooterHeader>
-          <S.Logo src={Images.LogoDrawer} alt="Banner da OPTSOL" />
+          {drawerLogo}
 
           <IconButton onClick={onToggleDockDrawer}>
             <Icon size={1} path={docked ? mdiPinOff : mdiPin} color={Theme.primary} />
           </IconButton>
         </S.FooterHeader>
 
-        <S.Version>Version 1.0</S.Version>
+        <S.Version>{version}</S.Version>
       </S.Footer>
     </S.DrawerMenuContainer>
   );
