@@ -3,7 +3,7 @@ import { mdiArrowLeft, mdiPin, mdiPinOff } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import React from 'react';
 import { OptMenuSection } from '.';
-import { Theme } from '../../shared/styles/theme';
+import { useOptTheme } from '../../contexts/theme/themeContext';
 import * as S from './styles';
 
 interface OptDrawerMenuProps {
@@ -23,6 +23,8 @@ export const OptDrawerMenu = ({
   drawerLogo,
   version,
 }: OptDrawerMenuProps) => {
+  const { currentTheme } = useOptTheme();
+
   drawerLogo = drawerLogo ?? <div></div>;
 
   return (
@@ -30,7 +32,7 @@ export const OptDrawerMenu = ({
       {!docked && (
         <S.CloseDrawerContainer>
           <IconButton onClick={onHideDrawer}>
-            <Icon size={1.8} path={mdiArrowLeft} color={Theme.drawer.close.color} />
+            <Icon size={1.8} path={mdiArrowLeft} color={currentTheme.drawer.close.color} />
           </IconButton>
         </S.CloseDrawerContainer>
       )}
@@ -61,7 +63,7 @@ export const OptDrawerMenu = ({
           {drawerLogo}
 
           <IconButton onClick={onToggleDockDrawer}>
-            <Icon size={1} path={docked ? mdiPinOff : mdiPin} color={Theme.primary} />
+            <Icon size={1} path={docked ? mdiPinOff : mdiPin} color={currentTheme.primary} />
           </IconButton>
         </S.FooterHeader>
 

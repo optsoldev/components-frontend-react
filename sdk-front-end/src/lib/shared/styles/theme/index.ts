@@ -92,6 +92,3 @@ export interface OptTheme {
     };
   };
 }
-
-const useDarkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme);
-export const Theme = useDarkTheme ? DarkTheme : LightTheme;

@@ -1,7 +1,8 @@
 import { CircularProgress } from '@material-ui/core';
 import Icon from '@mdi/react';
 import React, { PropsWithChildren } from 'react';
-import { Theme } from '../../shared/styles/theme';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { OptTheme } from '../../shared/styles/theme';
 import * as S from './styles';
 
 type ActionButtonIcon = {
@@ -19,14 +20,19 @@ export type OptActionButtonProps = {
   loading?: boolean;
 };
 
-function checkActionIcon(icon: ActionButtonIcon | JSX.Element | undefined, disabled: boolean, loading: boolean) {
+function checkActionIcon(
+  theme: OptTheme,
+  icon: ActionButtonIcon | JSX.Element | undefined,
+  disabled: boolean,
+  loading: boolean,
+) {
   if (icon) {
     if (loading) {
       icon = icon as ActionButtonIcon;
-      icon = <CircularProgress size={18} style={{ color: Theme.primary }} />;
+      icon = <CircularProgress size={18} style={{ color: theme.primary }} />;
     } else if (typeof icon === 'object') {
       icon = icon as ActionButtonIcon;
-      icon.color = loading || disabled ? Theme.color : icon.color || Theme.primary;
+      icon.color = loading || disabled ? theme.color : icon.color || theme.primary;
       icon = <Icon path={icon.path} size={0.8} color={icon.color} />;
     }
   }
@@ -42,7 +48,9 @@ export const OptActionButton = ({
   disabled,
   loading,
 }: PropsWithChildren<OptActionButtonProps>) => {
-  let textColor: string = Theme.secondary;
+  const { currentTheme } = useOptTheme();
+
+  let textColor: string = currentTheme.secondary;
 
   if (startIcon && (startIcon as ActionButtonIcon).color) {
     textColor = (startIcon as ActionButtonIcon).color!;
@@ -52,8 +60,8 @@ export const OptActionButton = ({
     textColor = (endIcon as ActionButtonIcon).color!;
   }
 
-  startIcon = checkActionIcon(startIcon, !!disabled, !!loading);
-  endIcon = checkActionIcon(endIcon, !!disabled, !!loading);
+  startIcon = checkActionIcon(currentTheme, startIcon, !!disabled, !!loading);
+  endIcon = checkActionIcon(currentTheme, endIcon, !!disabled, !!loading);
 
   return (
     <S.CustomButton

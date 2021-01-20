@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useBreadcrumb } from '../../contexts/breadcrumb/breadcrumbContext';
 import { BreadcrumbDictionary } from '../../contexts/breadcrumb/breadcrumbState';
-import { Theme } from '../../shared/styles/theme';
+import { useOptTheme } from '../../contexts/theme/themeContext';
 import * as S from './styles';
 
 type BreadcrumbComposition = {
@@ -89,6 +89,7 @@ let currentLocationPathname = '';
 
 export const OptBreadcrumb = () => {
   const location = useLocation();
+  const { currentTheme } = useOptTheme();
 
   const {
     state: { dictionary },
@@ -120,7 +121,7 @@ export const OptBreadcrumb = () => {
 
               {index >= 0 && index < breadcrumb.length - 1 && (
                 <span>
-                  <Icon size={0.6} path={mdiChevronRight} color={Theme.breadcrumb.separator} />
+                  <Icon size={0.6} path={mdiChevronRight} color={currentTheme.breadcrumb.separator} />
                 </span>
               )}
             </React.Fragment>

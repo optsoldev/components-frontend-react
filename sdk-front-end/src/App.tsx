@@ -4,13 +4,13 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { OptMenuSection } from './lib/components/OptDrawer';
 import { OptLayout } from './lib/components/OptLayout';
-import { Theme } from './lib/shared/styles/theme';
 import { RotaListaRegistro } from './RotaListaRegistro';
 import { RotaNaoEncontrada } from './RotaNaoEncontrada';
 import { RotaPrincipal } from './RotaPrincipal';
 import { RotaRegistro } from './RotaRegistro';
 import { version } from '../package.json';
 import { Images } from './shared/images/images';
+import { ColorPalette } from './lib/shared/styles/colors';
 
 const LazyRotaTeste = React.lazy(() => {
   return import('./RotaLazy');
@@ -20,13 +20,13 @@ const sections: OptMenuSection[] = [
   {
     items: [
       {
-        icon: <Icon size={1} path={mdiPacMan} color={Theme.secondary} />,
+        icon: <Icon size={1} path={mdiPacMan} color={ColorPalette.secondary} />,
         path: '/',
         title: 'Início',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiAbTesting} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiAbTesting} color={ColorPalette.primary} />,
         path: '/lazy',
         title: 'Lazy',
         activeShouldBeExact: true,
@@ -36,72 +36,72 @@ const sections: OptMenuSection[] = [
   {
     items: [
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro',
         title: 'Registros',
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/1/item/1/editar',
         title: 'Registro 1 Item 1',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/1/item/2/editar',
         title: 'Registro 1 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={Theme.primary} />,
+        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
         path: '/registro/2/item/2/editar',
         title: 'Registro 2 Item 2',
         activeShouldBeExact: true,

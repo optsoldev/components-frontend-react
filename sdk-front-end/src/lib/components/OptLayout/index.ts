@@ -1,3 +1,4 @@
+import { CustomOptTheme } from '../../contexts/theme/themeState';
 import { OptMenuSection } from '../OptDrawer';
 
 export { OptAppBar } from './OptAppBar';
@@ -24,6 +25,8 @@ export interface OptLayoutProps {
   onLogout: () => void;
   onNotificationsClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onModulesClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+
+  theme?: CustomOptTheme;
 
   /** Suggested max width of 136px */
   drawerLogo?: JSX.Element;

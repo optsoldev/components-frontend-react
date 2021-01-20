@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Theme } from '../lib/shared/styles/theme';
 
 export const Wrapper = styled.main`
   display: flex;

@@ -3,8 +3,8 @@ import { mdiAccountCog, mdiExitToApp } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import React from 'react';
 import { OptUserProfile } from '.';
+import { useOptTheme } from '../../contexts/theme/themeContext';
 import { ColorPalette } from '../../shared/styles/colors';
-import { Theme } from '../../shared/styles/theme';
 import * as S from './styles';
 
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
 }
 
 export const OptAvatar = ({ profile, onConfigurarPerfil, onLogout }: Props) => {
+  const { currentTheme } = useOptTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const id = open ? 'avatar' : undefined;
@@ -73,7 +74,7 @@ export const OptAvatar = ({ profile, onConfigurarPerfil, onLogout }: Props) => {
 
           <S.CustomMenuList>
             <MenuItem onClick={onConfigurarPerfil}>
-              <Icon size={1} path={mdiAccountCog} color={Theme.secondary} />
+              <Icon size={1} path={mdiAccountCog} color={currentTheme.secondary} />
               Configurar perfil
             </MenuItem>
 

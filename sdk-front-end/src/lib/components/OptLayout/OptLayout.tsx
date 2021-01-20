@@ -1,10 +1,10 @@
 import {
-  unstable_createMuiStrictModeTheme as createMuiTheme,
   LinearProgress,
   SwipeableDrawer,
   ThemeProvider as MaterialThemeProvider,
+  unstable_createMuiStrictModeTheme as createMuiTheme,
 } from '@material-ui/core';
-import React, { PropsWithChildren, Suspense, useState } from 'react';
+import React, { PropsWithChildren, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
 import { OptAppBar, OptLayoutProps } from '.';
@@ -54,10 +54,22 @@ export const OptLayout = (props: PropsWithChildren<OptLayoutProps>) => {
 };
 
 const OptThemedLayout = (props: PropsWithChildren<OptLayoutProps>) => {
+  const { theme } = props;
+
   const {
     currentTheme,
     state: { usingDarkTheme },
+    setCustomTheme,
   } = useOptTheme();
+
+  useEffect(() => {
+    if (theme) {
+      setCustomTheme(theme);
+    } else {
+      setCustomTheme({});
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme]);
 
   return (
     <MaterialThemeProvider theme={generateMuiTheme(currentTheme, usingDarkTheme)}>
