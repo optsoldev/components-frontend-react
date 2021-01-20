@@ -1,7 +1,3 @@
-import { LocalStorageKeys } from '../../constants';
-import { DarkTheme } from './darkTheme';
-import { LightTheme } from './lightTheme';
-
 export interface OptTheme {
   primary: string;
   secondary: string;
