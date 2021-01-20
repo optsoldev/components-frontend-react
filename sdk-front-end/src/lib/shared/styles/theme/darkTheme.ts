@@ -40,7 +40,7 @@ export const DarkTheme: OptTheme = {
     },
 
     avatar: {
-      background: ColorPalette.primary,
+      background: ColorPalette.green,
       color: ColorPalette.white,
     },
   },

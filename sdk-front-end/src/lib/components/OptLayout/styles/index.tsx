@@ -1,7 +1,6 @@
 import { AppBar, Avatar, IconButton, List, MenuList, Popover } from '@material-ui/core';
 import styled from 'styled-components';
 import { Scrollbar } from '../../../shared/styles/generic';
-import { Theme } from '../../../shared/styles/theme';
 import { drawerWidth, sidebarMenuWidth } from '../../OptDrawer/styles';
 
 export const appBarHeight = 48;
@@ -37,7 +36,8 @@ export const CustomAppBar = styled(AppBar)`
   margin: 0;
   background-color: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
-  box-shadow: 0px -10px 10px 12px ${({ theme }) => theme.appBar.background};
+  ${({ theme }) =>
+    theme.appBar.noBoxShadow ? 'box-shadow: none' : `box-shadow: 0px -10px 10px 12px ${theme.appBar.background}`};
 
   .MuiToolbar-regular {
     min-height: ${appBarHeight}px;
@@ -99,8 +99,11 @@ export const CustomAvatar = styled(Avatar)<AvatarProps>`
   cursor: pointer;
   width: 32px;
   height: 32px;
-  background-color: ${(props) => props.alternativecolor || Theme.appBar.avatar.background};
-  color: ${(props) => props.color || Theme.appBar.avatar.color};
+  ${(props) =>
+    props.alternativecolor
+      ? `background-color: ${props.alternativecolor}`
+      : `background-color: ${props.theme.appBar.avatar.background}`};
+  ${(props) => (props.color ? `color: ${props.color}` : `color: ${props.theme.appBar.avatar.color}`)};
   font-size: 14px;
 
   &:hover {
@@ -112,8 +115,8 @@ export const MenuAvatar = styled(Avatar)<AvatarProps>`
   margin-top: 20px;
   width: 60px;
   height: 60px;
-  background-color: ${(props) => props.alternativecolor || Theme.appBar.avatar.background};
-  color: ${(props) => props.color || Theme.appBar.avatar.color};
+  background-color: ${(props) => props.alternativecolor || props.theme.appBar.avatar.background};
+  color: ${(props) => props.color || props.theme.appBar.avatar.color};
 `;
 
 export const AvatarPopOver = styled(Popover)`

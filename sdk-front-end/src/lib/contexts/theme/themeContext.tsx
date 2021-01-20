@@ -1,5 +1,7 @@
 import React, { createContext, useReducer } from 'react';
+import { LocalStorageKeys } from '../../shared/constants';
 import { ThemeActions } from './themeActions';
+import { generateNewTheme } from './themeFunctions';
 import { ThemeDispatch, ThemeReducer, Theme_INITIAL_DISPATCH } from './themeReducer';
 import { CustomOptTheme, ThemeState, Theme_INITIAL_STATE } from './themeState';
 
@@ -35,9 +37,17 @@ function useOptTheme() {
 
   function setDarkTheme(darkTheme: boolean) {
     if (darkTheme) {
-      dispatch({ type: actions.SET_DARK_THEME });
+      localStorage.setItem(LocalStorageKeys.DarkTheme, '1');
+
+      const currentTheme = generateNewTheme(state.theme.dark, state.customTheme.dark);
+
+      dispatch({ type: actions.SET_DARK_THEME, payload: currentTheme });
     } else {
-      dispatch({ type: actions.SET_LIGHT_THEME });
+      localStorage.removeItem(LocalStorageKeys.DarkTheme);
+
+      const currentTheme = generateNewTheme(state.theme.light, state.customTheme.light);
+
+      dispatch({ type: actions.SET_LIGHT_THEME, payload: currentTheme });
     }
   }
 

@@ -105,7 +105,6 @@ export const SidebarMenuContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 1px;
   overflow-y: auto;
   ${Scrollbar}
 

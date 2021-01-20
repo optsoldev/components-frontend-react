@@ -30,6 +30,7 @@ export interface OptTheme {
   appBar: {
     background: string;
     color: string;
+    noBoxShadow?: boolean;
 
     closeButton: {
       color: string;

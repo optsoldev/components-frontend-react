@@ -2,39 +2,10 @@ import { LocalStorageKeys } from '../../shared/constants';
 import { OptTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
 import { LightTheme } from '../../shared/styles/theme/lightTheme';
-import { RecursivePartial } from '../../shared/types';
 import { GenericContext } from '../genericContext';
 import { ThemeActions } from './themeActions';
+import { generateNewTheme } from './themeFunctions';
 import { CustomOptTheme, ThemeState } from './themeState';
-
-function copyInto<T>(to: T, from?: RecursivePartial<T>) {
-  if (from) {
-    Object.entries(from)
-      .filter((kv) => kv[1])
-      .forEach((kv) => {
-        const [key, value] = kv;
-        if (value) {
-          if (typeof value === 'object') {
-            copyInto((to as any)[key], value as any);
-          } else {
-            (to as any)[key] = value;
-          }
-        }
-      });
-  }
-
-  return to;
-}
-
-function generateNewTheme(theme: OptTheme, customTheme?: RecursivePartial<OptTheme>) {
-  let newTheme = JSON.parse(JSON.stringify(theme)) as OptTheme;
-
-  if (customTheme) {
-    newTheme = copyInto(newTheme, customTheme);
-  }
-
-  return newTheme;
-}
 
 export type ThemeDispatch = (action: ThemeAction) => void;
 
@@ -50,18 +21,10 @@ export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState
       return { ...state, customTheme: {}, currentTheme: usingDarkTheme ? DarkTheme : LightTheme };
     }
     case ThemeActions.SET_DARK_THEME: {
-      localStorage.setItem(LocalStorageKeys.DarkTheme, '1');
-
-      const currentTheme = generateNewTheme(state.theme.dark, state.customTheme.dark);
-
-      return { ...state, usingDarkTheme: true, currentTheme };
+      return { ...state, usingDarkTheme: true, currentTheme: action.payload! };
     }
     case ThemeActions.SET_LIGHT_THEME: {
-      localStorage.removeItem(LocalStorageKeys.DarkTheme);
-
-      const currentTheme = generateNewTheme(state.theme.light, state.customTheme.light);
-
-      return { ...state, usingDarkTheme: false, currentTheme };
+      return { ...state, usingDarkTheme: false, currentTheme: action.payload! };
     }
     case ThemeActions.SET_CUSTOM_THEME: {
       const usingDarkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme);
@@ -82,6 +45,6 @@ export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState
 
 type ThemeAction =
   | GenericContext<ThemeActions.RESET_THEME>
-  | GenericContext<ThemeActions.SET_DARK_THEME>
-  | GenericContext<ThemeActions.SET_LIGHT_THEME>
+  | GenericContext<ThemeActions.SET_DARK_THEME, OptTheme>
+  | GenericContext<ThemeActions.SET_LIGHT_THEME, OptTheme>
   | GenericContext<ThemeActions.SET_CUSTOM_THEME, CustomOptTheme>;

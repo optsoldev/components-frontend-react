@@ -4,7 +4,7 @@ import { ColorPalette } from '../colors';
 export const LightTheme: OptTheme = {
   primary: ColorPalette.primary,
   secondary: ColorPalette.secondary,
-  background: ColorPalette.white,
+  background: ColorPalette.grey8,
   color: ColorPalette.black,
   divider: ColorPalette.grey7,
 
@@ -29,6 +29,7 @@ export const LightTheme: OptTheme = {
   appBar: {
     background: ColorPalette.primary,
     color: ColorPalette.white,
+    noBoxShadow: true,
 
     closeButton: {
       color: ColorPalette.white,
@@ -39,7 +40,7 @@ export const LightTheme: OptTheme = {
     },
 
     avatar: {
-      background: ColorPalette.secondary,
+      background: ColorPalette.yellow,
       color: ColorPalette.white,
     },
   },

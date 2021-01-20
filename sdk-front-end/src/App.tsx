@@ -137,7 +137,6 @@ const App = () => {
         email: 'usuario@optsol.com.br',
         name: 'Usuário',
         avatarSrc: undefined,
-        alternativeColor: Theme.appBar.avatar.background,
       }}
       version={`Versão ${version}`}
       drawerLogo={<img src={Images.LogoDrawer} alt="Banner da OPTSOL" />}
