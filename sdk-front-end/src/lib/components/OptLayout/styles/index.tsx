@@ -79,14 +79,14 @@ export const AppBarDrawerButton = styled(IconButton)`
   margin-left: 0;
 
   svg {
-    color: ${({ theme }) => theme.appBar.closeButton.color};
+    color: ${({ theme }) => theme.appBar.menuButton.color};
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.appBar.closeButton.hover.background};
+    background-color: ${({ theme }) => theme.appBar.menuButton.hover.background};
 
     svg {
-      color: ${({ theme }) => theme.appBar.closeButton.hover.color};
+      color: ${({ theme }) => theme.appBar.menuButton.hover.color};
     }
   }
 `;

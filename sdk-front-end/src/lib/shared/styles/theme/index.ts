@@ -28,7 +28,7 @@ export interface OptTheme {
     color: string;
     noBoxShadow?: boolean;
 
-    closeButton: {
+    menuButton: {
       color: string;
 
       hover: {

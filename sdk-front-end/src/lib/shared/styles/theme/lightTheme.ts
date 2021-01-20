@@ -31,7 +31,7 @@ export const LightTheme: OptTheme = {
     color: ColorPalette.white,
     noBoxShadow: true,
 
-    closeButton: {
+    menuButton: {
       color: ColorPalette.white,
       hover: {
         color: ColorPalette.white,

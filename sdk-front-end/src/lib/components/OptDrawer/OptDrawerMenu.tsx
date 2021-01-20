@@ -63,7 +63,7 @@ export const OptDrawerMenu = ({
           {drawerLogo}
 
           <IconButton onClick={onToggleDockDrawer}>
-            <Icon size={1} path={docked ? mdiPinOff : mdiPin} color={currentTheme.primary} />
+            <Icon size={1} path={docked ? mdiPinOff : mdiPin} color={currentTheme.drawer.close.color} />
           </IconButton>
         </S.FooterHeader>
 

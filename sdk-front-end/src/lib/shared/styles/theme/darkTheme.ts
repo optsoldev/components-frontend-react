@@ -30,7 +30,7 @@ export const DarkTheme: OptTheme = {
     background: ColorPalette.black,
     color: ColorPalette.primary,
 
-    closeButton: {
+    menuButton: {
       color: ColorPalette.primary,
 
       hover: {
