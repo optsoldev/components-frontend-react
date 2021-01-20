@@ -24,6 +24,7 @@ export const ContentContainer = styled.div`
 
 export const DrawerMenuContainer = styled.div`
   width: ${drawerWidth}px;
+
 `;
 
 export const CloseDrawerList = styled(List)`
@@ -37,7 +38,9 @@ export const CustomAppBar = styled(AppBar)`
   background-color: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
   ${({ theme }) =>
-    theme.appBar.noBoxShadow ? 'box-shadow: none' : `box-shadow: 0px -10px 10px 12px ${theme.appBar.background}`};
+    !!theme.appBar.noBoxShadow
+      ? 'box-shadow: none'
+      : `box-shadow: 0px -10px 10px 12px ${theme.appBar.boxShadowColor ?? theme.appBar.background}`};
 
   .MuiToolbar-regular {
     min-height: ${appBarHeight}px;
@@ -60,17 +63,25 @@ export const AppBarDrawerButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  
+  @media (max-width: 600px) {
+    width: auto;
+  align-items: flex-start;
+  }
 `;
 
 export const AppBarEndContainer = styled.div`
-  width: ${sidebarMenuWidth}px;
   display: flex;
-  flex: 1;
   justify-content: flex-end;
   align-items: center;
 
   & > :last-child {
     margin-right: 10px;
+  }
+
+  @media (max-width: 600px) {
+    flex: 1;
   }
 `;
 
@@ -170,8 +181,10 @@ interface AppbarBreadcrumbProps {
   marginLeft?: boolean;
 }
 
-export const AppbarBreadcrumb = styled.div<AppbarBreadcrumbProps>`
+export const AppBarContainer = styled.div<AppbarBreadcrumbProps>`
   ${(props) => props.marginLeft && 'margin-left: 32px;'}
+  flex: 1;
+
   @media (max-width: 600px) {
     display: none;
   }

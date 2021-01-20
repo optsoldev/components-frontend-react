@@ -23,8 +23,14 @@ export interface OptLayoutProps {
   profile: OptUserProfile | undefined;
   onConfigurarPerfil: () => void;
   onLogout: () => void;
-  onNotificationsClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  onModulesClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+
+  appBarConfig?: {
+    hideBreadcrumb?: boolean;
+    /** Content that will be displayed at appbar's start */
+    content?: JSX.Element;
+    /** Actions that will be displayed at the end of the appbar, before the profile button */
+    actions?: JSX.Element;
+  };
 
   theme?: CustomOptTheme;
 

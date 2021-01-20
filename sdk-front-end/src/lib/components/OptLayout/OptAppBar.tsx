@@ -1,5 +1,5 @@
-import { createStyles, IconButton, makeStyles, Theme as MaterialTheme, Toolbar } from '@material-ui/core';
-import { mdiApps, mdiBell, mdiMenu } from '@mdi/js';
+import { createStyles, makeStyles, Theme as MaterialTheme, Toolbar } from '@material-ui/core';
+import { mdiMenu } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
 import { OptAvatar, OptUserProfile } from '.';
@@ -22,20 +22,22 @@ interface Props {
   profile: OptUserProfile | undefined;
   onConfigurarPerfil: () => void;
   onLogout: () => void;
-  onNotificationsClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  onModulesClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onDrawerOpen: () => void;
+  hideBreadcrumb?: boolean;
   hideDrawerButton?: boolean;
+  content?: JSX.Element;
+  actions?: JSX.Element;
 }
 
 export const OptAppBar = ({
-  onModulesClick,
   profile,
-  onNotificationsClick,
   onConfigurarPerfil,
   onLogout,
   onDrawerOpen,
   hideDrawerButton,
+  hideBreadcrumb,
+  content,
+  actions,
 }: Props) => {
   const classes = useStyles();
 
@@ -50,18 +52,13 @@ export const OptAppBar = ({
           </S.AppBarDrawerButtonContainer>
         )}
 
-        <S.AppbarBreadcrumb marginLeft={hideDrawerButton}>
-          <OptBreadcrumb />
-        </S.AppbarBreadcrumb>
+        <S.AppBarContainer marginLeft={hideDrawerButton}>
+          {!hideBreadcrumb && <OptBreadcrumb />}
+          {content}
+        </S.AppBarContainer>
 
         <S.AppBarEndContainer>
-          <IconButton onClick={onNotificationsClick}>
-            <Icon size={1} path={mdiBell} />
-          </IconButton>
-
-          <IconButton onClick={onModulesClick}>
-            <Icon size={1} path={mdiApps} />
-          </IconButton>
+          {actions}
 
           <OptAvatar profile={profile} onConfigurarPerfil={onConfigurarPerfil} onLogout={onLogout} />
         </S.AppBarEndContainer>

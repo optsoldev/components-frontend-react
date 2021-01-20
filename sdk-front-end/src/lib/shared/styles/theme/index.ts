@@ -26,6 +26,7 @@ export interface OptTheme {
   appBar: {
     background: string;
     color: string;
+    boxShadowColor?: string;
     noBoxShadow?: boolean;
 
     menuButton: {

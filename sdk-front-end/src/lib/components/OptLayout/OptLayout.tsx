@@ -91,10 +91,9 @@ const OptInnerLayout = ({
   profile,
   children,
   onLogout,
-  onNotificationsClick,
-  onModulesClick,
   drawerLogo,
   version,
+  appBarConfig,
 }: PropsWithChildren<OptLayoutProps>) => {
   const [dockedDrawer, setDockedDrawer] = useState(!!localStorage.getItem(LocalStorageKeys.DockedDrawer));
 
@@ -132,11 +131,13 @@ const OptInnerLayout = ({
         profile={profile}
         onConfigurarPerfil={onConfigurarPerfil}
         onLogout={onLogout}
-        onNotificationsClick={onNotificationsClick}
-        onModulesClick={onModulesClick}
         onDrawerOpen={handleDrawerOpen}
         hideDrawerButton={dockedDrawer}
+        hideBreadcrumb={appBarConfig?.hideBreadcrumb}
+        content={appBarConfig?.content}
+        actions={appBarConfig?.actions}
       />
+      
       <S.Container>
         {hasSidebar && <OptSidebarMenu sections={sections} />}
         {dockedDrawer && (

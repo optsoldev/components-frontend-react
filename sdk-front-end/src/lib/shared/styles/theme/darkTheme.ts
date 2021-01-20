@@ -29,6 +29,7 @@ export const DarkTheme: OptTheme = {
   appBar: {
     background: ColorPalette.black,
     color: ColorPalette.primary,
+    boxShadowColor: ColorPalette.grey4,
 
     menuButton: {
       color: ColorPalette.primary,

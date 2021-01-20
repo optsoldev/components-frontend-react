@@ -74,7 +74,7 @@ export const OptAvatar = ({ profile, onConfigurarPerfil, onLogout }: Props) => {
 
           <S.CustomMenuList>
             <MenuItem onClick={onConfigurarPerfil}>
-              <Icon size={1} path={mdiAccountCog} color={currentTheme.appBar.background} />
+              <Icon size={1} path={mdiAccountCog} color={currentTheme.appBar.avatar.background} />
               Configurar perfil
             </MenuItem>
 

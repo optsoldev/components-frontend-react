@@ -29,7 +29,7 @@ export const LightTheme: OptTheme = {
   appBar: {
     background: ColorPalette.primary,
     color: ColorPalette.white,
-    noBoxShadow: true,
+    boxShadowColor: ColorPalette.grey4,
 
     menuButton: {
       color: ColorPalette.white,
