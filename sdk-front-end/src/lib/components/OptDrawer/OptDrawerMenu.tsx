@@ -1,5 +1,5 @@
 import { IconButton, List, ListItemIcon, ListItemText } from '@material-ui/core';
-import { mdiArrowLeft, mdiPin, mdiPinOff } from '@mdi/js';
+import { mdiMenuOpen, mdiPin, mdiPinOff } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import React from 'react';
 import { OptMenuSection } from '.';
@@ -32,7 +32,7 @@ export const OptDrawerMenu = ({
       {!docked && (
         <S.CloseDrawerContainer>
           <IconButton onClick={onHideDrawer}>
-            <Icon size={1.8} path={mdiArrowLeft} color={currentTheme.drawer.close.color} />
+            <Icon size={1.8} path={mdiMenuOpen} color={currentTheme.drawer.close.color} />
           </IconButton>
         </S.CloseDrawerContainer>
       )}

@@ -1,5 +1,8 @@
+import { mdiPencil, mdiThumbUp, mdiThumbDown, mdiFileMultiple, mdiCloseCircle } from '@mdi/js';
 import React, { useEffect } from 'react';
+import { OptActionButton, OptActionToolbar } from './lib/components/OptActionToobar';
 import { useBreadcrumb } from './lib/contexts/breadcrumb/breadcrumbContext';
+import { ColorPalette } from './lib/shared/styles/colors';
 
 export const RotaLazy = () => {
   const { setDictionary } = useBreadcrumb();
@@ -12,6 +15,22 @@ export const RotaLazy = () => {
 
   return (
     <div>
+      <OptActionToolbar title="Rota Lazy" goBackRoute="home">
+        <OptActionButton startIcon={{ path: mdiPencil, color: ColorPalette.curiousBlue }}>Editar</OptActionButton>
+        <OptActionButton startIcon={{ path: mdiThumbUp, color: ColorPalette.primary }}>
+          Aprovar proposta
+        </OptActionButton>
+        <OptActionButton startIcon={{ path: mdiThumbDown, color: ColorPalette.ketchup }} loading>
+          Reprovar proposta
+        </OptActionButton>
+        <OptActionButton startIcon={{ path: mdiFileMultiple, color: ColorPalette.secondary }} disabled>
+          Anexos
+        </OptActionButton>
+        <OptActionButton startIcon={{ path: mdiCloseCircle, color: ColorPalette.ketchup }}>
+          Cancelar proposta
+        </OptActionButton>
+      </OptActionToolbar>
+
       <h3>Parabéns!</h3>
       <p>Esta é a rota lazy!</p>
     </div>

@@ -1,4 +1,4 @@
 export const LocalStorageKeys = {
-  DockedDrawer: 'DOCKED_DRAWER',
-  DarkTheme: 'DARK_THEME',
+  DockedDrawer: 'OPTSOL_DOCKED_DRAWER',
+  DarkTheme: 'OPTSOL_DARK_THEME',
 } as const;

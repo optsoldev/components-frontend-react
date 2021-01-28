@@ -4,12 +4,12 @@ import { ColorPalette } from '../colors';
 export const DarkTheme: OptTheme = {
   primary: ColorPalette.primary,
   secondary: ColorPalette.secondary,
-  background: ColorPalette.black,
+  background: ColorPalette.dark,
   color: ColorPalette.white,
-  divider: ColorPalette.grey7,
+  divider: ColorPalette.grey2,
 
   scrollbar: {
-    background: ColorPalette.dark,
+    background: ColorPalette.black,
     shadowColor: ColorPalette.grey2,
     topColor: ColorPalette.primaryTints.tint3,
     bottomColor: ColorPalette.primaryTints.tint5,
@@ -29,7 +29,7 @@ export const DarkTheme: OptTheme = {
   appBar: {
     background: ColorPalette.black,
     color: ColorPalette.primary,
-    boxShadowColor: ColorPalette.grey4,
+    boxShadowColor: ColorPalette.black,
 
     menuButton: {
       color: ColorPalette.primary,
@@ -47,7 +47,7 @@ export const DarkTheme: OptTheme = {
   },
 
   sidebar: {
-    background: ColorPalette.dark,
+    background: ColorPalette.black,
     color: ColorPalette.white,
     divider: ColorPalette.dark,
 
@@ -67,7 +67,7 @@ export const DarkTheme: OptTheme = {
 
   drawer: {
     docked: {
-      borderColor: ColorPalette.dark,
+      borderColor: ColorPalette.black,
     },
 
     close: {
@@ -75,9 +75,9 @@ export const DarkTheme: OptTheme = {
       background: 'inherit',
     },
     versionColor: ColorPalette.grey5,
-    background: ColorPalette.dark,
+    background: ColorPalette.black,
     color: ColorPalette.black,
-    divider: ColorPalette.grey7,
+    divider: ColorPalette.grey1,
 
     link: {
       color: ColorPalette.white,

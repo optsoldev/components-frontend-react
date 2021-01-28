@@ -54,12 +54,13 @@ export const OptLayout = (props: PropsWithChildren<OptLayoutProps>) => {
 };
 
 const OptThemedLayout = (props: PropsWithChildren<OptLayoutProps>) => {
-  const { theme } = props;
+  const { theme, darkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme) } = props;
 
   const {
     currentTheme,
     state: { usingDarkTheme },
     setCustomTheme,
+    setDarkTheme,
   } = useOptTheme();
 
   useEffect(() => {
@@ -70,6 +71,11 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProps>) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
+
+  useEffect(() => {
+    setDarkTheme(!!darkTheme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [darkTheme]);
 
   return (
     <MaterialThemeProvider theme={generateMuiTheme(currentTheme, usingDarkTheme)}>
@@ -137,7 +143,7 @@ const OptInnerLayout = ({
         content={appBarConfig?.content}
         actions={appBarConfig?.actions}
       />
-      
+
       <S.Container>
         {hasSidebar && <OptSidebarMenu sections={sections} />}
         {dockedDrawer && (

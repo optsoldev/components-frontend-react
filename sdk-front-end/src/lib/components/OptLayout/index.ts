@@ -20,7 +20,9 @@ export interface OptLayoutProps {
   routes?: JSX.Element;
   /** Disables the sidebar */
   noSidebar?: boolean;
+  darkTheme?: boolean;
   profile: OptUserProfile | undefined;
+
   onConfigurarPerfil: () => void;
   onLogout: () => void;
 

@@ -4,6 +4,7 @@ import { Scrollbar } from '../../../shared/styles/generic';
 import { drawerWidth, sidebarMenuWidth } from '../../OptDrawer/styles';
 
 export const appBarHeight = 48;
+export const containerPadding = 12;
 
 export const Container = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  padding: 12px;
+  padding: ${containerPadding}px;
   flex: 1;
   overflow-wrap: anywhere;
   overflow-y: auto;
@@ -24,7 +25,6 @@ export const ContentContainer = styled.div`
 
 export const DrawerMenuContainer = styled.div`
   width: ${drawerWidth}px;
-
 `;
 
 export const CloseDrawerList = styled(List)`
@@ -64,10 +64,9 @@ export const AppBarDrawerButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  
   @media (max-width: 600px) {
     width: auto;
-  align-items: flex-start;
+    align-items: flex-start;
   }
 `;
 

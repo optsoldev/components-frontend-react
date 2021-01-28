@@ -46,7 +46,9 @@ export const MenuListItem = styled(ListItem)`
     min-width: auto;
     margin-right: 14px;
   }
-  & > .MuiListItemText-root {
+
+  & > .MuiListItemText-root,
+  & > .MuiListItemText-root > .MuiTypography-body1 {
     font-size: 14px;
   }
 `;
@@ -102,6 +104,7 @@ export const DrawerNavLink = styled(NavLink)`
 export const SidebarMenuContainer = styled.div`
   width: ${sidebarMenuWidth}px;
   border-right: 1px solid ${({ theme }) => theme.sidebar.divider};
+  background: ${({ theme }) => theme.sidebar.background};
   height: auto;
   display: flex;
   flex-direction: column;
