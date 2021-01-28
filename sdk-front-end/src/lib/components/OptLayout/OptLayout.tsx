@@ -73,7 +73,9 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProps>) => {
   }, [theme]);
 
   useEffect(() => {
-    setDarkTheme(!!darkTheme);
+    if (usingDarkTheme !== darkTheme) {
+      setDarkTheme(darkTheme);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [darkTheme]);
 
