@@ -141,7 +141,7 @@ const App = () => {
       }}
       profile={{
         email: 'usuario@optsol.com.br',
-        name: 'Usuário',
+        name: 'Usuário A B',
         avatarSrc: undefined,
       }}
       version={`Versão ${version}`}

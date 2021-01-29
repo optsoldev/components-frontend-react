@@ -1,4 +1,4 @@
-import { AppBar, Avatar, IconButton, List, MenuList, Popover } from '@material-ui/core';
+import { AppBar, IconButton, List, MenuList, Popover } from '@material-ui/core';
 import styled from 'styled-components';
 import { Scrollbar } from '../../../shared/styles/generic';
 import { drawerWidth, sidebarMenuWidth } from '../../OptDrawer/styles';
@@ -43,6 +43,7 @@ export const CustomAppBar = styled(AppBar)`
       : `box-shadow: 0px -10px 10px 12px ${theme.appBar.boxShadowColor ?? theme.appBar.background}`};
 
   .MuiToolbar-regular {
+    height: ${appBarHeight}px;
     min-height: ${appBarHeight}px;
   }
 
@@ -101,34 +102,6 @@ export const AppBarDrawerButton = styled(IconButton)`
   }
 `;
 
-type AvatarProps = {
-  alternativecolor?: string;
-};
-
-export const CustomAvatar = styled(Avatar)<AvatarProps>`
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  ${(props) =>
-    props.alternativecolor
-      ? `background-color: ${props.alternativecolor}`
-      : `background-color: ${props.theme.appBar.avatar.background}`};
-  ${(props) => (props.color ? `color: ${props.color}` : `color: ${props.theme.appBar.avatar.color}`)};
-  font-size: 14px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-export const MenuAvatar = styled(Avatar)<AvatarProps>`
-  margin-top: 20px;
-  width: 60px;
-  height: 60px;
-  background-color: ${(props) => props.alternativecolor || props.theme.appBar.avatar.background};
-  color: ${(props) => props.color || props.theme.appBar.avatar.color};
-`;
-
 export const AvatarPopOver = styled(Popover)`
   & > .MuiPaper-rounded {
     min-width: 200px;
@@ -146,6 +119,7 @@ export const AvatarPopOver = styled(Popover)`
 `;
 
 export const MenuAvatarContainer = styled.div`
+  padding-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,6 +156,7 @@ interface AppbarBreadcrumbProps {
 
 export const AppBarContainer = styled.div<AppbarBreadcrumbProps>`
   ${(props) => props.marginLeft && 'margin-left: 32px;'}
+  display: flex;
   flex: 1;
 
   @media (max-width: 600px) {

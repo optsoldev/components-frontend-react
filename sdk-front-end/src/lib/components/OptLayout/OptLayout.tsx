@@ -1,97 +1,13 @@
-import {
-  LinearProgress,
-  SwipeableDrawer,
-  ThemeProvider as MaterialThemeProvider,
-  unstable_createMuiStrictModeTheme as createMuiTheme,
-} from '@material-ui/core';
-import React, { PropsWithChildren, Suspense, useEffect, useState } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
+import { LinearProgress, SwipeableDrawer } from '@material-ui/core';
+import React, { PropsWithChildren, Suspense, useState } from 'react';
+import { Switch } from 'react-router-dom';
 import { OptAppBar, OptLayoutProps } from '.';
-import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
-import { OptThemeProvider, useOptTheme } from '../../contexts/theme/themeContext';
 import { LocalStorageKeys } from '../../shared/constants';
-import { GlobalStyles } from '../../shared/styles/global';
-import { GlobalFontStyles } from '../../shared/styles/globalFont';
-import { OptTheme } from '../../shared/styles/theme';
 import { OptDrawerMenu } from '../OptDrawer/OptDrawerMenu';
 import { OptSidebarMenu } from '../OptDrawer/OptSidebarMenu';
 import * as S from './styles';
 
-const generateMuiTheme = (optTheme: OptTheme, usingDarkTheme: boolean = false) => {
-  return createMuiTheme({
-    palette: {
-      type: usingDarkTheme ? 'dark' : 'light',
-      primary: {
-        main: optTheme.primary,
-      },
-      secondary: {
-        main: optTheme.secondary,
-      },
-    },
-    overrides: {
-      MuiIconButton: {
-        root: {
-          '&': {
-            padding: 8,
-          },
-        },
-      },
-    },
-  });
-};
-
-export const OptLayout = (props: PropsWithChildren<OptLayoutProps>) => {
-  return (
-    <OptThemeProvider>
-      <BrowserRouter>
-        <BreadcrumbProvider>
-          <OptThemedLayout {...props} />
-        </BreadcrumbProvider>
-      </BrowserRouter>
-    </OptThemeProvider>
-  );
-};
-
-const OptThemedLayout = (props: PropsWithChildren<OptLayoutProps>) => {
-  const { theme, darkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme) } = props;
-
-  const {
-    currentTheme,
-    state: { usingDarkTheme },
-    setCustomTheme,
-    setDarkTheme,
-  } = useOptTheme();
-
-  useEffect(() => {
-    if (theme) {
-      setCustomTheme(theme);
-    } else {
-      setCustomTheme({});
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme]);
-
-  useEffect(() => {
-    if (usingDarkTheme !== darkTheme) {
-      setDarkTheme(darkTheme);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [darkTheme]);
-
-  return (
-    <MaterialThemeProvider theme={generateMuiTheme(currentTheme, usingDarkTheme)}>
-      <StyledComponentsThemeProvider theme={currentTheme}>
-        <GlobalFontStyles />
-        <GlobalStyles />
-
-        <OptInnerLayout {...props} />
-      </StyledComponentsThemeProvider>
-    </MaterialThemeProvider>
-  );
-};
-
-const OptInnerLayout = ({
+export const OptLayout = ({
   sections,
   routes,
   noSidebar = false,
@@ -137,7 +53,7 @@ const OptInnerLayout = ({
     <>
       <OptAppBar
         profile={profile}
-        onConfigurarPerfil={onConfigurarPerfil}
+        onConfigureProfile={onConfigurarPerfil}
         onLogout={onLogout}
         onDrawerOpen={handleDrawerOpen}
         hideDrawerButton={dockedDrawer}

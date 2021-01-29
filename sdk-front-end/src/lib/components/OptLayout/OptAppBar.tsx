@@ -2,8 +2,9 @@ import { createStyles, makeStyles, Theme as MaterialTheme, Toolbar } from '@mate
 import { mdiMenu } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
-import { OptAvatar, OptUserProfile } from '.';
+import { OptUserProfile } from '../OptAvatar';
 import { OptBreadcrumb } from '../OptBreadcrumb/OptBreadcrumb';
+import { OptAppBarAvatar } from './OptAppBarAvatar';
 import * as S from './styles';
 
 const useStyles = makeStyles((theme: MaterialTheme) =>
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme: MaterialTheme) =>
 
 interface Props {
   profile: OptUserProfile | undefined;
-  onConfigurarPerfil: () => void;
+  onConfigureProfile: () => void;
   onLogout: () => void;
   onDrawerOpen: () => void;
   hideBreadcrumb?: boolean;
@@ -31,7 +32,7 @@ interface Props {
 
 export const OptAppBar = ({
   profile,
-  onConfigurarPerfil,
+  onConfigureProfile,
   onLogout,
   onDrawerOpen,
   hideDrawerButton,
@@ -60,7 +61,7 @@ export const OptAppBar = ({
         <S.AppBarEndContainer>
           {actions}
 
-          <OptAvatar profile={profile} onConfigurarPerfil={onConfigurarPerfil} onLogout={onLogout} />
+          <OptAppBarAvatar profile={profile} onConfigureProfile={onConfigureProfile} onLogout={onLogout} />
         </S.AppBarEndContainer>
       </Toolbar>
     </S.CustomAppBar>
