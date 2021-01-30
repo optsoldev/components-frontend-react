@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useBreadcrumb } from './lib/contexts/breadcrumb/breadcrumbContext';
+import { useBreadcrumb } from '../../lib/contexts/breadcrumb/breadcrumbContext';
 
 function getRegistroMock(id: string) {
   return id === '1' ? 'João da Silva' : 'Maria Andrade';

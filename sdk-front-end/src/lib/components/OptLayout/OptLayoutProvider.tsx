@@ -9,7 +9,6 @@ import { OptLayoutProviderProps } from '.';
 import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
 import { OptThemeProvider, useOptTheme } from '../../contexts/theme/themeContext';
 import { LocalStorageKeys } from '../../shared/constants';
-import { GlobalStyles } from '../../shared/styles/global';
 import { GlobalFontStyles } from '../../shared/styles/globalFont';
 import { OptTheme } from '../../shared/styles/theme';
 
@@ -78,7 +77,6 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
     <MaterialThemeProvider theme={generateMuiTheme(currentTheme, usingDarkTheme)}>
       <StyledComponentsThemeProvider theme={currentTheme}>
         <GlobalFontStyles />
-        <GlobalStyles />
 
         {children}
       </StyledComponentsThemeProvider>

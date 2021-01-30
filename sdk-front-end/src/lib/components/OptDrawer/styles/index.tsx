@@ -1,7 +1,7 @@
 import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { Scrollbar } from '../../../shared/styles/generic';
+import { ScrollbarCSS } from '../../../shared/styles/generic';
 
 export const drawerWidth = 250;
 export const sidebarMenuWidth = 88;
@@ -15,7 +15,7 @@ export const DrawerMenuContainer = styled.div`
   background: ${({ theme }) => theme.drawer.background};
   overflow-y: auto;
 
-  ${Scrollbar}
+  ${ScrollbarCSS}
 `;
 
 export const CloseDrawerContainer = styled.div`
@@ -103,13 +103,14 @@ export const DrawerNavLink = styled(NavLink)`
 
 export const SidebarMenuContainer = styled.div`
   width: ${sidebarMenuWidth}px;
+  min-width: ${sidebarMenuWidth}px;
   border-right: 1px solid ${({ theme }) => theme.sidebar.divider};
   background: ${({ theme }) => theme.sidebar.background};
   height: auto;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  ${Scrollbar}
+  ${ScrollbarCSS}
 
   @media (max-width: 600px) {
     display: none;
@@ -175,6 +176,7 @@ export const SidebarNavLink = styled(NavLink)`
 
 export const SidebarListItemIcon = styled(ListItemIcon)`
   min-width: auto;
+  justify-content: center;
   color: ${({ theme }) => theme.sidebar.link.color};
 `;
 

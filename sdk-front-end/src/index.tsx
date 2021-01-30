@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { OptLayoutProvider } from './lib/components/OptLayout/OptLayoutProvider';
+import { AppSide } from './pages/AppSide/AppSide';
 
 ReactDOM.render(
   <React.StrictMode>
     <OptLayoutProvider>
-      <App />
+      {/* <App /> */}
+      <AppSide />
     </OptLayoutProvider>
   </React.StrictMode>,
   document.getElementById('root'),

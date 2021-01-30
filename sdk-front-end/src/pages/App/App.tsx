@@ -2,16 +2,16 @@ import { mdiAbTesting, mdiIdeogramCjk, mdiPacMan } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { version } from '../package.json';
+import { version } from '../../../package.json';
 import { AppbarActions } from './AppbarActions';
-import { OptMenuSection } from './lib/components/OptDrawer';
-import { OptLayout } from './lib/components/OptLayout';
-import { ColorPalette } from './lib/shared/styles/colors';
+import { OptMenuSection } from '../../lib/components/OptDrawer';
+import { OptLayout } from '../../lib/components/OptLayout';
+import { ColorPalette } from '../../lib/shared/styles/colors';
 import { RotaListaRegistro } from './RotaListaRegistro';
 import { RotaNaoEncontrada } from './RotaNaoEncontrada';
 import { RotaPrincipal } from './RotaPrincipal';
 import { RotaRegistro } from './RotaRegistro';
-import { Images } from './shared/images/images';
+import { Images } from '../../shared/images/images';
 
 const LazyRotaTeste = React.lazy(() => {
   return import('./RotaLazy');

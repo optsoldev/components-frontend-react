@@ -3,6 +3,7 @@ import React, { PropsWithChildren, Suspense, useState } from 'react';
 import { Switch } from 'react-router-dom';
 import { OptAppBar, OptLayoutProps } from '.';
 import { LocalStorageKeys } from '../../shared/constants';
+import { GlobalStyles } from '../../shared/styles/global';
 import { OptDrawerMenu } from '../OptDrawer/OptDrawerMenu';
 import { OptSidebarMenu } from '../OptDrawer/OptSidebarMenu';
 import * as S from './styles';
@@ -51,6 +52,8 @@ export const OptLayout = ({
 
   return (
     <>
+      <GlobalStyles />
+
       <OptAppBar
         profile={profile}
         onConfigureProfile={onConfigurarPerfil}

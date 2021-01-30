@@ -1,8 +1,8 @@
 import { Switch } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { useBreadcrumb } from './lib/contexts/breadcrumb/breadcrumbContext';
-import { useOptTheme } from './lib/contexts/theme/themeContext';
-import { ColorPalette } from './lib/shared/styles/colors';
+import { useBreadcrumb } from '../../lib/contexts/breadcrumb/breadcrumbContext';
+import { useOptTheme } from '../../lib/contexts/theme/themeContext';
+import { ColorPalette } from '../../lib/shared/styles/colors';
 
 export const RotaPrincipal = () => {
   const { setDictionary } = useBreadcrumb();
@@ -43,7 +43,7 @@ export const RotaPrincipal = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <h4>Esta é a rota principal!</h4>
       <button type="button" onClick={handleCustomTheme}>
         Customizar tema
@@ -67,6 +67,12 @@ export const RotaPrincipal = () => {
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>
+      <p>
+        Aumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando
+        a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a
+        telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a
+        telaAumentando a telaAumentando a telaAumentando a telaAumentando a tela
+      </p>
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>
@@ -120,7 +126,6 @@ export const RotaPrincipal = () => {
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>
-      <p>Aumentando a tela</p>
-    </div>
+    </>
   );
 };

@@ -1,8 +1,8 @@
 import { mdiPencil, mdiThumbUp, mdiThumbDown, mdiFileMultiple, mdiCloseCircle } from '@mdi/js';
 import React, { useEffect } from 'react';
-import { OptActionButton, OptActionToolbar } from './lib/components/OptActionToobar';
-import { useBreadcrumb } from './lib/contexts/breadcrumb/breadcrumbContext';
-import { ColorPalette } from './lib/shared/styles/colors';
+import { OptActionButton, OptActionToolbar } from '../../lib/components/OptActionToobar';
+import { useBreadcrumb } from '../../lib/contexts/breadcrumb/breadcrumbContext';
+import { ColorPalette } from '../../lib/shared/styles/colors';
 
 export const RotaLazy = () => {
   const { setDictionary } = useBreadcrumb();

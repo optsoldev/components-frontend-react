@@ -1,6 +1,6 @@
 import { AppBar, IconButton, List, MenuList, Popover } from '@material-ui/core';
 import styled from 'styled-components';
-import { Scrollbar } from '../../../shared/styles/generic';
+import { ScrollbarCSS } from '../../../shared/styles/generic';
 import { drawerWidth, sidebarMenuWidth } from '../../OptDrawer/styles';
 
 export const appBarHeight = 48;
@@ -19,8 +19,10 @@ export const ContentContainer = styled.div`
   flex: 1;
   overflow-wrap: anywhere;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
-  ${Scrollbar};
+  ${ScrollbarCSS};
 `;
 
 export const DrawerMenuContainer = styled.div`
