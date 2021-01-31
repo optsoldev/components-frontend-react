@@ -99,7 +99,8 @@ export const SidebarMenuDivider = styled(Divider)`
 
 export const FooterActionsContainer = styled.div`
   flex: 1;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: flex-end;
+  align-items: center;
   display: flex;
+  flex-direction: column;
 `;

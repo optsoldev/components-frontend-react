@@ -5,7 +5,7 @@ import { OptAppBar, OptLayoutProps } from '.';
 import { LocalStorageKeys } from '../../shared/constants';
 import { GlobalStyles } from '../../shared/styles/global';
 import { OptDrawerMenu } from '../OptDrawer/OptDrawerMenu';
-import { OptSideAppbar } from '../OptSideAppbar';
+import { OptSidebar } from '../OptSidebar';
 import * as S from './styles';
 
 export const OptLayout = ({
@@ -66,7 +66,7 @@ export const OptLayout = ({
       />
 
       <S.Container>
-        {hasSidebar && <OptSideAppbar sections={sections} />}
+        {hasSidebar && <OptSidebar sections={sections} />}
         {dockedDrawer && (
           <S.DockedDrawerContainer>
             <OptDrawerMenu

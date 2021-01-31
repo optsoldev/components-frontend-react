@@ -2,7 +2,7 @@ import {
   ThemeProvider as MaterialThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiTheme,
 } from '@material-ui/core';
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
 import { OptLayoutProviderProps } from '.';
@@ -11,6 +11,7 @@ import { OptThemeProvider, useOptTheme } from '../../contexts/theme/themeContext
 import { LocalStorageKeys } from '../../shared/constants';
 import { GlobalFontStyles } from '../../shared/styles/globalFont';
 import { OptTheme } from '../../shared/styles/theme';
+import { OptLoading } from '../OptLoading';
 
 const generateMuiTheme = (optTheme: OptTheme, usingDarkTheme: boolean = false) => {
   return createMuiTheme({
@@ -50,6 +51,8 @@ export const OptLayoutProvider = ({ children, ...props }: PropsWithChildren<OptL
 const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
   const { theme, darkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme), children } = props;
 
+  const [themeLoaded, setThemeLoaded] = useState(false);
+
   const {
     currentTheme,
     state: { usingDarkTheme },
@@ -63,6 +66,20 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
     } else {
       setCustomTheme({});
     }
+    setThemeLoaded(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setThemeLoaded(false);
+
+    if (theme) {
+      setCustomTheme(theme);
+    } else {
+      setCustomTheme({});
+    }
+
+    setThemeLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
@@ -78,7 +95,7 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
       <StyledComponentsThemeProvider theme={currentTheme}>
         <GlobalFontStyles />
 
-        {children}
+        {!themeLoaded ? <OptLoading /> : <>{children}</>}
       </StyledComponentsThemeProvider>
     </MaterialThemeProvider>
   );

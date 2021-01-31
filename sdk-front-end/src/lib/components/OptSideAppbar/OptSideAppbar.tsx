@@ -1,19 +1,29 @@
-import { IconButton, List } from '@material-ui/core';
+import { List } from '@material-ui/core';
 import Icon from '@mdi/react';
 import React from 'react';
 import { OptMenuSection } from '.';
 import { useOptTheme } from '../../contexts/theme/themeContext';
-import { OptAvatar, OptUserProfile } from '../OptAvatar';
+import { OptUserProfile } from '../OptAvatar';
+import { OptAppBarAvatar } from '../OptLayout';
 import * as S from './styles';
 
 interface OptMainSidebarMenuProps {
   sections: OptMenuSection[];
 
   profile?: OptUserProfile;
+  onManageProfile: () => void;
+  onLogout: () => void;
+
   footerActions?: React.ReactNode;
 }
 
-export const OptSideAppbar = ({ sections, profile, footerActions }: OptMainSidebarMenuProps) => {
+export const OptSideAppbar = ({
+  sections,
+  profile,
+  onManageProfile,
+  onLogout,
+  footerActions,
+}: OptMainSidebarMenuProps) => {
   const { currentTheme } = useOptTheme();
 
   const actions = (
@@ -21,12 +31,7 @@ export const OptSideAppbar = ({ sections, profile, footerActions }: OptMainSideb
       {footerActions}
 
       {profile && (
-        <IconButton
-          onClick={() => {
-            console.log('something 1');
-          }}>
-          <OptAvatar profile={profile} />
-        </IconButton>
+        <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
       )}
     </>
   );

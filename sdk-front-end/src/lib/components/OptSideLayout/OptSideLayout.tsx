@@ -25,7 +25,13 @@ export const OptSideLayout = ({
       <GlobalStyles noAppBar />
 
       <S.InitialContainer>
-        <OptSideAppbar sections={sections} profile={profile} />
+        <OptSideAppbar
+          sections={sections}
+          footerActions={appBarConfig?.actions}
+          profile={profile}
+          onLogout={onLogout}
+          onManageProfile={onManageProfile}
+        />
 
         <S.MainContent>
           {children}
@@ -41,15 +47,6 @@ export const OptSideLayout = ({
             </Suspense>
           )}
         </S.MainContent>
-
-        {/* <OptAppBar
-        profile={profile}
-        onConfigureProfile={onConfigurarPerfil}
-        onLogout={onLogout}
-        onDrawerOpen={handleDrawerOpen}
-        hideDrawerButton={dockedDrawer}
-        actions={appBarConfig?.actions}
-      /> */}
       </S.InitialContainer>
     </>
   );

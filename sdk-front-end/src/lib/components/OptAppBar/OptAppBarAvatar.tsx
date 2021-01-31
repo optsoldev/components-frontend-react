@@ -11,9 +11,10 @@ interface Props {
   profile: OptUserProfile | undefined;
   onManageProfile: () => void;
   onLogout: () => void;
+  fromSidebar?: boolean;
 }
 
-export const OptAppBarAvatar = ({ profile, onManageProfile, onLogout }: Props) => {
+export const OptAppBarAvatar = ({ profile, onManageProfile, onLogout, fromSidebar = false }: Props) => {
   const { currentTheme } = useOptTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -37,12 +38,12 @@ export const OptAppBarAvatar = ({ profile, onManageProfile, onLogout }: Props) =
           anchorEl={anchorEl}
           onClose={handleClick}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
+            vertical: fromSidebar ? 'top' : 'bottom',
+            horizontal: fromSidebar ? 'right' : 'center',
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
+            vertical: fromSidebar ? 'center' : 'top',
+            horizontal: fromSidebar ? 'left' : 'center',
           }}>
           <S.MenuAvatarContainer>
             <OptAvatar size={60} profile={profile} />
