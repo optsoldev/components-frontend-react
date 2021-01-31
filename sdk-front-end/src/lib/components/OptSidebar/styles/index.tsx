@@ -1,4 +1,4 @@
-import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
@@ -77,6 +77,12 @@ export const SidebarNavLink = styled(NavLink)`
     ${SidebarListItem} {
       background-color: ${({ theme }) => theme.sidebar.link.active.background};
     }
+  }
+`;
+
+export const CustomList = styled(List)`
+  & ${SidebarNavLink}:not(:last-child) > div {
+    margin-bottom: 6px;
   }
 `;
 

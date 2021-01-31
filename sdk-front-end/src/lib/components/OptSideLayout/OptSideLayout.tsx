@@ -31,6 +31,7 @@ export const OptSideLayout = ({
           profile={profile}
           onLogout={onLogout}
           onManageProfile={onManageProfile}
+          noLinkDescription={appBarConfig?.noLinkDescription}
         />
 
         <S.MainContent>

@@ -58,6 +58,7 @@ export const AppSide = () => {
       }}
       appBarConfig={{
         actions: <AppbarActions />,
+        noLinkDescription: true,
       }}
       profile={{
         email: 'usuario@optsol.com.br',

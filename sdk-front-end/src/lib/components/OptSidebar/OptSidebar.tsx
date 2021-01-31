@@ -1,4 +1,3 @@
-import { List } from '@material-ui/core';
 import Icon from '@mdi/react';
 import React from 'react';
 import { OptMenuSection } from '.';
@@ -7,6 +6,8 @@ import * as S from './styles';
 
 export interface OptSidebarMenuProps {
   sections: OptMenuSection[];
+
+  noLinkDescription?: boolean;
 
   footerActions?: React.ReactNode;
 }
@@ -20,9 +21,9 @@ export const OptSidebar = ({ sections, footerActions }: OptSidebarMenuProps) => 
         <React.Fragment key={index}>
           {index > 0 && <S.SidebarMenuDivider />}
 
-          <List>
+          <S.CustomList>
             {section.items.map((item, index) => {
-              item.iconColor = item.iconColor ?? currentTheme.sidebar.link.color
+              item.iconColor = item.iconColor ?? currentTheme.sidebar.link.color;
               item.icon =
                 typeof item.icon === 'string' ? <Icon size={1} path={item.icon} color={item.iconColor} /> : item.icon;
 
@@ -39,7 +40,7 @@ export const OptSidebar = ({ sections, footerActions }: OptSidebarMenuProps) => 
                 </S.SidebarNavLink>
               );
             })}
-          </List>
+          </S.CustomList>
         </React.Fragment>
       ))}
 

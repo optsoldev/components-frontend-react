@@ -16,8 +16,6 @@ export interface OptSideLayoutProps {
   sections: OptMenuSection[];
   /** Application routes within a \<Switch\> \</Switch\>   */
   routes?: JSX.Element;
-  /** Disables the sidebar */
-  noSidebar?: boolean;
   profile: OptUserProfile | undefined;
 
   onManageProfile: () => void;
@@ -26,6 +24,8 @@ export interface OptSideLayoutProps {
   appBarConfig?: {
     /** Actions that will be displayed at the end of the appbar, before the profile button */
     actions?: JSX.Element;
+    /** Removes items description from the main sidebar */
+    noLinkDescription?: boolean;
   };
 
   version: string;

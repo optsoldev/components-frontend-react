@@ -1,4 +1,3 @@
-import { List } from '@material-ui/core';
 import Icon from '@mdi/react';
 import React from 'react';
 import { OptMenuSection } from '.';
@@ -10,6 +9,8 @@ import * as S from './styles';
 interface OptMainSidebarMenuProps {
   sections: OptMenuSection[];
 
+  noLinkDescription?: boolean;
+
   profile?: OptUserProfile;
   onManageProfile: () => void;
   onLogout: () => void;
@@ -19,6 +20,7 @@ interface OptMainSidebarMenuProps {
 
 export const OptSideAppbar = ({
   sections,
+  noLinkDescription = false,
   profile,
   onManageProfile,
   onLogout,
@@ -42,7 +44,7 @@ export const OptSideAppbar = ({
         <React.Fragment key={index}>
           {index > 0 && <S.SidebarMenuDivider />}
 
-          <List>
+          <S.CustomList>
             {section.items.map((item, index) => {
               item.iconColor = item.iconColor ?? currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
               item.icon =
@@ -56,12 +58,12 @@ export const OptSideAppbar = ({
                   key={index}>
                   <S.SidebarListItem button>
                     <S.SidebarListItemIcon>{item.icon}</S.SidebarListItemIcon>
-                    <S.SidebarListItemText primary={item.title} />
+                    {!noLinkDescription && <S.SidebarListItemText primary={item.title} />}
                   </S.SidebarListItem>
                 </S.SidebarNavLink>
               );
             })}
-          </List>
+          </S.CustomList>
         </React.Fragment>
       ))}
 

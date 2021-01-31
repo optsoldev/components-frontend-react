@@ -1,4 +1,4 @@
-import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
@@ -16,6 +16,7 @@ export const SidebarMenuContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  padding: 8px;
   ${ScrollbarCSS}
 
   @media (max-width: 600px) {
@@ -30,6 +31,8 @@ export const SidebarListItem = styled(ListItem)`
   border-radius: 6px;
   margin: 0 8px;
   width: auto;
+  min-height: 55px;
+  justify-content: center;
 
   &.MuiListItem-gutters {
     padding: 8px;
@@ -77,6 +80,12 @@ export const SidebarNavLink = styled(NavLink)`
     ${SidebarListItem} {
       background-color: ${({ theme }) => theme.appBar.side!.link.active.background};
     }
+  }
+`;
+
+export const CustomList = styled(List)`
+  & ${SidebarNavLink}:not(:last-child) > div {
+    margin-bottom: 6px;
   }
 `;
 
