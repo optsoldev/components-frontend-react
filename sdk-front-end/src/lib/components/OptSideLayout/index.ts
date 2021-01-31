@@ -20,7 +20,7 @@ export interface OptSideLayoutProps {
   noSidebar?: boolean;
   profile: OptUserProfile | undefined;
 
-  onConfigurarPerfil: () => void;
+  onManageProfile: () => void;
   onLogout: () => void;
 
   appBarConfig?: {

@@ -4,6 +4,7 @@ import { Icon } from '@mdi/react';
 import React from 'react';
 import { OptMenuSection } from '.';
 import { useOptTheme } from '../../contexts/theme/themeContext';
+import { OptDivider } from '../OptDivider';
 import * as S from './styles';
 
 interface OptDrawerMenuProps {
@@ -39,7 +40,7 @@ export const OptDrawerMenu = ({
 
       {sections.map((section, index) => (
         <React.Fragment key={index}>
-          {index > 0 && <S.MenuDivider />}
+          {index > 0 && <OptDivider />}
 
           <List>
             {section.items.map((item, index) => (

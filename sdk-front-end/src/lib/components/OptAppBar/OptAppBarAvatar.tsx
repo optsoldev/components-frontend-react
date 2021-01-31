@@ -2,19 +2,18 @@ import { IconButton, MenuItem } from '@material-ui/core';
 import { mdiAccountCog, mdiExitToApp } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import React from 'react';
-import { OptAvatar } from '.';
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { ColorPalette } from '../../shared/styles/colors';
-import { OptUserProfile } from '../OptAvatar';
+import { OptAvatar, OptUserProfile } from '../OptAvatar';
 import * as S from './styles';
 
 interface Props {
   profile: OptUserProfile | undefined;
-  onConfigureProfile: () => void;
+  onManageProfile: () => void;
   onLogout: () => void;
 }
 
-export const OptAppBarAvatar = ({ profile, onConfigureProfile, onLogout }: Props) => {
+export const OptAppBarAvatar = ({ profile, onManageProfile, onLogout }: Props) => {
   const { currentTheme } = useOptTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -28,7 +27,7 @@ export const OptAppBarAvatar = ({ profile, onConfigureProfile, onLogout }: Props
     // todo: para um cenário mais customizado, talvez seja interessante subir o elemento do handleClick e montar o objeto de menu fora da Opt
     return (
       <>
-        <IconButton aria-describedby={id} onClick={handleClick}>
+        <IconButton onClick={handleClick}>
           <OptAvatar profile={profile} />
         </IconButton>
 
@@ -53,7 +52,7 @@ export const OptAppBarAvatar = ({ profile, onConfigureProfile, onLogout }: Props
           <S.UserEmailContainer>{profile.email}</S.UserEmailContainer>
 
           <S.CustomMenuList>
-            <MenuItem onClick={onConfigureProfile}>
+            <MenuItem onClick={onManageProfile}>
               <Icon size={1} path={mdiAccountCog} color={currentTheme.appBar.avatar.background} />
               Configurar perfil
             </MenuItem>

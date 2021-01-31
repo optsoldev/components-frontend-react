@@ -31,6 +31,23 @@ export const LightTheme: OptTheme = {
     color: ColorPalette.white,
     boxShadowColor: ColorPalette.grey4,
 
+    side: {
+      divider: ColorPalette.primaryTints.tint2,
+
+      link: {
+        color: ColorPalette.white,
+
+        active: {
+          color: ColorPalette.grey2,
+          background: ColorPalette.white,
+        },
+        hover: {
+          background: ColorPalette.primaryTints.tint1,
+          color: ColorPalette.white,
+        },
+      },
+    },
+
     menuButton: {
       color: ColorPalette.white,
       hover: {
@@ -51,14 +68,14 @@ export const LightTheme: OptTheme = {
     divider: ColorPalette.grey7,
 
     link: {
-      color: ColorPalette.black,
+      color: ColorPalette.grey2,
 
       active: {
-        color: ColorPalette.white,
-        background: ColorPalette.primary,
+        color: ColorPalette.black,
+        background: ColorPalette.primaryTints.tint6,
       },
       hover: {
-        background: ColorPalette.primaryTints.tint4,
+        background: ColorPalette.grey5,
         color: ColorPalette.black,
       },
     },

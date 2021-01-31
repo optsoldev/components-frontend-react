@@ -29,6 +29,22 @@ export interface OptTheme {
     boxShadowColor?: string;
     noBoxShadow?: boolean;
 
+    side?: {
+      divider: string;
+
+      link: {
+        color: string;
+        active: {
+          color: string;
+          background: string;
+        };
+        hover: {
+          color: string;
+          background: string;
+        };
+      };
+    };
+
     menuButton: {
       color: string;
 
@@ -42,6 +58,7 @@ export interface OptTheme {
       color: string;
     };
   };
+
 
   sidebar: {
     background: string;

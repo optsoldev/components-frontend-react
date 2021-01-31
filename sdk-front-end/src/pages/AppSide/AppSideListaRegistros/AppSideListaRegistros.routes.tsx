@@ -8,16 +8,14 @@ import {
   mdiTwoFactorAuthentication,
   mdiViewList,
 } from '@mdi/js';
-import Icon from '@mdi/react';
 import React, { useMemo } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { OptMenuSection } from '../../../lib/components/OptDrawer';
 import { OptSideLayoutPortal } from '../../../lib/components/OptSideLayout/OptSideLayoutPortal';
-import { ColorPalette } from '../../../lib/shared/styles/colors';
-import { AppSideRegistroPortal } from '../AppSideRegistro/AppSideRegistroPortal';
+import { AppSideRegistroPortal } from '../AppSideRegistro/AppSideRegistro.routes';
 import { AppSideListaRegistros } from './AppSideListaRegistros';
 
-export const AppSideListaRegistrosPortal = () => {
+export const AppSideListaRegistrosRoutes = () => {
   const { path, url } = useRouteMatch();
 
   const sections = useMemo(
@@ -25,43 +23,43 @@ export const AppSideListaRegistrosPortal = () => {
       {
         items: [
           {
-            icon: <Icon size={1} path={mdiViewList} color={ColorPalette.primary} />,
+            icon: mdiViewList,
             path: `${url}`,
             title: 'Principal',
             activeShouldBeExact: true,
           },
           {
-            icon: <Icon size={1} path={mdiOneUp} color={ColorPalette.primary} />,
+            icon: mdiOneUp,
             path: `${url}/1`,
             title: 'Registro 1',
           },
           {
-            icon: <Icon size={1} path={mdiTwoFactorAuthentication} color={ColorPalette.primary} />,
+            icon: mdiTwoFactorAuthentication,
             path: `${url}/2`,
             title: 'Registro 2',
           },
           {
-            icon: <Icon size={1} path={mdiStarThreePoints} color={ColorPalette.primary} />,
+            icon: mdiStarThreePoints,
             path: `${url}/3`,
             title: 'Registro 3',
           },
           {
-            icon: <Icon size={1} path={mdiForum} color={ColorPalette.primary} />,
+            icon: mdiForum,
             path: `${url}/4`,
             title: 'Registro 4',
           },
           {
-            icon: <Icon size={1} path={mdiClockTimeFive} color={ColorPalette.primary} />,
+            icon: mdiClockTimeFive,
             path: `${url}/5`,
             title: 'Registro 5',
           },
           {
-            icon: <Icon size={1} path={mdiMusicRestSixteenth} color={ColorPalette.primary} />,
+            icon: mdiMusicRestSixteenth,
             path: `${url}/6`,
             title: 'Registro 6',
           },
           {
-            icon: <Icon size={1} path={mdiKangaroo} color={ColorPalette.primary} />,
+            icon: mdiKangaroo,
             path: `${url}/1/item`,
             title: 'Registro 1 Item 1',
             activeShouldBeExact: true,

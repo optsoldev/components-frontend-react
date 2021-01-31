@@ -2,9 +2,8 @@ import { CustomOptTheme } from '../../contexts/theme/themeState';
 import { OptUserProfile } from '../OptAvatar';
 import { OptMenuSection } from '../OptDrawer';
 
-export { OptAppBar } from './OptAppBar';
-export { OptAppBarAvatar } from './OptAppBarAvatar';
-export { OptAvatar } from '../OptAvatar/OptAvatar';
+export { OptAppBar } from '../OptAppBar/OptAppBar';
+export { OptAppBarAvatar } from '../OptAppBar/OptAppBarAvatar';
 export { OptLayoutProvider } from './OptLayoutProvider';
 export { OptLayout } from './OptLayout';
 
@@ -22,7 +21,7 @@ export interface OptLayoutProps {
   noSidebar?: boolean;
   profile: OptUserProfile | undefined;
 
-  onConfigurarPerfil: () => void;
+  onManageProfile: () => void;
   onLogout: () => void;
 
   appBarConfig?: {

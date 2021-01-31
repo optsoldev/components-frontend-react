@@ -1,21 +1,19 @@
 import { mdiIdeogramCjk, mdiPacMan } from '@mdi/js';
-import Icon from '@mdi/react';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { version } from '../../../package.json';
 import { OptMenuSection } from '../../lib/components/OptDrawer';
 import { OptSideLayout } from '../../lib/components/OptSideLayout';
-import { ColorPalette } from '../../lib/shared/styles/colors';
 import { AppbarActions } from '../App/AppbarActions';
 import { RotaNaoEncontrada } from '../App/RotaNaoEncontrada';
 import { AppSideHome } from './AppSideHome';
-import { AppSideListaRegistrosPortal } from './AppSideListaRegistros/AppSideListaRegistrosPortal';
+import { AppSideListaRegistrosRoutes } from './AppSideListaRegistros/AppSideListaRegistros.routes';
 
 const sections: OptMenuSection[] = [
   {
     items: [
       {
-        icon: <Icon size={1} path={mdiPacMan} color={ColorPalette.secondary} />,
+        icon: mdiPacMan,
         path: '/',
         title: 'Início',
         activeShouldBeExact: true,
@@ -25,12 +23,12 @@ const sections: OptMenuSection[] = [
   {
     items: [
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
+        icon: mdiIdeogramCjk,
         path: '/registro',
         title: 'Registros',
       },
       {
-        icon: <Icon size={1} path={mdiIdeogramCjk} color={ColorPalette.primary} />,
+        icon: mdiIdeogramCjk,
         path: '/registro/1/item',
         title: 'Registro 1 Item 1',
         activeShouldBeExact: true,
@@ -42,7 +40,7 @@ const sections: OptMenuSection[] = [
 const routes = (
   <Switch>
     <Route exact path="/" component={AppSideHome} />
-    <Route path="/registro" component={AppSideListaRegistrosPortal} />
+    <Route path="/registro" component={AppSideListaRegistrosRoutes} />
     <Route component={RotaNaoEncontrada} />
   </Switch>
 );
@@ -55,7 +53,7 @@ export const AppSide = () => {
       onLogout={() => {
         console.log('onLogout');
       }}
-      onConfigurarPerfil={() => {
+      onManageProfile={() => {
         console.log('onConfigurarPerfil');
       }}
       appBarConfig={{

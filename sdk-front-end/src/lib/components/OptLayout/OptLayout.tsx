@@ -5,14 +5,14 @@ import { OptAppBar, OptLayoutProps } from '.';
 import { LocalStorageKeys } from '../../shared/constants';
 import { GlobalStyles } from '../../shared/styles/global';
 import { OptDrawerMenu } from '../OptDrawer/OptDrawerMenu';
-import { OptSidebarMenu } from '../OptDrawer/OptSidebarMenu';
+import { OptSideAppbar } from '../OptSideAppbar';
 import * as S from './styles';
 
 export const OptLayout = ({
   sections,
   routes,
   noSidebar = false,
-  onConfigurarPerfil,
+  onManageProfile,
   profile,
   children,
   onLogout,
@@ -56,7 +56,7 @@ export const OptLayout = ({
 
       <OptAppBar
         profile={profile}
-        onConfigureProfile={onConfigurarPerfil}
+        onManageProfile={onManageProfile}
         onLogout={onLogout}
         onDrawerOpen={handleDrawerOpen}
         hideDrawerButton={dockedDrawer}
@@ -66,7 +66,7 @@ export const OptLayout = ({
       />
 
       <S.Container>
-        {hasSidebar && <OptSidebarMenu sections={sections} />}
+        {hasSidebar && <OptSideAppbar sections={sections} />}
         {dockedDrawer && (
           <S.DockedDrawerContainer>
             <OptDrawerMenu
@@ -93,6 +93,7 @@ export const OptLayout = ({
           </Suspense>
         )}
       </S.Container>
+
       <SwipeableDrawer anchor="left" open={drawerOpen} onClose={handleDrawerClose} onOpen={handleDrawerOpen}>
         <OptDrawerMenu
           sections={sections}

@@ -31,6 +31,23 @@ export const DarkTheme: OptTheme = {
     color: ColorPalette.primary,
     boxShadowColor: ColorPalette.black,
 
+    side: {
+      divider: ColorPalette.dark,
+
+      link: {
+        color: ColorPalette.white,
+
+        active: {
+          color: ColorPalette.white,
+          background: ColorPalette.primary,
+        },
+        hover: {
+          background: ColorPalette.primaryTints.tint4,
+          color: ColorPalette.black,
+        },
+      },
+    },
+
     menuButton: {
       color: ColorPalette.primary,
 

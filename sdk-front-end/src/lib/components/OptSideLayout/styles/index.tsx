@@ -3,7 +3,7 @@ import { ScrollbarCSS } from '../../../shared/styles/generic';
 
 export const containerPadding = 12;
 
-export const SuperContainer = styled.div`
+export const InitialContainer = styled.div`
   display: flex;
   min-width: 100vw;
   overflow-x: auto;
@@ -16,14 +16,15 @@ export const MainContainer = styled.div`
   min-width: 100vw;
 `;
 
-export const MainContentContainer = styled.div`
+export const MainContent = styled.div`
   flex: 1;
   display: flex;
 `;
 
-export const MainContentContainerContent = styled.div`
+export const SideLayoutContent = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 12px;
+  
   ${ScrollbarCSS}
 `;

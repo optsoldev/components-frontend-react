@@ -21,18 +21,18 @@ const useStyles = makeStyles((theme: MaterialTheme) =>
 
 interface Props {
   profile: OptUserProfile | undefined;
-  onConfigureProfile: () => void;
+  onManageProfile: () => void;
   onLogout: () => void;
   onDrawerOpen: () => void;
   hideBreadcrumb?: boolean;
   hideDrawerButton?: boolean;
-  content?: JSX.Element;
-  actions?: JSX.Element;
+  content?: React.ReactNode;
+  actions?: React.ReactNode;
 }
 
 export const OptAppBar = ({
   profile,
-  onConfigureProfile,
+  onManageProfile,
   onLogout,
   onDrawerOpen,
   hideDrawerButton,
@@ -61,7 +61,7 @@ export const OptAppBar = ({
         <S.AppBarEndContainer>
           {actions}
 
-          <OptAppBarAvatar profile={profile} onConfigureProfile={onConfigureProfile} onLogout={onLogout} />
+          <OptAppBarAvatar profile={profile} onManageProfile={onManageProfile} onLogout={onLogout} />
         </S.AppBarEndContainer>
       </Toolbar>
     </S.CustomAppBar>

@@ -1,4 +1,4 @@
-import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
@@ -53,10 +53,6 @@ export const MenuListItem = styled(ListItem)`
   }
 `;
 
-export const MenuDivider = styled(Divider)`
-  background-color: ${({ theme }) => theme.drawer.divider};
-`;
-
 export const DrawerNavLink = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.drawer.link.color};
@@ -101,96 +97,6 @@ export const DrawerNavLink = styled(NavLink)`
   }
 `;
 
-export const SidebarMenuContainer = styled.div`
-  width: ${sidebarMenuWidth}px;
-  min-width: ${sidebarMenuWidth}px;
-  border-right: 1px solid ${({ theme }) => theme.sidebar.divider};
-  background: ${({ theme }) => theme.sidebar.background};
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  ${ScrollbarCSS}
-
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-
-export const SidebarListItem = styled(ListItem)`
-  display: flex;
-  flex-direction: column;
-  font-size: 0.6rem;
-  border-radius: 6px;
-  margin: 0 8px;
-  width: auto;
-
-  &.MuiListItem-gutters {
-    padding: 8px;
-  }
-`;
-
-export const SidebarNavLink = styled(NavLink)`
-  text-decoration: none;
-  color: ${({ theme }) => theme.sidebar.link.color};
-
-  transition: color ease-in-out 250ms;
-
-  ${SidebarListItem} {
-    transition: background-color ease-in-out 250ms;
-  }
-
-  & svg,
-  svg path {
-    transition: fill ease-in-out 250ms;
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.sidebar.link.hover.color} !important;
-
-    & svg,
-    svg path {
-      color: ${({ theme }) => theme.sidebar.link.hover.color} !important;
-      fill: ${({ theme }) => theme.sidebar.link.hover.color} !important;
-    }
-
-    ${SidebarListItem} {
-      background-color: ${({ theme }) => theme.sidebar.link.hover.background};
-    }
-  }
-
-  &.${activeLinkClass} {
-    color: ${({ theme }) => theme.sidebar.link.active.color} !important;
-
-    & svg,
-    svg path {
-      color: ${({ theme }) => theme.sidebar.link.active.color} !important;
-      fill: ${({ theme }) => theme.sidebar.link.active.color} !important;
-    }
-
-    ${SidebarListItem} {
-      background-color: ${({ theme }) => theme.sidebar.link.active.background};
-    }
-  }
-`;
-
-export const SidebarListItemIcon = styled(ListItemIcon)`
-  min-width: auto;
-  justify-content: center;
-  color: ${({ theme }) => theme.sidebar.link.color};
-`;
-
-export const SidebarListItemText = styled(ListItemText)`
-  span {
-    font-size: 10px;
-    text-align: center;
-  }
-`;
-
-export const SidebarMenuDivider = styled(Divider)`
-  background-color: ${({ theme }) => theme.sidebar.divider};
-`;
-
 export const Footer = styled.div`
   margin: auto 16px 32px 16px;
   display: flex;
@@ -202,10 +108,6 @@ export const FooterHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
-`;
-
-export const Logo = styled.img`
-  width: 136px;
 `;
 
 export const Version = styled.p`

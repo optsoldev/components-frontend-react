@@ -3,15 +3,15 @@ import React, { PropsWithChildren, Suspense } from 'react';
 import { Switch } from 'react-router-dom';
 import { OptSideLayoutProps } from '.';
 import { GlobalStyles } from '../../shared/styles/global';
-import { OptSidebarMenu } from '../OptDrawer/OptSidebarMenu';
+import { OptSideAppbar } from '../OptSideAppbar/OptSideAppbar';
 import * as S from './styles';
 
 export const OptSideLayout = ({
   sections,
   routes,
-  onConfigurarPerfil,
   profile,
   children,
+  onManageProfile,
   onLogout,
   version,
   appBarConfig,
@@ -24,10 +24,10 @@ export const OptSideLayout = ({
     <>
       <GlobalStyles noAppBar />
 
-      <S.SuperContainer>
-        <OptSidebarMenu sections={sections} />
+      <S.InitialContainer>
+        <OptSideAppbar sections={sections} profile={profile} />
 
-        <S.MainContentContainer>
+        <S.MainContent>
           {children}
           {routes && (
             <Suspense
@@ -37,10 +37,10 @@ export const OptSideLayout = ({
                   <LinearProgress color="primary" />
                 </div>
               }>
-              <S.MainContentContainer>{routes}</S.MainContentContainer>
+              <S.MainContent>{routes}</S.MainContent>
             </Suspense>
           )}
-        </S.MainContentContainer>
+        </S.MainContent>
 
         {/* <OptAppBar
         profile={profile}
@@ -50,7 +50,7 @@ export const OptSideLayout = ({
         hideDrawerButton={dockedDrawer}
         actions={appBarConfig?.actions}
       /> */}
-      </S.SuperContainer>
+      </S.InitialContainer>
     </>
   );
 };
