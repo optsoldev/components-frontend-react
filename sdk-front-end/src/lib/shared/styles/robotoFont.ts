@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalFontStyles = createGlobalStyle`
+export const RobotoFontStyles = createGlobalStyle`
   /* Importar diretamente da URL do Google não funcionou, logo, trouxe o conteúdo do arquivo css para cá */
 
 

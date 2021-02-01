@@ -5,6 +5,7 @@ import { OptMenuSection } from '../OptDrawer';
 export { OptSideLayout } from './OptSideLayout';
 export { OptSideLayoutContent } from './OptSideLayoutContent';
 export { OptSideLayoutPortal } from './OptSideLayoutPortal';
+export { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from './styles';
 
 export interface OptSideLayoutProviderProps {
   darkTheme?: boolean;

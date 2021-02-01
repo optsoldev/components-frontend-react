@@ -2,7 +2,7 @@ import { LinearProgress } from '@material-ui/core';
 import React, { PropsWithChildren, Suspense } from 'react';
 import { OptMenuSection } from '../OptDrawer';
 import { OptSidebar } from '../OptSidebar';
-import { MainContainer, MainContent } from './styles';
+import { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from './styles';
 
 interface Props {
   sections: OptMenuSection[];
@@ -10,10 +10,10 @@ interface Props {
 
 export const OptSideLayoutPortal = ({ sections, children }: PropsWithChildren<Props>) => {
   return (
-    <MainContainer>
+    <OptSideLayoutPortalContainer>
       <OptSidebar sections={sections} />
 
-      <MainContent>
+      <OptSideLayoutPortalContent>
         <Suspense
           fallback={
             <div style={{ flex: 1, marginTop: 1 }}>
@@ -23,7 +23,7 @@ export const OptSideLayoutPortal = ({ sections, children }: PropsWithChildren<Pr
           }>
           {children}
         </Suspense>
-      </MainContent>
-    </MainContainer>
+      </OptSideLayoutPortalContent>
+    </OptSideLayoutPortalContainer>
   );
 };

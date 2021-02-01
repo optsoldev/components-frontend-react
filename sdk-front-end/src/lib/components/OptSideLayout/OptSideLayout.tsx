@@ -34,7 +34,7 @@ export const OptSideLayout = ({
           noLinkDescription={appBarConfig?.noLinkDescription}
         />
 
-        <S.MainContent>
+        <S.OptSideLayoutPortalContent>
           {children}
           {routes && (
             <Suspense
@@ -44,10 +44,10 @@ export const OptSideLayout = ({
                   <LinearProgress color="primary" />
                 </div>
               }>
-              <S.MainContent>{routes}</S.MainContent>
+              <S.OptSideLayoutPortalContent>{routes}</S.OptSideLayoutPortalContent>
             </Suspense>
           )}
-        </S.MainContent>
+        </S.OptSideLayoutPortalContent>
       </S.InitialContainer>
     </>
   );

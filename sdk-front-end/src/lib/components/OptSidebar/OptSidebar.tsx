@@ -16,7 +16,7 @@ export const OptSidebar = ({ sections, footerActions }: OptSidebarMenuProps) => 
   const { currentTheme } = useOptTheme();
 
   return (
-    <S.SidebarMenuContainer>
+    <S.SidebarContainer>
       {sections.map((section, index) => (
         <React.Fragment key={index}>
           {index > 0 && <S.SidebarMenuDivider />}
@@ -45,6 +45,6 @@ export const OptSidebar = ({ sections, footerActions }: OptSidebarMenuProps) => 
       ))}
 
       <S.FooterActionsContainer>{footerActions}</S.FooterActionsContainer>
-    </S.SidebarMenuContainer>
+    </S.SidebarContainer>
   );
 };

@@ -6,22 +6,33 @@ import { ScrollbarCSS } from '../../../shared/styles/generic';
 export const sidebarMenuWidth = 88;
 export const activeLinkClass = 'active-link';
 
-export const SidebarMenuContainer = styled.div`
-  width: ${sidebarMenuWidth}px;
-  min-width: ${sidebarMenuWidth}px;
-  border-right: 1px solid ${({ theme }) => theme.sidebar.divider};
-  background: ${({ theme }) => theme.sidebar.background};
-  color: ${({ theme }) => theme.sidebar.color};
-  height: auto;
+interface SidebarBaseContainerProps {
+  background?: string;
+  width?: number;
+  bordercolor?: string;
+}
+
+export const SidebarContainer = styled.div<SidebarBaseContainerProps>`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  ${ScrollbarCSS}
+  height: auto;
+  border-right: 1px solid ${({ bordercolor, theme }) => bordercolor ?? theme.sidebar.divider};
+  background: ${({ background, theme }) => background ?? theme.sidebar.background};
+  color: ${({ color, theme }) => color ?? theme.sidebar.color};
+  width: ${({ width }) => width}px;
+  min-width: ${({ width }) => width}px;
 
-  @media (max-width: 600px) {
+  /* @media (max-width: 600px) {
     display: none;
-  }
+  } */
+
+  ${ScrollbarCSS}
 `;
+
+SidebarContainer.defaultProps = {
+  width: sidebarMenuWidth,
+};
 
 export const SidebarListItem = styled(ListItem)`
   display: flex;

@@ -11,12 +11,12 @@ export const InitialContainer = styled.div`
   ${ScrollbarCSS}
 `;
 
-export const MainContainer = styled.div`
+export const OptSideLayoutPortalContainer = styled.div`
   display: flex;
   min-width: 100vw;
 `;
 
-export const MainContent = styled.div`
+export const OptSideLayoutPortalContent = styled.div`
   flex: 1;
   display: flex;
 `;

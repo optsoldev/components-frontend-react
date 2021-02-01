@@ -9,7 +9,7 @@ import { OptLayoutProviderProps } from '.';
 import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
 import { OptThemeProvider, useOptTheme } from '../../contexts/theme/themeContext';
 import { LocalStorageKeys } from '../../shared/constants';
-import { GlobalFontStyles } from '../../shared/styles/globalFont';
+import { RobotoFontStyles } from '../../shared/styles/robotoFont';
 import { OptTheme } from '../../shared/styles/theme';
 import { OptLoading } from '../OptLoading';
 
@@ -93,7 +93,7 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
   return (
     <MaterialThemeProvider theme={generateMuiTheme(currentTheme, usingDarkTheme)}>
       <StyledComponentsThemeProvider theme={currentTheme}>
-        <GlobalFontStyles />
+        <RobotoFontStyles />
 
         {!themeLoaded ? <OptLoading /> : <>{children}</>}
       </StyledComponentsThemeProvider>
