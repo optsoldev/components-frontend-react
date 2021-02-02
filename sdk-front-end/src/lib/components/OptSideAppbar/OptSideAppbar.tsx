@@ -1,18 +1,24 @@
-import { mdiMenu } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { useState } from 'react';
 import { OptMenuSection } from '.';
 import { useOptTheme } from '../../contexts/theme/themeContext';
+import { OptUserProfile } from '../OptAvatar';
 import {
   ExpandedFooterActions,
   FooterActions,
-  FooterActionsProps
+  OptMainSidebarFooterAction,
 } from './OptSideAppbarFooterActions/OptSideAppbarFooterActions';
 import { SidebarExpandedListItem, SidebarExpandedListItemText } from './OptSideAppbarFooterActions/styles';
 import * as S from './styles';
 
-interface OptMainSidebarProps extends FooterActionsProps {
+interface OptMainSidebarProps {
   sections: OptMenuSection[];
+
+  footerActions?: OptMainSidebarFooterAction[];
+  profile?: OptUserProfile;
+  onManageProfile: () => void;
+  onLogout: () => void;
+  hideLinkDescription?: boolean;
 }
 
 export const OptSideAppbar = ({
@@ -28,17 +34,13 @@ export const OptSideAppbar = ({
 
   const currentLinkColor = currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
 
-  function expandSidebar() {
+  function toggleSidebar() {
     setExpanded(!expanded);
   }
 
   return (
     <S.SidebarMenuContainer expanded={expanded}>
       <S.CustomList>
-        <S.ExpandableListItem button expanded={expanded} onClick={expandSidebar}>
-          <Icon size={1} path={mdiMenu} color={currentLinkColor} />
-        </S.ExpandableListItem>
-
         {sections.map((section, index) => (
           <React.Fragment key={index}>
             {index > 0 && <S.SidebarMenuDivider style={{ marginBottom: 6 }} />}
@@ -46,7 +48,7 @@ export const OptSideAppbar = ({
             {section.items.map((item, index) => {
               item.iconColor = item.iconColor ?? currentLinkColor;
               item.icon =
-                typeof item.icon === 'string' ? <Icon size={1} path={item.icon} color={item.iconColor} /> : item.icon;
+                typeof item.icon === 'string' ? <Icon size={1.2} path={item.icon} color={item.iconColor} /> : item.icon;
 
               return (
                 <S.SidebarNavLink
@@ -81,15 +83,19 @@ export const OptSideAppbar = ({
           onManageProfile={onManageProfile}
           hideLinkDescription={hideLinkDescription}
           profile={profile}
+          toggleSidebar={toggleSidebar}
         />
       ) : (
-        <FooterActions
-          footerActions={footerActions}
-          onLogout={onLogout}
-          onManageProfile={onManageProfile}
-          hideLinkDescription={hideLinkDescription}
-          profile={profile}
-        />
+        <>
+          <FooterActions
+            footerActions={footerActions}
+            onLogout={onLogout}
+            onManageProfile={onManageProfile}
+            hideLinkDescription={hideLinkDescription}
+            profile={profile}
+            toggleSidebar={toggleSidebar}
+          />
+        </>
       )}
     </S.SidebarMenuContainer>
   );

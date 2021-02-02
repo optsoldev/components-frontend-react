@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 import { SidebarExpandedListItem } from '../OptSideAppbarFooterActions/styles';
 
-export const sideAppbarWidth = 88;
+export const sideAppbarWidth = 50;
 export const expandedSideAppbarWidth = 260;
 export const activeLinkClass = 'active-link';
 
@@ -29,7 +29,7 @@ export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
       max-width: ${sideAppbarWidth}px;
     `}
 
-  transition: all ease-in-out 250ms;
+  transition: min-width ease-in-out 200ms;
   border-right: 1px solid ${({ theme }) => theme.appBar.side!.divider};
   background: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
@@ -51,13 +51,13 @@ export const SidebarListItem = styled(ListItem)`
   flex-direction: column;
   font-size: 10px;
   border-radius: 6px;
-  margin: 0 8px;
+  margin: 0 0;
   width: auto;
-  min-height: 55px;
+  min-height: 30px;
   justify-content: center;
 
   &.MuiListItem-gutters {
-    padding: 8px;
+    padding: 2px;
   }
 `;
 
@@ -128,16 +128,4 @@ export const SidebarListItemText = styled(ListItemText)`
 
 export const SidebarMenuDivider = styled(Divider)`
   background-color: ${({ theme }) => theme.appBar.side!.divider};
-`;
-
-interface ExpandableListItemProps {
-  expanded?: boolean;
-}
-
-export const ExpandableListItem = styled(SidebarListItem)<ExpandableListItemProps>`
-  ${({ expanded }) => expanded && 'align-items: flex-end;'}
-
-  &.MuiListItem-gutters {
-    ${({ expanded }) => expanded && 'padding-right: 20px;'}
-  }
 `;

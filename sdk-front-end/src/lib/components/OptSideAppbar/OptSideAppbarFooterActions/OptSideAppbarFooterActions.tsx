@@ -1,4 +1,5 @@
 import { IconButton } from '@material-ui/core';
+import { mdiChevronDoubleRight, mdiChevronDoubleLeft } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
 import { useOptTheme } from '../../../contexts/theme/themeContext';
@@ -22,11 +23,19 @@ export interface FooterActionsProps {
   profile?: OptUserProfile;
   onManageProfile: () => void;
   onLogout: () => void;
+  toggleSidebar: () => void;
   hideLinkDescription?: boolean;
 }
 
-export const FooterActions = ({ footerActions, profile, onLogout, onManageProfile }: FooterActionsProps) => {
+export const FooterActions = ({
+  footerActions,
+  profile,
+  onLogout,
+  onManageProfile,
+  toggleSidebar: expandSidebar,
+}: FooterActionsProps) => {
   const { currentTheme } = useOptTheme();
+  const currentLinkColor = currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
 
   return (
     <S.FooterActionsContainer>
@@ -34,7 +43,7 @@ export const FooterActions = ({ footerActions, profile, onLogout, onManageProfil
         action.iconColor = action.iconColor ?? currentTheme.appBar.side!.link.color;
         action.icon =
           typeof action.icon === 'string' ? (
-            <Icon size={1} path={action.icon} color={action.iconColor ?? currentTheme.appBar.side!.link.color} />
+            <Icon size={1.2} path={action.icon} color={action.iconColor ?? currentTheme.appBar.side!.link.color} />
           ) : (
             action.icon
           );
@@ -45,13 +54,25 @@ export const FooterActions = ({ footerActions, profile, onLogout, onManageProfil
       {profile && (
         <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
       )}
+
+      <IconButton onClick={expandSidebar}>
+        <Icon size={1.2} path={mdiChevronDoubleRight} color={currentLinkColor} />
+      </IconButton>
     </S.FooterActionsContainer>
   );
 };
 
-export const ExpandedFooterActions = ({ footerActions, profile, onLogout, onManageProfile }: FooterActionsProps) => {
+export const ExpandedFooterActions = ({
+  footerActions,
+  profile,
+  onLogout,
+  onManageProfile,
+  toggleSidebar: collapseSidebar,
+}: FooterActionsProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const { currentTheme } = useOptTheme();
+  const currentLinkColor = currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
+
   const open = Boolean(anchorEl);
 
   const handleClickAvatar = (event: React.MouseEvent<HTMLElement>) => {
@@ -81,20 +102,26 @@ export const ExpandedFooterActions = ({ footerActions, profile, onLogout, onMana
         {profile && (
           <>
             <S.SidebarMenuDivider style={{ margin: '6px 0' }} />
-            <S.SidebarExpandedListItem button onClick={handleClickAvatar}>
-              <OptAvatar profile={profile} size={20} />
+            <div style={{ display: 'flex' }}>
+              <S.SidebarExpandedListItem button onClick={handleClickAvatar} style={{ flex: 1 }}>
+                <OptAvatar profile={profile} />
 
-              <OptAppBarAvatarPopOver
-                anchorEl={anchorEl}
-                onLogout={onLogout}
-                onManageProfile={onManageProfile}
-                profile={profile}
-                open={open}
-                fromSidebar
-              />
+                <OptAppBarAvatarPopOver
+                  anchorEl={anchorEl}
+                  onLogout={onLogout}
+                  onManageProfile={onManageProfile}
+                  profile={profile}
+                  open={open}
+                  fromSidebar
+                />
 
-              <S.SidebarExpandedListItemText primary={profile.name} />
-            </S.SidebarExpandedListItem>
+                <S.SidebarExpandedListItemText primary={profile.name} />
+              </S.SidebarExpandedListItem>
+
+              <IconButton onClick={collapseSidebar}>
+                <Icon size={1.2} path={mdiChevronDoubleLeft} color={currentLinkColor} />
+              </IconButton>
+            </div>
           </>
         )}
       </S.CustomList>
