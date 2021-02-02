@@ -2,6 +2,7 @@ import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-u
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
+import { SidebarExpandedListItem } from '../OptSideAppbarFooterActions/styles';
 
 export const sideAppbarWidth = 88;
 export const expandedSideAppbarWidth = 260;
@@ -66,7 +67,7 @@ export const SidebarNavLink = styled(NavLink)`
 
   transition: color ease-in-out 250ms;
 
-  ${SidebarListItem} {
+  ${SidebarListItem}, ${SidebarExpandedListItem} {
     transition: background-color ease-in-out 250ms;
   }
 
@@ -84,7 +85,7 @@ export const SidebarNavLink = styled(NavLink)`
       fill: ${({ theme }) => theme.appBar.side!.link.hover.color} !important;
     }
 
-    ${SidebarListItem} {
+    ${SidebarListItem}, ${SidebarExpandedListItem} {
       background-color: ${({ theme }) => theme.appBar.side!.link.hover.background};
     }
   }
@@ -98,7 +99,7 @@ export const SidebarNavLink = styled(NavLink)`
       fill: ${({ theme }) => theme.appBar.side!.link.active.color} !important;
     }
 
-    ${SidebarListItem} {
+    ${SidebarListItem}, ${SidebarExpandedListItem} {
       background-color: ${({ theme }) => theme.appBar.side!.link.active.background};
     }
   }
