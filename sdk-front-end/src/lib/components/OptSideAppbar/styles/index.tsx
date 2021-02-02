@@ -1,14 +1,34 @@
 import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 
-export const sidebarMenuWidth = 88;
+export const sideAppbarWidth = 88;
+export const expandedSideAppbarWidth = 260;
 export const activeLinkClass = 'active-link';
 
-export const SidebarMenuContainer = styled.div`
-  width: ${sidebarMenuWidth}px;
-  min-width: ${sidebarMenuWidth}px;
+interface SidebarMenuContainerProps {
+  expanded?: boolean;
+}
+
+export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
+  ${({ expanded }) =>
+    expanded &&
+    css`
+      width: ${expandedSideAppbarWidth}px;
+      min-width: ${expandedSideAppbarWidth}px;
+      max-width: ${expandedSideAppbarWidth}px;
+    `}
+
+  ${({ expanded }) =>
+    !expanded &&
+    css`
+      width: ${sideAppbarWidth}px;
+      min-width: ${sideAppbarWidth}px;
+      max-width: ${sideAppbarWidth}px;
+    `}
+
+  transition: all ease-in-out 250ms;
   border-right: 1px solid ${({ theme }) => theme.appBar.side!.divider};
   background: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
@@ -17,6 +37,7 @@ export const SidebarMenuContainer = styled.div`
   flex-direction: column;
   overflow-y: auto;
   padding: 8px;
+
   ${ScrollbarCSS}
 
   @media (max-width: 600px) {
@@ -27,7 +48,7 @@ export const SidebarMenuContainer = styled.div`
 export const SidebarListItem = styled(ListItem)`
   display: flex;
   flex-direction: column;
-  font-size: 0.6rem;
+  font-size: 10px;
   border-radius: 6px;
   margin: 0 8px;
   width: auto;
@@ -84,6 +105,8 @@ export const SidebarNavLink = styled(NavLink)`
 `;
 
 export const CustomList = styled(List)`
+  width: 100%;
+
   & ${SidebarNavLink}:not(:last-child) > div {
     margin-bottom: 6px;
   }
@@ -106,10 +129,14 @@ export const SidebarMenuDivider = styled(Divider)`
   background-color: ${({ theme }) => theme.appBar.side!.divider};
 `;
 
-export const FooterActionsContainer = styled.div`
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+interface ExpandableListItemProps {
+  expanded?: boolean;
+}
+
+export const ExpandableListItem = styled(SidebarListItem)<ExpandableListItemProps>`
+  ${({ expanded }) => expanded && 'align-items: flex-end;'}
+
+  &.MuiListItem-gutters {
+    ${({ expanded }) => expanded && 'padding-right: 20px;'}
+  }
 `;

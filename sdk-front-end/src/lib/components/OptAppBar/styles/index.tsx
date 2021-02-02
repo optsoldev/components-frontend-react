@@ -1,6 +1,6 @@
 import { AppBar, IconButton, MenuList, Popover } from '@material-ui/core';
 import styled from 'styled-components';
-import { sidebarMenuWidth } from '../../OptDrawer/styles';
+import { sidebarMenuWidth } from '../../OptSidebar/styles';
 
 export const appBarHeight = 48;
 export const containerPadding = 12;

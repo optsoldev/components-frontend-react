@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 
 export const drawerWidth = 250;
-export const sidebarMenuWidth = 88;
 export const activeLinkClass = 'active-link';
 
 export const DrawerMenuContainer = styled.div`

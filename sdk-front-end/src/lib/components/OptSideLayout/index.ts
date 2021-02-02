@@ -1,6 +1,7 @@
 import { CustomOptTheme } from '../../contexts/theme/themeState';
 import { OptUserProfile } from '../OptAvatar';
 import { OptMenuSection } from '../OptDrawer';
+import { OptMainSidebarFooterAction } from '../OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions';
 
 export { OptSideLayout } from './OptSideLayout';
 export { OptSideLayoutContent } from './OptSideLayoutContent';
@@ -24,9 +25,9 @@ export interface OptSideLayoutProps {
 
   appBarConfig?: {
     /** Actions that will be displayed at the end of the appbar, before the profile button */
-    actions?: JSX.Element;
+    actions?: OptMainSidebarFooterAction[];
     /** Removes items description from the main sidebar */
-    noLinkDescription?: boolean;
+    hideLinkDescription?: boolean;
   };
 
   version: string;

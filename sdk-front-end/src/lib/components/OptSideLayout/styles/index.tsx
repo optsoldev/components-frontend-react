@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
+import { sideAppbarWidth } from '../../OptSideAppbar';
 
 export const containerPadding = 12;
 
 export const InitialContainer = styled.div`
   display: flex;
-  min-width: 100vw;
+  min-width: calc(100vw - ${sideAppbarWidth}px);
+  max-width: calc(100vw - ${sideAppbarWidth}px);
   overflow-x: auto;
 
   ${ScrollbarCSS}
@@ -13,7 +15,8 @@ export const InitialContainer = styled.div`
 
 export const OptSideLayoutPortalContainer = styled.div`
   display: flex;
-  min-width: 100vw;
+  min-width: calc(100vw - ${sideAppbarWidth}px);
+  max-width: calc(100vw - ${sideAppbarWidth}px);
 `;
 
 export const OptSideLayoutPortalContent = styled.div`

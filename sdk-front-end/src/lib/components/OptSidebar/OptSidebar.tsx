@@ -7,7 +7,7 @@ import * as S from './styles';
 export interface OptSidebarMenuProps {
   sections: OptMenuSection[];
 
-  noLinkDescription?: boolean;
+  hideLinkDescription?: boolean;
 
   footerActions?: React.ReactNode;
 }
