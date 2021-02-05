@@ -39,7 +39,7 @@ export const FooterActions = ({
 
   return (
     <S.FooterActionsContainer>
-      {footerActions?.map((action) => {
+      {footerActions?.map((action, index) => {
         action.iconColor = action.iconColor ?? currentTheme.appBar.side!.link.color;
         action.icon =
           typeof action.icon === 'string' ? (
@@ -48,7 +48,7 @@ export const FooterActions = ({
             action.icon
           );
 
-        return <IconButton onClick={action.onClick}>{action.icon}</IconButton>;
+        return <IconButton onClick={action.onClick} key={index}>{action.icon}</IconButton>;
       })}
 
       {profile && (
