@@ -15,7 +15,7 @@ export const OptAppBarAvatar = ({ profile, onManageProfile, onLogout, fromSideba
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const toggleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
@@ -23,7 +23,7 @@ export const OptAppBarAvatar = ({ profile, onManageProfile, onLogout, fromSideba
     // todo: para um cenário mais customizado, talvez seja interessante subir o elemento do handleClick e montar o objeto de menu fora da Opt
     return (
       <>
-        <IconButton onClick={handleClick}>
+        <IconButton onClick={toggleOpen}>
           <OptAvatar profile={profile} size={size} />
         </IconButton>
 
@@ -34,6 +34,7 @@ export const OptAppBarAvatar = ({ profile, onManageProfile, onLogout, fromSideba
           profile={profile}
           fromSidebar={fromSidebar}
           open={open}
+          onBackdropClick={toggleOpen}
         />
       </>
     );

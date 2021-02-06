@@ -86,16 +86,14 @@ export const OptSideAppbar = ({
           toggleSidebar={toggleSidebar}
         />
       ) : (
-        <>
-          <FooterActions
-            footerActions={footerActions}
-            onLogout={onLogout}
-            onManageProfile={onManageProfile}
-            hideLinkDescription={hideLinkDescription}
-            profile={profile}
-            toggleSidebar={toggleSidebar}
-          />
-        </>
+        <FooterActions
+          footerActions={footerActions}
+          onLogout={onLogout}
+          onManageProfile={onManageProfile}
+          hideLinkDescription={hideLinkDescription}
+          profile={profile}
+          toggleSidebar={toggleSidebar}
+        />
       )}
     </S.SidebarMenuContainer>
   );

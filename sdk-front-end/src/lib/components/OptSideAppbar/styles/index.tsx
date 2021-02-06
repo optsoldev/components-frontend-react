@@ -109,7 +109,7 @@ export const CustomList = styled(List)`
   width: 100%;
 
   & ${SidebarNavLink}:not(:last-child) > div {
-    margin: 12px 0;
+    margin: 20px 0;
   }
 `;
 

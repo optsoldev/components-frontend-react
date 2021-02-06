@@ -11,6 +11,7 @@ interface Props {
   profile: OptUserProfile;
   onManageProfile: () => void;
   onLogout: () => void;
+  onBackdropClick?: (event: React.MouseEvent<HTMLElement>) => void;
   fromSidebar?: boolean;
   open?: boolean;
   anchorEl: HTMLElement | null;
@@ -23,12 +24,14 @@ export const OptAppBarAvatarPopOver = ({
   anchorEl,
   fromSidebar = false,
   open = false,
+  onBackdropClick,
 }: Props) => {
   const { currentTheme } = useOptTheme();
   const id = open ? 'avatar' : undefined;
 
   return (
     <S.AvatarPopOver
+      onBackdropClick={onBackdropClick}
       anchorEl={anchorEl}
       id={id}
       open={open}

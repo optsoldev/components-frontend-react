@@ -48,12 +48,14 @@ export const FooterActions = ({
             action.icon
           );
 
-        return <IconButton onClick={action.onClick} key={index}>{action.icon}</IconButton>;
+        return (
+          <IconButton onClick={action.onClick} key={index}>
+            {action.icon}
+          </IconButton>
+        );
       })}
 
-      {profile && (
-        <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
-      )}
+      <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
 
       <IconButton onClick={expandSidebar}>
         <Icon size={1.2} path={mdiChevronDoubleRight} color={currentLinkColor} />
@@ -82,7 +84,7 @@ export const ExpandedFooterActions = ({
   return (
     <S.ExpandedFooterActionsContainer>
       <S.CustomList>
-        {footerActions?.map((action) => {
+        {footerActions?.map((action, index) => {
           action.iconColor = action.iconColor ?? currentTheme.appBar.side!.link.color;
           action.icon =
             typeof action.icon === 'string' ? (
@@ -92,7 +94,7 @@ export const ExpandedFooterActions = ({
             );
 
           return (
-            <S.SidebarExpandedListItem button onClick={action.onClick}>
+            <S.SidebarExpandedListItem button onClick={action.onClick} key={index}>
               <SidebarListItemIcon>{action.icon}</SidebarListItemIcon>
               <S.SidebarExpandedListItemText primary={action.title} />
             </S.SidebarExpandedListItem>
