@@ -28,6 +28,8 @@ export const SideLayoutContent = styled.div`
   flex: 1;
   overflow-y: auto;
   padding: 12px;
-  
+  display: flex;
+  flex-direction: column;
+
   ${ScrollbarCSS}
 `;

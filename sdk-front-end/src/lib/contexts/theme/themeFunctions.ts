@@ -1,5 +1,5 @@
 import { OptTheme } from "../../shared/styles/theme";
-import { RecursivePartial } from "../../shared/types";
+import { RecursivePartial } from "../../types/RecursivePartial";
 
 export function copyInto<T>(to: T, from?: RecursivePartial<T>) {
   if (from) {

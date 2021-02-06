@@ -2,7 +2,7 @@ import { LocalStorageKeys } from '../../shared/constants';
 import { OptTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
 import { LightTheme } from '../../shared/styles/theme/lightTheme';
-import { RecursivePartial } from '../../shared/types';
+import { RecursivePartial } from '../../types/RecursivePartial';
 
 export interface CustomOptTheme {
   light?: RecursivePartial<OptTheme>;
