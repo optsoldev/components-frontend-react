@@ -1,11 +1,12 @@
-import GlobalStyles from '../src/shared/styles/global';
+import { GlobalTestStyles } from '../src/lib/shared/styles/global';
+import { OptLayoutProvider } from '../src/lib/components/OptLayout/OptLayoutProvider.tsx';
 
 export const decorators = [
   (Story) => (
-    <>
-      <GlobalStyles />
+    <OptLayoutProvider>
+      <GlobalTestStyles />
       <Story />
-    </>
+    </OptLayoutProvider>
   ),
 ];
 
