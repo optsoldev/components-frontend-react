@@ -31,11 +31,13 @@ export const OptSideAppbar = ({
 }: OptMainSidebarProps) => {
   const { currentTheme } = useOptTheme();
   const [expanded, setExpanded] = useState(false);
+  const { setCurrentSideAppbarWidth } = useOptTheme();
 
   const currentLinkColor = currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
 
-  function toggleSidebar() {
+  function toggleExpandSidebar() {
     setExpanded(!expanded);
+    setCurrentSideAppbarWidth(expanded ? S.sideAppbarWidth : S.expandedSideAppbarWidth);
   }
 
   return (
@@ -83,7 +85,7 @@ export const OptSideAppbar = ({
           onManageProfile={onManageProfile}
           hideLinkDescription={hideLinkDescription}
           profile={profile}
-          toggleSidebar={toggleSidebar}
+          toggleSidebar={toggleExpandSidebar}
         />
       ) : (
         <FooterActions
@@ -92,7 +94,7 @@ export const OptSideAppbar = ({
           onManageProfile={onManageProfile}
           hideLinkDescription={hideLinkDescription}
           profile={profile}
-          toggleSidebar={toggleSidebar}
+          toggleSidebar={toggleExpandSidebar}
         />
       )}
     </S.SidebarMenuContainer>

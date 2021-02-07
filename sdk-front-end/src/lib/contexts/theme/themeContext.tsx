@@ -59,7 +59,18 @@ function useOptTheme() {
     dispatch({ type: actions.RESET_THEME });
   }
 
-  return { state, currentTheme: state.currentTheme, setDarkTheme, setCustomTheme, resetTheme };
+  function setCurrentSideAppbarWidth(width: number) {
+    dispatch({ type: actions.SET_CURRENT_SIDEAPPBARWIDTH, payload: width });
+  }
+
+  return {
+    state,
+    currentTheme: state.currentTheme,
+    setDarkTheme,
+    setCustomTheme,
+    resetTheme,
+    setCurrentSideAppbarWidth,
+  };
 }
 
 export { OptThemeProvider, useOptTheme };

@@ -2,7 +2,8 @@ import { LinearProgress } from '@material-ui/core';
 import React, { PropsWithChildren, Suspense } from 'react';
 import { OptMenuSection } from '../OptDrawer';
 import { OptSidebar } from '../OptSidebar';
-import { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from './styles';
+import { OptSideLayoutPortalContainer } from './OptSideLayoutPortalContainer';
+import { OptSideLayoutPortalContent } from './styles';
 
 interface Props {
   sections: OptMenuSection[];

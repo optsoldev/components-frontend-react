@@ -4,19 +4,23 @@ import { sideAppbarWidth } from '../../OptSideAppbar';
 
 export const containerPadding = 12;
 
-export const InitialContainer = styled.div`
+interface CurrentSidebarWidthProps {
+  currentsidebarwidth?: number;
+}
+
+export const InitialContainer = styled.div<CurrentSidebarWidthProps>`
   display: flex;
-  min-width: calc(100vw - ${sideAppbarWidth}px);
-  max-width: calc(100vw - ${sideAppbarWidth}px);
+  min-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
+  max-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
   overflow-x: auto;
 
   ${ScrollbarCSS}
 `;
 
-export const OptSideLayoutPortalContainer = styled.div`
+export const StyledOptSideLayoutPortalContainer = styled.div<CurrentSidebarWidthProps>`
   display: flex;
-  min-width: calc(100vw - ${sideAppbarWidth}px);
-  max-width: calc(100vw - ${sideAppbarWidth}px);
+  min-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
+  max-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
 `;
 
 export const OptSideLayoutPortalContent = styled.div`

@@ -6,7 +6,8 @@ import { OptMainSidebarFooterAction } from '../OptSideAppbar/OptSideAppbarFooter
 export { OptSideLayout } from './OptSideLayout';
 export { OptSideLayoutContent } from './OptSideLayoutContent';
 export { OptSideLayoutPortal } from './OptSideLayoutPortal';
-export { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from './styles';
+export { OptSideLayoutPortalContent } from './styles';
+export { OptSideLayoutPortalContainer } from './OptSideLayoutPortalContainer';
 
 export interface OptSideLayoutProviderProps {
   darkTheme?: boolean;

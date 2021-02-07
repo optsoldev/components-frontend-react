@@ -36,6 +36,9 @@ export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState
 
       return { ...state, customTheme: action.payload!, currentTheme };
     }
+    case ThemeActions.SET_CURRENT_SIDEAPPBARWIDTH: {
+      return { ...state, currentSideAppbarWidth: action.payload! };
+    }
     default: {
       // eslint-disable-next-line
       throw new Error(`Ação não identificada: ${action!.type}`);
@@ -47,4 +50,5 @@ type ThemeAction =
   | GenericContext<ThemeActions.RESET_THEME>
   | GenericContext<ThemeActions.SET_DARK_THEME, OptTheme>
   | GenericContext<ThemeActions.SET_LIGHT_THEME, OptTheme>
-  | GenericContext<ThemeActions.SET_CUSTOM_THEME, CustomOptTheme>;
+  | GenericContext<ThemeActions.SET_CUSTOM_THEME, CustomOptTheme>
+  | GenericContext<ThemeActions.SET_CURRENT_SIDEAPPBARWIDTH, number>;

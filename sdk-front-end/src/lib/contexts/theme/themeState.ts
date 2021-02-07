@@ -1,3 +1,4 @@
+import { sidebarMenuWidth } from '../../components/OptSidebar/styles';
 import { LocalStorageKeys } from '../../shared/constants';
 import { OptTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
@@ -17,6 +18,7 @@ export interface ThemeState {
   };
   customTheme: CustomOptTheme;
   currentTheme: OptTheme;
+  currentSideAppbarWidth: number;
 }
 
 const usingDarkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme);
@@ -26,4 +28,5 @@ export const Theme_INITIAL_STATE: ThemeState = {
   customTheme: {},
   theme: { dark: DarkTheme, light: LightTheme },
   currentTheme: usingDarkTheme ? DarkTheme : LightTheme,
+  currentSideAppbarWidth: sidebarMenuWidth,
 };

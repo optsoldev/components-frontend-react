@@ -2,6 +2,7 @@ import { LinearProgress } from '@material-ui/core';
 import React, { PropsWithChildren, Suspense, useEffect, useRef } from 'react';
 import { Switch, useHistory } from 'react-router-dom';
 import { OptSideLayoutProps } from '.';
+import { useOptTheme } from '../../contexts/theme/themeContext';
 import { GlobalStyles } from '../../shared/styles/global';
 import { OptSideAppbar } from '../OptSideAppbar/OptSideAppbar';
 import * as S from './styles';
@@ -17,6 +18,9 @@ export const OptSideLayout = ({
   appBarConfig,
 }: PropsWithChildren<OptSideLayoutProps>) => {
   const { listen } = useHistory();
+  const {
+    state: { currentSideAppbarWidth },
+  } = useOptTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -50,7 +54,7 @@ export const OptSideLayout = ({
           hideLinkDescription={appBarConfig?.hideLinkDescription}
         />
 
-        <S.InitialContainer ref={containerRef}>
+        <S.InitialContainer ref={containerRef} currentsidebarwidth={currentSideAppbarWidth}>
           <S.OptSideLayoutPortalContent>
             {children}
             {routes && (
