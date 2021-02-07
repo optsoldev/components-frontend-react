@@ -31,7 +31,6 @@ export const SidebarExpandedListItem = styled(ListItem)`
   display: flex;
   font-size: 14px;
   border-radius: 6px;
-  margin: 0 8px;
   width: auto;
 
   & .MuiIconButton-root {
