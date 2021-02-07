@@ -2,11 +2,11 @@ import React, { createContext, useReducer } from 'react';
 import { LocalStorageKeys } from '../../shared/constants';
 import { ThemeActions } from './themeActions';
 import { generateNewTheme } from './themeFunctions';
-import { ThemeDispatch, ThemeReducer, Theme_INITIAL_DISPATCH } from './themeReducer';
+import { ThemeDispatch, ThemeReducer, THEME_INITIAL_DISPATCH } from './themeReducer';
 import { CustomOptTheme, ThemeState, Theme_INITIAL_STATE } from './themeState';
 
 const ThemeStateContext = createContext<ThemeState>(Theme_INITIAL_STATE);
-const ThemeDispatchContext = createContext<ThemeDispatch>(Theme_INITIAL_DISPATCH);
+const ThemeDispatchContext = createContext<ThemeDispatch>(THEME_INITIAL_DISPATCH);
 
 type ThemeProps = { children: React.ReactNode };
 

@@ -9,7 +9,7 @@ import { CustomOptTheme, ThemeState } from './themeState';
 
 export type ThemeDispatch = (action: ThemeAction) => void;
 
-export const Theme_INITIAL_DISPATCH = (action: ThemeAction): void => {
+export const THEME_INITIAL_DISPATCH = (action: ThemeAction): void => {
   throw Error('Dispatch not implemented. Action: ' + action);
 };
 
