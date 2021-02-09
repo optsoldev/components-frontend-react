@@ -11,7 +11,7 @@ export const StyledDialog = styled(Dialog)`
   }
 `;
 
-export const StyledDialogActions = styled(DialogActions)`
+export const OptDialogActions = styled(DialogActions)`
   padding: 0;
   border-top: 1px solid ${({ theme }) => theme.divider};
   margin-top: 16px;

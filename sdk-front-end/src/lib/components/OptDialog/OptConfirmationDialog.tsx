@@ -55,13 +55,13 @@ export const OptConfirmationDialog = ({
         <DialogContentText>{children}</DialogContentText>
       </DialogContent>
 
-      <S.StyledDialogActions>
+      <S.OptDialogActions>
         <Button autoFocus onClick={onCancel}>
           {cancelButtonText ?? 'Cancelar'}
         </Button>
 
         <Button onClick={onConfirm}>{confirmationButtonText ?? 'Confirmar'}</Button>
-      </S.StyledDialogActions>
+      </S.OptDialogActions>
     </S.StyledDialog>
   );
 };
