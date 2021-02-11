@@ -41,7 +41,7 @@ export const CustomSidebarNavLink = styled(NavLink)`
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
-  color: ${(props) => props.color};
+  color: ${({ color }) => color ?? ColorPalette.gray2};
   padding: 20px 16px;
 
   &.${ActiveLinkClass} {
