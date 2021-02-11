@@ -6,11 +6,11 @@ export const DarkTheme: OptTheme = {
   secondary: ColorPalette.secondary,
   background: ColorPalette.dark,
   color: ColorPalette.white,
-  divider: ColorPalette.grey2,
+  divider: ColorPalette.gray2,
 
   scrollbar: {
     background: ColorPalette.black,
-    shadowColor: ColorPalette.grey2,
+    shadowColor: ColorPalette.gray2,
     topColor: ColorPalette.primaryTints.tint3,
     bottomColor: ColorPalette.primaryTints.tint5,
 
@@ -91,10 +91,10 @@ export const DarkTheme: OptTheme = {
       color: ColorPalette.primary,
       background: 'inherit',
     },
-    versionColor: ColorPalette.grey5,
+    versionColor: ColorPalette.gray5,
     background: ColorPalette.black,
     color: ColorPalette.black,
-    divider: ColorPalette.grey1,
+    divider: ColorPalette.gray1,
 
     link: {
       color: ColorPalette.white,

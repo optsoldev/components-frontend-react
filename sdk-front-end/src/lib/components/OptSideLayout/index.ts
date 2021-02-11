@@ -8,6 +8,7 @@ export { OptSideLayoutContent } from './OptSideLayoutContent';
 export { OptSideLayoutPortal } from './OptSideLayoutPortal';
 export { OptSideLayoutPortalContent } from './styles';
 export { OptSideLayoutPortalContainer } from './OptSideLayoutPortalContainer';
+export { OptFilterLink, OptSidebarFilterContainer, OptSidebarListContainer } from './extensions';
 
 export interface OptSideLayoutProviderProps {
   darkTheme?: boolean;

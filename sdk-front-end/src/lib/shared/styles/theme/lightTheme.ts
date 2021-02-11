@@ -4,13 +4,13 @@ import { ColorPalette } from '../colors';
 export const LightTheme: OptTheme = {
   primary: ColorPalette.primary,
   secondary: ColorPalette.secondary,
-  background: ColorPalette.grey8,
+  background: ColorPalette.gray8,
   color: ColorPalette.black,
-  divider: ColorPalette.grey7,
+  divider: ColorPalette.gray7,
 
   scrollbar: {
-    background: ColorPalette.grey8,
-    shadowColor: ColorPalette.grey7,
+    background: ColorPalette.gray8,
+    shadowColor: ColorPalette.gray7,
     topColor: ColorPalette.primaryTints.tint5,
     bottomColor: ColorPalette.primaryTints.tint6,
 
@@ -29,7 +29,7 @@ export const LightTheme: OptTheme = {
   appBar: {
     background: ColorPalette.primary,
     color: ColorPalette.white,
-    boxShadowColor: ColorPalette.grey4,
+    boxShadowColor: ColorPalette.gray4,
 
     side: {
       divider: ColorPalette.primaryTints.tint2,
@@ -38,7 +38,7 @@ export const LightTheme: OptTheme = {
         color: ColorPalette.white,
 
         active: {
-          color: ColorPalette.grey2,
+          color: ColorPalette.gray2,
           background: ColorPalette.white,
         },
         hover: {
@@ -65,17 +65,17 @@ export const LightTheme: OptTheme = {
   sidebar: {
     background: ColorPalette.white,
     color: ColorPalette.black,
-    divider: ColorPalette.grey7,
+    divider: ColorPalette.gray7,
 
     link: {
-      color: ColorPalette.grey2,
+      color: ColorPalette.gray2,
 
       active: {
         color: ColorPalette.black,
         background: ColorPalette.primaryTints.tint6,
       },
       hover: {
-        background: ColorPalette.grey5,
+        background: ColorPalette.gray5,
         color: ColorPalette.black,
       },
     },
@@ -83,7 +83,7 @@ export const LightTheme: OptTheme = {
 
   drawer: {
     docked: {
-      borderColor: ColorPalette.grey7,
+      borderColor: ColorPalette.gray7,
     },
 
     close: {
@@ -91,10 +91,10 @@ export const LightTheme: OptTheme = {
       background: 'inherit',
     },
 
-    versionColor: ColorPalette.grey5,
+    versionColor: ColorPalette.gray5,
     background: ColorPalette.white,
     color: ColorPalette.black,
-    divider: ColorPalette.grey7,
+    divider: ColorPalette.gray7,
 
     link: {
       color: ColorPalette.black,
