@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import { appBarHeight } from '../../components/OptLayout/styles';
 import { ScrollbarCSS } from './generic';
 
@@ -24,12 +24,15 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
 
   #root {
     display: flex;
-    overflow-y: ${({ noAppBar }) => (noAppBar ? `hidden` : `auto`)};
+     ${({ noAppBar }) =>
+       noAppBar &&
+       css`
+         overflow-y: auto;
+       `};
 
     ${ScrollbarCSS}
   }
 `;
-
 
 export const GlobalTestStyles = createGlobalStyle<GlobalStylesProps>`
   * {

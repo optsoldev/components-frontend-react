@@ -9,6 +9,7 @@ export const containerPadding = 12;
 
 export const Container = styled.div`
   display: flex;
+  flex: 1;
   margin-top: ${appBarHeight}px;
   min-height: calc(100vh - ${appBarHeight}px);
   height: 100%;

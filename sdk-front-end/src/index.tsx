@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { OptLayoutProvider } from './lib/components/OptLayout/OptLayoutProvider';
+// import App from './pages/App/App';
 import { AppSide } from './pages/AppSide/AppSide';
 
 ReactDOM.render(
