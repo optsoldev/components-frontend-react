@@ -1,3 +1,4 @@
+import { Tooltip } from '@material-ui/core';
 import Icon from '@mdi/react';
 import React, { useState } from 'react';
 import { OptMenuSection } from '.';
@@ -66,10 +67,12 @@ export const OptSideAppbar = ({
                   )}
 
                   {!expanded && (
-                    <S.SidebarListItem button>
-                      <S.SidebarListItemIcon>{item.icon}</S.SidebarListItemIcon>
-                      {!hideLinkDescription && <S.SidebarListItemText primary={item.title} />}
-                    </S.SidebarListItem>
+                    <Tooltip title={item.title} placement="right">
+                      <S.SidebarListItem button>
+                        <S.SidebarListItemIcon>{item.icon}</S.SidebarListItemIcon>
+                        {!hideLinkDescription && <S.SidebarListItemText primary={item.title} />}
+                      </S.SidebarListItem>
+                    </Tooltip>
                   )}
                 </S.SidebarNavLink>
               );
