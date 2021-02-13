@@ -1,7 +1,7 @@
 import { mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
 
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ActiveLinkClass } from '../../../shared/constants';
 import { ColorPalette } from '../../../shared/styles/colors';
@@ -32,7 +32,8 @@ export const OptSidebarListContainer = <T extends { id: string }>({
   width = 280,
   loading = false,
   render,
-}: Props<T>) => {
+  children,
+}: PropsWithChildren<Props<T>>) => {
   return (
     <SidebarContainer width={width} background={background} bordercolor={borderColor}>
       <OptActionToolbar title={title} clearMargin>
@@ -43,6 +44,8 @@ export const OptSidebarListContainer = <T extends { id: string }>({
         </NavLink>
       </OptActionToolbar>
 
+      {children}
+      
       {loading && <OptLoading size={40} />}
 
       {!loading && (
