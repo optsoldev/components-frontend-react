@@ -1,20 +1,31 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ColorPalette } from '../../../shared/styles/colors';
 
-export const AdvancedSearchContainer = styled.div`
+interface Props {
+  noborder?: boolean;
+  width?: number;
+  paddingx?: number;
+}
+
+export const AdvancedSearchContainer = styled.div<Props>`
   display: flex;
-  padding: 0 12px;
   margin-bottom: 12px;
-  width: 100%;
+  width: ${({ width }) => width + 'px' ?? '100%'};
+  ${({ paddingx }) =>
+    css`
+      padding: 0 ${paddingx}px;
+    `};
 
   & > input {
     flex: 1;
     padding: 12px;
     line-height: 38px;
     font-size: 14px;
+    border: none;
+    border: ${({ noborder }) => (noborder ? 'unset' : `1px solid ${ColorPalette.gray6}`)};
+    border-right: unset;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
-    border: none;
     height: 48px;
 
     &:focus {
@@ -25,7 +36,7 @@ export const AdvancedSearchContainer = styled.div`
     }
   }
 
-  &  button {
+  & button {
     border: none;
     background-color: ${({ theme }) => theme.primary};
     color: ${ColorPalette.white};
@@ -43,3 +54,7 @@ export const AdvancedSearchContainer = styled.div`
     }
   }
 `;
+
+AdvancedSearchContainer.defaultProps = {
+  noborder: false,
+};

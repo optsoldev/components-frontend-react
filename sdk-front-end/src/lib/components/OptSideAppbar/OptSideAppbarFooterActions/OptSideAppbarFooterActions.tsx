@@ -1,4 +1,4 @@
-import { IconButton } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import { mdiChevronDoubleRight, mdiChevronDoubleLeft } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
@@ -49,17 +49,23 @@ export const FooterActions = ({
           );
 
         return (
-          <IconButton onClick={action.onClick} key={index}>
-            {action.icon}
-          </IconButton>
+          <Tooltip title={action.title} placement="right">
+            <IconButton onClick={action.onClick} key={index}>
+              {action.icon}
+            </IconButton>
+          </Tooltip>
         );
       })}
 
-      <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
+      <Tooltip title="Meu perfil" placement="right">
+        <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
+      </Tooltip>
 
-      <IconButton onClick={expandSidebar}>
-        <Icon size={1.2} path={mdiChevronDoubleRight} color={currentLinkColor} />
-      </IconButton>
+      <Tooltip title="Expandir" placement="right">
+        <IconButton onClick={expandSidebar}>
+          <Icon size={1.2} path={mdiChevronDoubleRight} color={currentLinkColor} />
+        </IconButton>
+      </Tooltip>
     </S.FooterActionsContainer>
   );
 };
@@ -120,9 +126,11 @@ export const ExpandedFooterActions = ({
                 <S.SidebarExpandedListItemText primary={profile.name} />
               </S.SidebarExpandedListItem>
 
-              <IconButton onClick={collapseSidebar}>
-                <Icon size={1.2} path={mdiChevronDoubleLeft} color={currentLinkColor} />
-              </IconButton>
+              <Tooltip title="Contrair" placement="right">
+                <IconButton onClick={collapseSidebar}>
+                  <Icon size={1.2} path={mdiChevronDoubleLeft} color={currentLinkColor} />
+                </IconButton>
+              </Tooltip>
             </div>
           </>
         )}
