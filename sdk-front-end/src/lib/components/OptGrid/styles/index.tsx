@@ -1,3 +1,4 @@
+import { Paper } from '@material-ui/core';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -9,11 +10,12 @@ import Edit from '@material-ui/icons/Edit';
 import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
+import Refresh from '@material-ui/icons/Refresh';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { Icons } from 'material-table';
+import { Icons, MTableCell } from 'material-table';
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
@@ -35,10 +37,22 @@ export const tableIcons: Icons = {
   SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
+  Retry: forwardRef((props, ref) => <Refresh {...props} ref={ref} />),
 };
 
-export const GridContainer = styled.div`
-  & .MuiTableCell-root {
-    padding: 4px 8px;
+export const StyledPaper = styled(Paper)`
+  border: 1px solid ${({ theme }) => theme.divider};
+  border-radius: 20px;
+
+  & td, th {
+    border-color: ${({ theme }) => theme.divider};
   }
+
+  & tfoot.MuiTableFooter-root td {
+    border-bottom: none;
+  }
+`;
+
+export const StyledMTableCell = styled(MTableCell)`
+  padding: 4px 8px;
 `;

@@ -70,15 +70,17 @@ export class OptGrid<T extends object> extends React.Component<OptGridProps<T>> 
     const { data } = this.props;
 
     return (
-      <S.GridContainer>
-        <MaterialTable
-          {...this.props}
-          data={data}
-          icons={S.tableIcons}
-          localization={localization}
-          tableRef={this.tableRef}
-        />
-      </S.GridContainer>
+      <MaterialTable
+        {...this.props}
+        data={data}
+        icons={S.tableIcons}
+        localization={localization}
+        tableRef={this.tableRef}
+        components={{
+          Container: (props) => <S.StyledPaper elevation={0} {...props} />,
+          Cell: (props) => <S.StyledMTableCell {...props} />,
+        }}
+      />
     );
   }
 }

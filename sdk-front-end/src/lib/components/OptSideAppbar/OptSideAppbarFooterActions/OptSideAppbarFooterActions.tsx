@@ -49,17 +49,13 @@ export const FooterActions = ({
           );
 
         return (
-          <Tooltip title={action.title} placement="right">
-            <IconButton onClick={action.onClick} key={index}>
-              {action.icon}
-            </IconButton>
+          <Tooltip title={action.title} placement="right" key={index}>
+            <IconButton onClick={action.onClick}>{action.icon}</IconButton>
           </Tooltip>
         );
       })}
 
-      <Tooltip title="Meu perfil" placement="right">
-        <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
-      </Tooltip>
+      <OptAppBarAvatar profile={profile} onLogout={onLogout} onManageProfile={onManageProfile} fromSidebar />
 
       <Tooltip title="Expandir" placement="right">
         <IconButton onClick={expandSidebar}>
