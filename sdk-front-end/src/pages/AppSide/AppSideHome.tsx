@@ -1,10 +1,14 @@
 import React from 'react';
+import { OptChip } from '../../lib/components/OptChip';
 import { OptSideLayoutContent } from '../../lib/components/OptSideLayout';
 
 export const AppSideHome = () => {
   return (
     <OptSideLayoutContent>
       <h2>App Side Home!</h2>
+      <div>
+        <OptChip label="Lorem" />
+      </div>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed libero nec tellus consectetur aliquam at
         quis nunc. Nam porttitor massa sit amet nisi viverra, eu dictum nunc pretium. Orci varius natoque penatibus et
