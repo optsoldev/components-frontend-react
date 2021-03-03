@@ -109,4 +109,10 @@ export const DarkTheme: OptTheme = {
       },
     },
   },
+  
+  inputs: {
+    outline: ColorPalette.gray6,
+    outlineFocus: ColorPalette.primary,
+    outlineHover: ColorPalette.gray2,
+  },
 };

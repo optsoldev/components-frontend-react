@@ -25,6 +25,19 @@ const generateMuiTheme = (optTheme: OptTheme, usingDarkTheme: boolean = false) =
       },
     },
     overrides: {
+      MuiOutlinedInput: {
+        root: {
+          '& $notchedOutline': {
+            borderColor: optTheme.inputs.outline,
+          },
+          '&:hover $notchedOutline': {
+            borderColor: optTheme.inputs.outlineHover,
+          },
+          '&$focused $notchedOutline': {
+            borderColor: optTheme.inputs.outlineFocus,
+          },
+        },
+      },
       MuiIconButton: {
         root: {
           '&': {

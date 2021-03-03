@@ -105,4 +105,10 @@ export interface OptTheme {
       };
     };
   };
+  
+  inputs: {
+    outline: string;
+    outlineFocus: string;
+    outlineHover: string;
+  }
 }
