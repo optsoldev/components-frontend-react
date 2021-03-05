@@ -29,6 +29,7 @@ export const Titulo = styled.span`
   padding: 16px;
   font-size: 18px;
   line-height: 27px;
+  font-weight: 500;
   color: ${({ color, theme }) => color ?? theme.color};
 `;
 

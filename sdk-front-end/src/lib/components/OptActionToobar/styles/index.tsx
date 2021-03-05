@@ -30,7 +30,7 @@ export const ActionsContainer = styled.div`
 
 export const Title = styled.span`
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 21px;
   color: ${({ theme }) => theme.color};
 `;
