@@ -16,8 +16,8 @@ const localization: Localization = {
     nRowsSelected: '{0} linha(s) selecionada(s)',
     exportAriaLabel: 'Exportar',
     exportTitle: 'Exportar',
-    exportCSVName: 'Exportar como CSV',
-    exportPDFName: 'Exportar como PDF',
+    // exportCSVName: 'Exportar como CSV',
+    // exportPDFName: 'Exportar como PDF',
   },
   pagination: {
     labelDisplayedRows: ' {from}-{to} de {count}',

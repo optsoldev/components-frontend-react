@@ -6,7 +6,7 @@
   "description": "Kit de UI da OPTSOL",
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
-    "material-table": "^1.69.0",
+    "material-table": "1.67.0",
     "react-draggable": "^4.4.3"
   },
   "peerDependencies": {
