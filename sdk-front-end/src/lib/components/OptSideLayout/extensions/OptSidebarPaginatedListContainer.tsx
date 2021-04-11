@@ -1,18 +1,16 @@
 import { mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
-
 import React, { PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ActiveLinkClass } from '../../../shared/constants';
 import { ColorPalette } from '../../../shared/styles/colors';
+import { OptSearchResponse } from '../../../types/OptSearchResponse';
 import { OptActionToolbar } from '../../OptActionToobar';
-import { OptLoading } from '../../OptLoading';
+import { OptInfiniteScrollList } from '../../OptInfiniteScrollList/OptInfiniteScrollList';
 import { SidebarContainer } from '../../OptSidebar';
 import * as S from './styles';
 
 interface Props<T> {
-  data: T[];
-  loading?: boolean;
   render: (item: T) => JSX.Element;
   createTo?: string;
   listItemTo: (id: string) => string;
@@ -20,18 +18,23 @@ interface Props<T> {
   background?: string;
   borderColor?: string;
   width?: number;
+
+  load: (search: string, page: number, pageSize: number) => Promise<OptSearchResponse<T>>;
+  pageSize?: number;
+  onError?: (error: string) => void;
 }
 
-export const OptSidebarListContainer = <T extends { id: string }>({
-  data,
+export const OptSidebarPaginatedListContainer = <T extends { id: string }>({
   createTo,
   listItemTo,
   title,
   background = ColorPalette.gray6,
   borderColor = 'unset',
   width = 280,
-  loading = false,
   render,
+  load,
+  pageSize = 10,
+  onError,
   children,
 }: PropsWithChildren<Props<T>>) => {
   return (
@@ -48,19 +51,19 @@ export const OptSidebarListContainer = <T extends { id: string }>({
 
       {children}
 
-      {loading && <OptLoading size={40} />}
-
-      {!loading && (
-        <>
-          {data.map((item) => (
-            <S.CustomListItem button key={item.id}>
-              <S.CustomSidebarNavLink to={listItemTo(item.id)} activeClassName={ActiveLinkClass}>
-                <S.MainContainer>{render(item)}</S.MainContainer>
-              </S.CustomSidebarNavLink>
-            </S.CustomListItem>
-          ))}
-        </>
-      )}
+      <OptInfiniteScrollList
+        carregar={load}
+        onError={onError}
+        pageSize={pageSize}
+        semPesquisa
+        renderItem={(item, index) => (
+          <S.CustomListItem button key={item.id}>
+            <S.CustomSidebarNavLink to={listItemTo(item.id)} activeClassName={ActiveLinkClass}>
+              <S.MainContainer>{render(item)}</S.MainContainer>
+            </S.CustomSidebarNavLink>
+          </S.CustomListItem>
+        )}
+      />
     </SidebarContainer>
   );
 };

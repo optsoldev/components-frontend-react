@@ -53,7 +53,7 @@ export const AppSide = () => {
         console.log('onLogout');
       }}
       onManageProfile={() => {
-        console.log('onConfigurarPerfil');
+        console.log('onManageProfile');
       }}
       appBarConfig={{
         actions: [
