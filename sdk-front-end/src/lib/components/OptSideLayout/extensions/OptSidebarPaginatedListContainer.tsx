@@ -18,6 +18,7 @@ interface Props<T> {
   background?: string;
   borderColor?: string;
   width?: number;
+  goBackRoute?: string;
 
   load: (search: string, page: number, pageSize: number) => Promise<OptSearchResponse<T>>;
   pageSize?: number;
@@ -31,6 +32,7 @@ export const OptSidebarPaginatedListContainer = <T extends { id: string }>({
   background = ColorPalette.gray6,
   borderColor = 'unset',
   width = 280,
+  goBackRoute,
   render,
   load,
   pageSize = 10,
@@ -39,7 +41,7 @@ export const OptSidebarPaginatedListContainer = <T extends { id: string }>({
 }: PropsWithChildren<Props<T>>) => {
   return (
     <SidebarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar title={title} clearMargin>
+      <OptActionToolbar title={title} goBackRoute={goBackRoute} clearMargin>
         {createTo && (
           <NavLink to={createTo}>
             <S.CreationButton>

@@ -20,6 +20,7 @@ interface Props<T> {
   background?: string;
   borderColor?: string;
   width?: number;
+  goBackRoute?: string;
 }
 
 export const OptSidebarListContainer = <T extends { id: string }>({
@@ -32,11 +33,12 @@ export const OptSidebarListContainer = <T extends { id: string }>({
   width = 280,
   loading = false,
   render,
+  goBackRoute,
   children,
 }: PropsWithChildren<Props<T>>) => {
   return (
     <SidebarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar title={title} clearMargin>
+      <OptActionToolbar title={title} goBackRoute={goBackRoute} clearMargin>
         {createTo && (
           <NavLink to={createTo}>
             <S.CreationButton>
