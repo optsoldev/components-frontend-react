@@ -24,13 +24,21 @@ export const MainContainer = styled.div`
     text-align: justify;
   }
 `;
+export interface HeaderProps {
+  color?: string;
+  background?: string;
+}
 
-export const Titulo = styled.span`
+export const Header = styled.div<HeaderProps>`
   padding: 16px;
   font-size: 18px;
   line-height: 27px;
   font-weight: 500;
-  color: ${({ color, theme }) => color ?? theme.color};
+  color: ${({ color, theme }) => color ?? theme.toolbar?.color};
+  background: ${({ background, theme }) => background ?? theme.toolbar?.background};
+  position: sticky;
+  top: 0;
+  z-index: 99;
 `;
 
 export const CustomSidebarNavLink = styled(NavLink)`

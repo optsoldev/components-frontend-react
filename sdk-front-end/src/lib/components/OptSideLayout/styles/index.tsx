@@ -36,4 +36,8 @@ export const SideLayoutContent = styled.div`
   flex-direction: column;
 
   ${ScrollbarCSS}
+
+  p {
+    margin: 8px 0;
+  }
 `;

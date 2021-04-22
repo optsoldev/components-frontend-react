@@ -62,6 +62,11 @@ export const LightTheme: OptTheme = {
     },
   },
 
+  toolbar: {
+    color: ColorPalette.white,
+    background: ColorPalette.primary,
+  },
+  
   sidebar: {
     background: ColorPalette.white,
     color: ColorPalette.black,

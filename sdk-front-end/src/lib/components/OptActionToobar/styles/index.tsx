@@ -4,11 +4,15 @@ import { containerPadding } from '../../OptLayout/styles';
 
 interface CustomToolbarProps {
   clearmargin: boolean | 1 | 0;
+  background?: string;
 }
 
 export const CustomToolbar = styled(Toolbar)<CustomToolbarProps>`
   min-height: 65px;
   border-bottom: 1px solid ${({ theme }) => theme.divider};
+
+  color: ${({ color }) => color ?? 'inherit'};
+  background: ${({ background }) => background ?? 'inherit'};
 
   ${({ clearmargin }) =>
     !!clearmargin
@@ -32,7 +36,7 @@ export const Title = styled.span`
   font-size: 18px;
   font-weight: 500;
   line-height: 21px;
-  color: ${({ theme }) => theme.color};
+  color: ${({ color }) => color ?? 'inherit'};
 `;
 
 type CustomButtonProps = {

@@ -60,6 +60,11 @@ export interface OptTheme {
   };
 
 
+  toolbar: {
+    background: string;
+    color: string;
+  },
+
   sidebar: {
     background: string;
     color: string;

@@ -26,6 +26,11 @@ export const SidebarContainer = styled.div<SidebarBaseContainerProps>`
   /* @media (max-width: 600px) {
     display: none;
   } */
+  & > .opt-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
 
   ${ScrollbarCSS}
 `;

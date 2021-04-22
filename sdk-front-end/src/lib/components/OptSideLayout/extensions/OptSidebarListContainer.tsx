@@ -1,6 +1,5 @@
 import { mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
-
 import React, { PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ActiveLinkClass } from '../../../shared/constants';
@@ -21,6 +20,7 @@ interface Props<T> {
   borderColor?: string;
   width?: number;
   goBackRoute?: string;
+  header?: S.HeaderProps;
 }
 
 export const OptSidebarListContainer = <T extends { id: string }>({
@@ -35,10 +35,16 @@ export const OptSidebarListContainer = <T extends { id: string }>({
   render,
   goBackRoute,
   children,
+  header,
 }: PropsWithChildren<Props<T>>) => {
   return (
     <SidebarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar title={title} goBackRoute={goBackRoute} clearMargin>
+      <OptActionToolbar
+        title={title}
+        goBackRoute={goBackRoute}
+        clearMargin
+        background={header?.background}
+        color={header?.color}>
         {createTo && (
           <NavLink to={createTo}>
             <S.CreationButton>

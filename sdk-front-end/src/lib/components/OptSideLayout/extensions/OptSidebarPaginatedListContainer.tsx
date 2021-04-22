@@ -23,6 +23,7 @@ interface Props<T> {
   load: (search: string, page: number, pageSize: number) => Promise<OptSearchResponse<T>>;
   pageSize?: number;
   onError?: (error: string) => void;
+  header?: S.HeaderProps;
 }
 
 export const OptSidebarPaginatedListContainer = <T extends { id: string }>({
@@ -38,10 +39,16 @@ export const OptSidebarPaginatedListContainer = <T extends { id: string }>({
   pageSize = 10,
   onError,
   children,
+  header,
 }: PropsWithChildren<Props<T>>) => {
   return (
     <SidebarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar title={title} goBackRoute={goBackRoute} clearMargin>
+      <OptActionToolbar
+        title={title}
+        goBackRoute={goBackRoute}
+        clearMargin
+        background={header?.background}
+        color={header?.color}>
         {createTo && (
           <NavLink to={createTo}>
             <S.CreationButton>

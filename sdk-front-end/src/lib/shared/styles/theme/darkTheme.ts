@@ -63,6 +63,11 @@ export const DarkTheme: OptTheme = {
     },
   },
 
+  toolbar: {
+    color: ColorPalette.white,
+    background: ColorPalette.primary,
+  },
+
   sidebar: {
     background: ColorPalette.black,
     color: ColorPalette.white,
@@ -109,7 +114,7 @@ export const DarkTheme: OptTheme = {
       },
     },
   },
-  
+
   inputs: {
     outline: ColorPalette.gray6,
     outlineFocus: ColorPalette.primary,

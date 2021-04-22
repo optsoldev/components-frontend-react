@@ -1,6 +1,8 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import * as S from './styles';
 
-export const OptSideLayoutContent = ({ children }: PropsWithChildren<{}>) => {
-  return <S.SideLayoutContent>{children}</S.SideLayoutContent>;
-};
+type ReactDiv = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+export const OptSideLayoutContent = React.forwardRef<HTMLDivElement, ReactDiv>((props, ref) => {
+  return <S.SideLayoutContent {...props} ref={ref} />;
+});
