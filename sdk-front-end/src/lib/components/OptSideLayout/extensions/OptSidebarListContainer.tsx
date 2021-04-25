@@ -23,7 +23,7 @@ interface Props<T> {
   header?: S.HeaderProps;
 }
 
-export const OptSidebarListContainer = <T extends { id: string }>({
+export const OptSidebarListContainer = <T extends { id: Key }, Key extends React.Key>({
   data,
   createTo,
   listItemTo,
@@ -62,7 +62,7 @@ export const OptSidebarListContainer = <T extends { id: string }>({
         <>
           {data.map((item) => (
             <S.CustomListItem button key={item.id}>
-              <S.CustomSidebarNavLink to={listItemTo(item.id)} activeClassName={ActiveLinkClass}>
+              <S.CustomSidebarNavLink to={listItemTo(item.id.toString())} activeClassName={ActiveLinkClass}>
                 <S.MainContainer>{render(item)}</S.MainContainer>
               </S.CustomSidebarNavLink>
             </S.CustomListItem>

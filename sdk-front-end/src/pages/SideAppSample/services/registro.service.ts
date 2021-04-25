@@ -1,3 +1,4 @@
+import { OptSearchResponse } from '../../../lib/types/OptSearchResponse';
 import { Filtro } from '../../../shared/Filtro';
 import { PostMock } from '../../../shared/PostMock';
 import { usersMock } from './usersMock';
@@ -23,7 +24,28 @@ export function useRegistroService() {
       });
   }
 
+  async function buscar(page: number, pageSize: number) {
+    return fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((data: PostMock[]) => {
+        const total = data.length;
+
+        const startIndex = page * pageSize;
+        const dataMock = data.splice(startIndex, pageSize);
+
+        const response: OptSearchResponse<PostMock> = {
+          data: dataMock,
+          page,
+          pageSize,
+          total,
+        };
+
+        return response;
+      });
+  }
+
   return {
     listarFiltros,
+    buscar,
   };
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from '../../../lib/components/OptSideLayout';
 import { FiltroRegistroSidebar } from '../Registro/FiltroRegistroSidebar/FiltroRegistroSidebar';
+import { RegistroListaRoutes } from './RegistroLista.routes';
 import { Routes } from './SideAppSample.routes';
 
 export const RegistroRoutes = () => {
@@ -21,7 +22,7 @@ export const RegistroRoutes = () => {
             <p>Por favor, selecione algum filtro para continuar</p>
           </Route>
 
-          {/* <Route path={Routes.Registro.Filtros().ListaRegistro} component={RegistroListaRoutes} key={Date.now()} /> */}
+          <Route path={Routes.Registro.Filtros().ListaRegistro} component={RegistroListaRoutes} />
         </Switch>
       </OptSideLayoutPortalContent>
     </OptSideLayoutPortalContainer>

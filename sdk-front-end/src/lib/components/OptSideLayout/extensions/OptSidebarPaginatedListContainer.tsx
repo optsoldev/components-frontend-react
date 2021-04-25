@@ -26,7 +26,7 @@ interface Props<T> {
   header?: S.HeaderProps;
 }
 
-export const OptSidebarPaginatedListContainer = <T extends { id: string }>({
+export const OptSidebarPaginatedListContainer = <T extends { id: Key }, Key extends React.Key>({
   createTo,
   listItemTo,
   title,
@@ -67,7 +67,7 @@ export const OptSidebarPaginatedListContainer = <T extends { id: string }>({
         semPesquisa
         renderItem={(item, index) => (
           <S.CustomListItem button key={item.id}>
-            <S.CustomSidebarNavLink to={listItemTo(item.id)} activeClassName={ActiveLinkClass}>
+            <S.CustomSidebarNavLink to={listItemTo(item.id.toString())} activeClassName={ActiveLinkClass}>
               <S.MainContainer>{render(item)}</S.MainContainer>
             </S.CustomSidebarNavLink>
           </S.CustomListItem>
