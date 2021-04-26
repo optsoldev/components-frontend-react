@@ -22,8 +22,8 @@ export const OptActionToolbar = ({
   clearMargin = false,
   background,
   color,
-  noBorder,
-  noPadding
+  noBorder = false,
+  noPadding = false,
 }: PropsWithChildren<OptActionToolbarProps>) => {
   const theme = useOptTheme();
   color = color ?? theme.currentTheme.toolbar.color;

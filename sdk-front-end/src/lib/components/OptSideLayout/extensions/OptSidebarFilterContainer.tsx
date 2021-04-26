@@ -27,7 +27,7 @@ export const OptSidebarFilterContainer = ({
 }: PropsWithChildren<Props>) => {
   return (
     <SidebarWithToolbarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar title={titulo} goBackRoute={goBackRoute} clearMargin noBorder noPadding />
+      <OptActionToolbar title={titulo} goBackRoute={goBackRoute} clearMargin noBorder />
 
       <SidebarWithToolbarContent background={background}>
         {loading && <OptLoading size={30} />}

@@ -33,7 +33,7 @@ export const LightTheme: OptTheme = {
 
     side: {
       divider: ColorPalette.primaryTints.tint2,
-      borderColor: ColorPalette.primary,
+      borderColor: ColorPalette.white,
 
       link: {
         color: ColorPalette.white,

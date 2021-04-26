@@ -35,10 +35,9 @@ export const OptSidebarListBaseContainer = ({
         clearMargin
         background={header?.background}
         color={header?.color}
-        noBorder
-        noPadding>
+        noBorder>
         {createTo && (
-          <NavLink to={createTo} style={{ paddingRight: 10 }}>
+          <NavLink to={createTo}>
             <S.CreationButton customcolor={header?.color}>
               <Icon size={1} path={mdiPlus} />
             </S.CreationButton>
