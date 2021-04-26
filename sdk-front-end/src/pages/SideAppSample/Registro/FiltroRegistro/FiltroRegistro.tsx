@@ -1,15 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { OptActionToolbar } from '../../../../lib/components/OptActionToobar';
 import { OptBreadcrumb } from '../../../../lib/components/OptBreadcrumb';
 import { OptSideLayoutContent } from '../../../../lib/components/OptSideLayout';
 
-export const FormRegistro = () => {
-  const param = useParams<{ id: string }>();
-
+export const FiltroRegistro = () => {
   return (
     <OptSideLayoutContent>
-      <OptActionToolbar noBorder title={<OptBreadcrumb />} />
+      <OptActionToolbar noBorder title={<OptBreadcrumb />} noPadding />
 
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum sapien in sapien tempor, pretium sodales

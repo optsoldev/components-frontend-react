@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from '../../../lib/components/OptSideLayout';
+import { FiltroRegistro } from '../Registro/FiltroRegistro/FiltroRegistro';
 import { FiltroRegistroSidebar } from '../Registro/FiltroRegistroSidebar/FiltroRegistroSidebar';
 import { RegistroListaRoutes } from './RegistroLista.routes';
 import { Routes } from './SideAppSample.routes';
@@ -17,10 +18,7 @@ export const RegistroRoutes = () => {
 
       <OptSideLayoutPortalContent>
         <Switch>
-          <Route exact path={Routes.Registro.Principal}>
-            <h2>Registros</h2>
-            <p>Por favor, selecione algum filtro para continuar</p>
-          </Route>
+          <Route exact path={Routes.Registro.Principal} component={FiltroRegistro} />
 
           <Route path={Routes.Registro.Filtros().ListaRegistro} component={RegistroListaRoutes} />
         </Switch>

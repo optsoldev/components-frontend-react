@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { OptSidebarFilterContainer, OptSideLayoutContent } from '../../../lib/components/OptSideLayout';
+import { OptSidebarFilterContainer } from '../../../lib/components/OptSideLayout';
 
 export const AppSideRegistro = () => {
   const param = useParams<{ id: string }>();

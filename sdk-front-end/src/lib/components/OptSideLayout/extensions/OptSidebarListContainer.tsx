@@ -1,26 +1,15 @@
-import { mdiPlus } from '@mdi/js';
-import Icon from '@mdi/react';
 import React, { PropsWithChildren } from 'react';
-import { NavLink } from 'react-router-dom';
 import { ActiveLinkClass } from '../../../shared/constants';
 import { ColorPalette } from '../../../shared/styles/colors';
-import { OptActionToolbar } from '../../OptActionToobar';
 import { OptLoading } from '../../OptLoading';
-import { SidebarContainer } from '../../OptSidebar';
+import { OptSidebarListBaseContainer, OptSidebarListBaseProps } from './OptSidebarListBaseContainer';
 import * as S from './styles';
 
-interface Props<T> {
+interface Props<T> extends OptSidebarListBaseProps {
   data: T[];
   loading?: boolean;
   render: (item: T) => JSX.Element;
-  createTo?: string;
   listItemTo: (id: string) => string;
-  title: string;
-  background?: string;
-  borderColor?: string;
-  width?: number;
-  goBackRoute?: string;
-  header?: S.HeaderProps;
 }
 
 export const OptSidebarListContainer = <T extends { id: Key }, Key extends React.Key>({
@@ -38,22 +27,14 @@ export const OptSidebarListContainer = <T extends { id: Key }, Key extends React
   header,
 }: PropsWithChildren<Props<T>>) => {
   return (
-    <SidebarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar
-        title={title}
-        goBackRoute={goBackRoute}
-        clearMargin
-        background={header?.background}
-        color={header?.color}>
-        {createTo && (
-          <NavLink to={createTo}>
-            <S.CreationButton>
-              <Icon size={1} path={mdiPlus} />
-            </S.CreationButton>
-          </NavLink>
-        )}
-      </OptActionToolbar>
-
+    <OptSidebarListBaseContainer
+      title={title}
+      background={background}
+      borderColor={borderColor}
+      createTo={createTo}
+      goBackRoute={goBackRoute}
+      header={header}
+      width={width}>
       {children}
 
       {loading && <OptLoading size={40} />}
@@ -69,6 +50,6 @@ export const OptSidebarListContainer = <T extends { id: Key }, Key extends React
           ))}
         </>
       )}
-    </SidebarContainer>
+    </OptSidebarListBaseContainer>
   );
 };

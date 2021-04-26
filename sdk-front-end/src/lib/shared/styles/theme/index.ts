@@ -31,6 +31,7 @@ export interface OptTheme {
 
     side?: {
       divider: string;
+      borderColor: string;
 
       link: {
         color: string;

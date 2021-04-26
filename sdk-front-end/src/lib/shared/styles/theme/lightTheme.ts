@@ -33,6 +33,7 @@ export const LightTheme: OptTheme = {
 
     side: {
       divider: ColorPalette.primaryTints.tint2,
+      borderColor: ColorPalette.primary,
 
       link: {
         color: ColorPalette.white,
@@ -88,7 +89,7 @@ export const LightTheme: OptTheme = {
 
   drawer: {
     docked: {
-      borderColor: ColorPalette.gray7,
+      borderColor: ColorPalette.primary,
     },
 
     close: {
@@ -99,7 +100,7 @@ export const LightTheme: OptTheme = {
     versionColor: ColorPalette.gray5,
     background: ColorPalette.white,
     color: ColorPalette.black,
-    divider: ColorPalette.gray7,
+    divider: ColorPalette.primary,
 
     link: {
       color: ColorPalette.black,

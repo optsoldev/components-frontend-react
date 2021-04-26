@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from '../../../lib/components/OptSideLayout';
 import { FormRegistro } from '../Registro/FormRegistro/FormRegistro';
+import { ListaRegistro } from '../Registro/ListaRegistro/ListaRegistro';
 import { ListaRegistroSidebar } from '../Registro/ListaRegistroSidebar/ListaRegistroSidebar';
 import { Routes } from './SideAppSample.routes';
 
@@ -19,10 +20,7 @@ export const RegistroListaRoutes = () => {
 
       <OptSideLayoutPortalContent>
         <Switch>
-          <Route exact path={Routes.Registro.Filtros().ListaRegistro}>
-            <h1>Lista de registros</h1>
-          </Route>
-
+          <Route exact path={Routes.Registro.Filtros().ListaRegistro} component={ListaRegistro} />
           <Route exact path={Routes.Registro.Filtros().Criar} component={FormRegistro} />
           <Route exact path={Routes.Registro.Filtros().Editar()} component={FormRegistro} />
         </Switch>

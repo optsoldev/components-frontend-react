@@ -30,7 +30,7 @@ export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
     `}
 
   transition: min-width ease-in-out 200ms;
-  border-right: 1px solid ${({ theme }) => theme.appBar.side!.divider};
+  border-right: 1px solid ${({ theme }) => theme.appBar.side!.borderColor};
   background: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
   height: auto;

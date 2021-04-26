@@ -1,29 +1,18 @@
-import { mdiPlus } from '@mdi/js';
-import Icon from '@mdi/react';
 import React, { PropsWithChildren } from 'react';
-import { NavLink } from 'react-router-dom';
 import { ActiveLinkClass } from '../../../shared/constants';
 import { ColorPalette } from '../../../shared/styles/colors';
 import { OptSearchResponse } from '../../../types/OptSearchResponse';
-import { OptActionToolbar } from '../../OptActionToobar';
 import { OptInfiniteScrollList } from '../../OptInfiniteScrollList/OptInfiniteScrollList';
-import { SidebarContainer } from '../../OptSidebar';
+import { OptSidebarListBaseContainer, OptSidebarListBaseProps } from './OptSidebarListBaseContainer';
 import * as S from './styles';
 
-interface Props<T> {
+interface Props<T> extends OptSidebarListBaseProps {
   render: (item: T) => JSX.Element;
-  createTo?: string;
   listItemTo: (id: string) => string;
-  title: string;
-  background?: string;
-  borderColor?: string;
-  width?: number;
-  goBackRoute?: string;
 
   load: (search: string, page: number, pageSize: number) => Promise<OptSearchResponse<T>>;
   pageSize?: number;
   onError?: (error: string) => void;
-  header?: S.HeaderProps;
 }
 
 export const OptSidebarPaginatedListContainer = <T extends { id: Key }, Key extends React.Key>({
@@ -42,24 +31,14 @@ export const OptSidebarPaginatedListContainer = <T extends { id: Key }, Key exte
   header,
 }: PropsWithChildren<Props<T>>) => {
   return (
-    <SidebarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar
-        title={title}
-        goBackRoute={goBackRoute}
-        clearMargin
-        background={header?.background}
-        color={header?.color}>
-        {createTo && (
-          <NavLink to={createTo}>
-            <S.CreationButton>
-              <Icon size={1} path={mdiPlus} />
-            </S.CreationButton>
-          </NavLink>
-        )}
-      </OptActionToolbar>
-
-      {children}
-
+    <OptSidebarListBaseContainer
+      title={title}
+      background={background}
+      borderColor={borderColor}
+      createTo={createTo}
+      goBackRoute={goBackRoute}
+      header={header}
+      width={width}>
       <OptInfiniteScrollList
         carregar={load}
         onError={onError}
@@ -73,6 +52,6 @@ export const OptSidebarPaginatedListContainer = <T extends { id: Key }, Key exte
           </S.CustomListItem>
         )}
       />
-    </SidebarContainer>
+    </OptSidebarListBaseContainer>
   );
 };

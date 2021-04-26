@@ -70,8 +70,12 @@ export const CustomListItem = styled(ListItem)`
   display: block;
 `;
 
-export const CreationButton = styled(IconButton)`
-  border: 1px solid ${ColorPalette.gray5};
+export interface CreationButtonProps {
+  customcolor?: string;
+}
+
+export const CreationButton = styled(IconButton)<CreationButtonProps>`
+  border: 1px solid ${({ theme }) => theme.appBar.side?.divider && theme.appBar.color};
   border-radius: 8px;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.appBar.color};
 `;

@@ -33,6 +33,7 @@ export const DarkTheme: OptTheme = {
 
     side: {
       divider: ColorPalette.dark,
+      borderColor: ColorPalette.primary,
 
       link: {
         color: ColorPalette.white,

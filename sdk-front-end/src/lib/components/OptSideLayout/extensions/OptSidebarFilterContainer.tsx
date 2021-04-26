@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import { ColorPalette } from '../../../shared/styles/colors';
 import { OptActionToolbar } from '../../OptActionToobar';
 import { OptLoading } from '../../OptLoading';
-import { SidebarContainer } from '../../OptSidebar';
+import { SidebarWithToolbarContainer, SidebarWithToolbarContent } from '../../OptSidebar/styles';
 import * as S from './styles';
 
 interface Props {
@@ -26,11 +26,13 @@ export const OptSidebarFilterContainer = ({
   children,
 }: PropsWithChildren<Props>) => {
   return (
-    <SidebarContainer width={width} background={background} bordercolor={borderColor}>
-      <OptActionToolbar title={titulo} goBackRoute={goBackRoute} clearMargin />
+    <SidebarWithToolbarContainer width={width} background={background} bordercolor={borderColor}>
+      <OptActionToolbar title={titulo} goBackRoute={goBackRoute} clearMargin noBorder noPadding />
 
-      {loading && <OptLoading size={30} />}
-      {!loading && <List>{children}</List>}
-    </SidebarContainer>
+      <SidebarWithToolbarContent background={background}>
+        {loading && <OptLoading size={30} />}
+        {!loading && <List>{children}</List>}
+      </SidebarWithToolbarContent>
+    </SidebarWithToolbarContainer>
   );
 };

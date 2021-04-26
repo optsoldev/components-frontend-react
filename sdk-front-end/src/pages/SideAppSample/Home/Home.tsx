@@ -1,9 +1,7 @@
 import React from 'react';
 import { OptSideLayoutContent } from '../../../lib/components/OptSideLayout';
 
-interface Props {}
-
-export const Home = (props: Props) => {
+export const Home = () => {
   return (
     <OptSideLayoutContent>
       <h2>Home</h2>

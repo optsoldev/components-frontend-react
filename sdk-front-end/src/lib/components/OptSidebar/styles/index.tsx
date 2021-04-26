@@ -22,22 +22,38 @@ export const SidebarContainer = styled.div<SidebarBaseContainerProps>`
   color: ${({ color, theme }) => color ?? theme.sidebar.color};
   width: ${({ width }) => width}px;
   min-width: ${({ width }) => width}px;
-
-  /* @media (max-width: 600px) {
-    display: none;
-  } */
-  & > .opt-toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 99;
-  }
-
-  ${ScrollbarCSS}
 `;
 
 SidebarContainer.defaultProps = {
   width: sidebarMenuWidth,
 };
+
+export const SidebarWithToolbarContainer = styled.div<SidebarBaseContainerProps>`
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  height: auto;
+  background: ${({ background, theme }) => background ?? theme.sidebar.background};
+  color: ${({ color, theme }) => color ?? theme.sidebar.color};
+  width: ${({ width }) => width}px;
+  min-width: ${({ width }) => width}px;
+
+`;
+
+SidebarContainer.defaultProps = {
+  width: sidebarMenuWidth,
+};
+
+export const SidebarWithToolbarContent = styled.div<SidebarBaseContainerProps>`
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: ${({ background, theme }) => background ?? theme.sidebar.background};
+  color: ${({ color, theme }) => color ?? theme.sidebar.color};
+  
+  ${ScrollbarCSS}
+`;
 
 export const SidebarListItem = styled(ListItem)`
   display: flex;

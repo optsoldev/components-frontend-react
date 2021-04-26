@@ -11,6 +11,8 @@ export type OptActionToolbarProps = {
   clearMargin?: boolean;
   background?: string;
   color?: string;
+  noBorder?: boolean;
+  noPadding?: boolean;
 };
 
 export const OptActionToolbar = ({
@@ -20,6 +22,8 @@ export const OptActionToolbar = ({
   clearMargin = false,
   background,
   color,
+  noBorder,
+  noPadding
 }: PropsWithChildren<OptActionToolbarProps>) => {
   const theme = useOptTheme();
   color = color ?? theme.currentTheme.toolbar.color;
@@ -28,7 +32,13 @@ export const OptActionToolbar = ({
   title = typeof title === 'string' ? <S.Title color={color}>{title}</S.Title> : title;
 
   return (
-    <S.CustomToolbar clearmargin={clearMargin ? 1 : 0} className="opt-toolbar" background={background} color={color}>
+    <S.CustomToolbar
+      clearmargin={clearMargin ? 1 : 0}
+      className="opt-toolbar"
+      background={background}
+      color={color}
+      noborder={noBorder}
+      nopadding={noPadding}>
       {goBackRoute && (
         <NavLink to={goBackRoute}>
           <S.CustomIconButton>
