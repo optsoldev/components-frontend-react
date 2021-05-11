@@ -1,0 +1,43 @@
+{
+  "name": "@optsol/react",
+  "version": "0.0.1",
+  "private": true,
+  "author": "OPTSOL Tecnologia",
+  "description": "Kit de UI da OPTSOL",
+  "dependencies": {
+    "@material-ui/icons": "^4.11.2",
+    "material-table": "1.67.0",
+    "react-draggable": "^4.4.3"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.11.2",
+    "react-router-dom": "^5.2.0",
+    "@mdi/js": "^5.8.55",
+    "@mdi/react": "^1.4.0",
+    "styled-components": "^5.2.1",
+    "@types/react-router-dom": "^5.1.7"
+  },
+  "scripts": {
+    "build:core": "tsc -p tsconfig.json"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "typescript": "^3.7.3"
+  }
+}
