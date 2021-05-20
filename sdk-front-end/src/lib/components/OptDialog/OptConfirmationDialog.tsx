@@ -13,7 +13,7 @@ function PaperComponent(props: PaperProps) {
   );
 }
 
-interface Props {
+export interface Props {
   open: boolean;
   title: string;
   cancelButtonText?: string;
