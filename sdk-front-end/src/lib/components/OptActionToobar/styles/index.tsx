@@ -38,6 +38,7 @@ export const ActionsContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
+  color: ${({ color }) => color ?? 'inherit'};
 `;
 
 export const Title = styled.span`
@@ -49,12 +50,17 @@ export const Title = styled.span`
 
 type CustomButtonProps = {
   textcolor: string;
+  hover: {
+    textcolor: string;
+  };
 };
 
 export const CustomButton = styled(Button)<CustomButtonProps>`
+  color: ${(props) => props.textcolor ?? 'inherit'};
+
   &:hover {
     &.MuiButton-root {
-      color: ${(props) => props.textcolor};
+      color: ${(props) => props.hover?.textcolor ?? 'inherit'};
     }
   }
 `;

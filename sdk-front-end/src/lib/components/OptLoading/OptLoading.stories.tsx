@@ -16,4 +16,4 @@ DefaultOptLoading.args = {
    color: 'primary',
 };
 
-DefaultOptLoading.storyName = 'Option Loading ';
+DefaultOptLoading.storyName = 'Option Loading';

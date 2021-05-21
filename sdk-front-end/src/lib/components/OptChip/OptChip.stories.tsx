@@ -8,19 +8,21 @@ export default {
   component: OptChip,
 } as Meta;
 
-const Template: Story<OptChipProps> = (args) => <OptChip {...args} />;
+export interface OptChipArgs extends OptChipProps {
+  label: string;
+}
 
-export const DefaultOptGrid = Template.bind({});
+export const OptChipDialog: Story<OptChipArgs> = ({ label, ...args }) => <OptChip {...args} label={label} />;
 
-DefaultOptGrid.args = {
+OptChipDialog.args = {
   label: 'OPTSOL',
   backgroundcolor: ColorPalette.primary,
   textcolor: ColorPalette.white,
 };
 
-DefaultOptGrid.storyName = 'Option Chip ';
+OptChipDialog.storyName = 'Option Chip';
 
-DefaultOptGrid.argTypes = {
+OptChipDialog.argTypes = {
   ref: {
     table: { disable: true },
   },

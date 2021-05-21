@@ -14,6 +14,10 @@ export type OptActionButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   disabled?: boolean;
   loading?: boolean;
+  textColor?: string;
+  hover?: {
+    textColor: string;
+  };
 };
 
 function checkActionIcon(
@@ -43,17 +47,19 @@ export const OptActionButton = ({
   children,
   disabled,
   loading,
+  textColor = 'inherit',
+  hover,
 }: PropsWithChildren<OptActionButtonProps>) => {
   const { currentTheme } = useOptTheme();
 
-  let textColor: string = currentTheme.secondary;
+  let hoverTextColor: string = hover?.textColor ?? 'inherit';
 
   if (startIcon && (startIcon as IconPathColor).color) {
-    textColor = (startIcon as IconPathColor).color!;
+    hoverTextColor = (startIcon as IconPathColor).color!;
   }
 
   if (endIcon && (endIcon as IconPathColor).color) {
-    textColor = (endIcon as IconPathColor).color!;
+    hoverTextColor = (endIcon as IconPathColor).color!;
   }
 
   startIcon = checkActionIcon(currentTheme, startIcon, !!disabled, !!loading);
@@ -62,6 +68,7 @@ export const OptActionButton = ({
   return (
     <S.CustomButton
       textcolor={textColor}
+      hover={{ textcolor: hoverTextColor }}
       startIcon={startIcon}
       endIcon={endIcon}
       onClick={onClick}

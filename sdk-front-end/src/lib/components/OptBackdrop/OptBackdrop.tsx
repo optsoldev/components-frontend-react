@@ -1,4 +1,5 @@
 import { Backdrop } from '@material-ui/core';
+import React from 'react';
 import { OptLoading } from '../OptLoading';
 import * as S from './styles';
 

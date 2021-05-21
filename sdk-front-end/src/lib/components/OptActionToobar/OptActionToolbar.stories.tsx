@@ -20,7 +20,9 @@ export default {
   component: OptActionToolbar,
 } as Meta;
 
-const Template: Story<OptActionToolbarProps & { reprovarLoading: boolean; anexosDisabled: boolean }> = (args) => (
+export const OptActionToolbarExample: Story<OptActionToolbarProps & { reprovarLoading: boolean; anexosDisabled: boolean }> = (
+  args,
+) => (
   <OptActionToolbar {...args}>
     <OptActionButton startIcon={{ path: mdiPencil, color: ColorPalette.curiousBlue }}>Editar</OptActionButton>
     <OptActionButton startIcon={{ path: mdiThumbUp, color: ColorPalette.primary }}>Aprovar proposta</OptActionButton>
@@ -38,7 +40,7 @@ const Template: Story<OptActionToolbarProps & { reprovarLoading: boolean; anexos
   </OptActionToolbar>
 );
 
-const Template2: Story<OptActionToolbarProps & { loading: boolean; disabled: boolean }> = (args) => (
+export const OptActionToolbarExample2: Story<OptActionToolbarProps & { loading: boolean; disabled: boolean }> = (args) => (
   <OptActionToolbar {...args}>
     <OptActionButton endIcon={{ path: mdiPacMan, color: ColorPalette.yellow }}>Pacman</OptActionButton>
     <OptActionButton startIcon={{ path: mdiCalendar, color: ColorPalette.curiousBlue }} disabled={args.disabled}>
@@ -53,18 +55,16 @@ const Template2: Story<OptActionToolbarProps & { loading: boolean; disabled: boo
   </OptActionToolbar>
 );
 
-export const DefaultActionToolbar = Template.bind({});
-
-DefaultActionToolbar.args = {
+OptActionToolbarExample.args = {
   title: 'Proposta de adesão',
   reprovarLoading: true,
   anexosDisabled: true,
+  color: '#fff',
 };
 
-export const AnotherActionToolbar = Template2.bind({});
-
-AnotherActionToolbar.args = {
+OptActionToolbarExample2.args = {
   title: 'Toolbar teste',
   loading: false,
   disabled: false,
+  color: '#fff',
 };
