@@ -1,6 +1,6 @@
 import { mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { PropsWithChildren } from 'react';
+import React, { CSSProperties, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ColorPalette } from '../../../shared/styles/colors';
 import { OptActionToolbar } from '../../OptActionToobar';
@@ -15,6 +15,7 @@ export interface OptSidebarListBaseProps {
   width?: number;
   goBackRoute?: string;
   header?: S.HeaderProps;
+  style?: CSSProperties;
 }
 
 export const OptSidebarListBaseContainer = ({
@@ -26,9 +27,10 @@ export const OptSidebarListBaseContainer = ({
   goBackRoute,
   children,
   header,
+  style,
 }: PropsWithChildren<OptSidebarListBaseProps>) => {
   return (
-    <SidebarWithToolbarContainer width={width} background={background} bordercolor={borderColor}>
+    <SidebarWithToolbarContainer width={width} background={background} bordercolor={borderColor} style={style}>
       <OptActionToolbar
         title={title}
         goBackRoute={goBackRoute}
