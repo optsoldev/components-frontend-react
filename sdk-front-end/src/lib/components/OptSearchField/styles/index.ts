@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { ColorPalette } from '../../../shared/styles/colors';
 
 interface Props {
-  noborder?: boolean;
+  $noborder?: boolean;
   width?: number;
   paddingx?: number;
 }
@@ -22,7 +22,7 @@ export const AdvancedSearchContainer = styled.div<Props>`
     line-height: 38px;
     font-size: 14px;
     border: none;
-    border: ${({ noborder }) => (noborder ? 'unset' : `1px solid ${ColorPalette.gray6}`)};
+    border: ${({ $noborder }) => ($noborder ? 'unset' : `1px solid ${ColorPalette.gray6}`)};
     border-right: unset;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -56,5 +56,5 @@ export const AdvancedSearchContainer = styled.div<Props>`
 `;
 
 AdvancedSearchContainer.defaultProps = {
-  noborder: false,
+  $noborder: false,
 };

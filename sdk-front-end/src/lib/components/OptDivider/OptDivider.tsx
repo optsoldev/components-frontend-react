@@ -1,7 +1,7 @@
 import { Divider } from '@material-ui/core';
 import styled from 'styled-components';
 
-interface OptDividerProps {
+export interface OptDividerProps {
   marginy?: number;
   color?: string;
 }

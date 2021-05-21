@@ -37,8 +37,8 @@ export const OptActionToolbar = ({
       className="opt-toolbar"
       background={background}
       color={color}
-      noborder={noBorder}
-      nopadding={noPadding}>
+      $noborder={noBorder}
+      $nopadding={noPadding}>
       {goBackRoute && (
         <NavLink to={goBackRoute}>
           <S.CustomIconButton>
