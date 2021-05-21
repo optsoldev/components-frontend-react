@@ -49,7 +49,7 @@ export const OptActionToolbar = ({
 
       {title}
 
-      <S.ActionsContainer>{children}</S.ActionsContainer>
+      <S.ActionsContainer color={color}>{children}</S.ActionsContainer>
     </S.CustomToolbar>
   );
 };

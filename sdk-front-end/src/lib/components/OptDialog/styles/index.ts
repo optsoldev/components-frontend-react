@@ -16,11 +16,16 @@ export const OptDialogActions = styled(DialogActions)`
   border-top: 1px solid ${({ theme }) => theme.divider};
   margin-top: 16px;
 
+  &.MuiDialogActions-root {
+    padding: 0;
+  }
+
   & .MuiButton-text {
     flex: 1;
     border-radius: 0;
     margin: 0;
     padding: 20px 8px;
+    min-width: 140px;
 
     &:not(:last-child) {
       border-right: 1px solid ${({ theme }) => theme.divider};

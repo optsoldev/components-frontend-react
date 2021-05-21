@@ -1,23 +1,20 @@
-import { mdiDeleteOutline } from '@mdi/js';
-import { ColorPalette } from '../../shared/styles/colors';
-
-import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
-import { OptDialog } from './OptDialog';
-import { OptConfirmationDialog, Props } from './OptConfirmationDialog';
-import { OptDialogActions } from './styles';
 import { Button } from '@material-ui/core';
+import { mdiDeleteOutline, mdiTestTube } from '@mdi/js';
+import { Meta, Story } from '@storybook/react';
+import React from 'react';
+import { ColorPalette } from '../../shared/styles/colors';
+import { OptConfirmationDialog, Props } from './OptConfirmationDialog';
+import { OptDialog, OptDialogProps } from './OptDialog';
+import { OptDialogActions } from './styles';
 
 export default {
   title: 'OptDialog',
   component: OptDialog,
 } as Meta;
 
-const Template: Story<Props> = (args) => (
+export const OptDialogExample: Story<OptDialogProps> = (args) => (
   <OptDialog {...args}>
-    <div style={{ margin: '0 12px' }}>
-      Exemplo de OptDialog
-    </div>
+    <div style={{ margin: '0 12px' }}>Exemplo de OptDialog</div>
     <OptDialogActions>
       <Button>Cancelar</Button>
       <Button>Fechar</Button>
@@ -25,30 +22,32 @@ const Template: Story<Props> = (args) => (
   </OptDialog>
 );
 
-export const OptDialogExample = Template.bind({});
-
 OptDialogExample.args = {
   title: 'Confirma?',
-  cancelButtonText: undefined,
-  confirmationButtonText: undefined,
-  icon: '',
+  icon: { path: mdiTestTube, color: ColorPalette.dark },
   open: false,
-  onClose: null,
 };
 
-const Template2: Story<Props> = (args) => (
-  <OptConfirmationDialog {...args}>
-    <div style={{ margin: '0 12px' }}>Exemplo de OptConfirmationDialog</div>
-  </OptConfirmationDialog>
-);
+OptDialogExample.argTypes = {
+  onClose: {
+    action: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => 'Event: ' + event + ' Reason: ' + reason,
+    table: { disable: true },
+  },
+};
 
-export const OptConfirmationDialogExample = Template2.bind({});
+export const OptConfirmationDialogExample: Story<Props> = (args) => (
+  <OptConfirmationDialog {...args}>Exemplo de OptConfirmationDialog</OptConfirmationDialog>
+);
 
 OptConfirmationDialogExample.args = {
   title: 'Confirma?',
-  cancelButtonText: undefined,
-  confirmationButtonText: undefined,
   icon: { path: mdiDeleteOutline, color: ColorPalette.primary },
   open: false,
-  onClose: null,
+};
+
+OptConfirmationDialogExample.argTypes = {
+  onClose: {
+    action: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => 'Event: ' + event + ' Reason: ' + reason,
+    table: { disable: true },
+  },
 };

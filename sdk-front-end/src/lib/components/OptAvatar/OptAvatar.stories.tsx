@@ -16,10 +16,9 @@ let userProfile: OptUserProfile = {
   alternativeColor: ColorPalette.primary,
 };
 
-const Template: Story<OptAvatarProps> = (args) => (args.profile = userProfile, <OptAvatar {...args}></OptAvatar>);
-
-export const OptAvatarExample = Template.bind({});
+export const OptAvatarExample: Story<OptAvatarProps> = (args) => <OptAvatar {...args}></OptAvatar>;
 
 OptAvatarExample.args = {
   size: 64,
+  profile: userProfile,
 };
