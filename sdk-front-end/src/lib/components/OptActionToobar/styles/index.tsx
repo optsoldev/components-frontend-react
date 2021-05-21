@@ -5,14 +5,14 @@ import { containerPadding } from '../../OptLayout/styles';
 interface CustomToolbarProps {
   clearmargin: boolean | 1 | 0;
   background?: string;
-  noborder?: boolean;
-  nopadding?: boolean;
+  $noborder?: boolean;
+  $nopadding?: boolean;
 }
 
 export const CustomToolbar = styled(Toolbar)<CustomToolbarProps>`
   min-height: 65px;
-  ${({ noborder, theme }) => !noborder && `border-bottom: 1px solid ${theme.divider};`}
-  ${({ nopadding }) => (nopadding ? `padding: 0;` : `padding: 10px;`)}
+  ${({ $noborder, theme }) => !$noborder && `border-bottom: 1px solid ${theme.divider};`}
+  ${({ $nopadding }) => ($nopadding ? `padding: 0;` : `padding: 10px;`)}
 
   color: ${({ color }) => color ?? 'inherit'};
   background: ${({ background }) => background ?? 'inherit'};
@@ -24,8 +24,8 @@ export const CustomToolbar = styled(Toolbar)<CustomToolbarProps>`
 `;
 
 CustomToolbar.defaultProps = {
-  noborder: false,
-  nopadding: false,
+  $noborder: false,
+  $nopadding: false,
 };
 
 export const CustomIconButton = styled(IconButton)`

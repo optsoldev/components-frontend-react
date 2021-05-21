@@ -27,7 +27,7 @@ export const OptSearchField = ({ placeholder = 'Pesquisar', onSearch, noBorder, 
   }
 
   return (
-    <S.AdvancedSearchContainer noborder={noBorder} width={width} paddingx={paddingX}>
+    <S.AdvancedSearchContainer $noborder={noBorder} width={width} paddingx={paddingX}>
       <input type="text" placeholder={placeholder} ref={ref} onKeyDown={verificarTeclaPressionadaEnter} />
       <ButtonBase onClick={onClickSearchButton}>
         <Icon size={0.8} path={mdiMagnify} color={ColorPalette.white} />
