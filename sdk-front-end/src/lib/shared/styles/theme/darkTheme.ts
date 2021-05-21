@@ -3,6 +3,7 @@ import { ColorPalette } from '../colors';
 
 export const DarkTheme: OptTheme = {
   primary: ColorPalette.primary,
+  primaryContrast: ColorPalette.white,
   secondary: ColorPalette.secondary,
   background: ColorPalette.dark,
   color: ColorPalette.white,

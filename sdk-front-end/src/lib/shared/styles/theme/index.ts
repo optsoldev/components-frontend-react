@@ -1,5 +1,6 @@
 export interface OptTheme {
   primary: string;
+  primaryContrast: string;
   secondary: string;
   background: string;
   color: string;

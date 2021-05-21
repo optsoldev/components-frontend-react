@@ -31,6 +31,8 @@ export const ColorPalette = {
   yellow: '#e0c237',
 
   green: '#37e06d',
+  green2: '#27AE60',
+  green3: '#6FCF97',
 
   royalBlue: '#2F80ED',
   curiousBlue: '#2D9CDB',
