@@ -8,17 +8,18 @@ import * as S from './styles';
 
 export interface UploadContainerOptions extends DropzoneOptions {}
 
-interface Props {
+export interface OptUploadProps {
   description?: string;
   filesDescription?: string;
   onChange: (files: File[]) => void;
-  options: UploadContainerOptions;
-  onBlur: FocusEventHandler;
+  options?: UploadContainerOptions;
+  onBlur?: FocusEventHandler;
   value?: File[];
   name?: string;
+  style?: React.CSSProperties;
 }
 
-export const OptUpload = React.forwardRef<HTMLInputElement, Props>(
+export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
   (
     {
       description = 'Arraste arquivos para cá ou clique para selecioná-los',
@@ -26,6 +27,7 @@ export const OptUpload = React.forwardRef<HTMLInputElement, Props>(
       onChange,
       options,
       value,
+      style,
       ...props
     },
     ref,
@@ -57,7 +59,11 @@ export const OptUpload = React.forwardRef<HTMLInputElement, Props>(
     }, [acceptedFiles]);
 
     return (
-      <S.StyledUploadContainer hasFiles={hasFiles} {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
+      <S.StyledUploadContainer
+        hasFiles={hasFiles}
+        {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
+        ref={ref}
+        style={style}>
         <input {...getInputProps()} {...props} />
         <Icon path={mdiPaperclip} size={1.4} />
         <p>{description}</p>

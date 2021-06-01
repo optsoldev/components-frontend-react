@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: MaterialTheme) =>
   }),
 );
 
-interface Props {
+export interface OptAppBarProps {
   profile: OptUserProfile | undefined;
   onManageProfile: () => void;
   onLogout: () => void;
@@ -39,7 +39,7 @@ export const OptAppBar = ({
   hideBreadcrumb,
   content,
   actions,
-}: Props) => {
+}: OptAppBarProps) => {
   const classes = useStyles();
 
   return (

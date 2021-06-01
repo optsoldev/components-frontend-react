@@ -1,11 +1,10 @@
 import React, { FocusEventHandler, useEffect, useState } from 'react';
-import { ActionMeta, GroupTypeBase, NamedProps, OptionsType, ValueType } from 'react-select';
-import CreatableSelect from 'react-select/creatable';
+import { ActionMeta, GroupTypeBase, OptionsType, OptionTypeBase } from 'react-select';
+import CreatableSelect, { CreatableProps } from 'react-select/creatable';
 import { optTagSelectTheme } from './OptTagSelectTheme';
 
-type OptionType = { label: string; value: string };
 type OriginalCreatableSelectProps = Omit<
-  Omit<Omit<NamedProps<OptionType, boolean, GroupTypeBase<OptionType>>, 'onChange'>, 'value'>,
+  Omit<Omit<CreatableProps<OptionTypeBase, boolean, GroupTypeBase<OptionTypeBase>>, 'onChange'>, 'value'>,
   'ref'
 >;
 
@@ -16,19 +15,19 @@ interface Props extends OriginalCreatableSelectProps {
   name?: string;
 }
 
-export const OptTagSelect = React.forwardRef<CreatableSelect<OptionType, boolean>, Props>(
+export const OptTagSelect = React.forwardRef<CreatableSelect<OptionTypeBase, boolean>, Props>(
   ({ onChange, onBlur, value = [], name, ...props }, ref) => {
-    const [transformedValue, setTransformedValue] = useState<OptionType[]>([]);
+    const [transformedValue, setTransformedValue] = useState<readonly OptionTypeBase[]>([]);
 
-    function onChangeHandler(value: ValueType<OptionType, boolean>, action: ActionMeta<OptionType>) {
+    function onChangeHandler(value: OptionsType<OptionTypeBase>, action: ActionMeta<OptionTypeBase>) {
       if (!value) {
         onChange([]);
       } else {
         if (!Array.isArray(value)) {
-          value = [value] as OptionsType<OptionType>;
+          value = [value] as any;
         }
 
-        const simpifiedValues = (value as OptionsType<OptionType>)?.map((x) => x.value) ?? [];
+        const simpifiedValues = (value as OptionsType<OptionTypeBase>)?.map((x) => x.value) ?? [];
         onChange(simpifiedValues);
       }
     }
@@ -41,7 +40,6 @@ export const OptTagSelect = React.forwardRef<CreatableSelect<OptionType, boolean
       <CreatableSelect
         backspaceRemovesValue
         createOptionPosition="first"
-        menuPlacement="top"
         menuPosition="fixed"
         theme={optTagSelectTheme}
         formatCreateLabel={(inputValue) => 'Criar tag ' + inputValue}
