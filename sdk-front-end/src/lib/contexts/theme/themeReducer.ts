@@ -1,5 +1,5 @@
 import { LocalStorageKeys } from '../../shared/constants';
-import { OptTheme } from '../../shared/styles/theme';
+import { OptFullTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
 import { LightTheme } from '../../shared/styles/theme/lightTheme';
 import { GenericContext } from '../genericContext';
@@ -27,6 +27,7 @@ export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState
       return { ...state, usingDarkTheme: false, currentTheme: action.payload! };
     }
     case ThemeActions.SET_CUSTOM_THEME: {
+      debugger;
       const usingDarkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme);
 
       const currentTheme = generateNewTheme(
@@ -48,7 +49,7 @@ export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState
 
 type ThemeAction =
   | GenericContext<ThemeActions.RESET_THEME>
-  | GenericContext<ThemeActions.SET_DARK_THEME, OptTheme>
-  | GenericContext<ThemeActions.SET_LIGHT_THEME, OptTheme>
+  | GenericContext<ThemeActions.SET_DARK_THEME, OptFullTheme>
+  | GenericContext<ThemeActions.SET_LIGHT_THEME, OptFullTheme>
   | GenericContext<ThemeActions.SET_CUSTOM_THEME, CustomOptTheme>
   | GenericContext<ThemeActions.SET_CURRENT_SIDEAPPBARWIDTH, number>;

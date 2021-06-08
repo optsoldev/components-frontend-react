@@ -1,125 +1,125 @@
-import { OptTheme } from '.';
+import { OptFullTheme } from '.';
 import { ColorPalette } from '../colors';
 
-export const LightTheme: OptTheme = {
+export const LightTheme: OptFullTheme = {
   primary: ColorPalette.primary,
   primaryContrast: ColorPalette.white,
   secondary: ColorPalette.secondary,
-  background: ColorPalette.gray8,
-  color: ColorPalette.black,
-  divider: ColorPalette.gray7,
-
-  scrollbar: {
-    background: ColorPalette.gray8,
-    shadowColor: ColorPalette.gray7,
-    topColor: ColorPalette.primaryTints.tint5,
-    bottomColor: ColorPalette.primaryTints.tint6,
-
-    hover: {
-      topCollor: ColorPalette.primaryTints.tint4,
-      bottomCollor: ColorPalette.primaryTints.tint5,
-    },
-  },
-
-  breadcrumb: {
-    color: ColorPalette.white,
-    hover: ColorPalette.primaryTints.tint4,
-    separator: ColorPalette.primaryTints.tint4,
-  },
+  secondaryContrast: ColorPalette.black,
+  background: ColorPalette.white,
+  color: ColorPalette.gray2,
+  divider: ColorPalette.gray6,
 
   appBar: {
     background: ColorPalette.primary,
     color: ColorPalette.white,
-    boxShadowColor: ColorPalette.gray4,
+    boxShadowColor: 'rgba(0, 0, 0, 0.05)',
 
     side: {
-      divider: ColorPalette.primaryTints.tint2,
-      borderColor: ColorPalette.white,
+      divider: ColorPalette.primaryTints.tint3,
+      borderColor: ColorPalette.gray6,
 
       link: {
-        color: ColorPalette.white,
+        color: ColorPalette.secondary,
+        hover: {
+          background: ColorPalette.gray6,
+          color: ColorPalette.black,
+        },
 
         active: {
-          color: ColorPalette.gray2,
           background: ColorPalette.white,
+          color: ColorPalette.primary,
         },
-        hover: {
-          background: ColorPalette.primaryTints.tint1,
-          color: ColorPalette.white,
-        },
-      },
-    },
-
-    menuButton: {
-      color: ColorPalette.white,
-      hover: {
-        color: ColorPalette.white,
-        background: ColorPalette.primaryTints.tint4,
       },
     },
 
     avatar: {
-      background: ColorPalette.yellow,
+      background: ColorPalette.secondary,
       color: ColorPalette.white,
+    },
+    menuButton: {
+      color: ColorPalette.secondary,
+
+      hover: {
+        background: ColorPalette.gray6,
+        color: ColorPalette.secondary,
+      },
+    },
+  },
+
+  breadcrumb: {
+    color: ColorPalette.gray2,
+    hover: ColorPalette.primary,
+    separator: ColorPalette.gray2,
+  },
+
+  drawer: {
+    background: ColorPalette.white,
+    color: ColorPalette.gray3,
+    divider: ColorPalette.gray6,
+    versionColor: ColorPalette.gray3,
+
+    docked: {
+      borderColor: ColorPalette.gray6,
+    },
+    close: {
+      background: 'inherit',
+      color: ColorPalette.secondary,
+    },
+    link: {
+      color: ColorPalette.gray3,
+
+      active: {
+        background: ColorPalette.primary,
+        color: ColorPalette.white,
+      },
+      hover: {
+        background: ColorPalette.secondary,
+        color: ColorPalette.white,
+      },
     },
   },
 
   toolbar: {
-    color: ColorPalette.white,
-    background: ColorPalette.primary,
+    color: ColorPalette.gray2,
+    background: ColorPalette.white,
   },
-  
+
   sidebar: {
     background: ColorPalette.white,
-    color: ColorPalette.black,
-    divider: ColorPalette.gray7,
+    color: ColorPalette.gray3,
+    divider: ColorPalette.gray6,
 
     link: {
-      color: ColorPalette.gray2,
+      color: ColorPalette.gray3,
 
       active: {
-        color: ColorPalette.black,
-        background: ColorPalette.primaryTints.tint6,
+        background: ColorPalette.primary,
+        color: ColorPalette.white,
       },
       hover: {
-        background: ColorPalette.gray5,
-        color: ColorPalette.black,
+        background: ColorPalette.secondary,
+        color: ColorPalette.white,
       },
     },
   },
 
-  drawer: {
-    docked: {
-      borderColor: ColorPalette.primary,
-    },
-
-    close: {
-      color: ColorPalette.primary,
-      background: 'inherit',
-    },
-
-    versionColor: ColorPalette.gray5,
+  scrollbar: {
     background: ColorPalette.white,
-    color: ColorPalette.black,
-    divider: ColorPalette.primary,
+    topColor: ColorPalette.gray4,
+    bottomColor: ColorPalette.gray5,
 
-    link: {
-      color: ColorPalette.black,
-
-      active: {
-        color: ColorPalette.white,
-        background: ColorPalette.primary,
-      },
-      hover: {
-        background: ColorPalette.primaryTints.tint4,
-        color: ColorPalette.black,
-      },
+    hover: {
+      topCollor: ColorPalette.gray4,
+      bottomCollor: ColorPalette.gray4,
     },
+
+    shadowColor: ColorPalette.gray6,
   },
 
   inputs: {
     outline: ColorPalette.gray6,
     outlineFocus: ColorPalette.primary,
-    outlineHover: ColorPalette.gray2,
+    outlineHover: ColorPalette.gray5,
   },
 };

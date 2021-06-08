@@ -3,15 +3,15 @@ import { LocalStorageKeys } from '../../shared/constants';
 import { ThemeActions } from './themeActions';
 import { generateNewTheme } from './themeFunctions';
 import { ThemeDispatch, ThemeReducer, THEME_INITIAL_DISPATCH } from './themeReducer';
-import { CustomOptTheme, ThemeState, Theme_INITIAL_STATE } from './themeState';
+import { CustomOptTheme, ThemeState, THEME_INITIAL_STATE } from './themeState';
 
-const ThemeStateContext = createContext<ThemeState>(Theme_INITIAL_STATE);
+const ThemeStateContext = createContext<ThemeState>(THEME_INITIAL_STATE);
 const ThemeDispatchContext = createContext<ThemeDispatch>(THEME_INITIAL_DISPATCH);
 
 type ThemeProps = { children: React.ReactNode };
 
 function OptThemeProvider({ children }: ThemeProps) {
-  const [state, dispatch] = useReducer(ThemeReducer, Theme_INITIAL_STATE);
+  const [state, dispatch] = useReducer(ThemeReducer, THEME_INITIAL_STATE);
 
   return (
     <ThemeStateContext.Provider value={state}>

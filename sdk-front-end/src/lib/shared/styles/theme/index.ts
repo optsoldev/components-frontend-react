@@ -1,7 +1,18 @@
+import color from 'color';
+import { ColorPalette } from '../colors';
+
 export interface OptTheme {
   primary: string;
   primaryContrast: string;
   secondary: string;
+  secondaryContrast: string;
+}
+
+export interface OptFullTheme {
+  primary: string;
+  primaryContrast: string;
+  secondary: string;
+  secondaryContrast: string;
   background: string;
   color: string;
   divider: string;
@@ -61,11 +72,10 @@ export interface OptTheme {
     };
   };
 
-
   toolbar: {
     background: string;
     color: string;
-  },
+  };
 
   sidebar: {
     background: string;
@@ -112,10 +122,137 @@ export interface OptTheme {
       };
     };
   };
-  
+
   inputs: {
     outline: string;
     outlineFocus: string;
     outlineHover: string;
-  }
+  };
+}
+
+export function transformTheme(t: OptTheme): OptFullTheme {
+  return {
+    primary: t.primary,
+    primaryContrast: t.primaryContrast,
+    secondary: t.secondary,
+    secondaryContrast: t.secondaryContrast,
+    background: ColorPalette.white,
+    color: ColorPalette.gray2,
+    divider: ColorPalette.gray6,
+
+    scrollbar: {
+      background: ColorPalette.white,
+      topColor: ColorPalette.gray4,
+      bottomColor: ColorPalette.gray5,
+      shadowColor: ColorPalette.gray6,
+
+      hover: {
+        topCollor: ColorPalette.gray4,
+        bottomCollor: ColorPalette.gray4,
+      },
+    },
+
+    breadcrumb: {
+      color: ColorPalette.gray2,
+      hover: t.primary,
+      separator: ColorPalette.gray2,
+    },
+
+    appBar: {
+      background: t.primary,
+      color: t.primaryContrast,
+      boxShadowColor: 'rgba(0, 0, 0, 0.05)',
+      noBoxShadow: false,
+
+      side: {
+        divider: color(t.primary).lighten(0.5).hex(),
+        borderColor: ColorPalette.gray6,
+
+        link: {
+          color: t.primaryContrast,
+
+          active: {
+            background: t.primaryContrast,
+            color: t.primary,
+          },
+          hover: {
+            background: color(t.primary).lighten(0.1).hex(),
+            color: t.primaryContrast,
+          },
+        },
+      },
+
+      menuButton: {
+        color: t.primary,
+
+        hover: {
+          background: t.primary,
+          color: t.primaryContrast,
+        },
+      },
+      avatar: {
+        background: t.secondary,
+        color: t.secondaryContrast,
+      },
+    },
+
+    toolbar: {
+      color: ColorPalette.gray2,
+      background: ColorPalette.white,
+    },
+
+    sidebar: {
+      background: ColorPalette.white,
+      color: ColorPalette.gray3,
+      divider: ColorPalette.gray6,
+
+      link: {
+        color: ColorPalette.gray3,
+
+        active: {
+          background: t.primary,
+          color: t.primaryContrast,
+        },
+        hover: {
+          background: t.secondary,
+          color: t.secondaryContrast,
+        },
+      },
+    },
+
+    drawer: {
+      docked: {
+        borderColor: ColorPalette.gray6,
+      },
+
+      close: {
+        background: 'inherit',
+        color: t.secondary,
+      },
+
+      background: ColorPalette.white,
+      color: ColorPalette.gray3,
+      divider: ColorPalette.gray6,
+      versionColor: ColorPalette.gray3,
+
+      link: {
+        color: ColorPalette.gray3,
+
+        active: {
+          background: t.primary,
+          color: t.primaryContrast,
+        },
+        hover: {
+          background: t.secondary,
+          color: t.secondaryContrast,
+        },
+      },
+    },
+
+    inputs: {
+      outline: ColorPalette.gray6,
+      outlineFocus: t.primary,
+      outlineHover: ColorPalette.gray5,
+    },
+  };
 }

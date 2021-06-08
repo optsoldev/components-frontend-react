@@ -1,29 +1,28 @@
 import { sideAppbarWidth } from '../../components/OptSideAppbar/styles';
 import { LocalStorageKeys } from '../../shared/constants';
-import { OptTheme } from '../../shared/styles/theme';
+import { OptFullTheme, OptTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
 import { LightTheme } from '../../shared/styles/theme/lightTheme';
-import { RecursivePartial } from '../../types/RecursivePartial';
 
 export interface CustomOptTheme {
-  light?: RecursivePartial<OptTheme>;
-  dark?: RecursivePartial<OptTheme>;
+  light?: OptTheme;
+  dark?: OptTheme;
 }
 
 export interface ThemeState {
   usingDarkTheme: boolean;
   theme: {
-    dark: OptTheme;
-    light: OptTheme;
+    dark: OptFullTheme;
+    light: OptFullTheme;
   };
   customTheme: CustomOptTheme;
-  currentTheme: OptTheme;
+  currentTheme: OptFullTheme;
   currentSideAppbarWidth: number;
 }
 
 const usingDarkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme);
 
-export const Theme_INITIAL_STATE: ThemeState = {
+export const THEME_INITIAL_STATE: ThemeState = {
   usingDarkTheme,
   customTheme: {},
   theme: { dark: DarkTheme, light: LightTheme },
