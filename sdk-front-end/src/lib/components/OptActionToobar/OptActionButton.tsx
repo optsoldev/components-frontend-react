@@ -2,7 +2,7 @@ import { CircularProgress } from '@material-ui/core';
 import Icon from '@mdi/react';
 import React, { PropsWithChildren } from 'react';
 import { useOptTheme } from '../../contexts/theme/themeContext';
-import { OptTheme } from '../../shared/styles/theme';
+import { OptFullTheme } from '../../shared/styles/theme';
 import { IconPathColor } from '../../types/IconPathColor';
 import * as S from './styles';
 
@@ -21,7 +21,7 @@ export type OptActionButtonProps = {
 };
 
 function checkActionIcon(
-  theme: OptTheme,
+  theme: OptFullTheme,
   icon: IconPathColor | JSX.Element | undefined,
   disabled: boolean,
   loading: boolean,

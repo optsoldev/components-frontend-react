@@ -16,23 +16,15 @@ export const RotaPrincipal = () => {
     setCustomTheme({
       dark: {
         primary: ColorPalette.green,
-        appBar: {
-          background: ColorPalette.curiousBlue,
-          avatar: {
-            background: ColorPalette.ketchup,
-            color: ColorPalette.white,
-          },
-        },
+        primaryContrast: ColorPalette.black,
+        secondary: ColorPalette.ketchup,
+        secondaryContrast: ColorPalette.white,
       },
       light: {
-        primary: ColorPalette.ketchup,
-        appBar: {
-          background: ColorPalette.green,
-          avatar: {
-            background: ColorPalette.skyBlue,
-            color: ColorPalette.black,
-          },
-        },
+        primary: ColorPalette.royalBlue,
+        primaryContrast: ColorPalette.white,
+        secondary: ColorPalette.eclipseOrange,
+        secondaryContrast: ColorPalette.black,
       },
     });
   }

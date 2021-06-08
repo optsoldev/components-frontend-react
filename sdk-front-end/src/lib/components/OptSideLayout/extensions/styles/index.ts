@@ -77,5 +77,5 @@ export interface CreationButtonProps {
 export const CreationButton = styled(IconButton)<CreationButtonProps>`
   border: 1px solid ${({ theme }) => theme.appBar.side?.divider && theme.appBar.color};
   border-radius: 8px;
-  color: ${({ customcolor, theme }) => customcolor ?? theme.appBar.color};
+  color: ${({ customcolor, theme }) => customcolor ?? theme.primary};
 `;

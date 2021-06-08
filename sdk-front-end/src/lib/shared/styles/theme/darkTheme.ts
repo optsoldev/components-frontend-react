@@ -1,10 +1,11 @@
-import { OptTheme } from '.';
+import { OptFullTheme } from '.';
 import { ColorPalette } from '../colors';
 
-export const DarkTheme: OptTheme = {
+export const DarkTheme: OptFullTheme = {
   primary: ColorPalette.primary,
   primaryContrast: ColorPalette.white,
   secondary: ColorPalette.secondary,
+  secondaryContrast: ColorPalette.white,
   background: ColorPalette.dark,
   color: ColorPalette.white,
   divider: ColorPalette.gray2,

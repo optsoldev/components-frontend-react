@@ -4,12 +4,12 @@ import { OptMenuSection } from '../OptDrawer';
 
 export { OptAppBar } from '../OptAppBar/OptAppBar';
 export { OptAppBarAvatar } from '../OptAppBar/OptAppBarAvatar';
-export { OptLayoutProvider } from './OptLayoutProvider';
 export { OptLayout } from './OptLayout';
+export { OptLayoutProvider } from './OptLayoutProvider';
 
 export interface OptLayoutProviderProps {
   darkTheme?: boolean;
-  theme?: CustomOptTheme;
+  theme: CustomOptTheme;
 }
 
 export interface OptLayoutProps {

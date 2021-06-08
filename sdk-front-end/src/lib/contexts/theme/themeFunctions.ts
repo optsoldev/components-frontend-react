@@ -1,4 +1,4 @@
-import { OptTheme } from "../../shared/styles/theme";
+import { OptFullTheme } from "../../shared/styles/theme";
 import { RecursivePartial } from "../../types/RecursivePartial";
 
 export function copyInto<T>(to: T, from?: RecursivePartial<T>) {
@@ -20,8 +20,8 @@ export function copyInto<T>(to: T, from?: RecursivePartial<T>) {
   return to;
 }
 
-export function generateNewTheme(theme: OptTheme, customTheme?: RecursivePartial<OptTheme>) {
-  let newTheme = JSON.parse(JSON.stringify(theme)) as OptTheme;
+export function generateNewTheme(theme: OptFullTheme, customTheme?: RecursivePartial<OptFullTheme>) {
+  let newTheme = JSON.parse(JSON.stringify(theme)) as OptFullTheme;
 
   if (customTheme) {
     newTheme = copyInto(newTheme, customTheme);

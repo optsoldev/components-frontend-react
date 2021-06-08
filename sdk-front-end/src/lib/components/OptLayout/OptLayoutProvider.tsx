@@ -8,12 +8,13 @@ import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-component
 import { OptLayoutProviderProps } from '.';
 import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
 import { OptThemeProvider, useOptTheme } from '../../contexts/theme/themeContext';
+import { CustomOptTheme } from '../../contexts/theme/themeState';
 import { LocalStorageKeys } from '../../shared/constants';
 import { RobotoFontStyles } from '../../shared/styles/robotoFont';
-import { OptTheme } from '../../shared/styles/theme';
+import { OptFullTheme, transformTheme } from '../../shared/styles/theme';
 import { OptLoading } from '../OptLoading';
 
-const generateMuiTheme = (optTheme: OptTheme, usingDarkTheme: boolean = false) => {
+const generateMuiTheme = (optTheme: OptFullTheme, usingDarkTheme: boolean = false) => {
   return createMuiTheme({
     palette: {
       type: usingDarkTheme ? 'dark' : 'light',
@@ -75,7 +76,15 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
 
   useEffect(() => {
     if (theme) {
-      setCustomTheme(theme);
+      const newCustomTheme: CustomOptTheme = {};
+
+      if (theme.light) {
+        newCustomTheme.light = transformTheme(theme.light);
+      } else if (theme.dark) {
+        newCustomTheme.dark = transformTheme(theme.dark);
+      }
+
+      setCustomTheme(newCustomTheme);
     } else {
       setCustomTheme({});
     }
@@ -87,7 +96,15 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
     setThemeLoaded(false);
 
     if (theme) {
-      setCustomTheme(theme);
+      const newCustomTheme: CustomOptTheme = {};
+
+      if (theme.light) {
+        newCustomTheme.light = transformTheme(theme.light);
+      } else if (theme.dark) {
+        newCustomTheme.dark = transformTheme(theme.dark);
+      }
+
+      setCustomTheme(newCustomTheme);
     } else {
       setCustomTheme({});
     }
