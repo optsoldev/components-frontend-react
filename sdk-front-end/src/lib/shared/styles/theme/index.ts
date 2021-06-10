@@ -234,7 +234,7 @@ function buildAppBarTheme(t: OptBasicTheme) {
     noBoxShadow: false,
 
     side: {
-      divider: color(t.primary).lighten(0.5).hex(),
+      divider: t.style === 'soft' ? ColorPalette.gray5 : color(t.primary).lighten(0.1).hex(),
       borderColor: ColorPalette.gray6,
 
       link: {
