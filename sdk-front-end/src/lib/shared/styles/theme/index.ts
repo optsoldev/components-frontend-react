@@ -1,11 +1,16 @@
 import color from 'color';
 import { ColorPalette } from '../colors';
 
-export interface OptTheme {
+export interface OptBasicTheme {
+  style: 'standard' | 'soft';
   primary: string;
   primaryContrast: string;
   secondary: string;
   secondaryContrast: string;
+}
+export interface OptTheme {
+  light?: OptBasicTheme;
+  dark?: OptBasicTheme;
 }
 
 export interface OptFullTheme {
@@ -130,7 +135,7 @@ export interface OptFullTheme {
   };
 }
 
-export function transformTheme(t: OptTheme): OptFullTheme {
+export function transformTheme(t: OptBasicTheme): OptFullTheme {
   return {
     primary: t.primary,
     primaryContrast: t.primaryContrast,
@@ -158,43 +163,7 @@ export function transformTheme(t: OptTheme): OptFullTheme {
       separator: ColorPalette.gray2,
     },
 
-    appBar: {
-      background: t.primary,
-      color: t.primaryContrast,
-      boxShadowColor: 'rgba(0, 0, 0, 0.05)',
-      noBoxShadow: false,
-
-      side: {
-        divider: color(t.primary).lighten(0.5).hex(),
-        borderColor: ColorPalette.gray6,
-
-        link: {
-          color: t.primaryContrast,
-
-          active: {
-            background: t.primaryContrast,
-            color: t.primary,
-          },
-          hover: {
-            background: color(t.primary).lighten(0.1).hex(),
-            color: t.primaryContrast,
-          },
-        },
-      },
-
-      menuButton: {
-        color: t.primary,
-
-        hover: {
-          background: t.primary,
-          color: t.primaryContrast,
-        },
-      },
-      avatar: {
-        background: t.secondary,
-        color: t.secondaryContrast,
-      },
-    },
+    appBar: buildAppBarTheme(t),
 
     toolbar: {
       color: ColorPalette.gray2,
@@ -253,6 +222,46 @@ export function transformTheme(t: OptTheme): OptFullTheme {
       outline: ColorPalette.gray6,
       outlineFocus: t.primary,
       outlineHover: ColorPalette.gray5,
+    },
+  };
+}
+
+function buildAppBarTheme(t: OptBasicTheme) {
+  return {
+    background: t.style === 'soft' ? ColorPalette.gray6 : t.primary,
+    color: t.style === 'soft' ? t.primary : t.primaryContrast,
+    boxShadowColor: 'rgba(0, 0, 0, 0.05)',
+    noBoxShadow: false,
+
+    side: {
+      divider: color(t.primary).lighten(0.5).hex(),
+      borderColor: ColorPalette.gray6,
+
+      link: {
+        color: t.style === 'soft' ? t.primary : t.primaryContrast,
+
+        active: {
+          background: t.style === 'soft' ? t.primary : t.primaryContrast,
+          color: t.style === 'soft' ? t.primaryContrast : t.primary,
+        },
+        hover: {
+          background: color(t.primary).lighten(0.25).hex(),
+          color: t.primaryContrast,
+        },
+      },
+    },
+
+    menuButton: {
+      color: t.primary,
+
+      hover: {
+        background: t.primary,
+        color: t.primaryContrast,
+      },
+    },
+    avatar: {
+      background: t.secondary,
+      color: t.secondaryContrast,
     },
   };
 }

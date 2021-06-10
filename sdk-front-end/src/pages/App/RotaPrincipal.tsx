@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useBreadcrumb } from '../../lib/contexts/breadcrumb/breadcrumbContext';
 import { useOptTheme } from '../../lib/contexts/theme/themeContext';
 import { ColorPalette } from '../../lib/shared/styles/colors';
+import { transformTheme } from '../../lib/shared/styles/theme';
 
 export const RotaPrincipal = () => {
   const { setDictionary } = useBreadcrumb();
@@ -13,19 +14,22 @@ export const RotaPrincipal = () => {
   } = useOptTheme();
 
   function handleCustomTheme() {
+    console.error('Não definido');
     setCustomTheme({
-      dark: {
+      dark: transformTheme({
+        style: 'soft',
         primary: ColorPalette.green,
         primaryContrast: ColorPalette.black,
         secondary: ColorPalette.ketchup,
         secondaryContrast: ColorPalette.white,
-      },
-      light: {
+      }),
+      light: transformTheme({
+        style: 'soft',
         primary: ColorPalette.royalBlue,
         primaryContrast: ColorPalette.white,
         secondary: ColorPalette.eclipseOrange,
         secondaryContrast: ColorPalette.black,
-      },
+      }),
     });
   }
 

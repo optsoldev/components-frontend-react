@@ -24,7 +24,6 @@ export const OptMiniUploadDialog: Story<OptMiniUploadProps> = ({ ...args }) => {
   const [arquivos, setArquivos] = useState<File[]>([]);
 
   function alterarArquivos(files: File[]) {
-    debugger;
     setArquivos(files);
   }
 

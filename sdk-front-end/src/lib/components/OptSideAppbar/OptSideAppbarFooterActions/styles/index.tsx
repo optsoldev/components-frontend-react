@@ -26,7 +26,6 @@ export const CustomList = styled(List)`
   }
 `;
 
-
 export const SidebarExpandedListItem = styled(ListItem)`
   display: flex;
   font-size: 14px;
@@ -43,6 +42,7 @@ export const SidebarExpandedListItem = styled(ListItem)`
 
 export const SidebarExpandedListItemText = styled(ListItemText)`
   span {
+    font-weight: 500;
     margin-left: 10px;
   }
 `;
