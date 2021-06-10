@@ -1,2 +1,2 @@
 export { OptSelect } from './OptSelect';
-export type { OptSelectProps, OptSelectionOption } from './OptSelect';
+export type { OptSelectionOption, OptSelectProps } from './OptSelect';
