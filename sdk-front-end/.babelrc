@@ -1,10 +1,3 @@
 {
-  "plugins": [
-    [
-      "babel-plugin-styled-components",
-      {
-        "ssr": false
-      }
-    ]
-  ]
+  "presets": ["react-app"]
 }

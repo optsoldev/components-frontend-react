@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "outDir": "../../dist/otpsol-react",
+    "module": "esnext",
+    "target": "es5",
+    "types": ["node"],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "sourceMap": true,
+    "allowJs": false,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [".", "../custom.d.ts"],
+  "exclude": ["**/__snapshots", "**/*.test.*", "**/*.stories.*"]
+}
