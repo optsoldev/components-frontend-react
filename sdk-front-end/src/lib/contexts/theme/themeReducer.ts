@@ -27,7 +27,6 @@ export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState
       return { ...state, usingDarkTheme: false, currentTheme: action.payload! };
     }
     case ThemeActions.SET_CUSTOM_THEME: {
-      debugger;
       const usingDarkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme);
 
       const currentTheme = generateNewTheme(

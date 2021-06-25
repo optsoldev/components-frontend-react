@@ -34,10 +34,6 @@ const localization: Localization = {
 };
 
 export class OptGrid<T extends object> extends React.Component<OptGridProps<T>> {
-  public static defaultProps: Partial<OptGridProps<any>> = {
-    actionsPosition: 'start',
-  };
-
   private isRemote = false;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
