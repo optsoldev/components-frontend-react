@@ -47,7 +47,7 @@ export class OptGrid<T extends object> extends React.Component<OptGridProps<T>> 
         props.options = {};
       }
 
-      props.options.actionsColumnIndex = -1;
+      props.options.actionsColumnIndex = props.columns.length + 1;
     }
 
     const { data } = props;
@@ -73,7 +73,7 @@ export class OptGrid<T extends object> extends React.Component<OptGridProps<T>> 
         localization={localization}
         tableRef={this.tableRef}
         components={{
-          Container: (props) => <S.StyledPaper elevation={0} {...props} />,
+          Container: (props) => <S.StyledPaper elevation={0} {...props} className="opt-grid" />,
           Cell: (props) => <S.StyledMTableCell {...props} />,
         }}
       />

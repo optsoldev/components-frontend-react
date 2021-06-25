@@ -1,13 +1,13 @@
 {
   "name": "@optsol/react",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "private": true,
   "author": "OPTSOL Tecnologia",
   "description": "Kit de UI da OPTSOL",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
-    "material-table": "1.67.0",
+    "material-table": "^1.69.3",
     "react-draggable": "^4.4.3",
     "react-dropzone": "^11.3.2",
     "react-select": "^4.3.1"
