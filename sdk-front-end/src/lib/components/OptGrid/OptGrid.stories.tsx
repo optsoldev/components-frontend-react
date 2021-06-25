@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Meta, Story } from '@storybook/react/types-6-0';
-import React, { createRef } from 'react';
 import Delete from '@material-ui/icons/Delete';
-import { OptGrid } from './OptGrid';
+import { Meta, Story } from '@storybook/react';
+import React, { createRef } from 'react';
 import { OptGridOptions, OptGridProps, OptGridRequest, OptGridResponse } from '.';
+import { OptGrid } from './OptGrid';
 
 interface Pessoa {
   id: string;

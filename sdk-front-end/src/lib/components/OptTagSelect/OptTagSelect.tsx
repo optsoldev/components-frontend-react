@@ -1,7 +1,9 @@
+import color from 'color';
 import React, { FocusEventHandler, useEffect, useState } from 'react';
 import { ActionMeta, GroupTypeBase, OptionsType, OptionTypeBase } from 'react-select';
 import CreatableSelect, { CreatableProps } from 'react-select/creatable';
-import { optTagSelectTheme } from './OptTagSelectTheme';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { optSelectTheme } from '../OptSelect/OptSelectTheme';
 
 type OriginalCreatableSelectProps = Omit<
   Omit<Omit<CreatableProps<OptionTypeBase, boolean, GroupTypeBase<OptionTypeBase>>, 'onChange'>, 'value'>,
@@ -17,6 +19,8 @@ interface Props extends OriginalCreatableSelectProps {
 
 export const OptTagSelect = React.forwardRef<CreatableSelect<OptionTypeBase, boolean>, Props>(
   ({ onChange, onBlur, value = [], name, ...props }, ref) => {
+    const { currentTheme } = useOptTheme();
+    const { borderRadius, colors, spacing } = optSelectTheme;
     const [transformedValue, setTransformedValue] = useState<readonly OptionTypeBase[]>([]);
 
     function onChangeHandler(value: OptionsType<OptionTypeBase>, action: ActionMeta<OptionTypeBase>) {
@@ -41,7 +45,17 @@ export const OptTagSelect = React.forwardRef<CreatableSelect<OptionTypeBase, boo
         backspaceRemovesValue
         createOptionPosition="first"
         menuPosition="fixed"
-        theme={optTagSelectTheme}
+        theme={{
+          borderRadius,
+          spacing,
+          colors: {
+            ...colors,
+            primary: currentTheme.primary,
+            primary75: color(currentTheme.primary).lighten(0.25).hex(),
+            primary50: color(currentTheme.primary).lighten(0.5).hex(),
+            primary25: color(currentTheme.primary).lighten(0.75).hex(),
+          },
+        }}
         formatCreateLabel={(inputValue) => 'Criar tag ' + inputValue}
         placeholder="Informe as tags"
         noOptionsMessage={(a) => 'Sem opções pré-definidas'}

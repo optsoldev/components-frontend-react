@@ -1,4 +1,3 @@
-import { CustomOptTheme } from '../../contexts/theme/themeState';
 import { OptUserProfile } from '../OptAvatar';
 import { OptMenuSection } from '../OptDrawer';
 
@@ -6,11 +5,7 @@ export { OptAppBar } from '../OptAppBar/OptAppBar';
 export { OptAppBarAvatar } from '../OptAppBar/OptAppBarAvatar';
 export { OptLayout } from './OptLayout';
 export { OptLayoutProvider } from './OptLayoutProvider';
-
-export interface OptLayoutProviderProps {
-  darkTheme?: boolean;
-  theme: CustomOptTheme;
-}
+export type { OptLayoutProviderProps } from './OptLayoutProvider';
 
 export interface OptLayoutProps {
   /** Sections of the menus. Each object with the menu links will be splitted into different lists, separated by a Divider.  */

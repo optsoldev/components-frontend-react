@@ -5,13 +5,12 @@ import {
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
-import { OptLayoutProviderProps } from '.';
 import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
 import { OptThemeProvider, useOptTheme } from '../../contexts/theme/themeContext';
 import { CustomOptTheme } from '../../contexts/theme/themeState';
 import { LocalStorageKeys } from '../../shared/constants';
 import { RobotoFontStyles } from '../../shared/styles/robotoFont';
-import { OptFullTheme, transformTheme } from '../../shared/styles/theme';
+import { OptFullTheme, OptTheme, transformTheme } from '../../shared/styles/theme';
 import { OptLoading } from '../OptLoading';
 
 const generateMuiTheme = (optTheme: OptFullTheme, usingDarkTheme: boolean = false) => {
@@ -49,6 +48,11 @@ const generateMuiTheme = (optTheme: OptFullTheme, usingDarkTheme: boolean = fals
     },
   });
 };
+
+export interface OptLayoutProviderProps {
+  darkTheme?: boolean;
+  theme: OptTheme;
+}
 
 export const OptLayoutProvider = ({ children, ...props }: PropsWithChildren<OptLayoutProviderProps>) => {
   return (
