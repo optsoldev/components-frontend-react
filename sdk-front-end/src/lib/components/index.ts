@@ -9,6 +9,7 @@ export * from './OptDivider';
 export * from './OptDrawer';
 export * from './OptGrid';
 export * from './OptInfiniteScrollList';
+export * from './OptLabel';
 export * from './OptLayout';
 export * from './OptLoading';
 export * from './OptSearchField';

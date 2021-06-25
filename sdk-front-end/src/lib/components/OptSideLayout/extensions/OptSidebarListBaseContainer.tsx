@@ -37,7 +37,7 @@ export const OptSidebarListBaseContainer = ({
         clearMargin
         background={header?.background}
         color={header?.color}
-        noBorder>
+        noBorder={borderColor === 'unset'}>
         {createTo && (
           <NavLink to={createTo}>
             <S.CreationButton customcolor={header?.color}>

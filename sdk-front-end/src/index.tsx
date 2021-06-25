@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { OptTheme } from './lib';
 import { OptLayoutProvider } from './lib/components/OptLayout/OptLayoutProvider';
-import { CustomOptTheme } from './lib/contexts/theme/themeState';
 import { ColorPalette } from './lib/shared/styles/colors';
 import { AppSelector } from './pages/AppSelector';
 
-const theme: CustomOptTheme = {
+const theme: OptTheme = {
   light: {
+    style: 'soft',
     primary: ColorPalette.primary,
     primaryContrast: ColorPalette.white,
     secondary: ColorPalette.secondary,

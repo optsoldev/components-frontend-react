@@ -1,12 +1,12 @@
 import { sideAppbarWidth } from '../../components/OptSideAppbar/styles';
 import { LocalStorageKeys } from '../../shared/constants';
-import { OptFullTheme, OptTheme } from '../../shared/styles/theme';
+import { OptFullTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
 import { LightTheme } from '../../shared/styles/theme/lightTheme';
 
 export interface CustomOptTheme {
-  light?: OptTheme;
-  dark?: OptTheme;
+  light?: OptFullTheme;
+  dark?: OptFullTheme;
 }
 
 export interface ThemeState {

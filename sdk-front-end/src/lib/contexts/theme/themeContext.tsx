@@ -35,7 +35,7 @@ function useOptTheme() {
 
   const actions = ThemeActions;
 
-  function setDarkTheme(darkTheme: boolean) {
+  function setCurrentTheme(darkTheme: boolean) {
     if (darkTheme) {
       localStorage.setItem(LocalStorageKeys.DarkTheme, '1');
 
@@ -66,7 +66,7 @@ function useOptTheme() {
   return {
     state,
     currentTheme: state.currentTheme,
-    setDarkTheme,
+    setDarkTheme: setCurrentTheme,
     setCustomTheme,
     resetTheme,
     setCurrentSideAppbarWidth,

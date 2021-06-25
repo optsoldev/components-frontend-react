@@ -17,9 +17,9 @@ export const SidebarContainer = styled.div<SidebarBaseContainerProps>`
   flex-direction: column;
   overflow-y: auto;
   height: auto;
-  border-right: 1px solid ${({ bordercolor, theme }) => bordercolor ?? theme.sidebar.divider};
-  background: ${({ background, theme }) => background ?? theme.sidebar.background};
-  color: ${({ color, theme }) => color ?? theme.sidebar.color};
+  border-right: 1px solid ${({ bordercolor, theme }) => bordercolor || theme.sidebar.divider};
+  background: ${({ background, theme }) => background || theme.sidebar.background};
+  color: ${({ color, theme }) => color || theme.sidebar.color};
   width: ${({ width }) => width}px;
   min-width: ${({ width }) => width}px;
 `;
@@ -33,9 +33,9 @@ export const SidebarWithToolbarContainer = styled.div<SidebarBaseContainerProps>
   flex-direction: column;
   overflow-y: auto;
   height: auto;
-  border-right: 1px solid ${({ bordercolor, theme }) => bordercolor ?? theme.sidebar.divider};
-  background: ${({ background, theme }) => background ?? theme.sidebar.background};
-  color: ${({ color, theme }) => color ?? theme.sidebar.color};
+  border-right: 1px solid ${({ bordercolor, theme }) => bordercolor || theme.sidebar.divider};
+  background: ${({ background, theme }) => background || theme.sidebar.background};
+  color: ${({ color, theme }) => color || theme.sidebar.color};
   width: ${({ width }) => width}px;
   min-width: ${({ width }) => width}px;
 `;
@@ -49,8 +49,8 @@ export const SidebarWithToolbarContent = styled.div<SidebarBaseContainerProps>`
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: ${({ background, theme }) => background ?? theme.sidebar.background};
-  color: ${({ color, theme }) => color ?? theme.sidebar.color};
+  background: ${({ background, theme }) => background || theme.sidebar.background};
+  color: ${({ color, theme }) => color || theme.sidebar.color};
 
   ${ScrollbarCSS}
 `;
