@@ -1,6 +1,6 @@
 import { mdiAbTesting, mdiIdeogramCjk, mdiPacMan } from '@mdi/js';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { version } from '../../../package.json';
 import { OptMenuSection } from '../../lib/components/OptDrawer';
 import { OptLayout } from '../../lib/components/OptLayout';
