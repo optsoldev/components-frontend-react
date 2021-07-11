@@ -52,16 +52,33 @@ const generateMuiTheme = (optTheme: OptFullTheme, usingDarkTheme: boolean = fals
 export interface OptLayoutProviderProps {
   darkTheme?: boolean;
   theme: OptTheme;
+  noRouter?: boolean;
 }
 
-export const OptLayoutProvider = ({ children, ...props }: PropsWithChildren<OptLayoutProviderProps>) => {
+export const OptLayoutProvider = ({
+  children,
+  noRouter = false,
+  ...props
+}: PropsWithChildren<OptLayoutProviderProps>) => {
   return (
     <OptThemeProvider>
-      <BrowserRouter>
+      {!noRouter && (
+        <BrowserRouter>
+          <BreadcrumbProvider>
+            <OptThemedLayout noRouter={noRouter} {...props}>
+              {children}
+            </OptThemedLayout>
+          </BreadcrumbProvider>
+        </BrowserRouter>
+      )}
+
+      {noRouter && (
         <BreadcrumbProvider>
-          <OptThemedLayout {...props}>{children}</OptThemedLayout>
+          <OptThemedLayout noRouter={noRouter} {...props}>
+            {children}
+          </OptThemedLayout>
         </BreadcrumbProvider>
-      </BrowserRouter>
+      )}
     </OptThemeProvider>
   );
 };
