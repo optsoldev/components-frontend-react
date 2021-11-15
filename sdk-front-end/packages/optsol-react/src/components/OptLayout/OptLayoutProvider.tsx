@@ -2,37 +2,37 @@ import {
   createTheme,
   Theme,
   ThemeProvider as MaterialThemeProvider
-} from '@mui/material/styles';
-import { PropsWithChildren, useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
-import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
+} from "@mui/material/styles";
+import { PropsWithChildren, useLayoutEffect, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider as StyledComponentsThemeProvider } from "styled-components";
+import { BreadcrumbProvider } from "../../contexts/breadcrumb/breadcrumbContext";
 import {
   OptThemeProvider,
   useOptTheme
-} from '../../contexts/theme/themeContext';
-import { CustomOptTheme } from '../../contexts/theme/themeState';
-import { LocalStorageKeys } from '../../shared/constants';
-import { RobotoFontStyles } from '../../shared/styles/robotoFont';
+} from "../../contexts/theme/themeContext";
+import { CustomOptTheme } from "../../contexts/theme/themeState";
+import { LocalStorageKeys } from "../../shared/constants";
+import { RobotoFontStyles } from "../../shared/styles/robotoFont";
 import {
   OptFullTheme,
   OptTheme,
   transformTheme
-} from '../../shared/styles/theme';
-import { OptLoading } from '../OptLoading';
+} from "../../shared/styles/theme";
+import { OptLoading } from "../OptLoading";
 
-declare module '@mui/styles/defaultTheme' {
+declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
 const generateMuiTheme = (
   optTheme: OptFullTheme,
-  usingDarkTheme: boolean = false,
+  usingDarkTheme: boolean = false
 ) => {
   return createTheme({
     palette: {
-      mode: usingDarkTheme ? 'dark' : 'light',
+      mode: usingDarkTheme ? "dark" : "light",
       primary: {
         main: optTheme.primary,
       },
@@ -44,7 +44,7 @@ const generateMuiTheme = (
       MuiIconButton: {
         styleOverrides: {
           root: {
-            '&': {
+            "&": {
               padding: 8,
             },
           },
@@ -53,13 +53,13 @@ const generateMuiTheme = (
       MuiOutlinedInput: {
         styleOverrides: {
           root: {
-            '& $notchedOutline': {
+            "& $notchedOutline": {
               borderColor: optTheme.inputs.outline,
             },
-            '&:hover $notchedOutline': {
+            "&:hover $notchedOutline": {
               borderColor: optTheme.inputs.outlineHover,
             },
-            '&$focused $notchedOutline': {
+            "&$focused $notchedOutline": {
               borderColor: optTheme.inputs.outlineFocus,
             },
           },
@@ -119,7 +119,7 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
     setDarkTheme,
   } = useOptTheme();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (theme) {
       const newCustomTheme: CustomOptTheme = {};
 
@@ -137,7 +137,7 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setThemeLoaded(false);
 
     if (theme) {
@@ -158,7 +158,7 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (usingDarkTheme !== darkTheme) {
       setDarkTheme(darkTheme);
     }

@@ -1,7 +1,7 @@
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import Icon, { Icon as Icon$1 } from '@mdi/react';
 import { ListItem, List, ListItemIcon, ListItemText, Divider, AppBar, IconButton, Popover, MenuList, Toolbar, Button, CircularProgress, Avatar, MenuItem, Backdrop, Chip, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText, Paper, Select, Tooltip, ButtonBase, InputLabel, LinearProgress, SwipeableDrawer, Tab, Tabs } from '@mui/material';
-import React, { createContext, useReducer, useEffect, useState, useImperativeHandle, createRef, useRef, useCallback, Suspense } from 'react';
+import React, { createContext, useReducer, useEffect, useState, useImperativeHandle, createRef, useRef, useCallback, Suspense, useLayoutEffect } from 'react';
 import { NavLink, useLocation, Switch, BrowserRouter, useHistory } from 'react-router-dom';
 import styled, { css, createGlobalStyle, ThemeProvider as ThemeProvider$1 } from 'styled-components';
 import { mdiArrowLeft, mdiChevronRight, mdiAccountCog, mdiExitToApp, mdiMenu, mdiMenuOpen, mdiPinOff, mdiPin, mdiPageFirst, mdiChevronLeft, mdiPageLast, mdiMagnify, mdiChevronDoubleRight, mdiChevronDoubleLeft, mdiPlus, mdiPaperclip } from '@mdi/js';
@@ -2917,7 +2917,7 @@ function buildAppBarTheme(t) {
 const generateMuiTheme = (optTheme, usingDarkTheme = false) => {
     return createTheme({
         palette: {
-            mode: usingDarkTheme ? 'dark' : 'light',
+            mode: usingDarkTheme ? "dark" : "light",
             primary: {
                 main: optTheme.primary,
             },
@@ -2929,7 +2929,7 @@ const generateMuiTheme = (optTheme, usingDarkTheme = false) => {
             MuiIconButton: {
                 styleOverrides: {
                     root: {
-                        '&': {
+                        "&": {
                             padding: 8,
                         },
                     },
@@ -2938,13 +2938,13 @@ const generateMuiTheme = (optTheme, usingDarkTheme = false) => {
             MuiOutlinedInput: {
                 styleOverrides: {
                     root: {
-                        '& $notchedOutline': {
+                        "& $notchedOutline": {
                             borderColor: optTheme.inputs.outline,
                         },
-                        '&:hover $notchedOutline': {
+                        "&:hover $notchedOutline": {
                             borderColor: optTheme.inputs.outlineHover,
                         },
-                        '&$focused $notchedOutline': {
+                        "&$focused $notchedOutline": {
                             borderColor: optTheme.inputs.outlineFocus,
                         },
                     },
@@ -2961,7 +2961,7 @@ const OptThemedLayout = (props) => {
     const { theme, darkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme), children, } = props;
     const [themeLoaded, setThemeLoaded] = useState(false);
     const { currentTheme, state: { usingDarkTheme }, setCustomTheme, setDarkTheme, } = useOptTheme();
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (theme) {
             const newCustomTheme = {};
             if (theme.light) {
@@ -2978,7 +2978,7 @@ const OptThemedLayout = (props) => {
         setThemeLoaded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    useEffect(() => {
+    useLayoutEffect(() => {
         setThemeLoaded(false);
         if (theme) {
             const newCustomTheme = {};
@@ -2996,7 +2996,7 @@ const OptThemedLayout = (props) => {
         setThemeLoaded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [theme]);
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (usingDarkTheme !== darkTheme) {
             setDarkTheme(darkTheme);
         }

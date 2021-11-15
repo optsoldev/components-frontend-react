@@ -1,7 +1,7 @@
-import { Theme } from '@mui/material/styles';
-import { PropsWithChildren } from 'react';
-import { OptTheme } from '../../shared/styles/theme';
-declare module '@mui/styles/defaultTheme' {
+import { Theme } from "@mui/material/styles";
+import { PropsWithChildren } from "react";
+import { OptTheme } from "../../shared/styles/theme";
+declare module "@mui/styles/defaultTheme" {
     interface DefaultTheme extends Theme {
     }
 }

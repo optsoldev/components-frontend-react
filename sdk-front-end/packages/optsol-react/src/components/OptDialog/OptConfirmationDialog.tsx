@@ -13,7 +13,7 @@ function PaperComponent(props: PaperProps) {
   );
 }
 
-export interface Props {
+export interface OptConfirmationDialogProps {
   open: boolean;
   title: string;
   cancelButtonText?: string;

@@ -2933,7 +2933,7 @@ function buildAppBarTheme(t) {
 const generateMuiTheme = (optTheme, usingDarkTheme = false) => {
     return styles.createTheme({
         palette: {
-            mode: usingDarkTheme ? 'dark' : 'light',
+            mode: usingDarkTheme ? "dark" : "light",
             primary: {
                 main: optTheme.primary,
             },
@@ -2945,7 +2945,7 @@ const generateMuiTheme = (optTheme, usingDarkTheme = false) => {
             MuiIconButton: {
                 styleOverrides: {
                     root: {
-                        '&': {
+                        "&": {
                             padding: 8,
                         },
                     },
@@ -2954,13 +2954,13 @@ const generateMuiTheme = (optTheme, usingDarkTheme = false) => {
             MuiOutlinedInput: {
                 styleOverrides: {
                     root: {
-                        '& $notchedOutline': {
+                        "& $notchedOutline": {
                             borderColor: optTheme.inputs.outline,
                         },
-                        '&:hover $notchedOutline': {
+                        "&:hover $notchedOutline": {
                             borderColor: optTheme.inputs.outlineHover,
                         },
-                        '&$focused $notchedOutline': {
+                        "&$focused $notchedOutline": {
                             borderColor: optTheme.inputs.outlineFocus,
                         },
                     },
@@ -2977,7 +2977,7 @@ const OptThemedLayout = (props) => {
     const { theme, darkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme), children, } = props;
     const [themeLoaded, setThemeLoaded] = React.useState(false);
     const { currentTheme, state: { usingDarkTheme }, setCustomTheme, setDarkTheme, } = useOptTheme();
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         if (theme) {
             const newCustomTheme = {};
             if (theme.light) {
@@ -2994,7 +2994,7 @@ const OptThemedLayout = (props) => {
         setThemeLoaded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         setThemeLoaded(false);
         if (theme) {
             const newCustomTheme = {};
@@ -3012,7 +3012,7 @@ const OptThemedLayout = (props) => {
         setThemeLoaded(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [theme]);
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         if (usingDarkTheme !== darkTheme) {
             setDarkTheme(darkTheme);
         }

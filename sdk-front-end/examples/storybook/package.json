@@ -15,9 +15,11 @@
   "dependencies": {
     "@mdi/js": "^6.5.95",
     "@mdi/react": "^1.5.0",
-    "@optsol/react": "^1.0.1"
+    "@optsol/react": "^1.0.1",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
+    "start": "npm run storybook",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   }
