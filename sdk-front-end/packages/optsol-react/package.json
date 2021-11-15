@@ -1,0 +1,48 @@
+{
+  "name": "@optsol/react",
+  "version": "1.0.1",
+  "description": "Kit de UI da OPTSOL",
+  "scripts": {
+    "prepack": "npm run build",
+    "build": "rollup -c",
+    "watch": "rollup -cw"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "peerDependencies": {
+    "@mdi/js": "^6.5.95",
+    "@mdi/react": "^1.5.0",
+    "@mui/material": "^5.1.0",
+    "@mui/styles": "^5.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.0",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@mui/types": "^7.1.0",
+    "@types/color": "^3.0.2",
+    "@types/react-router-dom": "^5.3.2",
+    "@types/react-table": "^7.7.8",
+    "@types/styled-components": "^5.1.15",
+    "rollup": "^2.60.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@mdi/js": "^6.5.95",
+    "react-draggable": "^4.4.4",
+    "react-dropzone": "^11.4.2",
+    "react-select": "^5.2.1",
+    "react-table": "^7.7.0"
+  }
+}
