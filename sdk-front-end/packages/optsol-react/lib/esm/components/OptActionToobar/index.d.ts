@@ -1,2 +1,3 @@
-export { OptActionToolbar } from './OptActionToolbar';
-export { OptActionButton } from './OptActionButton';
+export { OptActionButton } from "./OptActionButton";
+export { OptActionToolbar } from "./OptActionToolbar";
+export type { OptActionToolbarProps } from "./OptActionToolbar";

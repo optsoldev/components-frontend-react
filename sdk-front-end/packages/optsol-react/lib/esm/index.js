@@ -1,10 +1,10 @@
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
-import { mdiArrowLeft, mdiChevronRight, mdiAccountCog, mdiExitToApp, mdiMenu, mdiMenuOpen, mdiPinOff, mdiPin, mdiPageFirst, mdiChevronLeft, mdiPageLast, mdiMagnify, mdiChevronDoubleRight, mdiChevronDoubleLeft, mdiPlus, mdiPaperclip } from '@mdi/js';
 import Icon, { Icon as Icon$1 } from '@mdi/react';
-import { NavLink, useLocation, Switch, BrowserRouter, useHistory } from 'react-router-dom';
-import React, { createContext, useReducer, useEffect, useState, useImperativeHandle, createRef, useRef, useCallback, Suspense } from 'react';
 import { ListItem, List, ListItemIcon, ListItemText, Divider, AppBar, IconButton, Popover, MenuList, Toolbar, Button, CircularProgress, Avatar, MenuItem, Backdrop, Chip, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText, Paper, Select, Tooltip, ButtonBase, InputLabel, LinearProgress, SwipeableDrawer, Tab, Tabs } from '@mui/material';
+import React, { createContext, useReducer, useEffect, useState, useImperativeHandle, createRef, useRef, useCallback, Suspense } from 'react';
+import { NavLink, useLocation, Switch, BrowserRouter, useHistory } from 'react-router-dom';
 import styled, { css, createGlobalStyle, ThemeProvider as ThemeProvider$1 } from 'styled-components';
+import { mdiArrowLeft, mdiChevronRight, mdiAccountCog, mdiExitToApp, mdiMenu, mdiMenuOpen, mdiPinOff, mdiPin, mdiPageFirst, mdiChevronLeft, mdiPageLast, mdiMagnify, mdiChevronDoubleRight, mdiChevronDoubleLeft, mdiPlus, mdiPaperclip } from '@mdi/js';
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
 import Draggable from 'react-draggable';
@@ -991,14 +991,6 @@ const CustomButton = styled(Button) `
   }
 `;
 
-const OptActionToolbar = ({ title, children, goBackRoute, clearMargin = false, background, color, noBorder = false, noPadding = false, }) => {
-    const theme = useOptTheme();
-    color = color !== null && color !== void 0 ? color : theme.currentTheme.toolbar.color;
-    background = background !== null && background !== void 0 ? background : theme.currentTheme.toolbar.background;
-    title = typeof title === 'string' ? jsx(Title$1, Object.assign({ color: color }, { children: title }), void 0) : title;
-    return (jsxs(CustomToolbar, Object.assign({ clearmargin: clearMargin ? 1 : 0, className: "opt-toolbar", background: background, color: color, "$noborder": noBorder, "$nopadding": noPadding }, { children: [goBackRoute && (jsx(NavLink, Object.assign({ to: goBackRoute }, { children: jsx(CustomIconButton, { children: jsx(Icon, { size: 0.8, path: mdiArrowLeft, color: color }, void 0) }, void 0) }), void 0)), title, jsx(ActionsContainer, Object.assign({ color: color }, { children: children }), void 0)] }), void 0));
-};
-
 function checkActionIcon(theme, icon, disabled, loading) {
     if (icon) {
         if (loading) {
@@ -1026,6 +1018,14 @@ const OptActionButton = ({ startIcon, endIcon, onClick, children, disabled, load
     startIcon = checkActionIcon(currentTheme, startIcon, !!disabled, !!loading);
     endIcon = checkActionIcon(currentTheme, endIcon, !!disabled, !!loading);
     return (jsx(CustomButton, Object.assign({ textcolor: textColor, hover: { textcolor: hoverTextColor }, startIcon: startIcon, endIcon: endIcon, onClick: onClick, disabled: disabled || loading, style: { textTransform: 'inherit' } }, { children: children }), void 0));
+};
+
+const OptActionToolbar = ({ title, children, goBackRoute, clearMargin = false, background, color, noBorder = false, noPadding = false, }) => {
+    const theme = useOptTheme();
+    color = color !== null && color !== void 0 ? color : theme.currentTheme.toolbar.color;
+    background = background !== null && background !== void 0 ? background : theme.currentTheme.toolbar.background;
+    title = typeof title === 'string' ? jsx(Title$1, Object.assign({ color: color }, { children: title }), void 0) : title;
+    return (jsxs(CustomToolbar, Object.assign({ clearmargin: clearMargin ? 1 : 0, className: "opt-toolbar", background: background, color: color, "$noborder": noBorder, "$nopadding": noPadding }, { children: [goBackRoute && (jsx(NavLink, Object.assign({ to: goBackRoute }, { children: jsx(CustomIconButton, { children: jsx(Icon, { size: 0.8, path: mdiArrowLeft, color: color }, void 0) }, void 0) }), void 0)), title, jsx(ActionsContainer, Object.assign({ color: color }, { children: children }), void 0)] }), void 0));
 };
 
 var BreadcrumbActions;

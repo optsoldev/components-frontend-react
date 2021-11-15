@@ -3,12 +3,12 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var jsxRuntime = require('react/jsx-runtime');
-var js = require('@mdi/js');
 var Icon = require('@mdi/react');
-var reactRouterDom = require('react-router-dom');
-var React = require('react');
 var material = require('@mui/material');
+var React = require('react');
+var reactRouterDom = require('react-router-dom');
 var styled = require('styled-components');
+var js = require('@mdi/js');
 var createStyles = require('@mui/styles/createStyles');
 var makeStyles = require('@mui/styles/makeStyles');
 var Draggable = require('react-draggable');
@@ -1007,14 +1007,6 @@ const CustomButton = styled__default["default"](material.Button) `
   }
 `;
 
-const OptActionToolbar = ({ title, children, goBackRoute, clearMargin = false, background, color, noBorder = false, noPadding = false, }) => {
-    const theme = useOptTheme();
-    color = color !== null && color !== void 0 ? color : theme.currentTheme.toolbar.color;
-    background = background !== null && background !== void 0 ? background : theme.currentTheme.toolbar.background;
-    title = typeof title === 'string' ? jsxRuntime.jsx(Title$1, Object.assign({ color: color }, { children: title }), void 0) : title;
-    return (jsxRuntime.jsxs(CustomToolbar, Object.assign({ clearmargin: clearMargin ? 1 : 0, className: "opt-toolbar", background: background, color: color, "$noborder": noBorder, "$nopadding": noPadding }, { children: [goBackRoute && (jsxRuntime.jsx(reactRouterDom.NavLink, Object.assign({ to: goBackRoute }, { children: jsxRuntime.jsx(CustomIconButton, { children: jsxRuntime.jsx(Icon__default["default"], { size: 0.8, path: js.mdiArrowLeft, color: color }, void 0) }, void 0) }), void 0)), title, jsxRuntime.jsx(ActionsContainer, Object.assign({ color: color }, { children: children }), void 0)] }), void 0));
-};
-
 function checkActionIcon(theme, icon, disabled, loading) {
     if (icon) {
         if (loading) {
@@ -1042,6 +1034,14 @@ const OptActionButton = ({ startIcon, endIcon, onClick, children, disabled, load
     startIcon = checkActionIcon(currentTheme, startIcon, !!disabled, !!loading);
     endIcon = checkActionIcon(currentTheme, endIcon, !!disabled, !!loading);
     return (jsxRuntime.jsx(CustomButton, Object.assign({ textcolor: textColor, hover: { textcolor: hoverTextColor }, startIcon: startIcon, endIcon: endIcon, onClick: onClick, disabled: disabled || loading, style: { textTransform: 'inherit' } }, { children: children }), void 0));
+};
+
+const OptActionToolbar = ({ title, children, goBackRoute, clearMargin = false, background, color, noBorder = false, noPadding = false, }) => {
+    const theme = useOptTheme();
+    color = color !== null && color !== void 0 ? color : theme.currentTheme.toolbar.color;
+    background = background !== null && background !== void 0 ? background : theme.currentTheme.toolbar.background;
+    title = typeof title === 'string' ? jsxRuntime.jsx(Title$1, Object.assign({ color: color }, { children: title }), void 0) : title;
+    return (jsxRuntime.jsxs(CustomToolbar, Object.assign({ clearmargin: clearMargin ? 1 : 0, className: "opt-toolbar", background: background, color: color, "$noborder": noBorder, "$nopadding": noPadding }, { children: [goBackRoute && (jsxRuntime.jsx(reactRouterDom.NavLink, Object.assign({ to: goBackRoute }, { children: jsxRuntime.jsx(CustomIconButton, { children: jsxRuntime.jsx(Icon__default["default"], { size: 0.8, path: js.mdiArrowLeft, color: color }, void 0) }, void 0) }), void 0)), title, jsxRuntime.jsx(ActionsContainer, Object.assign({ color: color }, { children: children }), void 0)] }), void 0));
 };
 
 var BreadcrumbActions;

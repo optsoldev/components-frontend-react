@@ -1,4 +1,4 @@
-import { Story } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import { OptGridProps } from '..';
 interface Pessoa {
     id: number;
@@ -6,7 +6,7 @@ interface Pessoa {
     last_name: string;
     avatar: string;
 }
-declare const _default: any;
+declare const _default: Meta<import("@storybook/react").Args>;
 export default _default;
 interface OptGridArgs extends OptGridProps<Pessoa> {
     title: string;

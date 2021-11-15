@@ -1,6 +1,6 @@
-import { Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { OptChipProps } from './OptChip';
-declare const _default: any;
+declare const _default: Meta<import("@storybook/react/types-6-0").Args>;
 export default _default;
 export interface OptChipArgs extends OptChipProps {
     label: string;
