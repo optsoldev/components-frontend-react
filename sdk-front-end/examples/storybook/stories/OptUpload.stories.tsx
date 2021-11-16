@@ -1,6 +1,11 @@
-import { OptMiniUpload, OptMiniUploadProps, OptUpload, OptUploadProps } from "@optsol/react";
+import {
+  OptMiniUpload,
+  OptMiniUploadProps,
+  OptUpload,
+  OptUploadProps
+} from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default {
   title: "OptUpload",
