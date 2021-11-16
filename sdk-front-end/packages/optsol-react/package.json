@@ -1,6 +1,6 @@
 {
   "name": "@optsol/react",
-  "version": "1.0.0",
+  "version": "1.0.11",
   "description": "Kit de UI da OPTSOL",
   "scripts": {
     "prepack": "npm run build",
