@@ -1,0 +1,37 @@
+export declare const ColorPalette: {
+    readonly primary: "#E06D37";
+    readonly primaryTints: {
+        readonly tint1: "#e37b4b";
+        readonly tint2: "#e68a5e";
+        readonly tint3: "#e99873";
+        readonly tint4: "#eca787";
+        readonly tint5: "#efb69b";
+        readonly tint6: "#f2c4af";
+        readonly tint7: "#f5d3c3";
+        readonly tint8: "#f8e1d7";
+        readonly tint9: "#fbf0eb";
+    };
+    readonly secondary: "#6d37e0";
+    readonly black: "#000000";
+    readonly dark: "#1f1f1f";
+    readonly gray1: "#333333";
+    readonly gray2: "#4F4F4F";
+    readonly gray3: "#828282";
+    readonly gray4: "#BDBDBD";
+    readonly gray5: "#E0E0E0";
+    readonly gray6: "#F2F2F2";
+    readonly gray7: "#eeeeee";
+    readonly gray8: "#fefefe";
+    readonly white: "#ffffff";
+    readonly ketchup: "#EB5757";
+    readonly eclipseOrange: "#F2994A";
+    readonly yellow: "#e0c237";
+    readonly green: "#37e06d";
+    readonly green2: "#27AE60";
+    readonly green3: "#6FCF97";
+    readonly royalBlue: "#2F80ED";
+    readonly curiousBlue: "#2D9CDB";
+    readonly skyBlue: "#56CCF2";
+    readonly livePurple: "#9B51E0";
+    readonly royaltyPurple: "#BB6BD9";
+};

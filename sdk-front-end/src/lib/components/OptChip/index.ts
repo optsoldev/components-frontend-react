@@ -1,1 +1,0 @@
-export { OptChip } from './OptChip';
