@@ -1,8 +1,7 @@
-import { Icon } from '@mdi/react';
-import { IconButton, Tooltip } from '@mui/material';
-import { OptGridAction } from '.';
-import { useOptTheme } from '../../contexts/theme/themeContext';
-
+import { Icon } from "@mdi/react";
+import { IconButton, Tooltip } from "@mui/material";
+import { OptGridAction } from ".";
+import { useOptTheme } from "../../contexts/theme/themeContext";
 
 interface Props<T extends object> {
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
@@ -16,9 +15,9 @@ export const OptGridActionsCell = <T extends object>({
   const { currentTheme } = useOptTheme();
 
   return (
-    <td className='td-opt' style={{ display: 'flex' }}>
+    <td className="td-opt" style={{ display: "flex" }}>
       {actions?.map((action, index) => {
-        const isFunction = typeof action === 'function';
+        const isFunction = typeof action === "function";
 
         let currentAction = action as OptGridAction<T>;
 
@@ -42,7 +41,9 @@ export const OptGridActionsCell = <T extends object>({
 
         if (currentAction.tooltip) {
           iconButton = (
-            <Tooltip title={currentAction.tooltip}>{iconButton}</Tooltip>
+            <Tooltip title={currentAction.tooltip} key={index}>
+              {iconButton}
+            </Tooltip>
           );
         }
 
