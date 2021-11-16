@@ -3505,8 +3505,9 @@ const OptMiniUpload = React__default["default"].forwardRef((_a, ref) => {
     var _b;
     var { filesDescription, onChange, options, value } = _a, props = __rest(_a, ["filesDescription", "onChange", "options", "value"]);
     const [firstRender, setFirstRender] = React.useState(true);
-    const { acceptedFiles, getRootProps, getInputProps, isDragAccept, isDragActive, isDragReject } = reactDropzone.useDropzone(options);
-    const hasFiles = (acceptedFiles && acceptedFiles.length > 0) || (!!value && value.length > 0);
+    const { acceptedFiles, getRootProps, getInputProps, isDragAccept, isDragActive, isDragReject, } = reactDropzone.useDropzone(options);
+    const hasFiles = (acceptedFiles && acceptedFiles.length > 0) ||
+        (!!value && value.length > 0);
     React.useEffect(() => {
         if (!firstRender) {
             onChange(acceptedFiles);

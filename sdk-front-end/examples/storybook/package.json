@@ -1,8 +1,9 @@
 {
-  "name": "storybook",
+  "name": "@optsol/react-storybook",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://github.com/optsoldev/components-frontend-react",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@storybook/addon-actions": "^6.3.12",
@@ -10,7 +11,8 @@
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-links": "^6.3.12",
     "@storybook/react": "^6.3.12",
-    "babel-loader": "^8.2.3"
+    "babel-loader": "^8.2.3",
+    "gh-pages": "^3.2.3"
   },
   "dependencies": {
     "@mdi/js": "^6.5.95",
@@ -21,6 +23,8 @@
   "scripts": {
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
   }
 }

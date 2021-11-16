@@ -1,9 +1,9 @@
-import React, { FocusEventHandler } from 'react';
-import { DropzoneOptions } from 'react-dropzone';
+import React, { FocusEventHandler } from "react";
+import { DropzoneOptions } from "react-dropzone";
 export interface UploadContainerOptions extends DropzoneOptions {
     icon?: string;
     size?: number;
-    borderStyle?: 'dashed' | 'solid';
+    borderStyle?: "dashed" | "solid";
 }
 export interface OptMiniUploadProps {
     filesDescription?: string;
