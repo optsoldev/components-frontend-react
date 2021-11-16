@@ -1702,9 +1702,10 @@ const OptGridInternal = ({ columns, data, options, onRowClick, title, actions, a
         },
     }));
     React__default["default"].useEffect(() => {
+        console.log("useEffect");
         load();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [controls.pageCount, controls.totalCount, pageIndex, pageSize]);
+    }, [pageIndex, pageSize]);
     return (jsxRuntime.jsxs(GridContainer, Object.assign({ className: "opt-grid" }, { children: [jsxRuntime.jsx(Title, { children: title }, void 0), jsxRuntime.jsx("div", Object.assign({ className: "tableWrap" }, { children: jsxRuntime.jsxs(StyledTable, Object.assign({}, getTableProps(), { children: [jsxRuntime.jsx(OptGridHeaders, { headerGroups: headerGroups, columns: columns, actionsPosition: actionsPosition }, void 0), jsxRuntime.jsxs("tbody", Object.assign({}, getTableBodyProps(), { children: [jsxRuntime.jsx(OptGridRows, { columns: columns, onRowClick: onRowClick, page: page, prepareRow: prepareRow, actions: actions, actionsPosition: actionsPosition }, void 0), controls.loading && (jsxRuntime.jsx("tr", { children: jsxRuntime.jsx("td", Object.assign({ colSpan: 10000, style: { textAlign: "center" } }, { children: "Carregando..." }), void 0) }, void 0)), controls.error && (jsxRuntime.jsx("tr", { children: jsxRuntime.jsx("td", Object.assign({ colSpan: 10000, style: { textAlign: "center" } }, { children: "Erro ao carregar registros" }), void 0) }, void 0))] }), void 0)] }), void 0) }), void 0), jsxRuntime.jsx(OptGridPagination, { canPreviousPage: canPreviousPage, canNextPage: canNextPage, pageOptions: pageOptions, pageCount: pageCount, gotoPage: gotoPage, nextPage: nextPage, previousPage: previousPage, setPageSize: setPageSize, pageIndex: pageIndex, pageSize: pageSize }, void 0)] }), void 0));
 };
 const OptGrid = React__default["default"].forwardRef(OptGridInternal);

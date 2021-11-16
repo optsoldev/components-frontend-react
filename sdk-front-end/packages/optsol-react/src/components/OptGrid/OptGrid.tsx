@@ -153,10 +153,11 @@ const OptGridInternal = <T extends object>(
   }));
 
   React.useEffect(() => {
+    console.log("useEffect");
     load();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [controls.pageCount, controls.totalCount, pageIndex, pageSize]);
+  }, [pageIndex, pageSize]);
 
   return (
     <S.GridContainer className="opt-grid">

@@ -1686,9 +1686,10 @@ const OptGridInternal = ({ columns, data, options, onRowClick, title, actions, a
         },
     }));
     React.useEffect(() => {
+        console.log("useEffect");
         load();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [controls.pageCount, controls.totalCount, pageIndex, pageSize]);
+    }, [pageIndex, pageSize]);
     return (jsxs(GridContainer, Object.assign({ className: "opt-grid" }, { children: [jsx(Title, { children: title }, void 0), jsx("div", Object.assign({ className: "tableWrap" }, { children: jsxs(StyledTable, Object.assign({}, getTableProps(), { children: [jsx(OptGridHeaders, { headerGroups: headerGroups, columns: columns, actionsPosition: actionsPosition }, void 0), jsxs("tbody", Object.assign({}, getTableBodyProps(), { children: [jsx(OptGridRows, { columns: columns, onRowClick: onRowClick, page: page, prepareRow: prepareRow, actions: actions, actionsPosition: actionsPosition }, void 0), controls.loading && (jsx("tr", { children: jsx("td", Object.assign({ colSpan: 10000, style: { textAlign: "center" } }, { children: "Carregando..." }), void 0) }, void 0)), controls.error && (jsx("tr", { children: jsx("td", Object.assign({ colSpan: 10000, style: { textAlign: "center" } }, { children: "Erro ao carregar registros" }), void 0) }, void 0))] }), void 0)] }), void 0) }), void 0), jsx(OptGridPagination, { canPreviousPage: canPreviousPage, canNextPage: canNextPage, pageOptions: pageOptions, pageCount: pageCount, gotoPage: gotoPage, nextPage: nextPage, previousPage: previousPage, setPageSize: setPageSize, pageIndex: pageIndex, pageSize: pageSize }, void 0)] }), void 0));
 };
 const OptGrid = React.forwardRef(OptGridInternal);
