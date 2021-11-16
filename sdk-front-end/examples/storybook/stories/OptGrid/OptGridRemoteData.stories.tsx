@@ -25,7 +25,7 @@ export default {
 } as Meta;
 
 function carregar(query: OptGridRequest): Promise<OptGridResponse<Pessoa>> {
-  let url = "https://reqres.in/api/users?";
+  let url = "https://reqzxczxczxcres.in/api/users?";
   url += "per_page=" + query.pageSize;
   url += "&page=" + (query.page + 1);
 

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { OptGridAction } from '.';
+import { OptGridAction } from ".";
 interface Props<T extends object> {
     actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
     data: T;

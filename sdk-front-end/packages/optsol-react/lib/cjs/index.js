@@ -1590,9 +1590,9 @@ const OptGridPagination = ({ canPreviousPage, canNextPage, pageOptions, pageCoun
 
 const OptGridActionsCell = ({ actions, data, }) => {
     const { currentTheme } = useOptTheme();
-    return (jsxRuntime.jsx("td", Object.assign({ className: 'td-opt', style: { display: 'flex' } }, { children: actions === null || actions === void 0 ? void 0 : actions.map((action, index) => {
+    return (jsxRuntime.jsx("td", Object.assign({ className: "td-opt", style: { display: "flex" } }, { children: actions === null || actions === void 0 ? void 0 : actions.map((action, index) => {
             var _a;
-            const isFunction = typeof action === 'function';
+            const isFunction = typeof action === "function";
             let currentAction = action;
             if (isFunction) {
                 currentAction = action(data);
@@ -1603,7 +1603,7 @@ const OptGridActionsCell = ({ actions, data, }) => {
                     currentAction.onClick(e, data);
                 } }, { children: jsxRuntime.jsx(Icon.Icon, { size: 1, path: currentAction.icon.path, color: color }, void 0) }), index));
             if (currentAction.tooltip) {
-                iconButton = (jsxRuntime.jsx(material.Tooltip, Object.assign({ title: currentAction.tooltip }, { children: iconButton }), void 0));
+                iconButton = (jsxRuntime.jsx(material.Tooltip, Object.assign({ title: currentAction.tooltip }, { children: iconButton }), index));
             }
             return iconButton;
         }) }), void 0));
@@ -1631,14 +1631,15 @@ const OptGridRows = ({ page, prepareRow, onRowClick, actions, actionsPosition, c
         }) }, void 0));
 };
 
-const OptGridInternal = ({ columns, data, options, onRowClick, title, actions, actionsPosition }, ref) => {
+const OptGridInternal = ({ columns, data, options, onRowClick, title, actions, actionsPosition, }, ref) => {
     var _a;
     const isRemote = !Array.isArray(data);
     const [controls, setControls] = React.useState({
         totalCount: isRemote ? 0 : data.length,
         pageCount: isRemote ? 0 : Math.ceil(data.length / 10),
         loading: false,
-        data: isRemote ? [] : data
+        data: isRemote ? [] : data,
+        error: false,
     });
     const internalColumns = React__default["default"].useMemo(() => columns.map((x) => {
         const transformedColumn = {
@@ -1646,7 +1647,7 @@ const OptGridInternal = ({ columns, data, options, onRowClick, title, actions, a
             accessor: x.field,
             minWidth: x.width,
             width: x.width,
-            maxWidth: x.width
+            maxWidth: x.width,
         };
         return transformedColumn;
     }), [columns]);
@@ -1658,29 +1659,33 @@ const OptGridInternal = ({ columns, data, options, onRowClick, title, actions, a
         // hook that we'll handle our own data fetching
         // This means we'll also have to provide our own
         // pageCount.
-        pageCount: controls.pageCount
+        pageCount: controls.pageCount,
     }, reactTable.usePagination);
     const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize, 
     // Get the state from the instance
-    state: { pageIndex, pageSize } } = table;
+    state: { pageIndex, pageSize }, } = table;
     function loadRemote(data) {
         const query = {
-            orderBy: '',
-            orderDirection: 'asc',
+            orderBy: "",
+            orderDirection: "asc",
             page: pageIndex,
             pageSize: pageSize !== null && pageSize !== void 0 ? pageSize : 10,
-            search: ''
+            search: "",
         };
         setControls(Object.assign(Object.assign({}, controls), { data: [], loading: true }));
-        data(query).then((result) => {
-            setControls(Object.assign(Object.assign({}, controls), { data: result.data, totalCount: result.totalCount, pageCount: Math.ceil(result.totalCount / pageSize), loading: false }));
+        data(query)
+            .then((result) => {
+            setControls(Object.assign(Object.assign({}, controls), { data: result.data, totalCount: result.totalCount, pageCount: Math.ceil(result.totalCount / pageSize), loading: false, error: false }));
+        })
+            .catch(() => {
+            setControls(Object.assign(Object.assign({}, controls), { data: [], loading: false, error: true }));
         });
     }
     function loadLocal(data) {
         const startRow = pageSize * pageIndex;
         const endRow = startRow + pageSize;
         const slicedData = data.slice(startRow, endRow);
-        setControls(Object.assign(Object.assign({}, controls), { data: slicedData, totalCount: data.length, pageCount: Math.ceil(data.length / pageSize), loading: false }));
+        setControls(Object.assign(Object.assign({}, controls), { data: slicedData, totalCount: data.length, pageCount: Math.ceil(data.length / pageSize), loading: false, error: false }));
     }
     function load() {
         if (isRemote) {
@@ -1694,13 +1699,13 @@ const OptGridInternal = ({ columns, data, options, onRowClick, title, actions, a
     React.useImperativeHandle(ref, () => ({
         refresh: () => {
             load();
-        }
+        },
     }));
     React__default["default"].useEffect(() => {
         load();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [controls.pageCount, controls.totalCount, pageIndex, pageSize]);
-    return (jsxRuntime.jsxs(GridContainer, Object.assign({ className: 'opt-grid' }, { children: [jsxRuntime.jsx(Title, { children: title }, void 0), jsxRuntime.jsx("div", Object.assign({ className: 'tableWrap' }, { children: jsxRuntime.jsxs(StyledTable, Object.assign({}, getTableProps(), { children: [jsxRuntime.jsx(OptGridHeaders, { headerGroups: headerGroups, columns: columns, actionsPosition: actionsPosition }, void 0), jsxRuntime.jsxs("tbody", Object.assign({}, getTableBodyProps(), { children: [jsxRuntime.jsx(OptGridRows, { columns: columns, onRowClick: onRowClick, page: page, prepareRow: prepareRow, actions: actions, actionsPosition: actionsPosition }, void 0), jsxRuntime.jsx("tr", { children: controls.loading && jsxRuntime.jsx("td", Object.assign({ colSpan: 10000 }, { children: "Carregando..." }), void 0) }, void 0)] }), void 0)] }), void 0) }), void 0), jsxRuntime.jsx(OptGridPagination, { canPreviousPage: canPreviousPage, canNextPage: canNextPage, pageOptions: pageOptions, pageCount: pageCount, gotoPage: gotoPage, nextPage: nextPage, previousPage: previousPage, setPageSize: setPageSize, pageIndex: pageIndex, pageSize: pageSize }, void 0)] }), void 0));
+    return (jsxRuntime.jsxs(GridContainer, Object.assign({ className: "opt-grid" }, { children: [jsxRuntime.jsx(Title, { children: title }, void 0), jsxRuntime.jsx("div", Object.assign({ className: "tableWrap" }, { children: jsxRuntime.jsxs(StyledTable, Object.assign({}, getTableProps(), { children: [jsxRuntime.jsx(OptGridHeaders, { headerGroups: headerGroups, columns: columns, actionsPosition: actionsPosition }, void 0), jsxRuntime.jsxs("tbody", Object.assign({}, getTableBodyProps(), { children: [jsxRuntime.jsx(OptGridRows, { columns: columns, onRowClick: onRowClick, page: page, prepareRow: prepareRow, actions: actions, actionsPosition: actionsPosition }, void 0), controls.loading && (jsxRuntime.jsx("tr", { children: jsxRuntime.jsx("td", Object.assign({ colSpan: 10000, style: { textAlign: "center" } }, { children: "Carregando..." }), void 0) }, void 0)), controls.error && (jsxRuntime.jsx("tr", { children: jsxRuntime.jsx("td", Object.assign({ colSpan: 10000, style: { textAlign: "center" } }, { children: "Erro ao carregar registros" }), void 0) }, void 0))] }), void 0)] }), void 0) }), void 0), jsxRuntime.jsx(OptGridPagination, { canPreviousPage: canPreviousPage, canNextPage: canNextPage, pageOptions: pageOptions, pageCount: pageCount, gotoPage: gotoPage, nextPage: nextPage, previousPage: previousPage, setPageSize: setPageSize, pageIndex: pageIndex, pageSize: pageSize }, void 0)] }), void 0));
 };
 const OptGrid = React__default["default"].forwardRef(OptGridInternal);
 
