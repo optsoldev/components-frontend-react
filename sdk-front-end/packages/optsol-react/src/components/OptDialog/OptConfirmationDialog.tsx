@@ -34,7 +34,7 @@ export const OptConfirmationDialog = ({
   onCancel,
   onConfirm,
   children,
-}: PropsWithChildren<Props>) => {
+}: PropsWithChildren<OptConfirmationDialogProps>) => {
   return (
     <S.StyledDialog
       open={open}

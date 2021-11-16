@@ -1,9 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { mdiCheck, mdiDelete } from '@mdi/js';
-import { Meta, Story } from '@storybook/react';
-import { useRef } from 'react';
-import { OptGrid, OptGridOptions, OptGridProps, OptGridRef, OptGridRequest, OptGridResponse } from '..';
-import { ColorPalette } from '../../../shared/styles/colors';
+import { mdiCheck, mdiDelete } from "@mdi/js";
+import {
+  OptGrid,
+  OptGridOptions,
+  OptGridProps,
+  OptGridRef,
+  OptGridRequest,
+  OptGridResponse
+} from "@optsol/react";
+import { Meta, Story } from "@storybook/react";
+import React, { useRef } from "react";
+import { ColorPalette } from "../../shared/colors";
 
 interface Pessoa {
   id: number;
@@ -13,14 +20,14 @@ interface Pessoa {
 }
 
 export default {
-  title: 'OptGrid',
+  title: "OptGrid",
   component: OptGrid,
 } as Meta;
 
 function carregar(query: OptGridRequest): Promise<OptGridResponse<Pessoa>> {
-  let url = 'https://reqres.in/api/users?';
-  url += 'per_page=' + query.pageSize;
-  url += '&page=' + (query.page + 1);
+  let url = "https://reqres.in/api/users?";
+  url += "per_page=" + query.pageSize;
+  url += "&page=" + (query.page + 1);
 
   return fetch(url)
     .then((response) => response.json())
@@ -38,7 +45,7 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   search: boolean;
   onDelete: (data: Pessoa) => string;
   onApprove: (data: Pessoa) => string;
-  actionsPosition: 'start' | 'end';
+  actionsPosition: "start" | "end";
   selection: boolean;
 }
 
@@ -75,26 +82,30 @@ export const OptGridRemota: Story<OptGridArgs> = ({
         ref={ref}
         columns={[
           {
-            title: 'Avatar',
-            field: 'avatar',
+            title: "Avatar",
+            field: "avatar",
             render: (rowData) => (
-              <img style={{ height: 36, borderRadius: '50%' }} src={rowData.avatar} alt={rowData.avatar} />
+              <img
+                style={{ height: 36, borderRadius: "50%" }}
+                src={rowData.avatar}
+                alt={rowData.avatar}
+              />
             ),
             width: 80,
-            align: 'center',
+            align: "center",
           },
           {
-            title: 'Id',
-            field: 'id',
+            title: "Id",
+            field: "id",
             width: 80,
           },
           {
-            title: 'Nome',
-            field: 'first_name',
+            title: "Nome",
+            field: "first_name",
           },
           {
-            title: 'Sobrenome',
-            field: 'last_name',
+            title: "Sobrenome",
+            field: "last_name",
           },
         ]}
         data={carregar}
@@ -103,13 +114,13 @@ export const OptGridRemota: Story<OptGridArgs> = ({
         actions={[
           (rowData) => ({
             icon: { path: mdiDelete, color: ColorPalette.gray3 },
-            tooltip: 'Deletar usuário',
+            tooltip: "Deletar usuário",
             onClick: () => onDelete(rowData),
             disabled: false,
           }),
           (rowData) => ({
             icon: { path: mdiCheck, color: ColorPalette.green2 },
-            tooltip: 'Aprovar usuário',
+            tooltip: "Aprovar usuário",
             onClick: () => onApprove(rowData),
             disabled: false,
           }),
@@ -120,35 +131,35 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   );
 };
 
-OptGridRemota.storyName = 'OptGrid Remota';
+OptGridRemota.storyName = "OptGrid Remota";
 
 OptGridRemota.args = {
-  title: 'Grid remota',
+  title: "Grid remota",
   search: true,
-  actionsPosition: 'start',
+  actionsPosition: "start",
   selection: false,
 };
 
 OptGridRemota.argTypes = {
   title: {
-    defaultValue: 'Grid remota',
-    name: 'Título',
+    defaultValue: "Grid remota",
+    name: "Título",
   },
   search: {
     defaultValue: true,
-    name: 'Pesquisa rápida',
+    name: "Pesquisa rápida",
   },
   isLoading: {
     defaultValue: false,
-    name: 'Carregando',
+    name: "Carregando",
   },
   actionsPosition: {
-    defaultValue: 'start',
-    name: 'Posição da coluna de ações',
+    defaultValue: "start",
+    name: "Posição da coluna de ações",
   },
   selection: {
     defaultValue: false,
-    name: 'Selecionável',
+    name: "Selecionável",
   },
   ref: {
     table: { disable: true },
@@ -166,15 +177,15 @@ OptGridRemota.argTypes = {
     table: { disable: true },
   },
   onRowClick: {
-    action: 'onRowClick clicked',
+    action: "onRowClick clicked",
     table: { disable: true },
   },
   onDelete: {
-    action: (data: Pessoa) => 'onDelete clicked' + data,
+    action: (data: Pessoa) => "onDelete clicked" + data,
     table: { disable: true },
   },
   onApprove: {
-    action: (data: Pessoa) => 'onApprove clicked' + data,
+    action: (data: Pessoa) => "onApprove clicked" + data,
     table: { disable: true },
   },
 };

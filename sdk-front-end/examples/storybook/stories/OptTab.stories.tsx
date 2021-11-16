@@ -1,8 +1,9 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
-import { OptTab, OptTabs } from '.';
+import { OptTab, OptTabs } from "@optsol/react";
+import { Meta, Story } from "@storybook/react/types-6-0";
+import React from "react";
 
 export default {
-  title: 'OptTabs',
+  title: "OptTabs",
   component: OptTabs,
 } as Meta;
 
@@ -22,6 +23,6 @@ export const OptTabsExample: Story<{}> = (args) => {
 
 OptTabsExample.args = {};
 
-OptTabsExample.storyName = 'Opt Tab Select';
+OptTabsExample.storyName = "Opt Tab Select";
 
 OptTabsExample.argTypes = {};

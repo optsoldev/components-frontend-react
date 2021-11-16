@@ -1,17 +1,15 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { mdiAbTesting, mdiIdeogramCjk, mdiPacMan } from '@mdi/js';
-import Icon from '@mdi/react';
-import { Meta, Story } from '@storybook/react/types-6-0';
-import { Route, Switch } from 'react-router-dom';
-import { OptLayout, OptLayoutProps } from '.';
-import { OptMenuSection } from '../OptDrawer';
-
+import { mdiAbTesting, mdiIdeogramCjk, mdiPacMan } from "@mdi/js";
+import Icon from "@mdi/react";
+import { OptLayout, OptLayoutProps, OptMenuSection } from "@optsol/react";
+import { Meta, Story } from "@storybook/react/types-6-0";
+import { Route, Switch } from "react-router-dom";
 
 export default {
-  title: 'Layout',
+  title: "Layout",
   component: OptLayout,
   argTypes: {
-    backgroundColor: { control: 'color' },
+    backgroundColor: { control: "color" },
   },
 } as Meta;
 
@@ -20,14 +18,14 @@ const sections: OptMenuSection[] = [
     items: [
       {
         icon: <Icon size={1} path={mdiPacMan} />,
-        path: '/teste',
-        title: 'Pacman',
+        path: "/teste",
+        title: "Pacman",
         activeShouldBeExact: true,
       },
       {
         icon: <Icon size={1} path={mdiAbTesting} />,
-        path: '/',
-        title: 'AbTesting',
+        path: "/",
+        title: "AbTesting",
         activeShouldBeExact: true,
       },
     ],
@@ -36,8 +34,8 @@ const sections: OptMenuSection[] = [
     items: [
       {
         icon: <Icon size={1} path={mdiIdeogramCjk} />,
-        path: '/',
-        title: 'Ideogram',
+        path: "/",
+        title: "Ideogram",
         activeShouldBeExact: true,
       },
     ],

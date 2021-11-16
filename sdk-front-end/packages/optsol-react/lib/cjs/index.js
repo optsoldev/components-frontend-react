@@ -3386,14 +3386,6 @@ const OptTagSelect = React__default["default"].forwardRef((props, ref) => {
         }, formatCreateLabel: (inputValue) => 'Criar tag ' + inputValue, placeholder: 'Informe as tags', noOptionsMessage: (_) => 'Sem opções pré-definidas', isMulti: true, ref: ref, value: transformedValue, name: name, onChange: onChangeHandler, onBlur: onBlur }), void 0));
 });
 
-function bytesToSize(bytes) {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes === 0)
-        return '0 Byte';
-    const i = +Math.floor(Math.log(bytes) / Math.log(1024));
-    return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i];
-}
-
 const getBorderColor = (primaryColor, hasFiles, props) => {
     let color = ColorPalette.gray6;
     if (hasFiles) {
@@ -3509,6 +3501,32 @@ const Arquivo = styled__default["default"].p `
   }
 `;
 
+const OptMiniUpload = React__default["default"].forwardRef((_a, ref) => {
+    var _b;
+    var { filesDescription, onChange, options, value } = _a, props = __rest(_a, ["filesDescription", "onChange", "options", "value"]);
+    const [firstRender, setFirstRender] = React.useState(true);
+    const { acceptedFiles, getRootProps, getInputProps, isDragAccept, isDragActive, isDragReject } = reactDropzone.useDropzone(options);
+    const hasFiles = (acceptedFiles && acceptedFiles.length > 0) || (!!value && value.length > 0);
+    React.useEffect(() => {
+        if (!firstRender) {
+            onChange(acceptedFiles);
+        }
+        else {
+            setFirstRender(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [acceptedFiles]);
+    return (jsxRuntime.jsxs(StyledMiniUploadContainer, Object.assign({ className: "opt-mini-upload", hasFiles: hasFiles, size: options === null || options === void 0 ? void 0 : options.size, borderStyle: options === null || options === void 0 ? void 0 : options.borderStyle }, getRootProps({ isDragActive, isDragAccept, isDragReject }), { ref: ref }, { children: [jsxRuntime.jsx("input", Object.assign({}, getInputProps(), props), void 0), jsxRuntime.jsx(Icon__default["default"], { path: (_b = options === null || options === void 0 ? void 0 : options.icon) !== null && _b !== void 0 ? _b : js.mdiPaperclip, size: 1.4 }, void 0)] }), void 0));
+});
+
+function bytesToSize(bytes) {
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes === 0)
+        return '0 Byte';
+    const i = +Math.floor(Math.log(bytes) / Math.log(1024));
+    return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i];
+}
+
 const OptUpload = React__default["default"].forwardRef((_a, ref) => {
     var { description = 'Arraste arquivos para cá ou clique para selecioná-los', filesDescription, onChange, options, value, style } = _a, props = __rest(_a, ["description", "filesDescription", "onChange", "options", "value", "style"]);
     const [firstRender, setFirstRender] = React.useState(true);
@@ -3530,24 +3548,6 @@ const OptUpload = React__default["default"].forwardRef((_a, ref) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [acceptedFiles]);
     return (jsxRuntime.jsxs(StyledUploadContainer, Object.assign({ hasFiles: hasFiles }, getRootProps({ isDragActive, isDragAccept, isDragReject }), { ref: ref, style: style }, { children: [jsxRuntime.jsx("input", Object.assign({}, getInputProps(), props), void 0), jsxRuntime.jsx(Icon__default["default"], { path: js.mdiPaperclip, size: 1.4 }, void 0), jsxRuntime.jsx("p", { children: description }, void 0), filesDescription && jsxRuntime.jsx("p", { children: filesDescription }, void 0), acceptedFileItems] }), void 0));
-});
-
-const OptMiniUpload = React__default["default"].forwardRef((_a, ref) => {
-    var _b;
-    var { filesDescription, onChange, options, value } = _a, props = __rest(_a, ["filesDescription", "onChange", "options", "value"]);
-    const [firstRender, setFirstRender] = React.useState(true);
-    const { acceptedFiles, getRootProps, getInputProps, isDragAccept, isDragActive, isDragReject } = reactDropzone.useDropzone(options);
-    const hasFiles = (acceptedFiles && acceptedFiles.length > 0) || (!!value && value.length > 0);
-    React.useEffect(() => {
-        if (!firstRender) {
-            onChange(acceptedFiles);
-        }
-        else {
-            setFirstRender(false);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [acceptedFiles]);
-    return (jsxRuntime.jsxs(StyledMiniUploadContainer, Object.assign({ className: "opt-mini-upload", hasFiles: hasFiles, size: options === null || options === void 0 ? void 0 : options.size, borderStyle: options === null || options === void 0 ? void 0 : options.borderStyle }, getRootProps({ isDragActive, isDragAccept, isDragReject }), { ref: ref }, { children: [jsxRuntime.jsx("input", Object.assign({}, getInputProps(), props), void 0), jsxRuntime.jsx(Icon__default["default"], { path: (_b = options === null || options === void 0 ? void 0 : options.icon) !== null && _b !== void 0 ? _b : js.mdiPaperclip, size: 1.4 }, void 0)] }), void 0));
 });
 
 exports.BreadcrumbProvider = BreadcrumbProvider;

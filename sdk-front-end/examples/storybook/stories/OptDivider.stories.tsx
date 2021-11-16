@@ -1,10 +1,9 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
-import { ColorPalette } from '../../shared/styles/colors';
-import { OptDivider, OptDividerProps } from './OptDivider';
-
+import { OptDivider, OptDividerProps } from "@optsol/react";
+import { Meta, Story } from "@storybook/react/types-6-0";
+import { ColorPalette } from "../shared/colors";
 
 export default {
-  title: 'OptDivider',
+  title: "OptDivider",
   component: OptDivider,
 } as Meta;
 
@@ -13,11 +12,11 @@ const Template: Story<OptDividerProps> = (args) => <OptDivider {...args} />;
 export const DefaultOptDivider = Template.bind({});
 
 DefaultOptDivider.args = {
-   marginy: 50,
-   color: ColorPalette.primary,
+  marginy: 50,
+  color: ColorPalette.primary,
 };
 
-DefaultOptDivider.storyName = 'Option Divider ';
+DefaultOptDivider.storyName = "Option Divider ";
 
 DefaultOptDivider.argTypes = {
   ref: {
@@ -46,5 +45,5 @@ DefaultOptDivider.argTypes = {
   },
   forwardedAs: {
     table: { disable: true },
-  }
+  },
 };

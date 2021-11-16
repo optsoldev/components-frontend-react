@@ -1,9 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Meta, Story } from '@storybook/react/types-6-0';
-import { OptSearchResponse } from '../../types';
-import { OptChip } from '../OptChip';
-import { OptInfiniteScrollList } from './OptInfiniteScrollList';
-
+import { OptChip, OptInfiniteScrollList, OptSearchResponse } from "@optsol/react";
+import { Meta, Story } from "@storybook/react/types-6-0";
 
 interface Pessoa {
   id: string;
@@ -14,14 +11,18 @@ interface Pessoa {
 }
 
 export default {
-  title: 'OptInfiniteScrollList',
+  title: "OptInfiniteScrollList",
   component: OptInfiniteScrollList,
 } as Meta;
 
-function carregar(_: string, page: number, pageSize: number): Promise<OptSearchResponse<Pessoa>> {
-  let url = 'https://reqres.in/api/users?';
-  url += 'per_page=' + pageSize;
-  url += '&page=' + (page + 1);
+function carregar(
+  _: string,
+  page: number,
+  pageSize: number
+): Promise<OptSearchResponse<Pessoa>> {
+  let url = "https://reqres.in/api/users?";
+  url += "per_page=" + pageSize;
+  url += "&page=" + (page + 1);
 
   return fetch(url)
     .then((response) => response.json())
@@ -60,7 +61,7 @@ export const OptInfiniteScrollListRemota: Story<OptInfiniteScrollListArgs> = () 
   );
 };
 
-OptInfiniteScrollListRemota.storyName = 'OptInfiniteScrollList Remota';
+OptInfiniteScrollListRemota.storyName = "OptInfiniteScrollList Remota";
 
 OptInfiniteScrollListRemota.args = {};
 
