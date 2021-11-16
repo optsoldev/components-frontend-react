@@ -2869,7 +2869,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-<<<<<<< HEAD
 "@optsol/react-storybook@file:C:\\Users\\felip\\source\\optsol\\components\\components-frontend-react\\sdk-front-end\\examples\\storybook":
   "resolved" "file:examples/storybook"
   "version" "1.0.0"
@@ -2882,11 +2881,6 @@
 "@optsol/react@^1.0.1", "@optsol/react@file:C:\\Users\\felip\\source\\optsol\\components\\components-frontend-react\\sdk-front-end\\packages\\optsol-react":
   "resolved" "file:packages/optsol-react"
   "version" "1.0.11"
-=======
-"@optsol/react@^1.0.1", "@optsol/react@file:C:\\Users\\felip\\source\\optsol\\components\\components-frontend-react\\sdk-front-end\\packages\\optsol-react":
-  "resolved" "file:packages/optsol-react"
-  "version" "1.0.1"
->>>>>>> origin/main
   dependencies:
     "@emotion/react" "^11.6.0"
     "@emotion/styled" "^11.6.0"
@@ -3049,7 +3043,6 @@
     "core-js" "^3.8.2"
     "ts-dedent" "^2.0.0"
 
-<<<<<<< HEAD
 "@storybook/addon-docs@^6.3.12":
   "integrity" "sha512-iUrqJBMTOn2PgN8AWNQkfxfIPkh8pEg27t8UndMgfOpeGK/VWGw2UEifnA82flvntcilT4McxmVbRHkeBY9K5A=="
   "resolved" "https://registry.npmjs.org/@storybook/addon-docs/-/addon-docs-6.3.12.tgz"
@@ -3100,8 +3093,6 @@
     "ts-dedent" "^2.0.0"
     "util-deprecate" "^1.0.2"
 
-=======
->>>>>>> origin/main
 "@storybook/addon-docs@6.3.12":
   "integrity" "sha512-iUrqJBMTOn2PgN8AWNQkfxfIPkh8pEg27t8UndMgfOpeGK/VWGw2UEifnA82flvntcilT4McxmVbRHkeBY9K5A=="
   "resolved" "https://registry.npmjs.org/@storybook/addon-docs/-/addon-docs-6.3.12.tgz"
@@ -5139,11 +5130,7 @@
   "resolved" "https://registry.npmjs.org/async-limiter/-/async-limiter-1.0.1.tgz"
   "version" "1.0.1"
 
-<<<<<<< HEAD
 "async@^2.6.1", "async@^2.6.2":
-=======
-"async@^2.6.2":
->>>>>>> origin/main
   "integrity" "sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg=="
   "resolved" "https://registry.npmjs.org/async/-/async-2.6.3.tgz"
   "version" "2.6.3"
@@ -6395,14 +6382,11 @@
   "resolved" "https://registry.npmjs.org/comma-separated-tokens/-/comma-separated-tokens-1.0.8.tgz"
   "version" "1.0.8"
 
-<<<<<<< HEAD
 "commander@^2.18.0":
   "integrity" "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ=="
   "resolved" "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
   "version" "2.20.3"
 
-=======
->>>>>>> origin/main
 "commander@^2.19.0":
   "integrity" "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ=="
   "resolved" "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
@@ -7728,14 +7712,11 @@
     "minimalistic-assert" "^1.0.1"
     "minimalistic-crypto-utils" "^1.0.1"
 
-<<<<<<< HEAD
 "email-addresses@^3.0.1":
   "integrity" "sha512-k0/r7GrWVL32kZlGwfPNgB2Y/mMXVTq/decgLczm/j34whdaspNrZO8CnXPf1laaHxI6ptUlsnAxN+UAPw+fzg=="
   "resolved" "https://registry.npmjs.org/email-addresses/-/email-addresses-3.1.0.tgz"
   "version" "3.1.0"
 
-=======
->>>>>>> origin/main
 "emittery@^0.7.1":
   "integrity" "sha512-A8OG5SR/ij3SsJdWDJdkkSYUjQdCUx6APQXem0SaEePBSRg4eymGYwBkKo1Y6DU+af/Jn2dBQqDBvjnr9Vi8nQ=="
   "resolved" "https://registry.npmjs.org/emittery/-/emittery-0.7.2.tgz"
@@ -7960,11 +7941,7 @@
   "resolved" "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz"
   "version" "1.0.3"
 
-<<<<<<< HEAD
 "escape-string-regexp@^1.0.2", "escape-string-regexp@^1.0.5":
-=======
-"escape-string-regexp@^1.0.5":
->>>>>>> origin/main
   "integrity" "sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ="
   "resolved" "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
   "version" "1.0.5"
@@ -8612,7 +8589,6 @@
   "resolved" "https://registry.npmjs.org/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz"
   "version" "1.0.0"
 
-<<<<<<< HEAD
 "filename-reserved-regex@^2.0.0":
   "integrity" "sha1-q/c9+rc10EVECr/qLZHzieu/oik="
   "resolved" "https://registry.npmjs.org/filename-reserved-regex/-/filename-reserved-regex-2.0.0.tgz"
@@ -8627,8 +8603,6 @@
     "strip-outer" "^1.0.1"
     "trim-repeated" "^1.0.0"
 
-=======
->>>>>>> origin/main
 "filesize@6.1.0":
   "integrity" "sha512-LpCHtPQ3sFx67z+uh2HnSyWSLLu5Jxo21795uRDuar/EOuYWXib5EmPaGIBuSnRqH2IODiKA2k5re/K9OnN/Yg=="
   "resolved" "https://registry.npmjs.org/filesize/-/filesize-6.1.0.tgz"
@@ -9067,7 +9041,6 @@
   dependencies:
     "assert-plus" "^1.0.0"
 
-<<<<<<< HEAD
 "gh-pages@^3.2.3":
   "integrity" "sha512-jA1PbapQ1jqzacECfjUaO9gV8uBgU6XNMV0oXLtfCX3haGLe5Atq8BxlrADhbD6/UdG9j6tZLWAkAybndOXTJg=="
   "resolved" "https://registry.npmjs.org/gh-pages/-/gh-pages-3.2.3.tgz"
@@ -9081,8 +9054,6 @@
     "fs-extra" "^8.1.0"
     "globby" "^6.1.0"
 
-=======
->>>>>>> origin/main
 "git-raw-commits@^2.0.8":
   "integrity" "sha512-sHhX5lsbG9SOO6yXdlwgEMQ/ljIn7qMpAbJZCGfXX2fq5T8M5SrDnpYk9/4HswTildcIqatsWa91vty6VhWSaQ=="
   "resolved" "https://registry.npmjs.org/git-raw-commits/-/git-raw-commits-2.0.10.tgz"
@@ -16332,15 +16303,6 @@
     "@storybook/core-events" "^6.3.0"
     "ts-dedent" "^2.1.1"
 
-<<<<<<< HEAD
-=======
-"storybook@file:C:\\Users\\felip\\source\\optsol\\components\\components-frontend-react\\sdk-front-end\\examples\\storybook":
-  "resolved" "file:examples/storybook"
-  "version" "1.0.0"
-  dependencies:
-    "@optsol/react" "^1.0.1"
-
->>>>>>> origin/main
 "stream-browserify@^2.0.1":
   "integrity" "sha512-nX6hmklHs/gr2FuxYDltq8fJA1GDlxKQCz8O/IM4atRqBH8OORmBNgfvW5gG10GT/qQ9u0CzIvr2X5Pkt6ntqg=="
   "resolved" "https://registry.npmjs.org/stream-browserify/-/stream-browserify-2.0.2.tgz"
@@ -16583,7 +16545,6 @@
   "resolved" "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
   "version" "3.1.1"
 
-<<<<<<< HEAD
 "strip-outer@^1.0.1":
   "integrity" "sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg=="
   "resolved" "https://registry.npmjs.org/strip-outer/-/strip-outer-1.0.1.tgz"
@@ -16591,8 +16552,6 @@
   dependencies:
     "escape-string-regexp" "^1.0.2"
 
-=======
->>>>>>> origin/main
 "strong-log-transformer@^2.1.0":
   "integrity" "sha512-B3Hgul+z0L9a236FAUC9iZsL+nVHgoCJnqCbN588DjYxvGXaXaaFbfmQ/JhvKjZwsOukuR72XbHv71Qkug0HxA=="
   "resolved" "https://registry.npmjs.org/strong-log-transformer/-/strong-log-transformer-2.1.0.tgz"
@@ -17044,7 +17003,6 @@
   "resolved" "https://registry.npmjs.org/trim-newlines/-/trim-newlines-3.0.1.tgz"
   "version" "3.0.1"
 
-<<<<<<< HEAD
 "trim-repeated@^1.0.0":
   "integrity" "sha1-42RqLqTokTEr9+rObPsFOAvAHCE="
   "resolved" "https://registry.npmjs.org/trim-repeated/-/trim-repeated-1.0.0.tgz"
@@ -17052,8 +17010,6 @@
   dependencies:
     "escape-string-regexp" "^1.0.2"
 
-=======
->>>>>>> origin/main
 "trim-trailing-lines@^1.0.0":
   "integrity" "sha512-rjUWSqnfTNrjbB9NQWfPMH/xRK1deHeGsHoVfpxJ++XeYXE0d6B1En37AHfw3jtfTU7dzMzZL2jjpe8Qb5gLIQ=="
   "resolved" "https://registry.npmjs.org/trim-trailing-lines/-/trim-trailing-lines-1.1.4.tgz"
