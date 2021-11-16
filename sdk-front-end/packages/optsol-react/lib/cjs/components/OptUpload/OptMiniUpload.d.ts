@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 import React, { FocusEventHandler } from "react";
 import { DropzoneOptions } from "react-dropzone";
 export interface UploadContainerOptions extends DropzoneOptions {
     icon?: string;
     size?: number;
     borderStyle?: "dashed" | "solid";
+=======
+import React, { FocusEventHandler } from 'react';
+import { DropzoneOptions } from 'react-dropzone';
+export interface UploadContainerOptions extends DropzoneOptions {
+    icon?: string;
+    size?: number;
+    borderStyle?: 'dashed' | 'solid';
+>>>>>>> origin/main
 }
 export interface OptMiniUploadProps {
     filesDescription?: string;

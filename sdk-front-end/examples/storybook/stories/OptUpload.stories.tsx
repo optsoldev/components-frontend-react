@@ -1,3 +1,4 @@
+<<<<<<< HEAD:sdk-front-end/examples/storybook/stories/OptUpload.stories.tsx
 import {
   OptMiniUpload,
   OptMiniUploadProps,
@@ -6,6 +7,11 @@ import {
 } from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React, { useState } from "react";
+=======
+import { OptMiniUpload, OptMiniUploadProps, OptUpload, OptUploadProps } from "@optsol/react";
+import { Meta, Story } from "@storybook/react/types-6-0";
+import { useState } from "react";
+>>>>>>> origin/main:sdk-front-end/src/lib/components/OptUpload/OptUpload.stories.tsx
 
 export default {
   title: "OptUpload",

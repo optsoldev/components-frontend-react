@@ -1,3 +1,6 @@
 node_modules
+<<<<<<< HEAD
 storybook-static
 packages/*/lib
+=======
+>>>>>>> origin/main
