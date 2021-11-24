@@ -14,7 +14,7 @@
 ### **Development mode**
   In optsol/react:  
   
-      npm start
+      npm watch
 
   In examples/side-layout:
   
