@@ -18,7 +18,7 @@ export interface OptGridRef {
   refresh: () => void;
 }
 
-const OptGridInternal = <T extends object>(
+const OptGridInternal = <T extends {}>(
   {
     columns,
     data,
@@ -216,6 +216,6 @@ const OptGridInternal = <T extends object>(
   );
 };
 
-export const OptGrid = React.forwardRef(OptGridInternal) as <T extends object>(
+export const OptGrid = React.forwardRef(OptGridInternal) as <T extends {}>(
   props: OptGridProps<T> & { ref?: React.ForwardedRef<OptGridRef> }
 ) => ReturnType<typeof OptGridInternal>;
