@@ -153,7 +153,6 @@ const OptGridInternal = <T extends {}>(
   }));
 
   React.useEffect(() => {
-    console.log("useEffect");
     load();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

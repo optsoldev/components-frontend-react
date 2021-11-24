@@ -52,5 +52,6 @@ export interface OptGridProps<T> {
   actionsPosition?: 'start' | 'end';
   columns: OptGridColumn<T>[];
   onRowClick?: (data: T) => void;
+  onSelect?: (selectedData: T[]) => void;
   title: string;
 }
