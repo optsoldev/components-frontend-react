@@ -3,12 +3,15 @@
 ----------  
 
 ## **Setup**
-    npx lerna bootstrap
-    npx lerna link --force-local 
+    npm run setup
 
 ----------  
 
 ### **Development mode**
+  In optsol/react:  
+  
+      npm start      
+
   In optsol/react:  
   
       npm start
