@@ -1,19 +1,13 @@
-import React, { ForwardedRef, useImperativeHandle, useState } from "react";
-import { Column, usePagination, useTable } from "react-table";
-import { OptGridDataRequest, OptGridProps, OptGridRequest } from ".";
-import { OptGridHeaders } from "./OptGridHeaders";
-import { OptGridPagination } from "./OptGridPagination";
-import { OptGridRows } from "./OptGridRows";
-import * as S from "./styles";
-
-interface OptGridControls<T> {
-  totalCount: number;
-  pageCount: number;
-  loading: boolean;
-  error: boolean;
-  data: T[];
-}
-
+import React, { ForwardedRef, useState } from "react";
+import { Column } from "react-table";
+import {
+  OptGridProps,
+  OptGridDataRequest,
+  OptGridRequest,
+  OptGridControls,
+} from ".";
+import { OptDefaultGrid } from "./OptDefaultGrid";
+import { OptSelectableGrid } from "./OptSelectableGrid";
 export interface OptGridRef {
   refresh: () => void;
 }
@@ -23,10 +17,11 @@ const OptGridInternal = <T extends {}>(
     columns,
     data,
     options,
-    onRowClick,
     title,
     actions,
     actionsPosition,
+    onRowClick,
+    onSelect,
   }: OptGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) => {
@@ -58,44 +53,25 @@ const OptGridInternal = <T extends {}>(
     [columns]
   );
 
-  const table = useTable<T>(
-    {
-      columns: internalColumns,
-      data: controls.data,
-      initialState: { pageIndex: 0, pageSize: options?.pageSize ?? 10 }, // Pass our hoisted table state
-      manualPagination: true, // Tell the usePagination
-      // hook that we'll handle our own data fetching
-      // This means we'll also have to provide our own
-      // pageCount.
-      pageCount: controls.pageCount,
-    },
-    usePagination
-  );
+  function load(pageIndex: number, pageSize: number) {
+    if (isRemote) {
+      loadRemote(data as OptGridDataRequest<T>, pageIndex, pageSize);
+    } else {
+      // todo
+      loadLocal(data as T[], pageIndex, pageSize);
+    }
+  }
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    prepareRow,
-    page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    // Get the state from the instance
-    state: { pageIndex, pageSize },
-  } = table;
-
-  function loadRemote(data: OptGridDataRequest<T>) {
+  function loadRemote(
+    data: OptGridDataRequest<T>,
+    pageIndex: number,
+    pageSize = 10
+  ) {
     const query: OptGridRequest = {
       orderBy: "",
       orderDirection: "asc",
       page: pageIndex,
-      pageSize: pageSize ?? 10,
+      pageSize: pageSize,
       search: "",
     };
 
@@ -122,7 +98,7 @@ const OptGridInternal = <T extends {}>(
       });
   }
 
-  function loadLocal(data: T[]) {
+  function loadLocal(data: T[], pageIndex: number, pageSize: number) {
     const startRow = pageSize * pageIndex;
     const endRow = startRow + pageSize;
     const slicedData = data.slice(startRow, endRow);
@@ -137,81 +113,24 @@ const OptGridInternal = <T extends {}>(
     });
   }
 
-  function load() {
-    if (isRemote) {
-      loadRemote(data as OptGridDataRequest<T>);
-    } else {
-      // todo
-      loadLocal(data as T[]);
-    }
-  }
-
-  useImperativeHandle(ref, () => ({
-    refresh: () => {
-      load();
-    },
-  }));
-
-  React.useEffect(() => {
-    load();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageIndex, pageSize]);
-
+  const attrs = {
+    ref,
+    columns,
+    internalColumns,
+    options,
+    title,
+    actions,
+    actionsPosition,
+    controls,
+    load,
+    onRowClick,
+    onSelect: options?.selection ? onSelect : undefined,
+  };
   return (
-    <S.GridContainer className="opt-grid">
-      <S.Title>{title}</S.Title>
-
-      <div className="tableWrap">
-        <S.StyledTable {...getTableProps()}>
-          <OptGridHeaders
-            headerGroups={headerGroups}
-            columns={columns}
-            actionsPosition={actionsPosition}
-          />
-
-          <tbody {...getTableBodyProps()}>
-            <OptGridRows
-              columns={columns}
-              onRowClick={onRowClick}
-              page={page}
-              prepareRow={prepareRow}
-              actions={actions}
-              actionsPosition={actionsPosition}
-            />
-
-            {controls.loading && (
-              <tr>
-                <td colSpan={10000} style={{ textAlign: "center" }}>
-                  Carregando...
-                </td>
-              </tr>
-            )}
-
-            {controls.error && (
-              <tr>
-                <td colSpan={10000} style={{ textAlign: "center" }}>
-                  Erro ao carregar registros
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </S.StyledTable>
-      </div>
-
-      <OptGridPagination
-        canPreviousPage={canPreviousPage}
-        canNextPage={canNextPage}
-        pageOptions={pageOptions}
-        pageCount={pageCount}
-        gotoPage={gotoPage}
-        nextPage={nextPage}
-        previousPage={previousPage}
-        setPageSize={setPageSize}
-        pageIndex={pageIndex}
-        pageSize={pageSize}
-      />
-    </S.GridContainer>
+    <>
+      {options?.selection && <OptSelectableGrid {...attrs} />}
+      {!options?.selection && <OptDefaultGrid {...attrs} />}
+    </>
   );
 };
 

@@ -1,4 +1,6 @@
+import { Checkbox } from '@mui/material';
 import color from 'color';
+import React from 'react';
 import styled from 'styled-components';
 
 export const GridContainer = styled.div`
@@ -72,7 +74,7 @@ export const StyledTable = styled.table`
   }
 `;
 
-export const StyledTh = styled.th<{ customWidth?: number }>`
+export const StyledTh = styled.th<{ customWidth?: string | number }>`
   ${({ customWidth: width }) => {
     if (!!width) {
       return `width: ${width}px`;
@@ -80,3 +82,24 @@ export const StyledTh = styled.th<{ customWidth?: number }>`
     return '';
   }}
 `;
+
+
+const areEqual = (prevProps: any, nextProps: any) =>
+  prevProps.checked === nextProps.checked && prevProps.indeterminate === nextProps.indeterminate
+
+
+export const CustomCheckbox = React.memo(
+  styled(Checkbox)({
+    fontSize: '1rem',
+    margin: '-8px 0 -8px -15px',
+    padding: '8px 9px',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    '& svg': {
+      width: 24,
+      height: 24,
+    },
+  }),
+  areEqual
+)

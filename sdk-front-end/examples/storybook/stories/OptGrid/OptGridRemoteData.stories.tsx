@@ -111,6 +111,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
         data={carregar}
         options={options}
         onRowClick={onRowClick}
+        onSelect={console.log}
         actions={[
           (rowData) => ({
             icon: { path: mdiDelete, color: ColorPalette.gray3 },
