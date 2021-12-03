@@ -35,9 +35,17 @@
 ----------  
 
 ### **Publish**
-  Inside packages/optsol-react:
+  In packages/optsol-react:
       
       npm publish
+
+----------  
+
+### **Publish live storybook**
+  In examples/storybook:
+      
+      npm run predeploy
+      npm run deploy-storybook
 
 ----------  
 

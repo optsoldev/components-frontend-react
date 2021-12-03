@@ -2,19 +2,19 @@
 
 ----------  
 
+### [Live Storybook](https://optsoldev.github.io/components-frontend-react/)
+
+        
 ## **Setup**
-    npm run setup
+    npx lerna bootstrap
+    npx lerna link --force-local 
 
 ----------  
 
 ### **Development mode**
   In optsol/react:  
   
-      npm start      
-
-  In optsol/react:  
-  
-      npm start
+      npm watch
 
   In examples/side-layout:
   
@@ -35,9 +35,17 @@
 ----------  
 
 ### **Publish**
-  Inside packages/optsol-react:
+  In packages/optsol-react:
       
       npm publish
+
+----------  
+
+### **Publish live storybook**
+  In examples/storybook:
+      
+      npm run predeploy
+      npm run deploy-storybook
 
 ----------  
 
