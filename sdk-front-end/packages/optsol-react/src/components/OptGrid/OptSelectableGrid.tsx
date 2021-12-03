@@ -32,7 +32,7 @@ const OptGridInternal = <T extends {}>(
   }: OptInternalSelectableGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) => {
-  const selectionHook = (hooks: Hooks<any>) => {
+  const selectionHook = (hooks: Hooks<T>) => {
     hooks.allColumns.push((columns) => [
       // Let's make a column for selection
       {
@@ -43,19 +43,29 @@ const OptGridInternal = <T extends {}>(
         align: "center",
         // The header can use the table's getToggleAllRowsSelectedProps method
         // to render a checkbox
-        Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<any>) => (
-          <S.CustomCheckbox {...getToggleAllRowsSelectedProps()} />
+        Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<T>) => (
+          <S.CustomCheckbox
+            {...getToggleAllRowsSelectedProps()}
+            onClick={(e: any) => {
+              e.stopPropagation();
+            }}
+          />
         ),
         // The cell can use the individual row's getToggleRowSelectedProps method
         // to the render a checkbox
-        Cell: ({ row }: CellProps<any>) => (
+        Cell: ({ row }: CellProps<T>) => (
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <S.CustomCheckbox {...row.getToggleRowSelectedProps()} />
+            <S.CustomCheckbox
+              {...row.getToggleRowSelectedProps()}
+              onClick={(e: any) => {
+                e.stopPropagation();
+              }}
+            />
           </div>
         ),
       },
       ...columns,
-    ]);    
+    ]);
   };
 
   function constructTable() {
