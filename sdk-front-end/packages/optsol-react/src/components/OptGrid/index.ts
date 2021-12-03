@@ -1,9 +1,10 @@
+import { Column } from 'react-table';
 import { IconPathColor } from '../../types/IconPathColor';
 
-export type { OptGridRef } from './OptGrid';
 export { OptGrid } from './OptGrid';
+export type { OptGridRef } from './OptGrid';
 
-export interface OptGridResponse<T extends object> {
+export interface OptGridResponse<T> {
   data: T[];
   page: number;
   totalCount: number;
@@ -25,7 +26,7 @@ export interface OptGridOptions {
   selection?: boolean;
 }
 
-export interface OptGridAction<T extends object> {
+export interface OptGridAction<T> {
   disabled?: boolean;
   icon: IconPathColor; //| JSX.Element;
   isFreeAction?: boolean;
@@ -35,7 +36,7 @@ export interface OptGridAction<T extends object> {
   hidden?: boolean;
 }
 
-export interface OptGridColumn<T extends object> {
+export interface OptGridColumn<T> {
   width?: number;
   title: string;
   field: keyof T;
@@ -43,14 +44,35 @@ export interface OptGridColumn<T extends object> {
   align?: 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent';
 }
 
-export type OptGridDataRequest<T extends object> = (query: OptGridRequest) => Promise<OptGridResponse<T>>;
+export type OptGridDataRequest<T> = (query: OptGridRequest) => Promise<OptGridResponse<T>>;
 
-export interface OptGridProps<T extends object> {
+export interface OptGridProps<T> {
   data: T[] | OptGridDataRequest<T>;
   options?: OptGridOptions;
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
   actionsPosition?: 'start' | 'end';
   columns: OptGridColumn<T>[];
-  onRowClick: (data: T) => void;
+  onRowClick?: (data: T) => void;
+  onSelect?: (selectedData: T[]) => void;
   title: string;
+}
+
+export interface OptGridControls<T> {
+  totalCount: number;
+  pageCount: number;
+  loading: boolean;
+  error: boolean;
+  data: T[];
+}
+
+export interface OptInternalGridProps<T extends object> {
+  title: string;
+  controls: OptGridControls<T>;
+  options?: OptGridOptions;
+  actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
+  actionsPosition?: 'start' | 'end';
+  columns: OptGridColumn<T>[];
+  internalColumns:  Column<T>[];
+  onRowClick?: (data: T) => void;
+  load: (pageIndex: number,  pageSize: number) => void
 }

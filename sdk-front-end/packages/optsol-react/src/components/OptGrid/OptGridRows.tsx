@@ -7,7 +7,7 @@ interface Props<T extends object> {
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[]
   actionsPosition?: 'start' | 'end'
   columns: OptGridColumn<T>[]
-  onRowClick: (data: T) => void
+  onRowClick?: (data: T) => void
   page: Row<T>[]
   prepareRow: (row: Row<T>) => void
 }
@@ -20,6 +20,7 @@ export const OptGridRows = <T extends object>({
   actionsPosition,
   columns
 }: Props<T>) => {
+
   function getOptColumn(id: string) {
     return columns.find((x) => x.field === id)
   }
@@ -32,7 +33,7 @@ export const OptGridRows = <T extends object>({
         return (
           <tr
             onClick={(_) => {
-              onRowClick(row.values as T)
+              onRowClick && onRowClick(row.values as T)
             }}
             {...row.getRowProps({})}
           >
