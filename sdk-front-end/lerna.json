@@ -1,5 +1,6 @@
 {
   "npmClient": "npm",
   "useWorkspaces": true,
-  "version": "independent"
+  "version": "independent",
+  "forceLocal": true  
 }

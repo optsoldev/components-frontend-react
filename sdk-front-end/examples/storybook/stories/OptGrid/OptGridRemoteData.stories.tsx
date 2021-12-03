@@ -20,7 +20,7 @@ interface Pessoa {
 }
 
 export default {
-  title: "OptGrid",
+  title: "OptGrid Remota",
   component: OptGrid,
 } as Meta;
 
@@ -54,6 +54,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   search,
   actionsPosition,
   onRowClick,
+  onSelect,
   onDelete,
   onApprove,
   selection,
@@ -111,6 +112,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
         data={carregar}
         options={options}
         onRowClick={onRowClick}
+        onSelect={onSelect}
         actions={[
           (rowData) => ({
             icon: { path: mdiDelete, color: ColorPalette.gray3 },
@@ -182,6 +184,10 @@ OptGridRemota.argTypes = {
   },
   onDelete: {
     action: (data: Pessoa) => "onDelete clicked" + data,
+    table: { disable: true },
+  },
+  onSelect: {
+    action: (data) => "onSelect fired " + data,
     table: { disable: true },
   },
   onApprove: {
