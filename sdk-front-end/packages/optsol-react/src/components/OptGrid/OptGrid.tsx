@@ -4,7 +4,7 @@ import {
   OptGridProps,
   OptGridDataRequest,
   OptGridRequest,
-  OptGridControls,
+  OptGridControls
 } from ".";
 import { OptDefaultGrid } from "./OptDefaultGrid";
 import { OptSelectableGrid } from "./OptSelectableGrid";
