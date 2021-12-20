@@ -99,6 +99,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
             title: "Id",
             field: "id",
             width: 80,
+            hidden: true
           },
           {
             title: "Nome",

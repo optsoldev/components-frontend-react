@@ -42,6 +42,7 @@ export interface OptGridColumn<T> {
   field: keyof T;
   render?: (data: T) => JSX.Element;
   align?: 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent';
+  hidden?: boolean;
 }
 
 export type OptGridDataRequest<T> = (query: OptGridRequest) => Promise<OptGridResponse<T>>;
@@ -72,6 +73,7 @@ export interface OptInternalGridProps<T extends object> {
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
   actionsPosition?: 'start' | 'end';
   columns: OptGridColumn<T>[];
+  hiddenColumns: string[];
   internalColumns:  Column<T>[];
   onRowClick?: (data: T) => void;
   load: (pageIndex: number,  pageSize: number) => void
