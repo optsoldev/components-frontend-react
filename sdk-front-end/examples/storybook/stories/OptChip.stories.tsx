@@ -21,7 +21,7 @@ OptChipDialog.args = {
   textcolor: ColorPalette.white,
 };
 
-OptChipDialog.storyName = "Option Chip";
+OptChipDialog.storyName = "Opt Chip";
 
 OptChipDialog.argTypes = {
   ref: {

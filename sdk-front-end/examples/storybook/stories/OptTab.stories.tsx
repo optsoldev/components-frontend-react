@@ -23,6 +23,6 @@ export const OptTabsExample: Story<{}> = (args) => {
 
 OptTabsExample.args = {};
 
-OptTabsExample.storyName = "Opt Tab Select";
+OptTabsExample.storyName = "Opt Tabs";
 
 OptTabsExample.argTypes = {};

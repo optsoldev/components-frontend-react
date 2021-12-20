@@ -6,7 +6,7 @@ import { Meta, Story } from "@storybook/react/types-6-0";
 import { Route, Switch } from "react-router-dom";
 
 export default {
-  title: "Layout",
+  title: "OptLayout",
   component: OptLayout,
   argTypes: {
     backgroundColor: { control: "color" },
@@ -58,8 +58,10 @@ const routes = (
 
 const Template: Story<OptLayoutProps> = (args) => <OptLayout {...args} />;
 
-export const Principal = Template.bind({});
-Principal.args = {
+export const OptLayoutExample = Template.bind({});
+OptLayoutExample.args = {
   routes,
   sections,
 };
+
+OptLayoutExample.storyName = "Opt Layout";

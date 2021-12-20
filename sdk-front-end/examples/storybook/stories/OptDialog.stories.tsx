@@ -5,7 +5,7 @@ import {
   OptConfirmationDialogProps,
   OptDialog,
   OptDialogActions,
-  OptDialogProps
+  OptDialogProps,
 } from "@optsol/react";
 import { Meta, Story } from "@storybook/react";
 import { ColorPalette } from "../shared/colors";
@@ -60,3 +60,6 @@ OptConfirmationDialogExample.argTypes = {
     table: { disable: true },
   },
 };
+
+OptDialogExample.storyName = "Opt Dialog";
+OptConfirmationDialogExample.storyName = "Opt Confirmation Dialog";

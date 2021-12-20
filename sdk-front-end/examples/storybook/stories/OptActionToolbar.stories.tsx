@@ -7,12 +7,12 @@ import {
   mdiPencil,
   mdiStrategy,
   mdiThumbDown,
-  mdiThumbUp
+  mdiThumbUp,
 } from "@mdi/js";
 import {
   OptActionButton,
   OptActionToolbar,
-  OptActionToolbarProps
+  OptActionToolbarProps,
 } from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { ColorPalette } from "../shared/colors";
@@ -92,3 +92,6 @@ OptActionToolbarExample2.args = {
   disabled: false,
   color: "#000",
 };
+
+OptActionToolbarExample.storyName = "Opt Action Toolbar 1";
+OptActionToolbarExample2.storyName = "Opt Action Toolbar 2";

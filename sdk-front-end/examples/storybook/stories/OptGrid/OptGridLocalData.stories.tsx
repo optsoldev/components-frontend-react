@@ -1,6 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { mdiDelete } from "@mdi/js";
-import { OptGrid, OptGridOptions, OptGridProps, OptGridRef } from "@optsol/react";
+import {
+  OptGrid,
+  OptGridOptions,
+  OptGridProps,
+  OptGridRef,
+} from "@optsol/react";
 import { Meta, Story } from "@storybook/react";
 import React, { useRef } from "react";
 
@@ -172,7 +177,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
   );
 };
 
-OptGridLocalData.storyName = "OptGrid Local";
+OptGridLocalData.storyName = "Opt Grid Local";
 
 OptGridLocalData.args = {
   title: "Grid sem dados remotos",

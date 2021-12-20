@@ -40,6 +40,7 @@
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@mdi/js": "^6.5.95",
+    "color": "^3.2.1",
     "react-draggable": "^4.4.4",
     "react-dropzone": "^11.4.2",
     "react-select": "^5.2.1",
