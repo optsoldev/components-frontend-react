@@ -10,6 +10,7 @@ const OptGridInternal = <T extends {}>(
     controls,
     options,
     columns,
+    hiddenColumns,
     internalColumns,
     actions,
     actionsPosition,
@@ -23,7 +24,11 @@ const OptGridInternal = <T extends {}>(
     {
       columns: internalColumns,
       data: controls.data,
-      initialState: { pageIndex: 0, pageSize: options?.pageSize ?? 10 }, // Pass our hoisted table state
+      initialState: {
+        pageIndex: 0,
+        pageSize: options?.pageSize ?? 10,
+        hiddenColumns: hiddenColumns,
+      }, // Pass our hoisted table state
       manualPagination: true, // Tell the usePagination
       // hook that we'll handle our own data fetching
       // This means we'll also have to provide our own
@@ -50,8 +55,6 @@ const OptGridInternal = <T extends {}>(
     // Get the state from the instance
     state: { pageIndex, pageSize },
   } = table;
-
-
 
   useImperativeHandle(ref, () => ({
     refresh: () => {

@@ -4,7 +4,7 @@ import {
   OptGridProps,
   OptGridDataRequest,
   OptGridRequest,
-  OptGridControls
+  OptGridControls,
 } from ".";
 import { OptDefaultGrid } from "./OptDefaultGrid";
 import { OptSelectableGrid } from "./OptSelectableGrid";
@@ -113,9 +113,17 @@ const OptGridInternal = <T extends {}>(
     });
   }
 
+  const hiddenColumns = columns
+    .map((column) => {
+      if (column.hidden) return column.field.toString();
+      return "";
+    })
+    .filter((column) => column !== "");
+
   const attrs = {
     ref,
     columns,
+    hiddenColumns,
     internalColumns,
     options,
     title,
