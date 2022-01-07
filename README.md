@@ -1,20 +1,20 @@
-## OPTSOL components library for React
+# OPTSOL components library for React
 
 ----------  
 
+## [Live Storybook](https://optsoldev.github.io/components-frontend-react/)
+
 ## **Setup**
+
     npm run setup
 
 ----------  
 
 ### **Development mode**
-  In optsol/react:  
-  
-      npm start      
 
   In optsol/react:  
   
-      npm start
+      npm run watch
 
   In examples/side-layout:
   
@@ -23,23 +23,36 @@
 ----------  
 
 ### **Add new package:**
+
     npx lerna add react-table --scope @optsol/react
     npx lerna add @types/react-table --scope @optsol/react --dev
 
 ----------  
 
 ### **Package:**
+
     npm run package
   A new tgz file will be generated in packages/optsol-react
 
 ----------  
 
 ### **Publish**
-  Inside packages/optsol-react:
-      
+
+  In packages/optsol-react:
+
       npm publish
 
 ----------  
 
+### **Publish live storybook**
+
+  In examples/storybook:
+
+      npm run predeploy
+      npm run deploy-storybook
+
+----------  
+
 ### **When "No matching version found for @optsol/react@X.X.X" try running:**
+
       npx lerna link --force-local

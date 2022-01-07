@@ -20,6 +20,7 @@ export const OptGridRows = <T extends object>({
   actionsPosition,
   columns
 }: Props<T>) => {
+
   function getOptColumn(id: string) {
     return columns.find((x) => x.field === id)
   }

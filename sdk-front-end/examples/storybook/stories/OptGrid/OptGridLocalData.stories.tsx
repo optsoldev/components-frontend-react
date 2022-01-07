@@ -17,7 +17,7 @@ interface Pessoa {
 }
 
 export default {
-  title: "OptGrid",
+  title: "OptGrid Local",
   component: OptGrid,
 } as Meta;
 
@@ -107,6 +107,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
   search,
   actionsPosition,
   onRowClick,
+  onSelect,
   onDelete,
   selection,
 }) => {
@@ -163,6 +164,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
         data={LOCAL_DATA}
         options={options}
         onRowClick={onRowClick}
+        onSelect={onSelect}
         actions={[
           (rowData) => ({
             icon: { path: mdiDelete },
@@ -222,11 +224,15 @@ OptGridLocalData.argTypes = {
     table: { disable: true },
   },
   onRowClick: {
-    action: "onRowClick clicked",
+    action: "onRowClick fired",
+    table: { disable: true },
+  },  
+  onSelect: {
+    action: (data) => "onSelect fired " + data,
     table: { disable: true },
   },
   onDelete: {
-    action: (data: Pessoa) => "onDelete clicked" + data,
+    action: (data: Pessoa) => "onDelete fired " + data,
     table: { disable: true },
   },
 };

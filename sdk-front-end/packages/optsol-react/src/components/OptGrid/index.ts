@@ -1,3 +1,4 @@
+import { Column } from 'react-table';
 import { IconPathColor } from '../../types/IconPathColor';
 
 export { OptGrid } from './OptGrid';
@@ -41,6 +42,7 @@ export interface OptGridColumn<T> {
   field: keyof T;
   render?: (data: T) => JSX.Element;
   align?: 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent';
+  hidden?: boolean;
 }
 
 export type OptGridDataRequest<T> = (query: OptGridRequest) => Promise<OptGridResponse<T>>;
@@ -54,4 +56,25 @@ export interface OptGridProps<T> {
   onRowClick?: (data: T) => void;
   onSelect?: (selectedData: T[]) => void;
   title: string;
+}
+
+export interface OptGridControls<T> {
+  totalCount: number;
+  pageCount: number;
+  loading: boolean;
+  error: boolean;
+  data: T[];
+}
+
+export interface OptInternalGridProps<T extends object> {
+  title: string;
+  controls: OptGridControls<T>;
+  options?: OptGridOptions;
+  actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
+  actionsPosition?: 'start' | 'end';
+  columns: OptGridColumn<T>[];
+  hiddenColumns: string[];
+  internalColumns:  Column<T>[];
+  onRowClick?: (data: T) => void;
+  load: (pageIndex: number,  pageSize: number) => void
 }
