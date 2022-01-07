@@ -8,7 +8,6 @@ import { OptBreadcrumb } from '../OptBreadcrumb/OptBreadcrumb';
 import { OptAppBarAvatar } from './OptAppBarAvatar';
 import * as S from './styles';
 
-
 const useStyles = makeStyles((theme: MaterialTheme) =>
   createStyles({
     appBar: {

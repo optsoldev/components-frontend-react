@@ -1,4 +1,4 @@
-import { OptSearchField } from "@optsol/react";
+import { OptSearchField, OptSearchFieldProps } from "@optsol/react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
@@ -7,14 +7,10 @@ export default {
   component: OptSearchField,
 } as ComponentMeta<typeof OptSearchField>;
 
-const Template: ComponentStory<
-  typeof OptSearchField & {
-    placeholder: string;
-    noBorder: boolean;
-    paddingX: number;
-    width: number;
-  }
-> = (args) => {
+interface OptSearchFieldArgs extends OptSearchFieldProps {
+}
+
+const Template: ComponentStory<typeof OptSearchField> = (args) => {
   return <OptSearchField {...args} />;
 };
 
@@ -27,4 +23,10 @@ OptSearchFieldExample.args = {
   width: 0,
 };
 
+OptSearchFieldExample.argTypes = {
+  onSearch: {
+    action: "onSearch fired",
+    table: { disable: true },
+  },
+};
 OptSearchFieldExample.storyName = "Opt Search Field";

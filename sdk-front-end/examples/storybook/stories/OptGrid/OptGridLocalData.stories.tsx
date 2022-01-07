@@ -196,10 +196,7 @@ OptGridLocalData.argTypes = {
     defaultValue: true,
     name: "Pesquisa rápida",
   },
-  isLoading: {
-    defaultValue: false,
-    name: "Carregando",
-  },
+ 
   actionsPosition: {
     defaultValue: "start",
     name: "Posição da coluna de ações",
@@ -207,9 +204,6 @@ OptGridLocalData.argTypes = {
   selection: {
     defaultValue: false,
     name: "Selecionável",
-  },
-  ref: {
-    table: { disable: true },
   },
   data: {
     table: { disable: true },

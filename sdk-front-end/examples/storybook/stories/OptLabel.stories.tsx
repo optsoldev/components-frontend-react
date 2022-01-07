@@ -68,7 +68,6 @@ const Template: ComponentStory<typeof OptLabel> = (args) => {
             htmlFor="editable"
             accessKey="p"
             color="primary"
-            contentEditable={true}
           >
             Editable
           </OptLabel>

@@ -1,6 +1,7 @@
-import { OptTab, OptTabs } from "@optsol/react";
+import { OptLayoutProvider, OptTab, OptTabs } from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
+import { TEST_THEME } from "../shared/constants";
 
 export default {
   title: "OptTabs",
@@ -14,10 +15,12 @@ export const OptTabsExample: Story<{}> = (args) => {
     setTab(novaTab);
   };
   return (
-    <OptTabs onChange={alterarTab} tab={tab}>
-      <OptTab label="Splash" tabIndex={0} />
-      <OptTab label="Feed" tabIndex={1} />
-    </OptTabs>
+    <OptLayoutProvider theme={TEST_THEME}>
+      <OptTabs onChange={alterarTab} tab={tab}>
+        <OptTab label="Splash" tabIndex={0} />
+        <OptTab label="Feed" tabIndex={1} />
+      </OptTabs>
+    </OptLayoutProvider>
   );
 };
 

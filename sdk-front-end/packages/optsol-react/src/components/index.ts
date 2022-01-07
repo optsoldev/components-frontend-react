@@ -12,7 +12,7 @@ export * from './OptInfiniteScrollList';
 export * from './OptLabel';
 export * from './OptLayout';
 export * from './OptLoading';
-export * from './OptSearchField';
+export * from './OptSearchField/OptSearchField';
 export * from './OptSelect';
 export * from './OptSideAppbar';
 export * from './OptSidebar';

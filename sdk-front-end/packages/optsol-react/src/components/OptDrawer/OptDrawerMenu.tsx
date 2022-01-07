@@ -1,12 +1,11 @@
-import { mdiMenuOpen, mdiPin, mdiPinOff } from '@mdi/js';
-import { Icon } from '@mdi/react';
-import { IconButton, List, ListItemIcon, ListItemText } from '@mui/material';
-import React from 'react';
-import { OptMenuSection } from '.';
-import { useOptTheme } from '../../contexts/theme/themeContext';
-import { OptDivider } from '../OptDivider';
-import * as S from './styles';
-
+import { mdiMenuOpen, mdiPin, mdiPinOff } from "@mdi/js";
+import { Icon } from "@mdi/react";
+import { IconButton, List, ListItemIcon, ListItemText } from "@mui/material";
+import React from "react";
+import { OptMenuSection } from ".";
+import { useOptTheme } from "../../contexts/theme/themeContext";
+import { OptDivider } from "../OptDivider";
+import * as S from "./styles";
 
 interface OptDrawerMenuProps {
   sections: OptMenuSection[];
@@ -34,7 +33,11 @@ export const OptDrawerMenu = ({
       {!docked && (
         <S.CloseDrawerContainer>
           <IconButton onClick={onHideDrawer} size="large">
-            <Icon size={1.8} path={mdiMenuOpen} color={currentTheme.drawer.close.color} />
+            <Icon
+              size={1.8}
+              path={mdiMenuOpen}
+              color={currentTheme.drawer.close.color}
+            />
           </IconButton>
         </S.CloseDrawerContainer>
       )}
@@ -49,9 +52,16 @@ export const OptDrawerMenu = ({
                 to={item.path}
                 activeClassName={S.activeLinkClass}
                 exact={item.activeShouldBeExact}
-                key={index}>
+                key={index}
+              >
                 <S.MenuListItem button>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemIcon>
+                    {typeof item.icon === "string" ? (
+                      <Icon size={1} path={item.icon} />
+                    ) : (
+                      <>{item.icon}</>
+                    )}
+                  </ListItemIcon>
                   <ListItemText primary={item.title} />
                 </S.MenuListItem>
               </S.DrawerNavLink>
@@ -65,7 +75,11 @@ export const OptDrawerMenu = ({
           {drawerLogo}
 
           <IconButton onClick={onToggleDockDrawer} size="large">
-            <Icon size={1} path={docked ? mdiPinOff : mdiPin} color={currentTheme.drawer.close.color} />
+            <Icon
+              size={1}
+              path={docked ? mdiPinOff : mdiPin}
+              color={currentTheme.drawer.close.color}
+            />
           </IconButton>
         </S.FooterHeader>
 

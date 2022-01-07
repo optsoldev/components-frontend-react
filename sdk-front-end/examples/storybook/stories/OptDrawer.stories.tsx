@@ -5,7 +5,12 @@ import {
   mdiDatabaseCog,
   mdiHome,
 } from "@mdi/js";
-import { OptDrawerMenu, OptTheme } from "@optsol/react";
+import {
+  OptDrawerMenu,
+  OptLayoutProvider,
+  OptMenuSection,
+  OptTheme,
+} from "@optsol/react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { ColorPalette } from "../shared/colors";
@@ -26,7 +31,7 @@ const Template: ComponentStory<typeof OptDrawerMenu> = (args) => {
     },
   };
 
-  const sectionsDefault = [
+  const sectionsDefault: OptMenuSection[] = [
     {
       title: "Main",
       items: [
@@ -66,11 +71,13 @@ const Template: ComponentStory<typeof OptDrawerMenu> = (args) => {
   ];
 
   return (
-    <OptDrawerMenu
-      sections={sectionsDefault}
-      onToggleDockDrawer={() => {}}
-      version={"1.0.0"}
-    />
+    <OptLayoutProvider theme={theme}>
+      <OptDrawerMenu
+        sections={sectionsDefault}
+        onToggleDockDrawer={() => {}}
+        version={"1.0.0"}
+      />
+    </OptLayoutProvider>
   );
 };
 
