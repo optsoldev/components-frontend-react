@@ -6,15 +6,25 @@
 
 ## **Setup**
 
+In /sdk-front-end:
+
     npm run setup
 
 ----------  
 
 ### **Development mode**
 
-  In optsol/react:  
+ In optsol-react:  
   
-      npm run watch
+      npm run watch  
+
+  In sdk-front-end:  
+  
+      npm start
+  
+  In examples/storybook:
+  
+      npm start
 
   In examples/side-layout:
   

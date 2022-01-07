@@ -14,9 +14,13 @@ In /sdk-front-end:
 
 ### **Development mode**
 
+ In optsol-react:  
+  
+      npm run watch  
+
   In sdk-front-end:  
   
-      npm run watch
+      npm start
   
   In examples/storybook:
   
