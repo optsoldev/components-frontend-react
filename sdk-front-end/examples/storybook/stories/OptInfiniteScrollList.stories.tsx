@@ -1,5 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { OptChip, OptInfiniteScrollList, OptSearchResponse } from "@optsol/react";
+import {
+  OptChip,
+  OptInfiniteScrollList,
+  OptSearchResponse,
+} from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 
 interface Pessoa {
@@ -61,7 +65,7 @@ export const OptInfiniteScrollListRemota: Story<OptInfiniteScrollListArgs> = () 
   );
 };
 
-OptInfiniteScrollListRemota.storyName = "OptInfiniteScrollList Remota";
+OptInfiniteScrollListRemota.storyName = "Opt Infinite Scroll List Remota";
 
 OptInfiniteScrollListRemota.args = {};
 

@@ -16,7 +16,7 @@ DefaultOptDivider.args = {
   color: ColorPalette.primary,
 };
 
-DefaultOptDivider.storyName = "Option Divider ";
+DefaultOptDivider.storyName = "Opt Divider";
 
 DefaultOptDivider.argTypes = {
   ref: {

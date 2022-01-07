@@ -6,7 +6,7 @@ import {
   OptGridProps,
   OptGridRef,
   OptGridRequest,
-  OptGridResponse
+  OptGridResponse,
 } from "@optsol/react";
 import { Meta, Story } from "@storybook/react";
 import React, { useRef } from "react";
@@ -134,7 +134,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   );
 };
 
-OptGridRemota.storyName = "OptGrid Remota";
+OptGridRemota.storyName = "Opt Grid Remota";
 
 OptGridRemota.args = {
   title: "Grid remota",

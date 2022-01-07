@@ -22,3 +22,5 @@ OptAvatarExample.args = {
   size: 64,
   profile: userProfile,
 };
+
+OptAvatarExample.storyName = "Opt Avatar";

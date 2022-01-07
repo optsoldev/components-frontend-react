@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { OptSearchResponse } from "../../types";
-import { OptSearchField } from "../OptSearchField";
+import { OptSearchField } from "../OptSearchField/OptSearchField";
 import * as S from "./styles";
 
 export interface OptInfiniteScrollListProps<T> {

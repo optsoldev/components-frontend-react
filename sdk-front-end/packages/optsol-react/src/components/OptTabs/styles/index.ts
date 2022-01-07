@@ -32,6 +32,7 @@ export const CustomTab = styled(Tab)`
 
   &.Mui-selected {
     background-color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primaryContrast};
 
     & > span {
       color: ${({ theme }) => theme.primaryContrast};

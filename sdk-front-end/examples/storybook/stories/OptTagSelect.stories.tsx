@@ -1,4 +1,8 @@
-import { OptSelectionOption, OptTagSelect, OptTagSelectProps } from "@optsol/react";
+import {
+  OptSelectionOption,
+  OptTagSelect,
+  OptTagSelectProps,
+} from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { useState } from "react";
 

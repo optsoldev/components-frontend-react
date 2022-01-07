@@ -1,9 +1,8 @@
-import Icon from '@mdi/react';
-import React from 'react';
-import { OptMenuSection } from '.';
-import { useOptTheme } from '../../contexts/theme/themeContext';
-import * as S from './styles';
-
+import Icon from "@mdi/react";
+import React from "react";
+import { OptMenuSection } from ".";
+import { useOptTheme } from "../../contexts/theme/themeContext";
+import * as S from "./styles";
 
 export interface OptSidebarMenuProps {
   sections: OptMenuSection[];
@@ -13,7 +12,11 @@ export interface OptSidebarMenuProps {
   footerActions?: React.ReactNode;
 }
 
-export const OptSidebar = ({ sections, footerActions }: OptSidebarMenuProps) => {
+export const OptSidebar = ({
+  sections,
+  footerActions,
+  hideLinkDescription = false,
+}: OptSidebarMenuProps) => {
   const { currentTheme } = useOptTheme();
 
   return (
@@ -24,19 +27,27 @@ export const OptSidebar = ({ sections, footerActions }: OptSidebarMenuProps) => 
 
           <S.CustomList>
             {section.items.map((item, index) => {
-              item.iconColor = item.iconColor ?? currentTheme.sidebar.link.color;
+              item.iconColor =
+                item.iconColor ?? currentTheme.sidebar.link.color;
               item.icon =
-                typeof item.icon === 'string' ? <Icon size={1} path={item.icon} color={item.iconColor} /> : item.icon;
+                typeof item.icon === "string" ? (
+                  <Icon size={1} path={item.icon} color={item.iconColor} />
+                ) : (
+                  item.icon
+                );
 
               return (
                 <S.SidebarNavLink
                   to={item.path}
                   activeClassName={S.activeLinkClass}
                   exact={item.activeShouldBeExact}
-                  key={index}>
+                  key={index}
+                >
                   <S.SidebarListItem button>
                     <S.SidebarListItemIcon>{item.icon}</S.SidebarListItemIcon>
-                    <S.SidebarListItemText primary={item.title} />
+                    {!hideLinkDescription && (
+                      <S.SidebarListItemText primary={item.title} />
+                    )}
                   </S.SidebarListItem>
                 </S.SidebarNavLink>
               );

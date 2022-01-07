@@ -255,11 +255,11 @@ function buildAppBarTheme(t: OptBasicTheme) {
     },
 
     menuButton: {
-      color: t.primary,
+      color: t.primaryContrast,
 
       hover: {
-        background: t.primary,
-        color: t.primaryContrast,
+        background: t.primaryContrast,
+        color: t.primary,
       },
     },
     avatar: {

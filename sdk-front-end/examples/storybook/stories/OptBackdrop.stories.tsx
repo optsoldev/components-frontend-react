@@ -1,9 +1,8 @@
-import { OptBackdrop, OptBackdropProps } from '@optsol/react';
-import { Meta, Story } from '@storybook/react/types-6-0';
-
+import { OptBackdrop, OptBackdropProps } from "@optsol/react";
+import { Meta, Story } from "@storybook/react/types-6-0";
 
 export default {
-  title: 'OptBackdrop',
+  title: "OptBackdrop",
   component: OptBackdrop,
 } as Meta;
 
@@ -15,4 +14,4 @@ DefaultActionToolbar.args = {
   open: false,
 };
 
-DefaultActionToolbar.storyName = 'Option Backdrop ';
+DefaultActionToolbar.storyName = "Opt Backdrop";
