@@ -1,6 +1,6 @@
 {
   "npmClient": "npm",
-  "useWorkspaces": true,
+  "packages": ["examples/*", "packages/*"],
   "version": "independent",
-  "forceLocal": true  
+  "forceLocal": true
 }
