@@ -34,6 +34,7 @@ interface OptGridViewProps<T extends object> {
   setPageSize: (pageSize: number) => void;
   pageIndex: number;
   pageSize: number;
+  headerTitlePosition?: "start" | "center" | "end";
 }
 
 const OptGridView = <T extends {}>({
@@ -58,6 +59,7 @@ const OptGridView = <T extends {}>({
   setPageSize,
   pageIndex,
   pageSize,
+  headerTitlePosition,
 }: OptGridViewProps<T>) => {
   return (
     <S.GridContainer className="opt-grid">
@@ -68,6 +70,7 @@ const OptGridView = <T extends {}>({
           <OptGridHeaders
             headerGroups={headerGroups}
             actionsPosition={actionsPosition}
+            headerTitlePosition={headerTitlePosition}
           />
 
           <tbody {...getTableBodyProps()}>
@@ -92,6 +95,14 @@ const OptGridView = <T extends {}>({
               <tr>
                 <td colSpan={10000} style={{ textAlign: "center" }}>
                   Erro ao carregar registros
+                </td>
+              </tr>
+            )}
+
+            {!controls.data.length && (
+              <tr>
+                <td colSpan={10000} style={{ textAlign: "center" }}>
+                  Não há registros a serem exibidos
                 </td>
               </tr>
             )}

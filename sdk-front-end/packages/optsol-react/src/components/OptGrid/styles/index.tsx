@@ -75,7 +75,11 @@ export const StyledTable = styled.table`
   }
 `;
 
-export const StyledTh = styled.th<{ customWidth?: string | number }>`
+export const StyledTh = styled.th<{
+  customWidth?: string | number;
+  position?: "start" | "center" | "end";
+}>`
+  text-align: ${(prop) => prop.position ?? "start"};
   ${({ customWidth: width }) => {
     if (!!width) {
       return `width: ${width}px`;

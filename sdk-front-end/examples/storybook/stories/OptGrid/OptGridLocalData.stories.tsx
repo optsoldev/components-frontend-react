@@ -121,6 +121,7 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   search: boolean;
   onDelete: (data: Pessoa) => string;
   actionsPosition: "start" | "end";
+  headerTitlePosition: "start" | "center" | "end";
   selection: boolean;
 }
 
@@ -128,6 +129,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
   title,
   search,
   actionsPosition,
+  headerTitlePosition,
   onRowClick,
   onSelect,
   onDelete,
@@ -196,6 +198,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
           }),
         ]}
         actionsPosition={actionsPosition}
+        headerTitlePosition={headerTitlePosition}
       />
     </React.Fragment>
   );
@@ -207,6 +210,7 @@ OptGridLocalData.args = {
   title: "Grid sem dados remotos",
   search: true,
   actionsPosition: "start",
+  headerTitlePosition: "start",
   selection: false,
 };
 OptGridLocalData.argTypes = {
@@ -222,6 +226,10 @@ OptGridLocalData.argTypes = {
   actionsPosition: {
     defaultValue: "start",
     name: "Posição da coluna de ações",
+  },
+  headerTitlePosition: {
+    defaultValue: "start",
+    name: "Posição do título do cabeçalho",
   },
   selection: {
     defaultValue: false,

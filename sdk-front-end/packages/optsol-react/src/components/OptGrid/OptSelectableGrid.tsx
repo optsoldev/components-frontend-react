@@ -27,6 +27,7 @@ const OptGridInternal = <T extends {}>(
     internalColumns,
     actions,
     actionsPosition,
+    headerTitlePosition,
     onRowClick,
     onSelect,
     load,
@@ -73,7 +74,11 @@ const OptGridInternal = <T extends {}>(
     const tableOptions = {
       columns: internalColumns,
       data: controls.data,
-      initialState: { pageIndex: 0, pageSize: options?.pageSize ?? 10, hiddenColumns: hiddenColumns }, // Pass our hoisted table state
+      initialState: {
+        pageIndex: 0,
+        pageSize: options?.pageSize ?? 10,
+        hiddenColumns: hiddenColumns,
+      }, // Pass our hoisted table state
       manualPagination: true, // Tell the usePagination
       // hook that we'll handle our own data fetching
       // This means we'll also have to provide our own
@@ -151,6 +156,7 @@ const OptGridInternal = <T extends {}>(
       setPageSize={setPageSize}
       pageIndex={pageIndex}
       pageSize={pageSize}
+      headerTitlePosition={headerTitlePosition}
     />
   );
 };

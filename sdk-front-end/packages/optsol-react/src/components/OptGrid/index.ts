@@ -85,6 +85,7 @@ export interface OptGridProps<T> {
   options?: OptGridOptions;
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
   actionsPosition?: "start" | "end";
+  headerTitlePosition?: "start" | "center" | "end";
   columns: OptGridColumn<T>[];
   onRowClick?: (data: T) => void;
   onSelect?: (selectedData: T[]) => void;
@@ -105,6 +106,7 @@ export interface OptInternalGridProps<T extends object> {
   options?: OptGridOptions;
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
   actionsPosition?: "start" | "end";
+  headerTitlePosition?: "start" | "center" | "end";
   columns: OptGridColumn<T>[];
   hiddenColumns: string[];
   internalColumns: Column<T>[];
