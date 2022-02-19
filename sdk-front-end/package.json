@@ -4,7 +4,7 @@
   "description": "Kit de UI da OPTSOL",
   "main": "index.js",
   "scripts": {
-    "setup": "npx lerna bootstrap && cd packages/optsol-react && npm i && cd ..\\.. && npx lerna link --force-local && cd examples/storybook && npm i && npx lerna link --force-local",
+    "setup": "npx lerna bootstrap --hoist && npx lerna link --force-local",
     "start": "npm run watch",
     "build": "lerna run build --scope @optsol/react",
     "watch": "lerna run watch --scope @optsol/react",
@@ -25,10 +25,6 @@
     "url": "https://github.com/optsoldev/components-frontend-react/issues"
   },
   "homepage": "https://github.com/optsoldev/components-frontend-react#readme",
-  "workspaces": [
-    "examples/*",
-    "packages/*"
-  ],
   "devDependencies": {
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",

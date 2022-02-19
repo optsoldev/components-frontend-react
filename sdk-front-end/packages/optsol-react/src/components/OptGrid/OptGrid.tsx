@@ -1,10 +1,10 @@
 import React, { ForwardedRef, useState } from "react";
 import { Column } from "react-table";
 import {
-  OptGridProps,
-  OptGridDataRequest,
-  OptGridRequest,
   OptGridControls,
+  OptGridDataRequest,
+  OptGridProps,
+  OptGridRequest,
 } from ".";
 import { OptDefaultGrid } from "./OptDefaultGrid";
 import { OptSelectableGrid } from "./OptSelectableGrid";
@@ -20,6 +20,7 @@ const OptGridInternal = <T extends {}>(
     title,
     actions,
     actionsPosition,
+    headerTitlePosition,
     onRowClick,
     onSelect,
   }: OptGridProps<T>,
@@ -129,6 +130,7 @@ const OptGridInternal = <T extends {}>(
     title,
     actions,
     actionsPosition,
+    headerTitlePosition,
     controls,
     load,
     onRowClick,

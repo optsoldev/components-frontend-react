@@ -14,12 +14,12 @@ const OptGridInternal = <T extends {}>(
     internalColumns,
     actions,
     actionsPosition,
+    headerTitlePosition,
     onRowClick,
     load,
   }: OptInternalGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) => {
-
   const table = useTable<T>(
     {
       columns: internalColumns,
@@ -90,10 +90,13 @@ const OptGridInternal = <T extends {}>(
       setPageSize={setPageSize}
       pageIndex={pageIndex}
       pageSize={pageSize}
+      headerTitlePosition={headerTitlePosition}
     />
   );
 };
 
-export const OptDefaultGrid = React.forwardRef(OptGridInternal) as <T extends {}>(
+export const OptDefaultGrid = React.forwardRef(OptGridInternal) as <
+  T extends {}
+>(
   props: OptInternalGridProps<T> & { ref?: React.ForwardedRef<OptGridRef> }
 ) => ReturnType<typeof OptGridInternal>;

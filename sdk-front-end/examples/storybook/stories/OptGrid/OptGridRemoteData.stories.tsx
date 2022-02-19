@@ -46,6 +46,7 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   onDelete: (data: Pessoa) => string;
   onApprove: (data: Pessoa) => string;
   actionsPosition: "start" | "end";
+  headerTitlePosition: "start" | "center" | "end";
   selection: boolean;
 }
 
@@ -53,6 +54,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   title,
   search,
   actionsPosition,
+  headerTitlePosition,
   onRowClick,
   onSelect,
   onDelete,
@@ -99,7 +101,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
             title: "Id",
             field: "id",
             width: 80,
-            hidden: true
+            hidden: true,
           },
           {
             title: "Nome",
@@ -129,6 +131,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
           }),
         ]}
         actionsPosition={actionsPosition}
+        headerTitlePosition={headerTitlePosition}
       />
     </React.Fragment>
   );
@@ -140,6 +143,7 @@ OptGridRemota.args = {
   title: "Grid remota",
   search: true,
   actionsPosition: "start",
+  headerTitlePosition: "start",
   selection: false,
 };
 
@@ -152,20 +156,17 @@ OptGridRemota.argTypes = {
     defaultValue: true,
     name: "Pesquisa rápida",
   },
-  isLoading: {
-    defaultValue: false,
-    name: "Carregando",
-  },
   actionsPosition: {
     defaultValue: "start",
     name: "Posição da coluna de ações",
   },
+  headerTitlePosition: {
+    defaultValue: "start",
+    name: "Posição do título do cabeçalho",
+  },
   selection: {
     defaultValue: false,
     name: "Selecionável",
-  },
-  ref: {
-    table: { disable: true },
   },
   data: {
     table: { disable: true },

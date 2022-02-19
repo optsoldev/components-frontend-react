@@ -19,4 +19,5 @@ export * from './OptSidebar';
 export * from './OptSideLayout';
 export * from './OptTabs';
 export * from './OptTagSelect';
+export * from './OptTimeline';
 export * from './OptUpload';

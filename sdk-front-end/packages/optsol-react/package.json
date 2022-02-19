@@ -1,6 +1,6 @@
 {
   "name": "@optsol/react",
-  "version": "1.0.31",
+  "version": "1.0.4",
   "description": "Kit de UI da OPTSOL",
   "scripts": {
     "prepack": "npm run build",
@@ -40,6 +40,7 @@
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@mdi/js": "^6.5.95",
+    "@mui/lab": "^5.0.0-alpha.69",
     "color": "^3.2.1",
     "react-draggable": "^4.4.4",
     "react-dropzone": "^11.4.2",

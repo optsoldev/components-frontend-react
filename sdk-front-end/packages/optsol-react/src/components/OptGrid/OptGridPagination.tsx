@@ -2,7 +2,7 @@ import {
   mdiChevronLeft,
   mdiChevronRight,
   mdiPageFirst,
-  mdiPageLast
+  mdiPageLast,
 } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { IconButton, MenuItem, Select } from "@mui/material";
@@ -57,27 +57,51 @@ export const OptGridPagination = ({
         disabled={!canPreviousPage}
         size="small"
       >
-        <Icon size={1} path={mdiPageFirst} color={currentTheme.divider} />
+        <Icon
+          size={1}
+          path={mdiPageFirst}
+          color={
+            canPreviousPage ? currentTheme.color : currentTheme.primaryContrast
+          }
+        />
       </IconButton>
       <IconButton onClick={() => previousPage()} disabled={!canPreviousPage}>
-        <Icon size={1} path={mdiChevronLeft} color={currentTheme.divider} />
+        <Icon
+          size={1}
+          path={mdiChevronLeft}
+          color={
+            canPreviousPage ? currentTheme.color : currentTheme.primaryContrast
+          }
+        />
       </IconButton>
 
       <span>
         Página{" "}
         <strong>
-          {pageIndex + 1} de {pageOptions.length}
+          {pageOptions.length ? pageIndex + 1 : 0} de {pageOptions.length}
         </strong>{" "}
       </span>
 
       <IconButton onClick={() => nextPage()} disabled={!canNextPage}>
-        <Icon size={1} path={mdiChevronRight} color={currentTheme.divider} />
+        <Icon
+          size={1}
+          path={mdiChevronRight}
+          color={
+            canNextPage ? currentTheme.color : currentTheme.primaryContrast
+          }
+        />
       </IconButton>
       <IconButton
         onClick={() => gotoPage(pageCount - 1)}
         disabled={!canNextPage}
       >
-        <Icon size={1} path={mdiPageLast} color={currentTheme.divider} />
+        <Icon
+          size={1}
+          path={mdiPageLast}
+          color={
+            canNextPage ? currentTheme.color : currentTheme.primaryContrast
+          }
+        />
       </IconButton>
 
       {/* <span>
