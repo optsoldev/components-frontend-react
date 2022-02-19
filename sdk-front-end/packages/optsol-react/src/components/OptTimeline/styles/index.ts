@@ -8,3 +8,13 @@ export const Secao = styled.section`
   display: flex;
   flex-direction: column;
 `;
+
+export const TableContainer = styled.div`
+  border-radius: 8px;
+  border: 1px solid ${ColorPalette.gray5};
+  margin-top: 24px;
+
+  & tr:last-child > td {
+    border-bottom: 0;    
+  }
+`;
