@@ -7,8 +7,7 @@ export default {
   component: OptSearchField,
 } as ComponentMeta<typeof OptSearchField>;
 
-interface OptSearchFieldArgs extends OptSearchFieldProps {
-}
+interface OptSearchFieldArgs extends OptSearchFieldProps {}
 
 const Template: ComponentStory<typeof OptSearchField> = (args) => {
   return <OptSearchField {...args} />;
