@@ -1,10 +1,9 @@
 import { mdiMagnify } from "@mdi/js";
 import { Icon } from "@mdi/react";
 import { ButtonBase, InputAdornment, OutlinedInput } from "@mui/material";
-import { createRef } from "react";
+import React, { createRef } from "react";
 import { ColorPalette } from "../../shared/styles/colors";
 import * as S from "./styles";
-import React from "react";
 
 export interface OptSearchFieldProps {
   placeholder?: string;
@@ -42,9 +41,9 @@ export const OptSearchField = ({
       paddingx={paddingX}
     >
       <OutlinedInput
+        inputRef={ref}
         type="text"
         placeholder={placeholder}
-        ref={ref}
         onKeyDown={verificarTeclaPressionadaEnter}
         endAdornment={
           <InputAdornment position="end">
