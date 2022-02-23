@@ -32,7 +32,7 @@ const data: OptTimelineVersao<TableValue>[] = [
       {
         nome: "Pessoa",
         valor: {
-          id: "",
+          id: "123",
           nome: "Felipe",
         },
       },
