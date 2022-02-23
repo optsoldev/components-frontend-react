@@ -73,7 +73,7 @@ export const OptTimeline = <TValor extends unknown = string>({
 }: // ***** valuesTableOptions
 OptTimelineProps<TValor>) => {
   const isDataFunction = !Array.isArray(data);
-  const hasValueRender = !!valueRender;
+  const hasValueRenderFunction = !!valueRender;
 
   const [loading, setLoading] = useState(isDataFunction);
   const [versoes, setVersoes] = useState<OptTimelineVersao<TValor>[]>(
@@ -155,8 +155,8 @@ OptTimelineProps<TValor>) => {
                                 {campo.nome}
                               </TableCell>
                               <TableCell align="left">
-                                {hasValueRender && valueRender(campo.valor)}
-                                {!hasValueRender && campo.valor}
+                                {hasValueRenderFunction && valueRender(campo.valor)}
+                                {!hasValueRenderFunction && campo.valor}
                               </TableCell>
                             </TableRow>
                           ))}
