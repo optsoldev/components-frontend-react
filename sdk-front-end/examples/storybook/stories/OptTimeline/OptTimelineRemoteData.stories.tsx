@@ -116,4 +116,4 @@ OptTimelineRemoteData.argTypes = {
   },
 };
 
-OptTimelineRemoteData.storyName = "Opt Timeline Remote";
+OptTimelineRemoteData.storyName = "Remote data";

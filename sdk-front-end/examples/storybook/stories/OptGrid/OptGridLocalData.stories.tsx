@@ -19,7 +19,7 @@ interface Pessoa {
 }
 
 export default {
-  title: "OptGrid Local",
+  title: "OptGrid",
   component: OptGrid,
 } as Meta;
 
@@ -204,10 +204,10 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
   );
 };
 
-OptGridLocalData.storyName = "Opt Grid Local";
+OptGridLocalData.storyName = "Local data Grid";
 
 OptGridLocalData.args = {
-  title: "Grid sem dados remotos",
+  title: "Local data Grid",
   search: true,
   actionsPosition: "start",
   headerTitlePosition: "start",
@@ -215,25 +215,24 @@ OptGridLocalData.args = {
 };
 OptGridLocalData.argTypes = {
   title: {
-    defaultValue: "Grid sem dados remotos",
-    name: "Título",
+    defaultValue: "Local data Grid",
+    name: "Title",
   },
   search: {
     defaultValue: true,
-    name: "Pesquisa rápida",
+    name: "Fast search",
   },
-
   actionsPosition: {
     defaultValue: "start",
-    name: "Posição da coluna de ações",
+    name: "Action column position",
   },
   headerTitlePosition: {
     defaultValue: "start",
-    name: "Posição do título do cabeçalho",
+    name: "Header title position",
   },
   selection: {
     defaultValue: false,
-    name: "Selecionável",
+    name: "Selectable",
   },
   data: {
     table: { disable: true },
