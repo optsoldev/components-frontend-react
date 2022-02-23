@@ -20,7 +20,7 @@ interface Pessoa {
 }
 
 export default {
-  title: "OptGrid Remota",
+  title: "OptGrid",
   component: OptGrid,
 } as Meta;
 
@@ -137,10 +137,10 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   );
 };
 
-OptGridRemota.storyName = "Opt Grid Remota";
+OptGridRemota.storyName = "Remote data Grid";
 
 OptGridRemota.args = {
-  title: "Grid remota",
+  title: "Remote grid",
   search: true,
   actionsPosition: "start",
   headerTitlePosition: "start",
@@ -149,24 +149,24 @@ OptGridRemota.args = {
 
 OptGridRemota.argTypes = {
   title: {
-    defaultValue: "Grid remota",
+    defaultValue: "Remote grid",
     name: "Título",
   },
   search: {
     defaultValue: true,
-    name: "Pesquisa rápida",
+    name: "Fast search",
   },
   actionsPosition: {
     defaultValue: "start",
-    name: "Posição da coluna de ações",
+    name: "Action column position",
   },
   headerTitlePosition: {
     defaultValue: "start",
-    name: "Posição do título do cabeçalho",
+    name: "Header title position",
   },
   selection: {
     defaultValue: false,
-    name: "Selecionável",
+    name: "Selectable",
   },
   data: {
     table: { disable: true },

@@ -108,4 +108,4 @@ OptTimelineLocalData.argTypes = {
   },
 };
 
-OptTimelineLocalData.storyName = "Opt Timeline Local";
+OptTimelineLocalData.storyName = "Local data";

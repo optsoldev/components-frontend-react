@@ -19,23 +19,25 @@ import { useState } from "react";
 import { OptLoading } from "..";
 import * as S from "./styles";
 
-interface OptTimelineCampo {
+interface OptTimelineCampo<TValor> {
   nome: string;
-  valor: string;
+  valor: TValor;  
 }
 
-export interface OptTimelineVersao {
+export interface OptTimelineVersao<TValor = string> {
   posicao: number;
   acao: string;
   descricao?: string | null;
   dataRealizada: string;
   usuarioNome: string;
-  campos?: OptTimelineCampo[];
+  campos?: OptTimelineCampo<TValor>[];
 }
 
-export interface OptTimelineProps {
+export interface OptTimelineProps<TValor = string> {
   maxWidth?: number;
-  data: OptTimelineVersao[] | (() => Promise<OptTimelineVersao[]>);
+  data:
+    | OptTimelineVersao<TValor>[]
+    | (() => Promise<OptTimelineVersao<TValor>[]>);
   dotColor?:
     | "primary"
     | "secondary"
@@ -46,12 +48,34 @@ export interface OptTimelineProps {
     | "info"
     | "warning"
     | undefined;
+  valuesTableOptions?: {
+    nameHeader?: string;
+    valueHeader?: string;
+    valueRender?: (data: TValor) => JSX.Element;
+  };
 }
 
-export const OptTimeline = ({ maxWidth, data, dotColor }: OptTimelineProps) => {
+export const OptTimeline = <TValor extends unknown = string>({
+  maxWidth,
+  data,
+  dotColor,
+  // ***** valuesTableOptions
+  valuesTableOptions: {
+    nameHeader = "Nome",
+    valueHeader = "Valor",
+    valueRender = undefined,
+  } = {
+    nameHeader: "Nome",
+    valueHeader: "Valor",
+    valueRender: undefined,
+  },
+}: // ***** valuesTableOptions
+OptTimelineProps<TValor>) => {
   const isDataFunction = !Array.isArray(data);
+  const hasValueRenderFunction = !!valueRender;
+
   const [loading, setLoading] = useState(isDataFunction);
-  const [versoes, setVersoes] = useState<OptTimelineVersao[]>(
+  const [versoes, setVersoes] = useState<OptTimelineVersao<TValor>[]>(
     !isDataFunction ? data : []
   );
 
@@ -60,7 +84,7 @@ export const OptTimeline = ({ maxWidth, data, dotColor }: OptTimelineProps) => {
   async function loadVersoes() {
     if (isDataFunction) {
       setLoading(true);
-      const novasVersoes = await (data as () => Promise<OptTimelineVersao[]>)();
+      const novasVersoes = await (data as () => Promise<OptTimelineVersao<TValor>[]>)();
       setVersoes(novasVersoes);
       setLoading(false);
     }
@@ -115,10 +139,10 @@ export const OptTimeline = ({ maxWidth, data, dotColor }: OptTimelineProps) => {
                         <TableHead>
                           <TableRow>
                             <TableCell component="th" align="left">
-                              Nome
+                              {nameHeader}
                             </TableCell>
                             <TableCell component="th" align="left">
-                              Valor
+                              {valueHeader}
                             </TableCell>
                           </TableRow>
                         </TableHead>
@@ -129,7 +153,10 @@ export const OptTimeline = ({ maxWidth, data, dotColor }: OptTimelineProps) => {
                               <TableCell align="left" scope="row">
                                 {campo.nome}
                               </TableCell>
-                              <TableCell align="left">{campo.valor}</TableCell>
+                              <TableCell align="left">
+                                {hasValueRenderFunction && valueRender(campo.valor)}
+                                {!hasValueRenderFunction && campo.valor}
+                              </TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
