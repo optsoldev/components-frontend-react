@@ -20,8 +20,8 @@ type TableValue = Pessoa | string;
 const data: OptTimelineVersao<TableValue>[] = [
   {
     posicao: 5,
-    acao: "Exemplificar Imagem",
-    descricao: "Exibir exemplo de imagem",
+    acao: "Exemplificar valor complexo",
+    descricao: "Exibir exemplo de valor complexo",
     dataRealizada: "23/02/2022 00:40",
     usuarioNome: "Felipe Carvalho",
     campos: [
