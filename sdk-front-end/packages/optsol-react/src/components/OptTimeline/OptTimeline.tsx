@@ -21,8 +21,7 @@ import * as S from "./styles";
 
 interface OptTimelineCampo<TValor> {
   nome: string;
-  valor: TValor;
-  tipo?: "cpf";
+  valor: TValor;  
 }
 
 export interface OptTimelineVersao<TValor = string> {
