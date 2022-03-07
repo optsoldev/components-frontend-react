@@ -47,6 +47,7 @@ export const StyledTable = styled.table`
   tbody tr:hover {
     background-color: ${({ theme }) =>
       color(theme.divider).lighten(0.03).hex()};
+    cursor: pointer;
   }
 
   tr {

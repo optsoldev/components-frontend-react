@@ -42,7 +42,6 @@ export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
   height: auto;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   padding: 8px;
 
   ${ScrollbarCSS}
