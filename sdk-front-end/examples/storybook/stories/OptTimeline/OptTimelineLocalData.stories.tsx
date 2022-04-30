@@ -19,7 +19,7 @@ const data: OptTimelineAction[] = [
     createdDate: "18/02/2022 11:01",
     dateTimeAction: "18/02/2022 11:01",
     userName: "Felipe Carvalho",
-    fields: [
+    payload: [
       {
         name: "Recurso adicionado",
         value: "OptTimeline",
@@ -37,7 +37,7 @@ const data: OptTimelineAction[] = [
     createdDate: "17/02/2022 15:00",
     dateTimeAction: "17/02/2022 15:00",
     userName: "Felipe Carvalho",
-    fields: [],
+    payload: [],
   },
   {
     position: 3,
@@ -46,7 +46,7 @@ const data: OptTimelineAction[] = [
     createdDate: "19/02/2022 14:30",
     dateTimeAction: "19/02/2022 14:30",
     userName: "Rômulo Louzada",
-    fields: [
+    payload: [
       {
         name: "Requisito",
         value: "Campos",
@@ -68,7 +68,7 @@ const data: OptTimelineAction[] = [
     createdDate: "19/02/2022 14:01",
     dateTimeAction: "19/02/2022 14:01",
     userName: "Weslley Carneiro",
-    fields: [
+    payload: [
       {
         name: "Desenvolvedor",
         value: "Felipe",

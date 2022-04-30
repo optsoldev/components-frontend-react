@@ -23,7 +23,7 @@ const data: OptTimelineAction[] = [
     dateTimeAction: "30/04/2022 20:08",
     userId: "123",
     userName: "Felipe Carvalho",
-    fields: [
+    payload: [
       { name: "Texto", value: "Exemplo de texto", type: "text" },
       { name: "Link", value: "http://www.google.com", type: "link" },
       { name: "Arquivo", value: "123.jpg", type: "file" },

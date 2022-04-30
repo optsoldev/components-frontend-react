@@ -18,7 +18,7 @@ const data: OptTimelineAction[] = [
     createdDate: "23/02/2022 00:40",
     dateTimeAction: "23/02/2022 00:40",
     userName: "Felipe Carvalho",
-    fields: [
+    payload: [
       {
         name: "Teste",
         value: "Este é um teste",

@@ -31,7 +31,7 @@ export interface OptTimelineAction {
   createdDate: string;
   userId?: string;
   userName: string;
-  fields?: OptTimelineField[];
+  payload?: OptTimelineField[] | string;
 }
 
 export interface OptTimelineProps {
@@ -104,75 +104,87 @@ OptTimelineProps) => {
         <Timeline>
           {versoes &&
             versoes.length > 0 &&
-            versoes.map((versao) => (
-              <TimelineItem key={versao.position} sx={{ paddingY: 2 }}>
-                <TimelineOppositeContent
-                  style={{ flex: 0.1, minWidth: 150, fontSize: 12 }}
-                >
-                  {versao.dateTimeAction}
-                </TimelineOppositeContent>
+            versoes.map((versao) => {
+              let payload: OptTimelineField[] | undefined = undefined;
 
-                <TimelineSeparator>
-                  <TimelineDot color={dotColor}>
-                    <Avatar sx={{ bgcolor: "transparent" }}>
-                      {versao.position}
-                    </Avatar>
-                  </TimelineDot>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                  <Typography variant="subtitle2" gutterBottom>
-                    {versao.userName}
-                  </Typography>
+              if (!!versao.payload) {
+                if (versao.payload === "string") {
+                  payload = JSON.parse(versao.payload) as OptTimelineField[];
+                } else {
+                  payload = versao.payload as OptTimelineField[];
+                }
+              }
 
-                  <Typography variant="h6" gutterBottom fontSize={16}>
-                    <b>{versao.action}</b>
-                  </Typography>
+              return (
+                <TimelineItem key={versao.position} sx={{ paddingY: 2 }}>
+                  <TimelineOppositeContent
+                    style={{ flex: 0.1, minWidth: 150, fontSize: 12 }}
+                  >
+                    {versao.dateTimeAction}
+                  </TimelineOppositeContent>
 
-                  {versao.description && (
-                    <Typography variant="body2" gutterBottom>
-                      {versao.description}
+                  <TimelineSeparator>
+                    <TimelineDot color={dotColor}>
+                      <Avatar sx={{ bgcolor: "transparent" }}>
+                        {versao.position}
+                      </Avatar>
+                    </TimelineDot>
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent>
+                    <Typography variant="subtitle2" gutterBottom>
+                      {versao.userName}
                     </Typography>
-                  )}
 
-                  {versao.fields && versao.fields.length > 0 && (
-                    <S.TableContainer>
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell component="th" align="left">
-                              {nameHeader}
-                            </TableCell>
-                            <TableCell component="th" align="left">
-                              {valueHeader}
-                            </TableCell>
-                          </TableRow>
-                        </TableHead>
+                    <Typography variant="h6" gutterBottom fontSize={16}>
+                      <b>{versao.action}</b>
+                    </Typography>
 
-                        <TableBody>
-                          {versao.fields.map((field, index) => (
-                            <TableRow key={index}>
-                              <TableCell align="left" scope="row">
-                                {field.name}
+                    {versao.description && (
+                      <Typography variant="body2" gutterBottom>
+                        {versao.description}
+                      </Typography>
+                    )}
+
+                    {payload && payload.length > 0 && (
+                      <S.TableContainer>
+                        <Table>
+                          <TableHead>
+                            <TableRow>
+                              <TableCell component="th" align="left">
+                                {nameHeader}
                               </TableCell>
-                              <TableCell align="left">
-                                {hasValueRenderFunction && valueRender(field)}
-                                {!hasValueRenderFunction && (
-                                  <OptTimelineTableValue
-                                    field={field}
-                                    onClick={onValueClick}
-                                  />
-                                )}
+                              <TableCell component="th" align="left">
+                                {valueHeader}
                               </TableCell>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </S.TableContainer>
-                  )}
-                </TimelineContent>
-              </TimelineItem>
-            ))}
+                          </TableHead>
+
+                          <TableBody>
+                            {payload.map((field, index) => (
+                              <TableRow key={index}>
+                                <TableCell align="left" scope="row">
+                                  {field.name}
+                                </TableCell>
+                                <TableCell align="left">
+                                  {hasValueRenderFunction && valueRender(field)}
+                                  {!hasValueRenderFunction && (
+                                    <OptTimelineTableValue
+                                      field={field}
+                                      onClick={onValueClick}
+                                    />
+                                  )}
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </S.TableContainer>
+                    )}
+                  </TimelineContent>
+                </TimelineItem>
+              );
+            })}
         </Timeline>
       )}
     </S.Secao>
