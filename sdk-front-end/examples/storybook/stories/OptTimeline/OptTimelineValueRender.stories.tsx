@@ -1,7 +1,7 @@
 import {
   OptTimeline,
   OptTimelineProps,
-  OptTimelineVersao,
+  OptTimelineAction,
 } from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 
@@ -10,55 +10,39 @@ export default {
   component: OptTimeline,
 } as Meta;
 
-interface Pessoa {
-  id: string;
-  nome: string;
-}
-
-type TableValue = Pessoa | string;
-
-const data: OptTimelineVersao<TableValue>[] = [
+const data: OptTimelineAction[] = [
   {
-    posicao: 5,
-    acao: "Exemplificar valor complexo",
-    descricao: "Exibir exemplo de valor complexo",
-    dataRealizada: "23/02/2022 00:40",
-    usuarioNome: "Felipe Carvalho",
-    campos: [
+    order: 1,
+    action: "Exemplificar value complexo",
+    description: "Exibir exemplo de value complexo",
+    createdDate: "23/02/2022 00:40",
+    dateTimeAction: "23/02/2022 00:40",
+    userName: "Felipe Carvalho",
+    payload: [
       {
-        nome: "Valor string",
-        valor: "Este é um valor string",
+        name: "Teste",
+        value: "Este é um teste",
+        type: "text",
       },
       {
-        nome: "Pessoa",
-        valor: {
-          id: "123",
-          nome: "Felipe",
-        },
+        name: "Pessoa",
+        value: "Felipe",
       },
     ],
   },
 ];
 
-export const OptTimelineValueRender: Story<OptTimelineProps<TableValue>> = (
-  args
-) => <OptTimeline {...args}></OptTimeline>;
+export const OptTimelineValueRender: Story<OptTimelineProps> = (args) => (
+  <OptTimeline {...args}></OptTimeline>
+);
 
 OptTimelineValueRender.args = {
   maxWidth: 800,
   data: data,
   dotColor: "primary",
   valuesTableOptions: {
-    valueRender: (data: TableValue) => {
-      if (typeof data === "string") {
-        return <>Valor: {data}</>;
-      } else {
-        return (
-          <h4>
-            [Id: {data.id} | Nome: {data.nome}]
-          </h4>
-        );
-      }
+    valueRender: (field) => {
+      return <h4>Value: {field.value}</h4>;
     },
   },
 };

@@ -18,3 +18,7 @@ export const TableContainer = styled.div`
     border-bottom: 0;    
   }
 `;
+
+export const Link = styled.a`
+  font-size: 16px;
+`;
