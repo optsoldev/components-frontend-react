@@ -17,7 +17,7 @@ interface ExtraProps {
 
 const data: OptTimelineAction[] = [
   {
-    position: 1,
+    order: 1,
     action: "Testar evento de click",
     createdDate: "30/04/2022 20:08",
     dateTimeAction: "30/04/2022 20:08",

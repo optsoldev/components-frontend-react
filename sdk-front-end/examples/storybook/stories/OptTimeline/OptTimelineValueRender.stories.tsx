@@ -12,7 +12,7 @@ export default {
 
 const data: OptTimelineAction[] = [
   {
-    position: 5,
+    order: 1,
     action: "Exemplificar value complexo",
     description: "Exibir exemplo de value complexo",
     createdDate: "23/02/2022 00:40",

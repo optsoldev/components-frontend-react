@@ -3,6 +3,7 @@
   "version": "1.0.6",
   "description": "Kit de UI da OPTSOL",
   "scripts": {
+    "start": "npm run watch",
     "prepack": "npm run build",
     "build": "rollup -c",
     "watch": "rollup -cw"

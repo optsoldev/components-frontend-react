@@ -24,7 +24,7 @@ import {
 import * as S from "./styles";
 
 export interface OptTimelineAction {
-  position: number;
+  order: number;
   action: string;
   description?: string | null;
   dateTimeAction: string;
@@ -105,10 +105,10 @@ OptTimelineProps) => {
           {versoes &&
             versoes.length > 0 &&
             versoes.map((versao) => {
-              let payload: OptTimelineField[] | undefined = undefined;
+              let payload: OptTimelineField[] = [];
 
               if (!!versao.payload) {
-                if (versao.payload === "string") {
+                if (typeof versao.payload === "string") {
                   payload = JSON.parse(versao.payload) as OptTimelineField[];
                 } else {
                   payload = versao.payload as OptTimelineField[];
@@ -116,7 +116,7 @@ OptTimelineProps) => {
               }
 
               return (
-                <TimelineItem key={versao.position} sx={{ paddingY: 2 }}>
+                <TimelineItem key={versao.order} sx={{ paddingY: 2 }}>
                   <TimelineOppositeContent
                     style={{ flex: 0.1, minWidth: 150, fontSize: 12 }}
                   >
@@ -126,7 +126,7 @@ OptTimelineProps) => {
                   <TimelineSeparator>
                     <TimelineDot color={dotColor}>
                       <Avatar sx={{ bgcolor: "transparent" }}>
-                        {versao.position}
+                        {versao.order}
                       </Avatar>
                     </TimelineDot>
                     <TimelineConnector />
