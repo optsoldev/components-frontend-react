@@ -1,6 +1,6 @@
 import {
   OptTimeline,
-  OptTimelineVersao,
+  OptTimelineAction,
   OptTimelineProps,
 } from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
@@ -11,74 +11,79 @@ export default {
   component: OptTimeline,
 } as Meta;
 
-function carregar(): Promise<OptTimelineVersao[]> {
-  const data: OptTimelineVersao[] = [
+function carregar(): Promise<OptTimelineAction[]> {
+  const data: OptTimelineAction[] = [
     {
-      posicao: 5,
-      acao: "Publicar pacote",
-      descricao: "Alterações no pacote publicadas com sucesso!",
-      dataRealizada: "18/02/2022 11:01",
-      usuarioNome: "Felipe Carvalho",
-      campos: [
+      order: 5,
+      action: "Publicar pacote",
+      description: "Alterações no pacote publicadas com sucesso!",
+      createdDate: "18/02/2022 11:01",
+      dateTimeAction: "18/02/2022 11:01",
+      userName: "Felipe Carvalho",
+      payload: [
         {
-          nome: "Recurso adicionado",
-          valor: "OptTimeline",
+          name: "Recurso adicionado",
+          value: "OptTimeline",
         },
         {
-          nome: "Tempo de implementação",
-          valor: "4h",
+          name: "Tempo de implementação",
+          value: "4h",
         },
       ],
     },
     {
-      posicao: 4,
-      acao: "Implementar",
-      descricao: "Iniciar implementação de componente de timeline",
-      dataRealizada: "17/02/2022 15:00",
-      usuarioNome: "Felipe Carvalho",
-      campos: [],
+      order: 4,
+      action: "Implementar",
+      description: "Iniciar implementação de componente de timeline",
+      createdDate: "17/02/2022 15:00",
+      dateTimeAction: "17/02/2022 15:00",
+      userName: "Felipe Carvalho",
+      payload: [],
     },
     {
-      posicao: 3,
-      acao: "Definir requisitos",
-      descricao: null,
-      dataRealizada: "19/02/2022 14:30",
-      usuarioNome: "Rômulo Louzada",
-      campos: [
+      order: 3,
+      action: "Definir requisitos",
+      description: null,
+      createdDate: "19/02/2022 14:30",
+      dateTimeAction: "19/02/2022 14:30",
+      userName: "Rômulo Louzada",
+      payload: [
         {
-          nome: "Requisito",
-          valor: "Campos",
+          name: "Requisito",
+          value: "Campos",
         },
         {
-          nome: "Requisito",
-          valor: "Valores",
+          name: "Requisito",
+          value: "valuees",
         },
         {
-          nome: "Requisito",
-          valor: "Design",
+          name: "Requisito",
+          value: "Design",
         },
       ],
     },
     {
-      posicao: 2,
-      acao: "Solicitar desenvolvimento",
-      descricao: null,
-      dataRealizada: "19/02/2022 14:01",
-      usuarioNome: "Weslley Carneiro",
-      campos: [
+      order: 2,
+      action: "Solicitar desenvolvimento",
+      description: null,
+      createdDate: "19/02/2022 14:01",
+      dateTimeAction: "19/02/2022 14:01",
+      userName: "Weslley Carneiro",
+      payload: [
         {
-          nome: "Desenvolvedor",
-          valor: "Felipe",
+          name: "Desenvolvedor",
+          value: "Felipe",
         },
       ],
     },
     {
-      posicao: 1,
-      acao: "Conceber ideia",
-      descricao:
+      order: 1,
+      action: "Conceber ideia",
+      description:
         "Necessidade de reutilizar e padronizar exibição de logs de sistemas",
-      dataRealizada: "19/02/2022 14:00",
-      usuarioNome: "Rômulo Louzada & Weslley Carneiro",
+        createdDate: "19/02/2022 14:00",
+      dateTimeAction: "19/02/2022 14:00",
+      userName: "Rômulo Louzada & Weslley Carneiro",
     },
   ];
 
@@ -116,4 +121,4 @@ OptTimelineRemoteData.argTypes = {
   },
 };
 
-OptTimelineRemoteData.storyName = "Opt Timeline Remote";
+OptTimelineRemoteData.storyName = "Remote data";
