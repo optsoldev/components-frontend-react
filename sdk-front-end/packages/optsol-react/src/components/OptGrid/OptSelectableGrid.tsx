@@ -126,7 +126,8 @@ const OptGridInternal = <T extends {}>(
     const isFunction = typeof onSelect === "function";
 
     if (isFunction) onSelect(selected);
-  }, [selectedFlatRows]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedFlatRows.length]);
 
   React.useEffect(() => {
     load(pageIndex, pageSize);
