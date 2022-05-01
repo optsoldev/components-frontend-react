@@ -1,12 +1,18 @@
-import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import { ScrollbarCSS } from '../../../shared/styles/generic';
-import { SidebarExpandedListItem } from '../OptSideAppbarFooterActions/styles';
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import { NavLink } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { ScrollbarCSS } from "../../../shared/styles/generic";
+import { SidebarExpandedListItem } from "../OptSideAppbarFooterActions/styles";
 
 export const sideAppbarWidth = 50;
 export const expandedSideAppbarWidth = 260;
-export const activeLinkClass = 'active-link';
+export const activeLinkClass = "active-link";
 
 interface SidebarMenuContainerProps {
   expanded?: boolean;
@@ -17,26 +23,25 @@ export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
     expanded &&
     css`
       width: ${expandedSideAppbarWidth}px;
-      min-width: ${expandedSideAppbarWidth}px;
-      max-width: ${expandedSideAppbarWidth}px;
+      //min-width: ${expandedSideAppbarWidth}px;
+      //max-width: ${expandedSideAppbarWidth}px;
     `}
 
   ${({ expanded }) =>
     !expanded &&
     css`
       width: ${sideAppbarWidth}px;
-      min-width: ${sideAppbarWidth}px;
-      max-width: ${sideAppbarWidth}px;
+      //min-width: ${sideAppbarWidth}px;
+      //max-width: ${sideAppbarWidth}px;
     `}
 
-  transition: min-width ease-in-out 200ms;
+  transition: width ease-in-out 200ms;
   border-right: 1px solid ${({ theme }) => theme.appBar.side!.borderColor};
   background: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
   height: auto;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   padding: 8px;
 
   ${ScrollbarCSS}
@@ -86,7 +91,8 @@ export const SidebarNavLink = styled(NavLink)`
     }
 
     ${SidebarListItem}, ${SidebarExpandedListItem} {
-      background-color: ${({ theme }) => theme.appBar.side!.link.hover.background};
+      background-color: ${({ theme }) =>
+        theme.appBar.side!.link.hover.background};
     }
   }
 
@@ -100,7 +106,8 @@ export const SidebarNavLink = styled(NavLink)`
     }
 
     ${SidebarListItem}, ${SidebarExpandedListItem} {
-      background-color: ${({ theme }) => theme.appBar.side!.link.active.background};
+      background-color: ${({ theme }) =>
+        theme.appBar.side!.link.active.background};
     }
   }
 `;
