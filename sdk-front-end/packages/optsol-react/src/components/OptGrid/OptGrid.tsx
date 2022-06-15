@@ -31,8 +31,8 @@ const OptGridInternal = <T extends {}>(
   const [controls, setControls] = useState<OptGridControls<T>>({
     totalCount: isRemote ? 0 : data.length,
     pageCount: isRemote ? 0 : Math.ceil(data.length / 10),
-    loading: false,
-    data: isRemote ? [] : (data as T[]),
+    loading: isRemote,
+    data: isRemote ? [] : data,
     error: false,
   });
 
@@ -76,26 +76,31 @@ const OptGridInternal = <T extends {}>(
       search: "",
     };
 
-    setControls({ ...controls, data: [], loading: true });
+    if (!controls.loading || controls.data.length > 0)
+      setControls((previous) => ({
+        ...previous,
+        data: [],
+        loading: true,
+      }));
 
     data(query)
       .then((result) => {
-        setControls({
-          ...controls,
+        setControls((previous) => ({
+          ...previous,
           data: result.data,
           totalCount: result.totalCount,
           pageCount: Math.ceil(result.totalCount / pageSize),
           loading: false,
           error: false,
-        });
+        }));
       })
       .catch(() => {
-        setControls({
-          ...controls,
+        setControls((previous) => ({
+          ...previous,
           data: [],
           loading: false,
           error: true,
-        });
+        }));
       });
   }
 
@@ -115,11 +120,8 @@ const OptGridInternal = <T extends {}>(
   }
 
   const hiddenColumns = columns
-    .map((column) => {
-      if (column.hidden) return column.field.toString();
-      return "";
-    })
-    .filter((column) => column !== "");
+    .filter((column) => column.hidden)
+    .map((column) => column.field.toString());
 
   const attrs = {
     ref,
@@ -136,6 +138,7 @@ const OptGridInternal = <T extends {}>(
     onRowClick,
     onSelect: options?.selection ? onSelect : undefined,
   };
+
   return (
     <>
       {options?.selection && <OptSelectableGrid {...attrs} />}
