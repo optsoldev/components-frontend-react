@@ -1,6 +1,6 @@
 {
   "name": "optsoldev",
-  "version": "0.0.1",
+  "version": "1.0.9",
   "description": "Kit de UI da OPTSOL",
   "main": "index.js",
   "scripts": {
