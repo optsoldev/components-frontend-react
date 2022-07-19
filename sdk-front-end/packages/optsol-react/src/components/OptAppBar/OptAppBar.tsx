@@ -1,24 +1,16 @@
-import { mdiMenu } from '@mdi/js';
-import Icon from '@mdi/react';
-import { Theme as MaterialTheme, Toolbar } from '@mui/material';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-import { OptUserProfile } from '../OptAvatar';
-import { OptBreadcrumb } from '../OptBreadcrumb/OptBreadcrumb';
-import { OptAppBarAvatar } from './OptAppBarAvatar';
-import * as S from './styles';
+import styled from "@emotion/styled";
+import { mdiMenu } from "@mdi/js";
+import Icon from "@mdi/react";
+import { Toolbar } from "@mui/material";
+import { OptUserProfile } from "../OptAvatar";
+import { OptBreadcrumb } from "../OptBreadcrumb/OptBreadcrumb";
+import { OptAppBarAvatar } from "./OptAppBarAvatar";
+import * as S from "./styles";
 
-const useStyles = makeStyles((theme: MaterialTheme) =>
-  createStyles({
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-  }),
-);
+// 1201, see https://mui.com/pt/material-ui/customization/z-index/
+const CustomAppBar = styled(S.CustomAppBar)`
+  z-index: 1201;
+`;
 
 export interface OptAppBarProps {
   profile: OptUserProfile | undefined;
@@ -41,14 +33,16 @@ export const OptAppBar = ({
   content,
   actions,
 }: OptAppBarProps) => {
-  const classes = useStyles();
-
   return (
-    <S.CustomAppBar position="fixed" className={classes.appBar}>
+    <CustomAppBar position="fixed">
       <Toolbar>
         {!hideDrawerButton && (
           <S.AppBarDrawerButtonContainer>
-            <S.AppBarDrawerButton aria-label="open drawer" onClick={onDrawerOpen} edge="start">
+            <S.AppBarDrawerButton
+              aria-label="open drawer"
+              onClick={onDrawerOpen}
+              edge="start"
+            >
               <Icon size={1} path={mdiMenu} />
             </S.AppBarDrawerButton>
           </S.AppBarDrawerButtonContainer>
@@ -62,9 +56,13 @@ export const OptAppBar = ({
         <S.AppBarEndContainer>
           {actions}
 
-          <OptAppBarAvatar profile={profile} onManageProfile={onManageProfile} onLogout={onLogout} />
+          <OptAppBarAvatar
+            profile={profile}
+            onManageProfile={onManageProfile}
+            onLogout={onLogout}
+          />
         </S.AppBarEndContainer>
       </Toolbar>
-    </S.CustomAppBar>
+    </CustomAppBar>
   );
 };

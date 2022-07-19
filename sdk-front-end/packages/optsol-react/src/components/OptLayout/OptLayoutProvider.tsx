@@ -1,6 +1,5 @@
 import {
   createTheme,
-  Theme,
   ThemeProvider as MaterialThemeProvider
 } from "@mui/material/styles";
 import { PropsWithChildren, useLayoutEffect, useState } from "react";
@@ -20,11 +19,6 @@ import {
   transformTheme
 } from "../../shared/styles/theme";
 import { OptLoading } from "../OptLoading";
-
-declare module "@mui/styles/defaultTheme" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 const generateMuiTheme = (
   optTheme: OptFullTheme,

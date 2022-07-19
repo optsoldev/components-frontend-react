@@ -1,17 +1,21 @@
-import { Backdrop } from '@mui/material';
-import { OptLoading } from '../OptLoading';
-import * as S from './styles';
+import styled from "@emotion/styled";
+import { Backdrop } from "@mui/material";
+import { OptLoading } from "../OptLoading";
 
+// 1201, see https://mui.com/pt/material-ui/customization/z-index/
+export const CustomBackdrop = styled(Backdrop)`
+  z-index: 1201;
+  color: #fff;
+`;
 
 export type OptBackdropProps = {
   open: boolean;
 };
 
-export const OptBackdrop = ({ open }: S.Props) => {
-  const classes = S.useStyles();
+export const OptBackdrop = ({ open }: OptBackdropProps) => {
   return (
-    <Backdrop className={classes.backdrop} open={open}>
+    <CustomBackdrop open={open}>
       <OptLoading color="secondary" size={60} />
-    </Backdrop>
+    </CustomBackdrop>
   );
 };

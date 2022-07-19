@@ -1,15 +1,12 @@
-import { TabClasses } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import React from 'react';
-import * as S from './styles';
+import { TabClasses } from "@mui/material";
+import styled from "@emotion/styled";
+import React from "react";
+import * as S from "./styles";
 
-
-const useStyles = makeStyles((_) => ({
-  tabRoot: {
-    minHeight: '24px',
-    height: '24px',
-  },
-}));
+const CustomTab = styled(S.CustomTab)`
+  min-height: 24px;
+  height: 24px;
+`;
 
 interface Props {
   children?: null;
@@ -36,7 +33,7 @@ interface Props {
    * The position of the icon relative to the label.
    * @default 'top'
    */
-  iconPosition?: 'top' | 'bottom' | 'start' | 'end';
+  iconPosition?: "top" | "bottom" | "start" | "end";
   /**
    * The label element.
    */
@@ -55,16 +52,13 @@ interface Props {
   tabIndex: number;
 }
 
-export const OptTab = React.forwardRef<HTMLDivElement, Props>(({ ...props }, ref) => {
-  const classes = useStyles();
-
-  return (
-    <S.CustomTab
-      classes={{
-        root: classes.tabRoot,
-      }}
-      ref={ref}
-      {...props}
-    />
-  );
-});
+export const OptTab = React.forwardRef<HTMLDivElement, Props>(
+  ({ ...props }, ref) => {
+    return (
+      <CustomTab
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
