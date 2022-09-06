@@ -1,26 +1,32 @@
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { OptSideLayoutPortalContainer, OptSideLayoutPortalContent } from '@optsol/react';
-import { FiltroRegistro } from '../Registro/FiltroRegistro/FiltroRegistro';
-import { FiltroRegistroSidebar } from '../Registro/FiltroRegistroSidebar/FiltroRegistroSidebar';
-import { RegistroListaRoutes } from './RegistroLista.routes';
-import { Routes } from './SideAppSample.routes';
+import {
+  OptSideLayoutPortalContainer,
+  OptSideLayoutPortalContent,
+} from "@optsol/react";
+import { Route, Routes as ReactRoutes, useMatch } from "react-router-dom";
+import { FiltroRegistro } from "../Registro/FiltroRegistro/FiltroRegistro";
+import { FiltroRegistroSidebar } from "../Registro/FiltroRegistroSidebar/FiltroRegistroSidebar";
+import { RegistroListaRoutes } from "./RegistroLista.routes";
+import { Routes } from "./SideAppSample.routes";
 
 export const RegistroRoutes = () => {
-  const match = useRouteMatch({
-    path: [Routes.Registro.Principal],
-    exact: false,
-  });
+  const match = useMatch(Routes.Registro.Principal);
 
   return (
     <OptSideLayoutPortalContainer>
-      <FiltroRegistroSidebar rotaAtual={!!match?.isExact} />
+      <FiltroRegistroSidebar rotaAtual={!!match} />
 
       <OptSideLayoutPortalContent>
-        <Switch>
-          <Route exact path={Routes.Registro.Principal} component={FiltroRegistro} />
+        <ReactRoutes>
+          <Route
+            path={Routes.Registro.Principal}
+            element={<FiltroRegistro />}
+          />
 
-          <Route path={Routes.Registro.Filtros().ListaRegistro} component={RegistroListaRoutes} />
-        </Switch>
+          <Route
+            path={Routes.Registro.Filtros().ListaRegistro}
+            element={<RegistroListaRoutes />}
+          />
+        </ReactRoutes>
       </OptSideLayoutPortalContent>
     </OptSideLayoutPortalContainer>
   );

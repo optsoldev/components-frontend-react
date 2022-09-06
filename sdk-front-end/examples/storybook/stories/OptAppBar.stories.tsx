@@ -75,7 +75,7 @@ const Template: Story<
   );
 
   return (
-    <OptLayoutProvider theme={args.theme ? softTheme : standardTheme}>
+    <OptLayoutProvider theme={args.theme ? softTheme : standardTheme} noRouter>
       <OptAppBar
         profile={userProfile}
         hideBreadcrumb={true}

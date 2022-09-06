@@ -14,6 +14,7 @@ import {
   OptTheme,
 } from "@optsol/react";
 import { ComponentMeta, Story } from "@storybook/react";
+import React from "react";
 import { ColorPalette } from "../shared/colors";
 
 export default {
@@ -81,7 +82,7 @@ const Template: Story<
   );
 
   return (
-    <OptLayoutProvider theme={theme}>
+    <OptLayoutProvider theme={theme} noRouter>
       <OptSidebar
         sections={sectionsArray}
         hideLinkDescription={args.hideLinkDescription}

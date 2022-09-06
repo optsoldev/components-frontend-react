@@ -1,18 +1,18 @@
-import { LinearProgress, SwipeableDrawer } from '@mui/material';
-import React, { PropsWithChildren, Suspense, useState } from 'react';
-import { Switch } from 'react-router-dom';
-import { OptUserProfile } from '..';
-import { LocalStorageKeys } from '../../shared/constants';
-import { GlobalStyles } from '../../shared/styles/global';
-import { OptAppBar } from '../OptAppBar';
-import { OptDrawerMenu } from '../OptDrawer/OptDrawerMenu';
-import { OptMenuSection, OptSidebar } from '../OptSidebar';
-import * as S from './styles';
+import { LinearProgress, SwipeableDrawer } from "@mui/material";
+import React, { PropsWithChildren, Suspense, useState } from "react";
+import { Routes } from "react-router-dom";
+import { OptUserProfile } from "..";
+import { LocalStorageKeys } from "../../shared/constants";
+import { GlobalStyles } from "../../shared/styles/global";
+import { OptAppBar } from "../OptAppBar";
+import { OptDrawerMenu } from "../OptDrawer/OptDrawerMenu";
+import { OptMenuSection, OptSidebar } from "../OptSidebar";
+import * as S from "./styles";
 
 export interface OptLayoutProps {
   /** Sections of the menus. Each object with the menu links will be splitted into different lists, separated by a Divider.  */
   sections: OptMenuSection[];
-  /** Application routes within a \<Switch\> \</Switch\>   */
+  /** Application routes within a \<Routes\> \</Routes\>   */
   routes?: JSX.Element;
   /** Disables the sidebar */
   noSidebar?: boolean;
@@ -47,13 +47,13 @@ export const OptLayout = ({
   appBarConfig,
 }: PropsWithChildren<OptLayoutProps>) => {
   const [dockedDrawer, setDockedDrawer] = useState(
-    !!localStorage.getItem(LocalStorageKeys.DockedDrawer),
+    !!localStorage.getItem(LocalStorageKeys.DockedDrawer)
   );
 
   const hasSidebar = !noSidebar && !dockedDrawer;
 
-  if (routes && routes.type !== Switch) {
-    console.error('Prop routes is not a Switch!');
+  if (routes && routes.type !== Routes) {
+    console.error("Prop routes is not a Routes!");
   }
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -68,7 +68,7 @@ export const OptLayout = ({
 
   function toggleDockedDrawer() {
     if (!dockedDrawer) {
-      localStorage.setItem(LocalStorageKeys.DockedDrawer, 'true');
+      localStorage.setItem(LocalStorageKeys.DockedDrawer, "true");
       setDrawerOpen(false);
     } else {
       localStorage.removeItem(LocalStorageKeys.DockedDrawer);
@@ -113,8 +113,8 @@ export const OptLayout = ({
           <Suspense
             fallback={
               <div style={{ flex: 1, marginTop: 1 }}>
-                <LinearProgress color='secondary' />
-                <LinearProgress color='primary' />
+                <LinearProgress color="secondary" />
+                <LinearProgress color="primary" />
               </div>
             }
           >
@@ -124,7 +124,7 @@ export const OptLayout = ({
       </S.Container>
 
       <SwipeableDrawer
-        anchor='left'
+        anchor="left"
         open={drawerOpen}
         onClose={handleDrawerClose}
         onOpen={handleDrawerOpen}

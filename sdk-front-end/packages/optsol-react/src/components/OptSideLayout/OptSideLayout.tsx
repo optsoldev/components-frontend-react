@@ -1,11 +1,11 @@
-import { LinearProgress } from '@mui/material';
-import React, { PropsWithChildren, Suspense, useEffect, useRef } from 'react';
-import { Switch, useHistory } from 'react-router-dom';
-import { OptSideLayoutProps } from '.';
-import { useOptTheme } from '../../contexts/theme/themeContext';
-import { GlobalStyles } from '../../shared/styles/global';
-import { OptSideAppbar } from '../OptSideAppbar/OptSideAppbar';
-import * as S from './styles';
+import { LinearProgress } from "@mui/material";
+import React, { PropsWithChildren, Suspense, useEffect, useRef } from "react";
+import { Routes, useLocation } from "react-router-dom";
+import { OptSideLayoutProps } from ".";
+import { useOptTheme } from "../../contexts/theme/themeContext";
+import { GlobalStyles } from "../../shared/styles/global";
+import { OptSideAppbar } from "../OptSideAppbar/OptSideAppbar";
+import * as S from "./styles";
 
 export const OptSideLayout = ({
   sections,
@@ -16,34 +16,35 @@ export const OptSideLayout = ({
   onLogout,
   appBarConfig,
 }: PropsWithChildren<OptSideLayoutProps>) => {
-  const { listen } = useHistory();
+  const location = useLocation();
   const {
     state: { currentSideAppbarWidth },
   } = useOptTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  if (routes && routes.type !== Switch) {
-    console.error('Prop routes is not a Switch!');
+  if (routes && routes.type !== Routes) {
+    console.error("Prop routes is not a Routes!");
   }
 
-  useEffect(() => {
-    containerRef.current?.scrollTo({ left: containerRef.current?.scrollWidth, behavior: 'smooth', top: 0 });
-  }, []);
+  const scrollToTop = () =>
+    containerRef.current?.scrollTo({
+      left: containerRef.current?.scrollWidth,
+      behavior: "smooth",
+      top: 0,
+    });
 
   useEffect(() => {
-    listen(() => {
-      setTimeout(() => {
-        containerRef.current?.scrollTo({ left: containerRef.current?.scrollWidth, behavior: 'smooth', top: 0 });
-      }, 300);
-    });
-  }, [listen]);
+    setTimeout(() => {
+      scrollToTop();
+    }, 300);
+  }, [location]);
 
   return (
     <React.Fragment>
       <GlobalStyles noAppBar />
 
-      <div style={{ width: '100vw', display: 'flex', overflowX: 'hidden' }}>
+      <div style={{ width: "100vw", display: "flex", overflowX: "hidden" }}>
         <OptSideAppbar
           sections={sections}
           footerActions={appBarConfig?.actions}
@@ -53,7 +54,10 @@ export const OptSideLayout = ({
           hideLinkDescription={appBarConfig?.hideLinkDescription}
         />
 
-        <S.InitialContainer ref={containerRef} currentsidebarwidth={currentSideAppbarWidth}>
+        <S.InitialContainer
+          ref={containerRef}
+          currentsidebarwidth={currentSideAppbarWidth}
+        >
           <S.OptSideLayoutPortalContent>
             {children}
             {routes && (
@@ -63,8 +67,11 @@ export const OptSideLayout = ({
                     <LinearProgress color="secondary" />
                     <LinearProgress color="primary" />
                   </div>
-                }>
-                <S.OptSideLayoutPortalContent>{routes}</S.OptSideLayoutPortalContent>
+                }
+              >
+                <S.OptSideLayoutPortalContent>
+                  {routes}
+                </S.OptSideLayoutPortalContent>
               </Suspense>
             )}
           </S.OptSideLayoutPortalContent>

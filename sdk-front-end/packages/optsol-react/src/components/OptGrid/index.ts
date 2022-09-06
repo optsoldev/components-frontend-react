@@ -58,12 +58,12 @@ type Path<T> = T extends ReadonlyArray<infer V>
       [K in keyof T]-?: Join<K & string, T[K]>;
     }[keyof T];
 
-type FieldPath<TFieldValues extends Record<string, any>> = Path<TFieldValues>;
+// type FieldPath<TFieldValues extends Record<string, any>> = Path<TFieldValues>;
 
 export interface OptGridColumn<T> {
   width?: number;
   title: string;
-  field: FieldPath<T>;
+  field: Path<T>;
   render?: (data: T) => JSX.Element;
   align?:
     | "start"

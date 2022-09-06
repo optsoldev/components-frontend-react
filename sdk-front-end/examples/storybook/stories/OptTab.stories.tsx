@@ -15,7 +15,7 @@ export const OptTabsExample: Story<{}> = (args) => {
     setTab(novaTab);
   };
   return (
-    <OptLayoutProvider theme={TEST_THEME}>
+    <OptLayoutProvider theme={TEST_THEME} noRouter>
       <OptTabs onChange={alterarTab} tab={tab}>
         <OptTab label="Splash" tabIndex={0} />
         <OptTab label="Feed" tabIndex={1} />

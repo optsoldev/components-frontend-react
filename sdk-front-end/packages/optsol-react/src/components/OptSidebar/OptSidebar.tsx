@@ -39,8 +39,10 @@ export const OptSidebar = ({
               return (
                 <S.SidebarNavLink
                   to={item.path}
-                  activeClassName={S.activeLinkClass}
-                  exact={item.activeShouldBeExact}
+                  className={({ isActive }) =>
+                    isActive ? S.activeLinkClass : ""
+                  }
+                  end={item.activeShouldBeExact}
                   key={index}
                 >
                   <S.SidebarListItem button>

@@ -1,12 +1,18 @@
-import React, { createContext, useReducer } from 'react';
-import { LocalStorageKeys } from '../../shared/constants';
-import { ThemeActions } from './themeActions';
-import { generateNewTheme } from './themeFunctions';
-import { ThemeDispatch, ThemeReducer, THEME_INITIAL_DISPATCH } from './themeReducer';
-import { CustomOptTheme, ThemeState, THEME_INITIAL_STATE } from './themeState';
+import React, { createContext, useReducer } from "react";
+import { LocalStorageKeys } from "../../shared/constants";
+import { ThemeActions } from "./themeActions";
+import { generateNewTheme } from "./themeFunctions";
+import {
+  ThemeDispatch,
+  ThemeReducer,
+  THEME_INITIAL_DISPATCH,
+} from "./themeReducer";
+import { CustomOptTheme, ThemeState, THEME_INITIAL_STATE } from "./themeState";
 
 const ThemeStateContext = createContext<ThemeState>(THEME_INITIAL_STATE);
-const ThemeDispatchContext = createContext<ThemeDispatch>(THEME_INITIAL_DISPATCH);
+const ThemeDispatchContext = createContext<ThemeDispatch>(
+  THEME_INITIAL_DISPATCH
+);
 
 type ThemeProps = { children: React.ReactNode };
 
@@ -15,7 +21,9 @@ function OptThemeProvider({ children }: ThemeProps) {
 
   return (
     <ThemeStateContext.Provider value={state}>
-      <ThemeDispatchContext.Provider value={dispatch}>{children}</ThemeDispatchContext.Provider>
+      <ThemeDispatchContext.Provider value={dispatch}>
+        {children}
+      </ThemeDispatchContext.Provider>
     </ThemeStateContext.Provider>
   );
 }
@@ -24,28 +32,38 @@ function useOptTheme() {
   const state = React.useContext(ThemeStateContext);
 
   if (state === undefined) {
-    throw new Error('useThemeState deve ser utilizando dentro de um ThemeProvider');
+    throw new Error(
+      "useThemeState deve ser utilizando dentro de um ThemeProvider"
+    );
   }
 
   const dispatch = React.useContext(ThemeDispatchContext);
 
   if (dispatch === undefined) {
-    throw new Error('useThemeDispatch deve ser utilizando dentro de um ThemeProvider');
+    throw new Error(
+      "useThemeDispatch deve ser utilizando dentro de um ThemeProvider"
+    );
   }
 
   const actions = ThemeActions;
 
   function setCurrentTheme(darkTheme: boolean) {
     if (darkTheme) {
-      localStorage.setItem(LocalStorageKeys.DarkTheme, '1');
+      localStorage.setItem(LocalStorageKeys.DarkTheme, "1");
 
-      const currentTheme = generateNewTheme(state.theme.dark, state.customTheme.dark);
+      const currentTheme = generateNewTheme(
+        state.theme.dark,
+        state.customTheme.dark
+      );
 
       dispatch({ type: actions.SET_DARK_THEME, payload: currentTheme });
     } else {
       localStorage.removeItem(LocalStorageKeys.DarkTheme);
 
-      const currentTheme = generateNewTheme(state.theme.light, state.customTheme.light);
+      const currentTheme = generateNewTheme(
+        state.theme.light,
+        state.customTheme.light
+      );
 
       dispatch({ type: actions.SET_LIGHT_THEME, payload: currentTheme });
     }
@@ -74,4 +92,3 @@ function useOptTheme() {
 }
 
 export { OptThemeProvider, useOptTheme };
-

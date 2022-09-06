@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { OptSideLayoutContent } from '@optsol/react';
+import { OptSideLayoutContent } from "@optsol/react";
+import { useParams } from "react-router-dom";
 
 export const AppSideRegistroItem = () => {
   const param = useParams<{ id: string }>();

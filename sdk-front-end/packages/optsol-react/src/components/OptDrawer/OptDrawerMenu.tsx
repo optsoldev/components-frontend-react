@@ -50,8 +50,10 @@ export const OptDrawerMenu = ({
             {section.items.map((item, index) => (
               <S.DrawerNavLink
                 to={item.path}
-                activeClassName={S.activeLinkClass}
-                exact={item.activeShouldBeExact}
+                className={({ isActive }) =>
+                  isActive ? S.activeLinkClass : ""
+                }
+                end={item.activeShouldBeExact}
                 key={index}
               >
                 <S.MenuListItem button>

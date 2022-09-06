@@ -1,6 +1,5 @@
-
-import { ActiveLinkClass } from '../../../shared/constants';
-import * as S from './styles';
+import { ActiveLinkClass } from "../../../shared/constants";
+import * as S from "./styles";
 
 interface Props {
   name: string;
@@ -11,7 +10,10 @@ interface Props {
 export const OptFilterLink = ({ name, to, total }: Props) => {
   return (
     <S.CustomListItem button>
-      <S.CustomSidebarNavLink to={to} activeClassName={ActiveLinkClass}>
+      <S.CustomSidebarNavLink
+        to={to}
+        className={({ isActive }) => (isActive ? ActiveLinkClass : "")}
+      >
         {name}
         <span>{total}</span>
       </S.CustomSidebarNavLink>

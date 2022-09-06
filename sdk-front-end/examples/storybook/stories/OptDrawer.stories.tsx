@@ -71,7 +71,7 @@ const Template: ComponentStory<typeof OptDrawerMenu> = (args) => {
   ];
 
   return (
-    <OptLayoutProvider theme={theme}>
+    <OptLayoutProvider theme={theme} noRouter>
       <OptDrawerMenu
         sections={sectionsDefault}
         onToggleDockDrawer={() => {}}

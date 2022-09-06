@@ -1,13 +1,13 @@
-import { PropsWithChildren } from 'react';
-import { ActiveLinkClass } from '../../../shared/constants';
-import { ColorPalette } from '../../../shared/styles/colors';
-import { OptSearchResponse } from '../../../types';
-import { OptInfiniteScrollList } from '../../OptInfiniteScrollList/OptInfiniteScrollList';
+import { PropsWithChildren } from "react";
+import { ActiveLinkClass } from "../../../shared/constants";
+import { ColorPalette } from "../../../shared/styles/colors";
+import { OptSearchResponse } from "../../../types";
+import { OptInfiniteScrollList } from "../../OptInfiniteScrollList/OptInfiniteScrollList";
 import {
   OptSidebarListBaseContainer,
-  OptSidebarListBaseProps
-} from './OptSidebarListBaseContainer';
-import * as S from './styles';
+  OptSidebarListBaseProps,
+} from "./OptSidebarListBaseContainer";
+import * as S from "./styles";
 
 interface Props<T> extends OptSidebarListBaseProps {
   render: (item: T) => JSX.Element;
@@ -16,7 +16,7 @@ interface Props<T> extends OptSidebarListBaseProps {
   load: (
     search: string,
     page: number,
-    pageSize: number,
+    pageSize: number
   ) => Promise<OptSearchResponse<T>>;
   pageSize?: number;
   onError?: (error: string) => void;
@@ -24,13 +24,13 @@ interface Props<T> extends OptSidebarListBaseProps {
 
 export const OptSidebarPaginatedListContainer = <
   T extends { id: Key },
-  Key extends React.Key,
+  Key extends React.Key
 >({
   createTo,
   listItemTo,
   title,
   background = ColorPalette.gray6,
-  borderColor = 'unset',
+  borderColor = "unset",
   width = 280,
   goBackRoute,
   render,
@@ -58,7 +58,7 @@ export const OptSidebarPaginatedListContainer = <
           <S.CustomListItem button key={item.id}>
             <S.CustomSidebarNavLink
               to={listItemTo(item.id.toString())}
-              activeClassName={ActiveLinkClass}
+              className={({ isActive }) => (isActive ? ActiveLinkClass : "")}
             >
               <S.MainContainer>{render(item)}</S.MainContainer>
             </S.CustomSidebarNavLink>

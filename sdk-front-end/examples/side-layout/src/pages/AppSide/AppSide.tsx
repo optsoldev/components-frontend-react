@@ -4,22 +4,22 @@ import {
   mdiCodeArray,
   mdiIdeogramCjk,
   mdiPacMan,
-  mdiTuneVariant
-} from '@mdi/js';
-import { OptMenuSection, OptSideLayout } from '@optsol/react';
-import { Route, Switch } from 'react-router-dom';
-import { version } from '../../../package.json';
-import { RotaNaoEncontrada } from '../App/RotaNaoEncontrada';
-import { AppSideHome } from './AppSideHome';
-import { AppSideListaRegistrosRoutes } from './AppSideListaRegistros/AppSideListaRegistros.routes';
+  mdiTuneVariant,
+} from "@mdi/js";
+import { OptMenuSection, OptSideLayout } from "@optsol/react";
+import { Route, Routes } from "react-router-dom";
+import { version } from "../../../package.json";
+import { RotaNaoEncontrada } from "../App/RotaNaoEncontrada";
+import { AppSideHome } from "./AppSideHome";
+import { AppSideListaRegistrosRoutes } from "./AppSideListaRegistros/AppSideListaRegistros.routes";
 
 const sections: OptMenuSection[] = [
   {
     items: [
       {
         icon: mdiPacMan,
-        path: '/',
-        title: 'Início',
+        path: "/",
+        title: "Início",
         activeShouldBeExact: true,
       },
     ],
@@ -28,13 +28,13 @@ const sections: OptMenuSection[] = [
     items: [
       {
         icon: mdiIdeogramCjk,
-        path: '/registro',
-        title: 'Registros',
+        path: "/registro",
+        title: "Registros",
       },
       {
         icon: mdiIdeogramCjk,
-        path: '/registro/1/item',
-        title: 'Registro 1 Item 1',
+        path: "/registro/1/item",
+        title: "Registro 1 Item 1",
         activeShouldBeExact: true,
       },
     ],
@@ -42,11 +42,11 @@ const sections: OptMenuSection[] = [
 ];
 
 const routes = (
-  <Switch>
-    <Route exact path='/' component={AppSideHome} />
-    <Route path='/registro' component={AppSideListaRegistrosRoutes} />
-    <Route component={RotaNaoEncontrada} />
-  </Switch>
+  <Routes>
+    <Route path="/" element={<AppSideHome />} />
+    <Route path="/registro/*" element={<AppSideListaRegistrosRoutes />} />
+    <Route element={<RotaNaoEncontrada />} />
+  </Routes>
 );
 
 export const AppSide = () => {
@@ -55,47 +55,47 @@ export const AppSide = () => {
       sections={sections}
       routes={routes}
       onLogout={() => {
-        console.log('onLogout');
+        console.log("onLogout");
       }}
       onManageProfile={() => {
-        console.log('onManageProfile');
+        console.log("onManageProfile");
       }}
       appBarConfig={{
         actions: [
           {
             icon: mdiCodeArray,
             onClick: () => {
-              console.log('1');
+              console.log("1");
             },
-            title: 'Alguma coisa 1',
+            title: "Alguma coisa 1",
           },
           {
             icon: mdiTuneVariant,
             onClick: () => {
-              console.log('2');
+              console.log("2");
             },
-            title: 'Alguma coisa 2',
+            title: "Alguma coisa 2",
           },
           {
             icon: mdiApps,
             onClick: () => {
-              console.log('3');
+              console.log("3");
             },
-            title: 'Alguma coisa 3',
+            title: "Alguma coisa 3",
           },
           {
             icon: mdiBell,
             onClick: () => {
-              console.log('4');
+              console.log("4");
             },
-            title: 'Alguma coisa 4',
+            title: "Alguma coisa 4",
           },
         ],
         hideLinkDescription: true,
       }}
       profile={{
-        email: 'usuario@optsol.com.br',
-        name: 'Usuário A B',
+        email: "usuario@optsol.com.br",
+        name: "Usuário A B",
         avatarSrc: undefined,
       }}
       version={`Versão ${version}`}

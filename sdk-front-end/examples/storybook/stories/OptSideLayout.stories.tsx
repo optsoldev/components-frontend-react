@@ -15,6 +15,7 @@ import {
 } from "@optsol/react";
 import { OptMainSidebarFooterAction } from "@optsol/react/lib/esm/components/OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions";
 import { ComponentMeta, Story } from "@storybook/react";
+import React from "react";
 import { ColorPalette } from "../shared/colors";
 
 export default {
@@ -39,7 +40,7 @@ const Template: Story<
     },
   };
 
-  let userProfile: OptUserProfile = undefined;
+  let userProfile: OptUserProfile = {} as OptUserProfile;
 
   if (args.hasProfile) {
     userProfile = {
@@ -103,7 +104,7 @@ const Template: Story<
   };
 
   return (
-    <OptLayoutProvider theme={theme}>
+    <OptLayoutProvider theme={theme} noRouter>
       <OptSideLayout
         sections={sectionsArray}
         //routes={}
