@@ -105,6 +105,8 @@ export const CustomCheckbox = React.memo(
       width: 24,
       height: 24,
     },
+    display: "flex",
+    justifySelf: "center",
   }),
   areEqual
 );
