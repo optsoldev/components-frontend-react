@@ -14,9 +14,8 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { useEffect } from "react";
-import { useState } from "react";
-import { OptLoading } from "..";
+import { useEffect, useState } from "react";
+import { OptLoading } from "../OptLoading";
 import {
   OptTimelineField,
   OptTimelineTableValue,
@@ -45,8 +44,7 @@ export interface OptTimelineProps {
     | "success"
     | "error"
     | "info"
-    | "warning"
-    | undefined;
+    | "warning";
   valuesTableOptions?: {
     nameHeader?: string;
     valueHeader?: string;
@@ -111,7 +109,7 @@ OptTimelineProps) => {
                 if (typeof versao.payload === "string") {
                   payload = JSON.parse(versao.payload) as OptTimelineField[];
                 } else {
-                  payload = versao.payload as OptTimelineField[];
+                  payload = versao.payload;
                 }
               }
 

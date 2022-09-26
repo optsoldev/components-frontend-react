@@ -1,6 +1,5 @@
-export { OptSidebarFilterContainer } from './OptSidebarFilterContainer';
-export { OptFilterLink } from './OptFilterLink';
-export { OptSidebarListContainer } from './OptSidebarListContainer';
-export { OptSidebarPaginatedListContainer } from './OptSidebarPaginatedListContainer';
-export { OptSidebarListBaseContainer } from './OptSidebarListBaseContainer';
-export * from '.';
+export * from "./OptFilterLink";
+export * from "./OptSidebarFilterContainer";
+export * from "./OptSidebarListBaseContainer";
+export * from "./OptSidebarListContainer";
+export * from "./OptSidebarPaginatedListContainer";

@@ -1,19 +1,14 @@
-import { CustomOptTheme } from '../../contexts/theme/themeState';
-import { OptUserProfile } from '../OptAvatar';
-import { OptMenuSection } from '../OptDrawer';
-import { OptMainSidebarFooterAction } from '../OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions';
+import { CustomOptTheme } from "../../contexts/theme/themeState";
+import { OptUserProfile } from "../OptAvatar";
+import { OptMenuSection } from "../OptDrawer";
+import { OptMainSidebarFooterAction } from "../OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions";
 
-export { OptSideLayout } from './OptSideLayout';
-export { OptSideLayoutContent } from './OptSideLayoutContent';
-export { OptSideLayoutPortal } from './OptSideLayoutPortal';
-export { OptSideLayoutPortalContent } from './styles';
-export { OptSideLayoutPortalContainer } from './OptSideLayoutPortalContainer';
-export {
-  OptFilterLink,
-  OptSidebarFilterContainer,
-  OptSidebarListContainer,
-} from './extensions';
-export * from './extensions';
+export * from "./extensions";
+export { OptSideLayout } from "./OptSideLayout";
+export { OptSideLayoutContent } from "./OptSideLayoutContent";
+export { OptSideLayoutPortal } from "./OptSideLayoutPortal";
+export { OptSideLayoutPortalContainer } from "./OptSideLayoutPortalContainer";
+export { OptSideLayoutPortalContent } from "./styles";
 
 export interface OptSideLayoutProviderProps {
   darkTheme?: boolean;
