@@ -158,6 +158,7 @@ const OptGridInternal = <T extends {}>(
       pageIndex={pageIndex}
       pageSize={pageSize}
       headerTitlePosition={headerTitlePosition}
+      options={options}
     />
   );
 };

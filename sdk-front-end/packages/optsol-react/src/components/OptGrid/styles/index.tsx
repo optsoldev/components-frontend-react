@@ -32,12 +32,13 @@ export const PaginationContainer = styled.div`
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<{ titleBgColor?: string }>`
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.6rem;
   letter-spacing: 0.0075em;
   padding: 12px 24px;
+  background-color: ${(prop) => prop.titleBgColor ?? ""};
 `;
 
 export const StyledTable = styled.table`
