@@ -48,6 +48,10 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   actionsPosition: "start" | "end";
   headerTitlePosition: "start" | "center" | "end";
   selection: boolean;
+  bottomElement?: React.ReactNode;
+  hidePagination: boolean;
+  titleBgColor: string;
+  headerBgColor: string;
 }
 
 export const OptGridRemota: Story<OptGridArgs> = ({
@@ -60,10 +64,18 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   onDelete,
   onApprove,
   selection,
+  bottomElement,
+  hidePagination,
+  titleBgColor,
+  headerBgColor,
 }) => {
   const options: OptGridOptions = {
     search,
     selection,
+    bottomElement,
+    hidePagination,
+    titleBgColor,
+    headerBgColor,
   };
 
   const ref = useRef<OptGridRef>();
@@ -145,6 +157,10 @@ OptGridRemota.args = {
   actionsPosition: "start",
   headerTitlePosition: "start",
   selection: false,
+  bottomElement: <></>,
+  hidePagination: false,
+  titleBgColor: "",
+  headerBgColor: "",
 };
 
 OptGridRemota.argTypes = {
@@ -167,6 +183,26 @@ OptGridRemota.argTypes = {
   selection: {
     defaultValue: false,
     name: "Selectable",
+  },
+  bottomElement: {
+    name: "Bottom Element",
+    options: ["SemBottomElement", "ComBottomElement"],
+    mapping: {
+      SemBottomElement: <></>,
+      ComBottomElement: <p>BOTTOM ELEMENT</p>,
+    },
+  },
+  hidePagination: {
+    defaultValue: false,
+    name: "Hide Pagination",
+  },
+  titleBgColor: {
+    defaultValue: "#fff",
+    name: "Title Background Color",
+  },
+  headerBgColor: {
+    defaultValue: "#fff",
+    name: "Header Background Color",
   },
   data: {
     table: { disable: true },

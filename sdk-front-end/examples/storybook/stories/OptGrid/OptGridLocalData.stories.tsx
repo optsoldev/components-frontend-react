@@ -240,7 +240,7 @@ OptGridLocalData.args = {
   headerTitlePosition: "start",
   // paginationPosition: "end",
   selection: false,
-  bottomElement: "",
+  bottomElement: <></>,
   hidePagination: false,
   titleBgColor: "",
   headerBgColor: "",

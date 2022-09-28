@@ -137,6 +137,7 @@ const OptGridInternal = <T extends {}>(
     load,
     onRowClick,
     onSelect: options?.selection ? onSelect : undefined,
+    isRemote,
   };
 
   return (

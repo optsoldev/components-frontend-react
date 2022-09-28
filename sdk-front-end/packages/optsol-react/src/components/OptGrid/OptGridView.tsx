@@ -41,6 +41,7 @@ interface OptGridViewProps<T extends object> {
   pageSize: number;
   headerTitlePosition?: "start" | "center" | "end";
   options?: OptGridOptions;
+  isRemote: boolean;
 }
 
 const OptGridView = <T extends {}>({
@@ -67,7 +68,18 @@ const OptGridView = <T extends {}>({
   pageSize,
   headerTitlePosition,
   options,
+  isRemote,
 }: OptGridViewProps<T>) => {
+  const acceptHidePagination = () => {
+    if (isRemote) {
+      return false;
+    } else {
+      if (options?.hidePagination) {
+        return true;
+      } else return false;
+    }
+  };
+
   return (
     <S.GridContainer className="opt-grid">
       <S.Title titleBgColor={options?.titleBgColor}>{title}</S.Title>
@@ -132,7 +144,8 @@ const OptGridView = <T extends {}>({
           </tbody>
         </S.StyledTable>
       </div>
-      {!options?.hidePagination && (
+
+      {!acceptHidePagination() && (
         <OptGridPagination
           canPreviousPage={canPreviousPage}
           canNextPage={canNextPage}
