@@ -49,7 +49,6 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   headerTitlePosition: "start" | "center" | "end";
   selection: boolean;
   bottomElement?: React.ReactNode;
-  hidePagination: boolean;
   titleBgColor: string;
   headerBgColor: string;
 }
@@ -65,7 +64,6 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   onApprove,
   selection,
   bottomElement,
-  hidePagination,
   titleBgColor,
   headerBgColor,
 }) => {
@@ -73,7 +71,6 @@ export const OptGridRemota: Story<OptGridArgs> = ({
     search,
     selection,
     bottomElement,
-    hidePagination,
     titleBgColor,
     headerBgColor,
   };
@@ -157,8 +154,7 @@ OptGridRemota.args = {
   actionsPosition: "start",
   headerTitlePosition: "start",
   selection: false,
-  bottomElement: <></>,
-  hidePagination: false,
+  bottomElement: "",
   titleBgColor: "",
   headerBgColor: "",
 };
@@ -188,13 +184,9 @@ OptGridRemota.argTypes = {
     name: "Bottom Element",
     options: ["SemBottomElement", "ComBottomElement"],
     mapping: {
-      SemBottomElement: <></>,
+      SemBottomElement: "",
       ComBottomElement: <p>BOTTOM ELEMENT</p>,
     },
-  },
-  hidePagination: {
-    defaultValue: false,
-    name: "Hide Pagination",
   },
   titleBgColor: {
     defaultValue: "#fff",

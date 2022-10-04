@@ -31,7 +31,6 @@ const OptGridInternal = <T extends {}>(
     onRowClick,
     onSelect,
     load,
-    isRemote,
   }: OptInternalSelectableGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) => {
@@ -71,31 +70,13 @@ const OptGridInternal = <T extends {}>(
     ]);
   };
 
-  const conditionalPageSize = () => {
-    if (isRemote) {
-      if (options?.pageSize) {
-        return options.pageSize;
-      } else return 10;
-    } else {
-      if (options?.hidePagination) {
-        return controls.data.length;
-      } else {
-        if (options?.pageSize) {
-          return options.pageSize;
-        } else return 10;
-      }
-    }
-  };
-
-  console.log(conditionalPageSize());
-
   function constructTable() {
     const tableOptions = {
       columns: internalColumns,
       data: controls.data,
       initialState: {
         pageIndex: 0,
-        pageSize: conditionalPageSize(),
+        pageSize: options?.pageSize ?? 10,
         hiddenColumns: hiddenColumns,
       }, // Pass our hoisted table state
       manualPagination: true, // Tell the usePagination
@@ -178,7 +159,6 @@ const OptGridInternal = <T extends {}>(
       pageSize={pageSize}
       headerTitlePosition={headerTitlePosition}
       options={options}
-      isRemote={isRemote}
     />
   );
 };
