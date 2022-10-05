@@ -41,7 +41,6 @@ interface OptGridViewProps<T extends object> {
   pageSize: number;
   headerTitlePosition?: "start" | "center" | "end";
   options?: OptGridOptions;
-  isRemote: boolean;
 }
 
 const OptGridView = <T extends {}>({
@@ -68,18 +67,7 @@ const OptGridView = <T extends {}>({
   pageSize,
   headerTitlePosition,
   options,
-  isRemote,
 }: OptGridViewProps<T>) => {
-  const acceptHidePagination = () => {
-    if (isRemote) {
-      return false;
-    } else {
-      if (options?.hidePagination) {
-        return true;
-      } else return false;
-    }
-  };
-
   return (
     <S.GridContainer className="opt-grid">
       <S.Title titleBgColor={options?.titleBgColor}>{title}</S.Title>
@@ -138,27 +126,24 @@ const OptGridView = <T extends {}>({
                     {options.bottomElement}
                   </td>
                 </tr>
-                <tr role="row"></tr>
               </>
             )}
+            <tr role="row"></tr>
           </tbody>
         </S.StyledTable>
       </div>
-
-      {!acceptHidePagination() && (
-        <OptGridPagination
-          canPreviousPage={canPreviousPage}
-          canNextPage={canNextPage}
-          pageOptions={pageOptions}
-          pageCount={pageCount}
-          gotoPage={gotoPage}
-          nextPage={nextPage}
-          previousPage={previousPage}
-          setPageSize={setPageSize}
-          pageIndex={pageIndex}
-          pageSize={pageSize}
-        />
-      )}
+      <OptGridPagination
+        canPreviousPage={canPreviousPage}
+        canNextPage={canNextPage}
+        pageOptions={pageOptions}
+        pageCount={pageCount}
+        gotoPage={gotoPage}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        setPageSize={setPageSize}
+        pageIndex={pageIndex}
+        pageSize={pageSize}
+      />
     </S.GridContainer>
   );
 };

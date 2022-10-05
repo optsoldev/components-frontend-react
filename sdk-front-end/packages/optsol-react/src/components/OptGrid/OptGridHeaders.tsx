@@ -27,13 +27,14 @@ export const OptGridHeaders = <T extends object>({
           {headerGroup.headers.map((column) => {
             return (
               <S.StyledTh
+                {...column.getHeaderProps(column.getSortByToggleProps())}
                 position={headerTitlePosition}
-                {...column.getHeaderProps()}
                 customWidth={column.width}
               >
                 {column.render("Header")}
                 <span>
-                  {column.isSorted && (column.isSortedDesc ? " 🔽" : " 🔼")}
+                  {/* {column.isSorted && (column.isSortedDesc ? " 🔽" : " 🔼")} */}
+                  {column.isSorted && (column.isSortedDesc ? " ▼" : " ▲")}
                 </span>
               </S.StyledTh>
             );
