@@ -135,6 +135,7 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   headerTitlePosition: "start" | "center" | "end";
   selection: boolean;
   bottomElement?: React.ReactNode;
+  hidePagination: boolean;
   titleBgColor: string;
   headerBgColor: string;
 }
@@ -149,6 +150,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
   onDelete,
   selection,
   bottomElement,
+  hidePagination,
   titleBgColor,
   headerBgColor,
 }) => {
@@ -156,6 +158,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
     search,
     selection,
     bottomElement,
+    hidePagination,
     titleBgColor,
     headerBgColor,
   };
@@ -237,7 +240,8 @@ OptGridLocalData.args = {
   headerTitlePosition: "start",
   // paginationPosition: "end",
   selection: false,
-  bottomElement: "",
+  bottomElement: <></>,
+  hidePagination: false,
   titleBgColor: "",
   headerBgColor: "",
 };
@@ -266,9 +270,13 @@ OptGridLocalData.argTypes = {
     name: "Bottom Element",
     options: ["SemBottomElement", "ComBottomElement"],
     mapping: {
-      SemBottomElement: "",
+      SemBottomElement: <></>,
       ComBottomElement: <p>BOTTOM ELEMENT</p>,
     },
+  },
+  hidePagination: {
+    defaultValue: false,
+    name: "Hide Pagination",
   },
   titleBgColor: {
     defaultValue: "#fff",

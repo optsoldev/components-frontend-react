@@ -26,6 +26,7 @@ export interface OptGridOptions {
   toolbar?: boolean;
   selection?: boolean;
   bottomElement?: React.ReactNode;
+  hidePagination?: boolean;
   titleBgColor?: string;
   headerBgColor?: string;
 }
@@ -116,4 +117,5 @@ export interface OptInternalGridProps<T extends object> {
   internalColumns: Column<T>[];
   onRowClick?: (data: T) => void;
   load: (pageIndex: number, pageSize: number) => void;
+  isRemote: boolean;
 }

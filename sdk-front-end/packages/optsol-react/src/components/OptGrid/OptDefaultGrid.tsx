@@ -17,16 +17,36 @@ const OptGridInternal = <T extends {}>(
     headerTitlePosition,
     onRowClick,
     load,
+    isRemote,
   }: OptInternalGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) => {
+  const conditionalPageSize = () => {
+    if (isRemote) {
+      if (options?.pageSize) {
+        return options.pageSize;
+      } else return 10;
+    } else {
+      if (options?.hidePagination) {
+        return controls.data.length;
+      } else {
+        if (options?.pageSize) {
+          return options.pageSize;
+        } else return 10;
+      }
+    }
+  };
+
+  console.log(conditionalPageSize());
+
   const table = useTable<T>(
     {
       columns: internalColumns,
       data: controls.data,
       initialState: {
         pageIndex: 0,
-        pageSize: options?.pageSize ?? 10,
+        // pageSize: options?.pageSize ?? 10,
+        pageSize: conditionalPageSize(),
         hiddenColumns: hiddenColumns,
       }, // Pass our hoisted table state
       manualPagination: true, // Tell the usePagination
@@ -93,6 +113,7 @@ const OptGridInternal = <T extends {}>(
       pageSize={pageSize}
       headerTitlePosition={headerTitlePosition}
       options={options}
+      isRemote={isRemote}
     />
   );
 };
