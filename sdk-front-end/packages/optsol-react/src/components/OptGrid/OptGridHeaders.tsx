@@ -1,5 +1,3 @@
-import { mdiMenuDown, mdiMenuUp } from "@mdi/js";
-import Icon from "@mdi/react";
 import { HeaderGroup } from "react-table";
 import { OptGridActionsHeader } from "./OptGridActionsHeader";
 import * as S from "./styles";
@@ -29,21 +27,13 @@ export const OptGridHeaders = <T extends object>({
           {headerGroup.headers.map((column) => {
             return (
               <S.StyledTh
-                {...column.getHeaderProps(column.getSortByToggleProps())}
                 position={headerTitlePosition}
+                {...column.getHeaderProps()}
                 customWidth={column.width}
               >
                 {column.render("Header")}
-
                 <span>
-                  {
-                    column.isSorted &&
-                      (column.isSortedDesc
-                        ? " ASC"
-                        : // <Icon path={mdiMenuDown} size={1} />
-                          " DESC")
-                    // <Icon path={mdiMenuUp} size={1} />
-                  }
+                  {column.isSorted && (column.isSortedDesc ? " 🔽" : " 🔼")}
                 </span>
               </S.StyledTh>
             );
