@@ -1,3 +1,4 @@
+import React from "react";
 import { Column } from "react-table";
 import { IconPathColor } from "../../types/IconPathColor";
 
@@ -24,6 +25,9 @@ export interface OptGridOptions {
   search?: boolean;
   toolbar?: boolean;
   selection?: boolean;
+  bottomElement?: React.ReactNode;
+  titleBgColor?: string;
+  headerBgColor?: string;
 }
 
 export interface OptGridAction<T> {

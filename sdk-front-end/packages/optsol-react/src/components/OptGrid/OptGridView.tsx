@@ -6,7 +6,12 @@ import {
   TablePropGetter,
   TableProps,
 } from "react-table";
-import { OptGridAction, OptGridColumn, OptGridControls } from ".";
+import {
+  OptGridAction,
+  OptGridColumn,
+  OptGridControls,
+  OptGridOptions,
+} from ".";
 import { OptGridHeaders } from "./OptGridHeaders";
 import { OptGridPagination } from "./OptGridPagination";
 import { OptGridRows } from "./OptGridRows";
@@ -35,6 +40,7 @@ interface OptGridViewProps<T extends object> {
   pageIndex: number;
   pageSize: number;
   headerTitlePosition?: "start" | "center" | "end";
+  options?: OptGridOptions;
 }
 
 const OptGridView = <T extends {}>({
@@ -60,10 +66,11 @@ const OptGridView = <T extends {}>({
   pageIndex,
   pageSize,
   headerTitlePosition,
+  options,
 }: OptGridViewProps<T>) => {
   return (
     <S.GridContainer className="opt-grid">
-      <S.Title>{title}</S.Title>
+      <S.Title $backgroundColor={options?.titleBgColor}>{title}</S.Title>
 
       <div className="tableWrap">
         <S.StyledTable {...getTableProps()}>
@@ -71,6 +78,7 @@ const OptGridView = <T extends {}>({
             headerGroups={headerGroups}
             actionsPosition={actionsPosition}
             headerTitlePosition={headerTitlePosition}
+            headerBgColor={options?.headerBgColor}
           />
 
           <tbody {...getTableBodyProps()}>
@@ -106,10 +114,24 @@ const OptGridView = <T extends {}>({
                 </td>
               </tr>
             )}
+
+            {options?.bottomElement && (
+              <>
+                <tr role="row">
+                  <td
+                    role="cell"
+                    colSpan={10000}
+                    style={{ textAlign: "end", padding: "18px 24px" }}
+                  >
+                    {options.bottomElement}
+                  </td>
+                </tr>
+              </>
+            )}
+            <tr role="row"></tr>
           </tbody>
         </S.StyledTable>
       </div>
-
       <OptGridPagination
         canPreviousPage={canPreviousPage}
         canNextPage={canNextPage}

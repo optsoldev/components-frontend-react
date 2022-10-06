@@ -1,5 +1,5 @@
 import React, { ForwardedRef, useImperativeHandle } from "react";
-import { usePagination, useTable } from "react-table";
+import { usePagination, useTable, useSortBy } from "react-table";
 import { OptInternalGridProps } from ".";
 import { OptGridRef } from "./OptGrid";
 import OptGridView from "./OptGridView";
@@ -35,6 +35,7 @@ const OptGridInternal = <T extends {}>(
       // pageCount.
       pageCount: controls.pageCount,
     },
+    useSortBy,
     usePagination
   );
 
@@ -91,6 +92,7 @@ const OptGridInternal = <T extends {}>(
       pageIndex={pageIndex}
       pageSize={pageSize}
       headerTitlePosition={headerTitlePosition}
+      options={options}
     />
   );
 };
