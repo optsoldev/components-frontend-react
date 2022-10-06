@@ -48,6 +48,9 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   actionsPosition: "start" | "end";
   headerTitlePosition: "start" | "center" | "end";
   selection: boolean;
+  bottomElement?: React.ReactNode;
+  titleBgColor: string;
+  headerBgColor: string;
 }
 
 export const OptGridRemota: Story<OptGridArgs> = ({
@@ -60,10 +63,16 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   onDelete,
   onApprove,
   selection,
+  bottomElement,
+  titleBgColor,
+  headerBgColor,
 }) => {
   const options: OptGridOptions = {
     search,
     selection,
+    bottomElement,
+    titleBgColor,
+    headerBgColor,
   };
 
   const ref = useRef<OptGridRef>();
@@ -94,7 +103,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
                 alt={rowData.avatar}
               />
             ),
-            width: 80,
+            width: 90,
             align: "center",
           },
           {
@@ -145,6 +154,9 @@ OptGridRemota.args = {
   actionsPosition: "start",
   headerTitlePosition: "start",
   selection: false,
+  bottomElement: "",
+  titleBgColor: "",
+  headerBgColor: "",
 };
 
 OptGridRemota.argTypes = {
@@ -167,6 +179,22 @@ OptGridRemota.argTypes = {
   selection: {
     defaultValue: false,
     name: "Selectable",
+  },
+  bottomElement: {
+    name: "Bottom Element",
+    options: ["SemBottomElement", "ComBottomElement"],
+    mapping: {
+      SemBottomElement: "",
+      ComBottomElement: <p>BOTTOM ELEMENT</p>,
+    },
+  },
+  titleBgColor: {
+    defaultValue: "#fff",
+    name: "Title Background Color",
+  },
+  headerBgColor: {
+    defaultValue: "#fff",
+    name: "Header Background Color",
   },
   data: {
     table: { disable: true },

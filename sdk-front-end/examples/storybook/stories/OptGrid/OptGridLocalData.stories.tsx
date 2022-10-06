@@ -16,6 +16,7 @@ interface Pessoa {
     last_name: string;
   };
   avatar: string;
+  points: number;
 }
 
 export default {
@@ -32,6 +33,7 @@ const LOCAL_DATA = [
       last_name: "Bluth",
     },
     avatar: "https://reqres.in/img/faces/1-image.jpg",
+    points: 539,
   },
   {
     id: 2,
@@ -41,6 +43,7 @@ const LOCAL_DATA = [
       last_name: "Weaver",
     },
     avatar: "https://reqres.in/img/faces/2-image.jpg",
+    points: 1529,
   },
   {
     id: 3,
@@ -50,6 +53,7 @@ const LOCAL_DATA = [
       last_name: "Wong",
     },
     avatar: "https://reqres.in/img/faces/3-image.jpg",
+    points: 695,
   },
   {
     id: 4,
@@ -59,6 +63,7 @@ const LOCAL_DATA = [
       last_name: "Holt",
     },
     avatar: "https://reqres.in/img/faces/4-image.jpg",
+    points: 510,
   },
   {
     id: 5,
@@ -68,6 +73,7 @@ const LOCAL_DATA = [
       last_name: "Morris",
     },
     avatar: "https://reqres.in/img/faces/5-image.jpg",
+    points: 475,
   },
   {
     id: 6,
@@ -77,6 +83,7 @@ const LOCAL_DATA = [
       last_name: "Ramos",
     },
     avatar: "https://reqres.in/img/faces/6-image.jpg",
+    points: 1658,
   },
   {
     id: 7,
@@ -86,6 +93,7 @@ const LOCAL_DATA = [
       last_name: "Lawson",
     },
     avatar: "https://reqres.in/img/faces/7-image.jpg",
+    points: 1024,
   },
   {
     id: 8,
@@ -95,6 +103,7 @@ const LOCAL_DATA = [
       last_name: "Ferguson",
     },
     avatar: "https://reqres.in/img/faces/8-image.jpg",
+    points: 957,
   },
   {
     id: 9,
@@ -104,6 +113,7 @@ const LOCAL_DATA = [
       last_name: "Funke",
     },
     avatar: "https://reqres.in/img/faces/9-image.jpg",
+    points: 427,
   },
   {
     id: 10,
@@ -113,6 +123,7 @@ const LOCAL_DATA = [
       last_name: "Fields",
     },
     avatar: "https://reqres.in/img/faces/10-image.jpg",
+    points: 1165,
   },
 ];
 
@@ -123,6 +134,9 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   actionsPosition: "start" | "end";
   headerTitlePosition: "start" | "center" | "end";
   selection: boolean;
+  bottomElement?: React.ReactNode;
+  titleBgColor: string;
+  headerBgColor: string;
 }
 
 export const OptGridLocalData: Story<OptGridArgs> = ({
@@ -134,16 +148,22 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
   onSelect,
   onDelete,
   selection,
+  bottomElement,
+  titleBgColor,
+  headerBgColor,
 }) => {
   const options: OptGridOptions = {
     search,
     selection,
+    bottomElement,
+    titleBgColor,
+    headerBgColor,
   };
 
   const ref = useRef<OptGridRef>();
 
   function recarregar() {
-    ref.current.refresh();
+    ref.current?.refresh();
   }
 
   return (
@@ -168,7 +188,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
                 alt={rowData.avatar}
               />
             ),
-            width: 80,
+            width: 90,
             align: "center",
           },
           {
@@ -183,6 +203,10 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
           {
             title: "Sobrenome",
             field: "user.last_name",
+          },
+          {
+            title: "Pontos",
+            field: "points",
           },
         ]}
         data={LOCAL_DATA}
@@ -211,7 +235,11 @@ OptGridLocalData.args = {
   search: true,
   actionsPosition: "start",
   headerTitlePosition: "start",
+  // paginationPosition: "end",
   selection: false,
+  bottomElement: "",
+  titleBgColor: "",
+  headerBgColor: "",
 };
 OptGridLocalData.argTypes = {
   title: {
@@ -233,6 +261,22 @@ OptGridLocalData.argTypes = {
   selection: {
     defaultValue: false,
     name: "Selectable",
+  },
+  bottomElement: {
+    name: "Bottom Element",
+    options: ["SemBottomElement", "ComBottomElement"],
+    mapping: {
+      SemBottomElement: "",
+      ComBottomElement: <p>BOTTOM ELEMENT</p>,
+    },
+  },
+  titleBgColor: {
+    defaultValue: "#fff",
+    name: "Title Background Color",
+  },
+  headerBgColor: {
+    defaultValue: "#fff",
+    name: "Header Background Color",
   },
   data: {
     table: { disable: true },

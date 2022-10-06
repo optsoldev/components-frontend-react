@@ -6,6 +6,7 @@ import {
   usePagination,
   useRowSelect,
   useTable,
+  useSortBy,
 } from "react-table";
 import { OptInternalGridProps } from ".";
 import { OptGridRef } from "./OptGrid";
@@ -88,6 +89,7 @@ const OptGridInternal = <T extends {}>(
 
     return useTable<T>(
       tableOptions,
+      useSortBy,
       usePagination,
       useRowSelect,
       selectionHook
@@ -158,6 +160,7 @@ const OptGridInternal = <T extends {}>(
       pageIndex={pageIndex}
       pageSize={pageSize}
       headerTitlePosition={headerTitlePosition}
+      options={options}
     />
   );
 };

@@ -10,13 +10,11 @@ import {
 } from "@mdi/js";
 import { OptMenuSection, OptSideLayoutPortal } from "@optsol/react";
 import { useMemo } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { AppSideRegistroPortal } from "../AppSideRegistro/AppSideRegistro.routes";
 import { AppSideListaRegistros } from "./AppSideListaRegistros";
 
 export const AppSideListaRegistrosRoutes = () => {
-  const location = useLocation();
-
   const sections = useMemo(
     (): OptMenuSection[] => [
       {
