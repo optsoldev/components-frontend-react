@@ -33,7 +33,6 @@ export const OptGridHeaders = <T extends object>({
               >
                 {column.render("Header")}
                 <span>
-                  {/* {column.isSorted && (column.isSortedDesc ? " 🔽" : " 🔼")} */}
                   {column.isSorted && (column.isSortedDesc ? " ▼" : " ▲")}
                 </span>
               </S.StyledTh>

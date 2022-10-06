@@ -70,7 +70,7 @@ const OptGridView = <T extends {}>({
 }: OptGridViewProps<T>) => {
   return (
     <S.GridContainer className="opt-grid">
-      <S.Title titleBgColor={options?.titleBgColor}>{title}</S.Title>
+      <S.Title $backgroundColor={options?.titleBgColor}>{title}</S.Title>
 
       <div className="tableWrap">
         <S.StyledTable {...getTableProps()}>
