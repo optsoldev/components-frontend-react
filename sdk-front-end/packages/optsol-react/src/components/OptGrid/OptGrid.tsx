@@ -1,18 +1,16 @@
-import React, { ForwardedRef, useState } from "react";
-import { Column } from "react-table";
+import React, { ForwardedRef, useState } from 'react';
+import { Column } from 'react-table';
 import {
   OptGridControls,
   OptGridDataRequest,
   OptGridProps,
+  OptGridRef,
   OptGridRequest,
-} from ".";
-import { OptDefaultGrid } from "./OptDefaultGrid";
-import { OptSelectableGrid } from "./OptSelectableGrid";
-export interface OptGridRef {
-  refresh: () => void;
-}
+} from './@types';
+import { OptDefaultGrid } from './OptDefaultGrid';
+import { OptSelectableGrid } from './OptSelectableGrid';
 
-const OptGridInternal = <T extends {}>(
+function OptGridInternal<T extends {}>(
   {
     columns,
     data,
@@ -25,7 +23,7 @@ const OptGridInternal = <T extends {}>(
     onSelect,
   }: OptGridProps<T>,
   ref: ForwardedRef<OptGridRef>
-) => {
+) {
   const isRemote = !Array.isArray(data);
 
   const [controls, setControls] = useState<OptGridControls<T>>({
@@ -54,26 +52,17 @@ const OptGridInternal = <T extends {}>(
     [columns]
   );
 
-  function load(pageIndex: number, pageSize: number) {
-    if (isRemote) {
-      loadRemote(data as OptGridDataRequest<T>, pageIndex, pageSize);
-    } else {
-      // todo
-      loadLocal(data as T[], pageIndex, pageSize);
-    }
-  }
-
   function loadRemote(
-    data: OptGridDataRequest<T>,
+    remoteData: OptGridDataRequest<T>,
     pageIndex: number,
     pageSize = 10
   ) {
     const query: OptGridRequest = {
-      orderBy: "",
-      orderDirection: "asc",
+      orderBy: '',
+      orderDirection: 'asc',
       page: pageIndex,
-      pageSize: pageSize,
-      search: "",
+      pageSize,
+      search: '',
     };
 
     if (!controls.loading || controls.data.length > 0)
@@ -83,7 +72,7 @@ const OptGridInternal = <T extends {}>(
         loading: true,
       }));
 
-    data(query)
+    remoteData(query)
       .then((result) => {
         setControls((previous) => ({
           ...previous,
@@ -104,19 +93,28 @@ const OptGridInternal = <T extends {}>(
       });
   }
 
-  function loadLocal(data: T[], pageIndex: number, pageSize: number) {
+  function loadLocal(localData: T[], pageIndex: number, pageSize: number) {
     const startRow = pageSize * pageIndex;
     const endRow = startRow + pageSize;
-    const slicedData = data.slice(startRow, endRow);
+    const slicedData = localData.slice(startRow, endRow);
 
     setControls({
       ...controls,
       data: slicedData,
-      totalCount: data.length,
-      pageCount: Math.ceil(data.length / pageSize),
+      totalCount: localData.length,
+      pageCount: Math.ceil(localData.length / pageSize),
       loading: false,
       error: false,
     });
+  }
+
+  function load(pageIndex: number, pageSize: number) {
+    if (isRemote) {
+      loadRemote(data, pageIndex, pageSize);
+    } else {
+      // todo
+      loadLocal(data, pageIndex, pageSize);
+    }
   }
 
   const hiddenColumns = columns
@@ -145,7 +143,7 @@ const OptGridInternal = <T extends {}>(
       {!options?.selection && <OptDefaultGrid {...attrs} />}
     </>
   );
-};
+}
 
 export const OptGrid = React.forwardRef(OptGridInternal) as <T extends {}>(
   props: OptGridProps<T> & { ref?: React.ForwardedRef<OptGridRef> }

@@ -1,13 +1,13 @@
-import { mdiChevronDoubleLeft, mdiChevronDoubleRight } from "@mdi/js";
-import Icon from "@mdi/react";
-import { IconButton, Tooltip } from "@mui/material";
-import React from "react";
-import { useOptTheme } from "../../../contexts/theme/themeContext";
-import { OptAppBarAvatarPopOver } from "../../OptAppBar/OptAppBarAvatarPopOver";
-import { OptAvatar, OptUserProfile } from "../../OptAvatar";
-import { OptAppBarAvatar } from "../../OptLayout";
-import { SidebarListItemIcon } from "../styles";
-import * as S from "./styles";
+import { mdiChevronDoubleLeft, mdiChevronDoubleRight } from '@mdi/js';
+import Icon from '@mdi/react';
+import { IconButton, Tooltip } from '@mui/material';
+import React from 'react';
+import { useOptTheme } from '../../../contexts/theme/themeContext';
+import { OptAppBarAvatarPopOver } from '../../OptAppBar/OptAppBarAvatarPopOver';
+import { OptAvatar, OptUserProfile } from '../../OptAvatar';
+import { OptAppBarAvatar } from '../../OptLayout';
+import { SidebarListItemIcon } from '../styles';
+import * as S from './styles';
 
 export interface OptMainSidebarFooterAction {
   /** Must be an @mdi/js path or a ReactNode */
@@ -29,13 +29,13 @@ export interface FooterActionsProps {
   hideLinkDescription?: boolean;
 }
 
-export const FooterActions = ({
+export function FooterActions({
   footerActions,
   profile,
   onLogout,
   onManageProfile,
   toggleSidebar: expandSidebar,
-}: FooterActionsProps) => {
+}: FooterActionsProps) {
   const { currentTheme } = useOptTheme();
   const currentLinkColor =
     currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
@@ -46,7 +46,7 @@ export const FooterActions = ({
         action.iconColor =
           action.iconColor ?? currentTheme.appBar.side!.link.color;
         action.icon =
-          typeof action.icon === "string" ? (
+          typeof action.icon === 'string' ? (
             <Icon
               size={1.2}
               path={action.icon}
@@ -83,15 +83,15 @@ export const FooterActions = ({
       </Tooltip>
     </S.FooterActionsContainer>
   );
-};
+}
 
-export const ExpandedFooterActions = ({
+export function ExpandedFooterActions({
   footerActions,
   profile,
   onLogout,
   onManageProfile,
   toggleSidebar: collapseSidebar,
-}: FooterActionsProps) => {
+}: FooterActionsProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const { currentTheme } = useOptTheme();
   const currentLinkColor =
@@ -110,7 +110,7 @@ export const ExpandedFooterActions = ({
           action.iconColor =
             action.iconColor ?? currentTheme.appBar.side!.link.color;
           action.icon =
-            typeof action.icon === "string" ? (
+            typeof action.icon === 'string' ? (
               <Icon
                 size={1}
                 path={action.icon}
@@ -133,9 +133,9 @@ export const ExpandedFooterActions = ({
         })}
 
         {profile && (
-          <React.Fragment>
-            <S.SidebarMenuDivider style={{ margin: "6px 0" }} />
-            <div style={{ display: "flex", width: "100%" }}>
+          <>
+            <S.SidebarMenuDivider style={{ margin: '6px 0' }} />
+            <div style={{ display: 'flex', width: '100%' }}>
               <S.SidebarExpandedListItem
                 button
                 onClick={handleClickAvatar}
@@ -153,7 +153,7 @@ export const ExpandedFooterActions = ({
                 />
 
                 <S.SidebarExpandedListItemText
-                  primary={profile.name.replace(/ .*/, "")}
+                  primary={profile.name.replace(/ .*/, '')}
                 />
 
                 <Tooltip title="Contrair" placement="right">
@@ -167,9 +167,9 @@ export const ExpandedFooterActions = ({
                 </Tooltip>
               </S.SidebarExpandedListItem>
             </div>
-          </React.Fragment>
+          </>
         )}
       </S.CustomList>
     </S.ExpandedFooterActionsContainer>
   );
-};
+}

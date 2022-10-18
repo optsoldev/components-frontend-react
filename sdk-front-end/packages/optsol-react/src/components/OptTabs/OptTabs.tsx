@@ -1,6 +1,6 @@
-import { PropsWithChildren } from "react";
-import styled from "@emotion/styled";
-import * as S from "./styles";
+import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
+import * as S from './styles';
 
 const CustomTabs = styled(S.CustomTabs)`
   min-height: 30px;
@@ -12,11 +12,7 @@ interface Props {
   onChange: (newTab: number) => void;
 }
 
-export const OptTabs = ({
-  tab,
-  onChange,
-  children,
-}: PropsWithChildren<Props>) => {
+export function OptTabs({ tab, onChange, children }: PropsWithChildren<Props>) {
   const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
     onChange(newValue);
   };
@@ -36,4 +32,4 @@ export const OptTabs = ({
       </CustomTabs>
     </S.CustomTabAppBar>
   );
-};
+}

@@ -4,15 +4,15 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from "@mui/material";
-import { NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
-import { ScrollbarCSS } from "../../../shared/styles/generic";
-import { SidebarExpandedListItem } from "../OptSideAppbarFooterActions/styles";
+} from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { ScrollbarCSS } from '../../../shared/styles/generic';
+import { SidebarExpandedListItem } from '../OptSideAppbarFooterActions/styles';
 
 export const sideAppbarWidth = 50;
 export const expandedSideAppbarWidth = 260;
-export const activeLinkClass = "active-link";
+export const activeLinkClass = 'active-link';
 
 interface SidebarMenuContainerProps {
   expanded?: boolean;

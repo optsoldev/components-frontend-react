@@ -1,5 +1,12 @@
 import Icon from '@mdi/react';
-import { Button, DialogContent, DialogContentText, DialogTitle, Paper, PaperProps } from '@mui/material';
+import {
+  Button,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper,
+  PaperProps,
+} from '@mui/material';
 import { PropsWithChildren } from 'react';
 import Draggable from 'react-draggable';
 import { IconPathColor } from '../../types/IconPathColor';
@@ -7,7 +14,10 @@ import * as S from './styles';
 
 function PaperComponent(props: PaperProps) {
   return (
-    <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
       <Paper {...props} />
     </Draggable>
   );
@@ -24,7 +34,7 @@ export interface OptConfirmationDialogProps {
   onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
 }
 
-export const OptConfirmationDialog = ({
+export function OptConfirmationDialog({
   open,
   title,
   cancelButtonText,
@@ -34,13 +44,14 @@ export const OptConfirmationDialog = ({
   onCancel,
   onConfirm,
   children,
-}: PropsWithChildren<OptConfirmationDialogProps>) => {
+}: PropsWithChildren<OptConfirmationDialogProps>) {
   return (
     <S.StyledDialog
       open={open}
       onClose={onClose}
       aria-labelledby="draggable-dialog-title"
-      PaperComponent={PaperComponent}>
+      PaperComponent={PaperComponent}
+    >
       <div style={{ cursor: 'move' }} id="draggable-dialog-title">
         {icon && (
           <S.DialogIconContainer color={icon.color ?? '#000000'}>
@@ -60,8 +71,10 @@ export const OptConfirmationDialog = ({
           {cancelButtonText ?? 'Cancelar'}
         </Button>
 
-        <Button onClick={onConfirm}>{confirmationButtonText ?? 'Confirmar'}</Button>
+        <Button onClick={onConfirm}>
+          {confirmationButtonText ?? 'Confirmar'}
+        </Button>
       </S.OptDialogActions>
     </S.StyledDialog>
   );
-};
+}

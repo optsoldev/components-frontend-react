@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ColorPalette } from "../../../shared/styles/colors";
+import styled from 'styled-components';
+import { ColorPalette } from '../../../shared/styles/colors';
 
 export const Secao = styled.section`
   border-radius: 8px;
@@ -15,7 +15,7 @@ export const TableContainer = styled.div`
   margin-top: 24px;
 
   & tr:last-child > td {
-    border-bottom: 0;    
+    border-bottom: 0;
   }
 `;
 

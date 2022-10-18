@@ -1,10 +1,10 @@
-import React, { ForwardedRef, useImperativeHandle } from "react";
-import { usePagination, useTable, useSortBy } from "react-table";
-import { OptInternalGridProps } from ".";
-import { OptGridRef } from "./OptGrid";
-import OptGridView from "./OptGridView";
+import React, { ForwardedRef, useImperativeHandle } from 'react';
+import { usePagination, useSortBy, useTable } from 'react-table';
+import { OptGridRef, OptInternalGridProps } from './@types';
 
-const OptGridInternal = <T extends {}>(
+import OptGridView from './OptGridView';
+
+function OptGridInternal<T extends {}>(
   {
     title,
     controls,
@@ -19,7 +19,7 @@ const OptGridInternal = <T extends {}>(
     load,
   }: OptInternalGridProps<T>,
   ref: ForwardedRef<OptGridRef>
-) => {
+) {
   const table = useTable<T>(
     {
       columns: internalColumns,
@@ -27,7 +27,7 @@ const OptGridInternal = <T extends {}>(
       initialState: {
         pageIndex: 0,
         pageSize: options?.pageSize ?? 10,
-        hiddenColumns: hiddenColumns,
+        hiddenColumns,
       }, // Pass our hoisted table state
       manualPagination: true, // Tell the usePagination
       // hook that we'll handle our own data fetching
@@ -65,7 +65,6 @@ const OptGridInternal = <T extends {}>(
 
   React.useEffect(() => {
     load(pageIndex, pageSize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageIndex, pageSize]);
 
   return (
@@ -95,7 +94,7 @@ const OptGridInternal = <T extends {}>(
       options={options}
     />
   );
-};
+}
 
 export const OptDefaultGrid = React.forwardRef(OptGridInternal) as <
   T extends {}

@@ -42,9 +42,11 @@ export const CustomAppBar = styled(AppBar)`
   background-color: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
   ${({ theme }) =>
-    !!theme.appBar.noBoxShadow
+    theme.appBar.noBoxShadow
       ? 'box-shadow: none'
-      : `box-shadow: 0px -10px 10px 12px ${theme.appBar.boxShadowColor ?? theme.appBar.background}`};
+      : `box-shadow: 0px -10px 10px 12px ${
+          theme.appBar.boxShadowColor ?? theme.appBar.background
+        }`};
 
   .MuiToolbar-regular {
     height: ${appBarHeight}px;
@@ -98,7 +100,8 @@ export const AppBarDrawerButton = styled(IconButton)`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.appBar.menuButton.hover.background};
+    background-color: ${({ theme }) =>
+      theme.appBar.menuButton.hover.background};
 
     svg {
       color: ${({ theme }) => theme.appBar.menuButton.hover.color};

@@ -1,6 +1,6 @@
 import { LinearProgress } from '@mui/material';
 import { PropsWithChildren, Suspense } from 'react';
-import { OptMenuSection } from '../OptDrawer';
+import { OptMenuSection } from '../../types';
 import { OptSidebar } from '../OptSidebar';
 import { OptSideLayoutPortalContainer } from './OptSideLayoutPortalContainer';
 import { OptSideLayoutPortalContent } from './styles';
@@ -9,7 +9,10 @@ interface Props {
   sections: OptMenuSection[];
 }
 
-export const OptSideLayoutPortal = ({ sections, children }: PropsWithChildren<Props>) => {
+export function OptSideLayoutPortal({
+  sections,
+  children,
+}: PropsWithChildren<Props>) {
   return (
     <OptSideLayoutPortalContainer>
       <OptSidebar sections={sections} />
@@ -21,10 +24,11 @@ export const OptSideLayoutPortal = ({ sections, children }: PropsWithChildren<Pr
               <LinearProgress color="secondary" />
               <LinearProgress color="primary" />
             </div>
-          }>
+          }
+        >
           {children}
         </Suspense>
       </OptSideLayoutPortalContent>
     </OptSideLayoutPortalContainer>
   );
-};
+}

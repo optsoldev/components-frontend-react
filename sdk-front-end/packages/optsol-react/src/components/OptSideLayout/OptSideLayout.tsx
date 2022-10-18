@@ -1,13 +1,13 @@
-import { LinearProgress } from "@mui/material";
-import React, { PropsWithChildren, Suspense, useEffect, useRef } from "react";
-import { Routes, useLocation } from "react-router-dom";
-import { OptSideLayoutProps } from ".";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import { GlobalStyles } from "../../shared/styles/global";
-import { OptSideAppbar } from "../OptSideAppbar/OptSideAppbar";
-import * as S from "./styles";
+import { LinearProgress } from '@mui/material';
+import { PropsWithChildren, Suspense, useEffect, useRef } from 'react';
+import { Routes, useLocation } from 'react-router-dom';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { GlobalStyles } from '../../shared/styles/global';
+import { OptSideAppbar } from '../OptSideAppbar/OptSideAppbar';
+import { OptSideLayoutProps } from './@types';
+import * as S from './styles';
 
-export const OptSideLayout = ({
+export function OptSideLayout({
   sections,
   routes,
   profile,
@@ -15,7 +15,7 @@ export const OptSideLayout = ({
   onManageProfile,
   onLogout,
   appBarConfig,
-}: PropsWithChildren<OptSideLayoutProps>) => {
+}: PropsWithChildren<OptSideLayoutProps>) {
   const location = useLocation();
   const {
     state: { currentSideAppbarWidth },
@@ -24,13 +24,13 @@ export const OptSideLayout = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   if (routes && routes.type !== Routes) {
-    console.error("Prop routes is not a Routes!");
+    console.error('Prop routes is not a Routes!');
   }
 
   const scrollToTop = () =>
     containerRef.current?.scrollTo({
       left: containerRef.current?.scrollWidth,
-      behavior: "smooth",
+      behavior: 'smooth',
       top: 0,
     });
 
@@ -41,10 +41,10 @@ export const OptSideLayout = ({
   }, [location]);
 
   return (
-    <React.Fragment>
+    <>
       <GlobalStyles noAppBar />
 
-      <div style={{ width: "100vw", display: "flex", overflowX: "hidden" }}>
+      <div style={{ width: '100vw', display: 'flex', overflowX: 'hidden' }}>
         <OptSideAppbar
           sections={sections}
           footerActions={appBarConfig?.actions}
@@ -77,6 +77,6 @@ export const OptSideLayout = ({
           </S.OptSideLayoutPortalContent>
         </S.InitialContainer>
       </div>
-    </React.Fragment>
+    </>
   );
-};
+}

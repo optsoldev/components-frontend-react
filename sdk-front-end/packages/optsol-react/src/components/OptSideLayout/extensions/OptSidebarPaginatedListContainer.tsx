@@ -1,13 +1,13 @@
-import { PropsWithChildren } from "react";
-import { ActiveLinkClass } from "../../../shared/constants";
-import { ColorPalette } from "../../../shared/styles/colors";
-import { OptSearchResponse } from "../../../types";
-import { OptInfiniteScrollList } from "../../OptInfiniteScrollList/OptInfiniteScrollList";
+import { PropsWithChildren } from 'react';
+import { ActiveLinkClass } from '../../../shared/constants';
+import { ColorPalette } from '../../../shared/styles/colors';
+import { OptSearchResponse } from '../../../types';
+import { OptInfiniteScrollList } from '../../OptInfiniteScrollList/OptInfiniteScrollList';
 import {
   OptSidebarListBaseContainer,
   OptSidebarListBaseProps,
-} from "./OptSidebarListBaseContainer";
-import * as S from "./styles";
+} from './OptSidebarListBaseContainer';
+import * as S from './styles';
 
 interface Props<T> extends OptSidebarListBaseProps {
   render: (item: T) => JSX.Element;
@@ -22,7 +22,7 @@ interface Props<T> extends OptSidebarListBaseProps {
   onError?: (error: string) => void;
 }
 
-export const OptSidebarPaginatedListContainer = <
+export function OptSidebarPaginatedListContainer<
   T extends { id: Key },
   Key extends React.Key
 >({
@@ -30,7 +30,7 @@ export const OptSidebarPaginatedListContainer = <
   listItemTo,
   title,
   background = ColorPalette.gray6,
-  borderColor = "unset",
+  borderColor = 'unset',
   width = 280,
   goBackRoute,
   render,
@@ -38,7 +38,7 @@ export const OptSidebarPaginatedListContainer = <
   pageSize = 10,
   onError,
   header,
-}: PropsWithChildren<Props<T>>) => {
+}: PropsWithChildren<Props<T>>) {
   return (
     <OptSidebarListBaseContainer
       title={title}
@@ -58,7 +58,7 @@ export const OptSidebarPaginatedListContainer = <
           <S.CustomListItem button key={item.id}>
             <S.CustomSidebarNavLink
               to={listItemTo(item.id.toString())}
-              className={({ isActive }) => (isActive ? ActiveLinkClass : "")}
+              className={({ isActive }) => (isActive ? ActiveLinkClass : '')}
             >
               <S.MainContainer>{render(item)}</S.MainContainer>
             </S.CustomSidebarNavLink>
@@ -67,4 +67,4 @@ export const OptSidebarPaginatedListContainer = <
       />
     </OptSidebarListBaseContainer>
   );
-};
+}

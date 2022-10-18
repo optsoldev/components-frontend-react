@@ -15,7 +15,7 @@ export type OptActionToolbarProps = {
   noPadding?: boolean;
 };
 
-export const OptActionToolbar = ({
+export function OptActionToolbar({
   title,
   children,
   goBackRoute,
@@ -24,12 +24,17 @@ export const OptActionToolbar = ({
   color,
   noBorder = false,
   noPadding = false,
-}: PropsWithChildren<OptActionToolbarProps>) => {
+}: PropsWithChildren<OptActionToolbarProps>) {
   const theme = useOptTheme();
   color = color ?? theme.currentTheme.toolbar.color;
   background = background ?? theme.currentTheme.toolbar.background;
 
-  title = typeof title === 'string' ? <S.Title color={color}>{title}</S.Title> : title;
+  title =
+    typeof title === 'string' ? (
+      <S.Title color={color}>{title}</S.Title>
+    ) : (
+      title
+    );
 
   return (
     <S.CustomToolbar
@@ -38,7 +43,8 @@ export const OptActionToolbar = ({
       background={background}
       color={color}
       $noborder={noBorder}
-      $nopadding={noPadding}>
+      $nopadding={noPadding}
+    >
       {goBackRoute && (
         <NavLink to={goBackRoute}>
           <S.CustomIconButton>
@@ -52,4 +58,4 @@ export const OptActionToolbar = ({
       <S.ActionsContainer color={color}>{children}</S.ActionsContainer>
     </S.CustomToolbar>
   );
-};
+}

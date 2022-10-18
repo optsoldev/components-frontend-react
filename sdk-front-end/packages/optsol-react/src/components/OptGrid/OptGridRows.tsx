@@ -1,40 +1,38 @@
-import React from 'react'
-import { Row } from 'react-table'
-import { OptGridAction, OptGridColumn } from '.'
-import { OptGridActionsCell } from './OptGridActionsCell'
+import { Row } from 'react-table';
+import { OptGridAction, OptGridColumn } from './@types';
+import { OptGridActionsCell } from './OptGridActionsCell';
 
 interface Props<T extends object> {
-  actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[]
-  actionsPosition?: 'start' | 'end'
-  columns: OptGridColumn<T>[]
-  onRowClick?: (data: T) => void
-  page: Row<T>[]
-  prepareRow: (row: Row<T>) => void
+  actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
+  actionsPosition?: 'start' | 'end';
+  columns: OptGridColumn<T>[];
+  onRowClick?: (data: T) => void;
+  page: Row<T>[];
+  prepareRow: (row: Row<T>) => void;
 }
 
-export const OptGridRows = <T extends object>({
+export function OptGridRows<T extends object>({
   page,
   prepareRow,
   onRowClick,
   actions,
   actionsPosition,
-  columns
-}: Props<T>) => {
-
+  columns,
+}: Props<T>) {
   function getOptColumn(id: string) {
-    return columns.find((x) => x.field === id)
+    return columns.find((x) => x.field === id);
   }
 
   return (
-    <React.Fragment>
-      {page.map((row, _) => {
-        prepareRow(row)
+    <>
+      {page.map((row) => {
+        prepareRow(row);
 
         return (
           <tr
-            onClick={(_) => {
-              onRowClick && onRowClick(row.values as T)
-            }}
+            onClick={() =>
+              onRowClick ? onRowClick(row.values as T) : undefined
+            }
             {...row.getRowProps({})}
           >
             {actionsPosition === 'start' && (
@@ -42,16 +40,16 @@ export const OptGridRows = <T extends object>({
             )}
 
             {row.cells.map((cell) => {
-              const currentOptColumn = getOptColumn(cell.column.id)!
+              const currentOptColumn = getOptColumn(cell.column.id)!;
 
-              let content = cell.render('Cell')
+              let content = cell.render('Cell');
 
               const hasCustomRender =
-                currentOptColumn && currentOptColumn.render
+                currentOptColumn && currentOptColumn.render;
 
               if (hasCustomRender) {
-                const data = row.values as T
-                content = currentOptColumn.render!(data)
+                const data = row.values as T;
+                content = currentOptColumn.render!(data);
               }
 
               return (
@@ -61,15 +59,15 @@ export const OptGridRows = <T extends object>({
                 >
                   {content}
                 </td>
-              )
+              );
             })}
 
             {actionsPosition === 'end' && (
               <OptGridActionsCell actions={actions} data={row.values as T} />
             )}
           </tr>
-        )
+        );
       })}
-    </React.Fragment>
-  )
+    </>
+  );
 }

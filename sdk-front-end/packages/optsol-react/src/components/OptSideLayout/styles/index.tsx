@@ -10,8 +10,14 @@ interface CurrentSidebarWidthProps {
 
 export const InitialContainer = styled.div<CurrentSidebarWidthProps>`
   display: flex;
-  min-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
-  max-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
+  min-width: calc(
+    100vw -
+      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+  );
+  max-width: calc(
+    100vw -
+      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+  );
   overflow-x: auto;
 
   ${ScrollbarCSS}
@@ -19,8 +25,14 @@ export const InitialContainer = styled.div<CurrentSidebarWidthProps>`
 
 export const StyledOptSideLayoutPortalContainer = styled.div<CurrentSidebarWidthProps>`
   display: flex;
-  min-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
-  max-width: calc(100vw - ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px);
+  min-width: calc(
+    100vw -
+      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+  );
+  max-width: calc(
+    100vw -
+      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+  );
 `;
 
 export const OptSideLayoutPortalContent = styled.div`

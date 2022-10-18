@@ -1,8 +1,8 @@
-import { CircularProgress } from "@mui/material";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { OptSearchResponse } from "../../types";
-import { OptSearchField } from "../OptSearchField/OptSearchField";
-import * as S from "./styles";
+import { CircularProgress } from '@mui/material';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { OptSearchResponse } from '../../types';
+import { OptSearchField } from '../OptSearchField/OptSearchField';
+import * as S from './styles';
 
 export interface OptInfiniteScrollListProps<T> {
   carregar: (
@@ -27,20 +27,20 @@ interface State<T extends object> {
   termoPesquisa: string;
 }
 
-export const OptInfiniteScrollList = <T extends object>({
+export function OptInfiniteScrollList<T extends object>({
   carregar,
   renderItem,
   pageSize = 10,
   semPesquisa = false,
   onError,
-}: OptInfiniteScrollListProps<T>) => {
+}: OptInfiniteScrollListProps<T>) {
   const [state, setState] = useState<State<T>>({
     carregando: false,
     total: 0,
     pagina: 0,
     lista: [],
     listaRender: [],
-    termoPesquisa: "",
+    termoPesquisa: '',
   });
   const [primeiroCarregamento, setPrimeiroCarregamento] = useState(true);
 
@@ -63,7 +63,7 @@ export const OptInfiniteScrollList = <T extends object>({
       adicionarNovosItens(response, true);
     } catch (err) {
       setState({ ...state, carregando: false });
-      onError && onError("Falha ao carregar registros!");
+      onError && onError('Falha ao carregar registros!');
     }
   }
 
@@ -82,7 +82,7 @@ export const OptInfiniteScrollList = <T extends object>({
       adicionarNovosItens(response);
     } catch (err) {
       setState((currentState) => ({ ...currentState, carregando: false }));
-      throw new Error("Falha ao carregar registros");
+      throw new Error('Falha ao carregar registros');
     }
   }
 
@@ -105,7 +105,7 @@ export const OptInfiniteScrollList = <T extends object>({
 
     observer.observe(node!);
     return () => observer.disconnect();
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   function adicionarNovosItens(response: OptSearchResponse<T>, reset = false) {
@@ -134,7 +134,7 @@ export const OptInfiniteScrollList = <T extends object>({
   }
 
   function gerarListaRenderizacao() {
-    let novaListaRender: React.ReactElement[] = [];
+    const novaListaRender: React.ReactElement[] = [];
 
     lista.forEach((item, index) => {
       novaListaRender.push(renderItem(item, index));
@@ -170,7 +170,7 @@ export const OptInfiniteScrollList = <T extends object>({
 
   useEffect(() => {
     recarregarLista();
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, [termoPesquisa]);
 
   return (
@@ -193,4 +193,4 @@ export const OptInfiniteScrollList = <T extends object>({
       )}
     </div>
   );
-};
+}

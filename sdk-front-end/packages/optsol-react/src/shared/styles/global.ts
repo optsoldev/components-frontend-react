@@ -1,9 +1,9 @@
-import { createGlobalStyle, css } from 'styled-components'
-import { appBarHeight } from '../../components/OptLayout/styles'
-import { ScrollbarCSS } from './generic'
+import { createGlobalStyle, css } from 'styled-components';
+import { appBarHeight } from '../../components/OptLayout/styles';
+import { ScrollbarCSS } from './generic';
 
 interface GlobalStylesProps {
-  noAppBar?: boolean
+  noAppBar?: boolean;
 }
 
 export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
@@ -33,7 +33,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
 
     ${ScrollbarCSS}
   }
-`
+`;
 
 export const GlobalTestStyles = createGlobalStyle<GlobalStylesProps>`
   * {
@@ -52,4 +52,4 @@ export const GlobalTestStyles = createGlobalStyle<GlobalStylesProps>`
         noAppBar ? `100%` : `calc(100% - ${appBarHeight}px)`};
   }
 
-`
+`;

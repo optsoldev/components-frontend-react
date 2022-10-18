@@ -1,35 +1,35 @@
-import { IconButton } from '@mui/material'
-import React from 'react'
-import { OptAvatar, OptUserProfile } from '../OptAvatar'
-import { OptAppBarAvatarPopOver } from './OptAppBarAvatarPopOver'
+import { IconButton } from '@mui/material';
+import React from 'react';
+import { OptAvatar, OptUserProfile } from '../OptAvatar';
+import { OptAppBarAvatarPopOver } from './OptAppBarAvatarPopOver';
 
 interface Props {
-  profile: OptUserProfile | undefined
-  onManageProfile: () => void
-  onLogout: () => void
-  fromSidebar?: boolean
-  size?: number
+  profile: OptUserProfile | undefined;
+  onManageProfile: () => void;
+  onLogout: () => void;
+  fromSidebar?: boolean;
+  size?: number;
 }
 
-export const OptAppBarAvatar = ({
+export function OptAppBarAvatar({
   profile,
   onManageProfile,
   onLogout,
   fromSidebar = false,
-  size
-}: Props) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
+  size,
+}: Props) {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
 
   const toggleOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget)
-  }
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
 
   if (profile) {
     // todo: para um cenário mais customizado, talvez seja interessante subir o elemento do handleClick e montar o objeto de menu fora da Opt
     return (
-      <React.Fragment>
-        <IconButton onClick={toggleOpen} size='large'>
+      <>
+        <IconButton onClick={toggleOpen} size="large">
           <OptAvatar profile={profile} size={size} />
         </IconButton>
 
@@ -42,9 +42,9 @@ export const OptAppBarAvatar = ({
           open={open}
           onBackdropClick={toggleOpen}
         />
-      </React.Fragment>
-    )
+      </>
+    );
   }
 
-  return <span>Não autenticado</span>
+  return <span>Não autenticado</span>;
 }

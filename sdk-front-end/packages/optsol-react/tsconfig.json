@@ -14,9 +14,10 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "skipLibCheck": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*.ts*"],
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["**/node_modules", "lib"]
 }

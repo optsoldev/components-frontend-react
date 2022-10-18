@@ -4,10 +4,13 @@ import { BreadcrumbDictionary, BreadcrumbState } from './breadcrumbState';
 
 export type BreadcrumbDispatch = (action: BreadcrumbAction) => void;
 export const BREADCRUMB_INITIAL_DISPATCH = (action: BreadcrumbAction): void => {
-  throw Error('Dispatch not implemented. Action: ' + action);
+  throw Error(`Dispatch not implemented. Action: ${action}`);
 };
 
-export function BreadcrumbReducer(state: BreadcrumbState, action: BreadcrumbAction): BreadcrumbState {
+export function BreadcrumbReducer(
+  state: BreadcrumbState,
+  action: BreadcrumbAction
+): BreadcrumbState {
   switch (action.type) {
     case BreadcrumbActions.SET_VALUES: {
       const newDictionary: BreadcrumbDictionary = [];

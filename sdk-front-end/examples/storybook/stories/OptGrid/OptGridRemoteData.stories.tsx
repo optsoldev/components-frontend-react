@@ -78,7 +78,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   const ref = useRef<OptGridRef>();
 
   function recarregar() {
-    ref.current.refresh();
+    ref.current?.refresh();
   }
 
   return (

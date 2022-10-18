@@ -35,7 +35,8 @@ export const Header = styled.div<HeaderProps>`
   line-height: 27px;
   font-weight: 500;
   color: ${({ color, theme }) => color ?? theme.toolbar?.color};
-  background: ${({ background, theme }) => background ?? theme.toolbar?.background};
+  background: ${({ background, theme }) =>
+    background ?? theme.toolbar?.background};
   position: sticky;
   top: 0;
   z-index: 99;
@@ -75,7 +76,8 @@ export interface CreationButtonProps {
 }
 
 export const CreationButton = styled(IconButton)<CreationButtonProps>`
-  border: 1px solid ${({ theme }) => theme.appBar.side?.divider && theme.appBar.color};
+  border: 1px solid
+    ${({ theme }) => theme.appBar.side?.divider && theme.appBar.color};
   border-radius: 8px;
   color: ${({ customcolor, theme }) => customcolor ?? theme.primary};
 `;

@@ -1,7 +1,7 @@
-import { Checkbox } from "@mui/material";
-import color from "color";
-import React from "react";
-import styled from "styled-components";
+import { Checkbox } from '@mui/material';
+import color from 'color';
+import React from 'react';
+import styled from 'styled-components';
 
 export const GridContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.divider};
@@ -38,7 +38,7 @@ export const Title = styled.div<{ $backgroundColor?: string }>`
   line-height: 1.6rem;
   letter-spacing: 0.0075em;
   padding: 12px 24px;
-  background-color: ${(prop) => prop.$backgroundColor ?? ""};
+  background-color: ${(prop) => prop.$backgroundColor ?? ''};
 `;
 
 export const StyledTable = styled.table`
@@ -79,14 +79,14 @@ export const StyledTable = styled.table`
 
 export const StyledTh = styled.th<{
   customWidth?: string | number;
-  position?: "start" | "center" | "end";
+  position?: 'start' | 'center' | 'end';
 }>`
-  text-align: ${(prop) => prop.position ?? "start"};
+  text-align: ${(prop) => prop.position ?? 'start'};
   ${({ customWidth: width }) => {
-    if (!!width) {
+    if (width) {
       return `width: ${width}px`;
     }
-    return "";
+    return '';
   }}
 `;
 
@@ -96,18 +96,18 @@ const areEqual = (prevProps: any, nextProps: any) =>
 
 export const CustomCheckbox = React.memo(
   styled(Checkbox)({
-    fontSize: "1rem",
-    margin: "-8px 0 -8px -15px",
-    padding: "8px 9px",
-    "&:hover": {
-      backgroundColor: "transparent",
+    fontSize: '1rem',
+    margin: '-8px 0 -8px -15px',
+    padding: '8px 9px',
+    '&:hover': {
+      backgroundColor: 'transparent',
     },
-    "& svg": {
+    '& svg': {
       width: 24,
       height: 24,
     },
-    display: "flex",
-    justifySelf: "center",
+    display: 'flex',
+    justifySelf: 'center',
   }),
   areEqual
 );

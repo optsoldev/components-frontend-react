@@ -1,6 +1,6 @@
-import { Divider, List, ListItem, ListItemText } from "@mui/material";
-import styled from "styled-components";
-import { SidebarNavLink } from "../../../OptSidebar/styles";
+import { Divider, List, ListItem, ListItemText } from '@mui/material';
+import styled from 'styled-components';
+import { SidebarNavLink } from '../../../OptSidebar/styles';
 
 export const SidebarMenuDivider = styled(Divider)`
   background-color: ${({ theme }) => theme.appBar.side!.divider};

@@ -1,5 +1,5 @@
-import { Theme } from "react-select";
-import { ColorPalette } from "../../shared/styles/colors";
+import { Theme } from 'react-select';
+import { ColorPalette } from '../../shared/styles/colors';
 
 // todo tema dinamico
 export const colors = {

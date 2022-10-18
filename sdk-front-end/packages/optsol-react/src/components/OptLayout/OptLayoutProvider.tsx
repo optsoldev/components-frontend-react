@@ -1,32 +1,31 @@
 import {
   createTheme,
-  ThemeProvider as MaterialThemeProvider
-} from "@mui/material/styles";
-import { PropsWithChildren, useLayoutEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider as StyledComponentsThemeProvider } from "styled-components";
-import { BreadcrumbProvider } from "../../contexts/breadcrumb/breadcrumbContext";
+  ThemeProvider as MaterialThemeProvider,
+} from '@mui/material/styles';
+import { PropsWithChildren, useLayoutEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
+import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
 import {
   OptThemeProvider,
-  useOptTheme
-} from "../../contexts/theme/themeContext";
-import { CustomOptTheme } from "../../contexts/theme/themeState";
-import { LocalStorageKeys } from "../../shared/constants";
-import { RobotoFontStyles } from "../../shared/styles/robotoFont";
+  useOptTheme,
+} from '../../contexts/theme/themeContext';
+import { CustomOptTheme } from '../../contexts/theme/themeState';
+import { LocalStorageKeys } from '../../shared/constants';
+import { RobotoFontStyles } from '../../shared/styles/robotoFont';
 import {
   OptFullTheme,
   OptTheme,
-  transformTheme
-} from "../../shared/styles/theme";
-import { OptLoading } from "../OptLoading";
+  transformTheme,
+} from '../../shared/styles/theme';
+import { OptLoading } from '../OptLoading';
 
 const generateMuiTheme = (
   optTheme: OptFullTheme,
   usingDarkTheme: boolean = false
-) => {
-  return createTheme({
+) => createTheme({
     palette: {
-      mode: usingDarkTheme ? "dark" : "light",
+      mode: usingDarkTheme ? 'dark' : 'light',
       primary: {
         main: optTheme.primary,
       },
@@ -38,7 +37,7 @@ const generateMuiTheme = (
       MuiIconButton: {
         styleOverrides: {
           root: {
-            "&": {
+            '&': {
               padding: 8,
             },
           },
@@ -47,13 +46,13 @@ const generateMuiTheme = (
       MuiOutlinedInput: {
         styleOverrides: {
           root: {
-            "& $notchedOutline": {
+            '& $notchedOutline': {
               borderColor: optTheme.inputs.outline,
             },
-            "&:hover $notchedOutline": {
+            '&:hover $notchedOutline': {
               borderColor: optTheme.inputs.outlineHover,
             },
-            "&$focused $notchedOutline": {
+            '&$focused $notchedOutline': {
               borderColor: optTheme.inputs.outlineFocus,
             },
           },
@@ -61,7 +60,6 @@ const generateMuiTheme = (
       },
     },
   });
-};
 
 export interface OptLayoutProviderProps {
   darkTheme?: boolean;
@@ -69,11 +67,11 @@ export interface OptLayoutProviderProps {
   noRouter?: boolean;
 }
 
-export const OptLayoutProvider = ({
+export function OptLayoutProvider({
   children,
   noRouter = false,
   ...props
-}: PropsWithChildren<OptLayoutProviderProps>) => {
+}: PropsWithChildren<OptLayoutProviderProps>) {
   return (
     <OptThemeProvider>
       {!noRouter && (
@@ -95,9 +93,9 @@ export const OptLayoutProvider = ({
       )}
     </OptThemeProvider>
   );
-};
+}
 
-const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
+function OptThemedLayout(props: PropsWithChildren<OptLayoutProviderProps>) {
   const {
     theme,
     darkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme),
@@ -170,4 +168,4 @@ const OptThemedLayout = (props: PropsWithChildren<OptLayoutProviderProps>) => {
       </StyledComponentsThemeProvider>
     </MaterialThemeProvider>
   );
-};
+}

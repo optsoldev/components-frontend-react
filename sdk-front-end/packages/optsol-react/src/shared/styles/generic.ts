@@ -24,6 +24,7 @@ export const ScrollbarCSS = css`
 
   &::-webkit-scrollbar-track {
     background: ${({ theme }) => theme.scrollbar.background};
-    box-shadow: inset 7px 10px 12px ${({ theme }) => theme.scrollbar.shadowColor};
+    box-shadow: inset 7px 10px 12px
+      ${({ theme }) => theme.scrollbar.shadowColor};
   }
 `;

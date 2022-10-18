@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import { mdiMenu } from "@mdi/js";
-import Icon from "@mdi/react";
-import { Toolbar } from "@mui/material";
-import { OptUserProfile } from "../OptAvatar";
-import { OptBreadcrumb } from "../OptBreadcrumb/OptBreadcrumb";
-import { OptAppBarAvatar } from "./OptAppBarAvatar";
-import * as S from "./styles";
+import styled from '@emotion/styled';
+import { mdiMenu } from '@mdi/js';
+import Icon from '@mdi/react';
+import { Toolbar } from '@mui/material';
+import { OptUserProfile } from '../OptAvatar';
+import { OptBreadcrumb } from '../OptBreadcrumb/OptBreadcrumb';
+import { OptAppBarAvatar } from './OptAppBarAvatar';
+import * as S from './styles';
 
 // 1201, see https://mui.com/pt/material-ui/customization/z-index/
 const CustomAppBar = styled(S.CustomAppBar)`
@@ -23,7 +23,7 @@ export interface OptAppBarProps {
   actions?: React.ReactNode;
 }
 
-export const OptAppBar = ({
+export function OptAppBar({
   profile,
   onManageProfile,
   onLogout,
@@ -32,7 +32,7 @@ export const OptAppBar = ({
   hideBreadcrumb,
   content,
   actions,
-}: OptAppBarProps) => {
+}: OptAppBarProps) {
   return (
     <CustomAppBar position="fixed">
       <Toolbar>
@@ -65,4 +65,4 @@ export const OptAppBar = ({
       </Toolbar>
     </CustomAppBar>
   );
-};
+}

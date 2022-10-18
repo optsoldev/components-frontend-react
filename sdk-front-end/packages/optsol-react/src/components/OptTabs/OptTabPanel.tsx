@@ -1,5 +1,4 @@
-import React from "react";
-
+import React from 'react';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -12,7 +11,7 @@ export function OptTabPanel(props: TabPanelProps) {
 
   return (
     <div role="tabpanel" hidden={value !== index} {...other}>
-      {value === index && <React.Fragment>{children}</React.Fragment>}
+      {value === index && <>{children}</>}
     </div>
   );
 }

@@ -30,15 +30,23 @@ export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
       style,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [firstRender, setFirstRender] = useState(true);
-    const { acceptedFiles, getRootProps, getInputProps, isDragAccept, isDragActive, isDragReject } =
-      useDropzone(options);
+    const {
+      acceptedFiles,
+      getRootProps,
+      getInputProps,
+      isDragAccept,
+      isDragActive,
+      isDragReject,
+    } = useDropzone(options);
 
-    const hasFiles = (acceptedFiles && acceptedFiles.length > 0) || (!!value && value.length > 0);
+    const hasFiles =
+      (acceptedFiles && acceptedFiles.length > 0) ||
+      (!!value && value.length > 0);
 
-    const currentFiles = !!value ? value : acceptedFiles;
+    const currentFiles = value || acceptedFiles;
     const acceptedFileItems = currentFiles?.map((oldFile: File) => {
       const file = oldFile as FileFix;
 
@@ -55,15 +63,15 @@ export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
       } else {
         setFirstRender(false);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [acceptedFiles]);
+    }, [acceptedFiles, onChange, firstRender]);
 
     return (
       <S.StyledUploadContainer
         hasFiles={hasFiles}
         {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
         ref={ref}
-        style={style}>
+        style={style}
+      >
         <input {...getInputProps()} {...props} />
         <Icon path={mdiPaperclip} size={1.4} />
         <p>{description}</p>
@@ -71,5 +79,5 @@ export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
         {acceptedFileItems}
       </S.StyledUploadContainer>
     );
-  },
+  }
 );

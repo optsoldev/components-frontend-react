@@ -8,7 +8,7 @@ export interface OptChipProps {
 
 export const OptChip = styled(Chip)<OptChipProps>`
   font-weight: 600;
-  ${({ backgroundcolor }) => (backgroundcolor ? `background-color: ${backgroundcolor};` : '')}
+  ${({ backgroundcolor }) =>
+    backgroundcolor ? `background-color: ${backgroundcolor};` : ''}
   ${({ textcolor }) => (textcolor ? `color: ${textcolor};` : '')}
 `;
-

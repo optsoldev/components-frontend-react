@@ -1,19 +1,19 @@
-import Icon from "@mdi/react";
-import { Tooltip } from "@mui/material";
-import React, { useState } from "react";
-import { OptMenuSection } from ".";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import { OptUserProfile } from "../OptAvatar";
+import Icon from '@mdi/react';
+import { Tooltip } from '@mui/material';
+import React, { useState } from 'react';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { OptMenuSection } from '../../types';
+import { OptUserProfile } from '../OptAvatar';
 import {
   ExpandedFooterActions,
   FooterActions,
   OptMainSidebarFooterAction,
-} from "./OptSideAppbarFooterActions/OptSideAppbarFooterActions";
+} from './OptSideAppbarFooterActions/OptSideAppbarFooterActions';
 import {
   SidebarExpandedListItem,
   SidebarExpandedListItemText,
-} from "./OptSideAppbarFooterActions/styles";
-import * as S from "./styles";
+} from './OptSideAppbarFooterActions/styles';
+import * as S from './styles';
 
 interface OptMainSidebarProps {
   sections: OptMenuSection[];
@@ -25,14 +25,14 @@ interface OptMainSidebarProps {
   hideLinkDescription?: boolean;
 }
 
-export const OptSideAppbar = ({
+export function OptSideAppbar({
   sections,
   hideLinkDescription = false,
   profile,
   onManageProfile,
   onLogout,
   footerActions,
-}: OptMainSidebarProps) => {
+}: OptMainSidebarProps) {
   const { currentTheme } = useOptTheme();
   const [expanded, setExpanded] = useState(false);
   const { setCurrentSideAppbarWidth } = useOptTheme();
@@ -57,7 +57,7 @@ export const OptSideAppbar = ({
             {section.items.map((item, index) => {
               item.iconColor = item.iconColor ?? currentLinkColor;
               item.icon =
-                typeof item.icon === "string" ? (
+                typeof item.icon === 'string' ? (
                   <Icon size={1.2} path={item.icon} color={item.iconColor} />
                 ) : (
                   item.icon
@@ -67,7 +67,7 @@ export const OptSideAppbar = ({
                 <S.SidebarNavLink
                   to={item.path}
                   className={({ isActive }) =>
-                    isActive ? S.activeLinkClass : ""
+                    isActive ? S.activeLinkClass : ''
                   }
                   end={item.activeShouldBeExact}
                   key={index}
@@ -75,7 +75,7 @@ export const OptSideAppbar = ({
                   {expanded && (
                     <SidebarExpandedListItem button>
                       <S.SidebarListItemIcon>{item.icon}</S.SidebarListItemIcon>
-                      {<SidebarExpandedListItemText primary={item.title} />}
+                      <SidebarExpandedListItemText primary={item.title} />
                     </SidebarExpandedListItem>
                   )}
 
@@ -119,4 +119,4 @@ export const OptSideAppbar = ({
       )}
     </S.SidebarMenuContainer>
   );
-};
+}

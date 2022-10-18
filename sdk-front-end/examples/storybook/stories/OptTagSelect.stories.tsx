@@ -4,7 +4,7 @@ import {
   OptTagSelectProps,
 } from "@optsol/react";
 import { Meta, Story } from "@storybook/react/types-6-0";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default {
   title: "OptTagSelect",
@@ -22,7 +22,7 @@ const options: ReadonlyArray<OptSelectionOption> = [
 ];
 
 export const OptTagSelectExample: Story<OptTagSelectProps> = (args) => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<string[]>([]);
 
   return (
     <OptTagSelect

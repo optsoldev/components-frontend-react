@@ -1,33 +1,33 @@
-import { Icon } from "@mdi/react";
-import { IconButton, Tooltip } from "@mui/material";
-import { OptGridAction } from ".";
-import { useOptTheme } from "../../contexts/theme/themeContext";
+/* eslint-disable react/no-array-index-key */
+import { Icon } from '@mdi/react';
+import { IconButton, Tooltip } from '@mui/material';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { OptGridAction } from './@types';
 
 interface Props<T extends object> {
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
   data: T;
 }
 
-export const OptGridActionsCell = <T extends object>({
+export function OptGridActionsCell<T extends object>({
   actions,
   data,
-}: Props<T>) => {
+}: Props<T>) {
   const { currentTheme } = useOptTheme();
 
   return (
-    <td className="td-opt" style={{ display: "flex" }}>
+    <td className="td-opt" style={{ display: 'flex' }}>
       {actions?.map((action, index) => {
-        const isFunction = typeof action === "function";
+        const isFunction = typeof action === 'function';
 
-        let currentAction = action as OptGridAction<T>;
+        let currentAction: OptGridAction<T>;
 
-        if (isFunction) {
-          currentAction = (action as (rowData: T) => OptGridAction<T>)(data);
-        }
+        if (isFunction) currentAction = action(data);
+        else currentAction = action;
 
         const color = currentAction.icon.color ?? currentTheme.color;
 
-        let iconButton = (
+        const iconButton = (
           <IconButton
             key={index}
             onClick={(e) => {
@@ -40,7 +40,7 @@ export const OptGridActionsCell = <T extends object>({
         );
 
         if (currentAction.tooltip) {
-          iconButton = (
+          return (
             <Tooltip title={currentAction.tooltip} key={index}>
               {iconButton}
             </Tooltip>
@@ -51,4 +51,4 @@ export const OptGridActionsCell = <T extends object>({
       })}
     </td>
   );
-};
+}

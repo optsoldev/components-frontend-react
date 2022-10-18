@@ -5,6 +5,7 @@ import {
 } from "@optsol/react";
 import { OptTimelineField } from "@optsol/react/lib/esm/components/OptTimeline/OptTimelineTableValue";
 import { Meta, Story } from "@storybook/react/types-6-0";
+import React from "react";
 
 export default {
   title: "OptTimeline",
@@ -38,8 +39,7 @@ const data: OptTimelineAction[] = [
     createdDate: "2022-04-29T14:37:18.63Z",
   },
   {
-    payload:
-      '[{"name":"Teste","value":"Contrato teste","type":"text"}]',
+    payload: '[{"name":"Teste","value":"Contrato teste","type":"text"}]',
     action: "Teste Adicionada",
     description: "Um novo teste foi adicionado de forma manual.",
     userName: "Rômulo Louzada",

@@ -1,47 +1,45 @@
-import { HeaderGroup } from "react-table";
-import { OptGridActionsHeader } from "./OptGridActionsHeader";
-import * as S from "./styles";
+import { HeaderGroup } from 'react-table';
+import { OptGridActionsHeader } from './OptGridActionsHeader';
+import * as S from './styles';
 
 interface Props<T extends object> {
   headerGroups: HeaderGroup<T>[];
-  actionsPosition?: "start" | "end";
-  headerTitlePosition?: "start" | "center" | "end";
+  actionsPosition?: 'start' | 'end';
+  headerTitlePosition?: 'start' | 'center' | 'end';
   headerBgColor?: string;
 }
 
-export const OptGridHeaders = <T extends object>({
+export function OptGridHeaders<T extends object>({
   headerGroups,
   actionsPosition,
   headerTitlePosition,
   headerBgColor,
-}: Props<T>) => {
+}: Props<T>) {
   return (
     <thead>
       {headerGroups.map((headerGroup) => (
         <tr
           {...headerGroup.getHeaderGroupProps()}
-          style={{ backgroundColor: headerBgColor ? headerBgColor : "" }}
+          style={{ backgroundColor: headerBgColor || '' }}
         >
-          {actionsPosition === "start" && <OptGridActionsHeader />}
+          {actionsPosition === 'start' && <OptGridActionsHeader />}
 
-          {headerGroup.headers.map((column) => {
-            return (
+          {headerGroup.headers.map((column) => (
               <S.StyledTh
                 {...column.getHeaderProps(column.getSortByToggleProps())}
                 position={headerTitlePosition}
                 customWidth={column.width}
               >
-                {column.render("Header")}
+                {column.render('Header')}
                 <span>
-                  {column.isSorted && (column.isSortedDesc ? " ▼" : " ▲")}
+                  {column.isSorted && (column.isSortedDesc ? ' ▼' : ' ▲')}
                 </span>
               </S.StyledTh>
-            );
-          })}
+            ))}
 
-          {actionsPosition === "end" && <OptGridActionsHeader />}
+          {actionsPosition === 'end' && <OptGridActionsHeader />}
         </tr>
       ))}
     </thead>
   );
-};
+}

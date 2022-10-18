@@ -4,7 +4,10 @@ import { CSSProperties, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ColorPalette } from '../../../shared/styles/colors';
 import { OptActionToolbar } from '../../OptActionToobar';
-import { SidebarWithToolbarContainer, SidebarWithToolbarContent } from '../../OptSidebar/styles';
+import {
+  SidebarWithToolbarContainer,
+  SidebarWithToolbarContent,
+} from '../../OptSidebar/styles';
 import * as S from './styles';
 
 export interface OptSidebarListBaseProps {
@@ -18,7 +21,7 @@ export interface OptSidebarListBaseProps {
   style?: CSSProperties;
 }
 
-export const OptSidebarListBaseContainer = ({
+export function OptSidebarListBaseContainer({
   createTo,
   title,
   background = ColorPalette.gray6,
@@ -28,16 +31,22 @@ export const OptSidebarListBaseContainer = ({
   children,
   header,
   style,
-}: PropsWithChildren<OptSidebarListBaseProps>) => {
+}: PropsWithChildren<OptSidebarListBaseProps>) {
   return (
-    <SidebarWithToolbarContainer width={width} background={background} bordercolor={borderColor} style={style}>
+    <SidebarWithToolbarContainer
+      width={width}
+      background={background}
+      bordercolor={borderColor}
+      style={style}
+    >
       <OptActionToolbar
         title={title}
         goBackRoute={goBackRoute}
         clearMargin
         background={header?.background}
         color={header?.color}
-        noBorder={borderColor === 'unset'}>
+        noBorder={borderColor === 'unset'}
+      >
         {createTo && (
           <NavLink to={createTo}>
             <S.CreationButton customcolor={header?.color}>
@@ -47,7 +56,9 @@ export const OptSidebarListBaseContainer = ({
         )}
       </OptActionToolbar>
 
-      <SidebarWithToolbarContent background={background}>{children}</SidebarWithToolbarContent>
+      <SidebarWithToolbarContent background={background}>
+        {children}
+      </SidebarWithToolbarContent>
     </SidebarWithToolbarContainer>
   );
-};
+}

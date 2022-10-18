@@ -1,9 +1,9 @@
-import { mdiMagnify } from "@mdi/js";
-import { Icon } from "@mdi/react";
-import { ButtonBase, InputAdornment, OutlinedInput } from "@mui/material";
-import React, { createRef } from "react";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import * as S from "./styles";
+import { mdiMagnify } from '@mdi/js';
+import { Icon } from '@mdi/react';
+import { ButtonBase, InputAdornment, OutlinedInput } from '@mui/material';
+import React, { createRef } from 'react';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import * as S from './styles';
 
 export interface OptSearchFieldProps {
   placeholder?: string;
@@ -13,13 +13,13 @@ export interface OptSearchFieldProps {
   noBorder?: boolean;
 }
 
-export const OptSearchField = ({
-  placeholder = "Pesquisar",
+export function OptSearchField({
+  placeholder = 'Pesquisar',
   onSearch,
   noBorder,
   // width,
   paddingX,
-}: OptSearchFieldProps) => {
+}: OptSearchFieldProps) {
   const ref = createRef<HTMLInputElement>();
   const { currentTheme } = useOptTheme();
 
@@ -30,7 +30,7 @@ export const OptSearchField = ({
   function verificarTeclaPressionadaEnter(
     event: React.KeyboardEvent<HTMLInputElement>
   ) {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       onSearch(ref.current?.value ? ref.current?.value : undefined);
     }
   }
@@ -56,4 +56,4 @@ export const OptSearchField = ({
       />
     </S.AdvancedSearchContainer>
   );
-};
+}

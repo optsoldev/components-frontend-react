@@ -14,7 +14,9 @@ export const CustomAvatar = styled(Avatar)<AvatarProps>`
       ? `background-color: ${props.alternativecolor} !important`
       : `background-color: ${props.theme.appBar.avatar.background} !important`};
   ${(props) =>
-    props.color ? `color: ${props.color} !important` : `color: ${props.theme.appBar.avatar.color} !important`};
+    props.color
+      ? `color: ${props.color} !important`
+      : `color: ${props.theme.appBar.avatar.color} !important`};
   font-size: ${(props) => props.size / 2}px;
 
   &:hover {

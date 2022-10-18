@@ -1,22 +1,20 @@
-import Icon from "@mdi/react";
-import React from "react";
-import { OptMenuSection } from ".";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import * as S from "./styles";
+import Icon from '@mdi/react';
+import React from 'react';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { OptMenuSection } from '../../types';
+import * as S from './styles';
 
 export interface OptSidebarMenuProps {
   sections: OptMenuSection[];
-
   hideLinkDescription?: boolean;
-
   footerActions?: React.ReactNode;
 }
 
-export const OptSidebar = ({
+export function OptSidebar({
   sections,
   footerActions,
   hideLinkDescription = false,
-}: OptSidebarMenuProps) => {
+}: OptSidebarMenuProps) {
   const { currentTheme } = useOptTheme();
 
   return (
@@ -27,11 +25,13 @@ export const OptSidebar = ({
 
           <S.CustomList>
             {section.items.map((item, index) => {
-              item.iconColor =
-                item.iconColor ?? currentTheme.sidebar.link.color;
-              item.icon =
-                typeof item.icon === "string" ? (
-                  <Icon size={1} path={item.icon} color={item.iconColor} />
+              const icon =
+                typeof item.icon === 'string' ? (
+                  <Icon
+                    size={1}
+                    path={item.icon}
+                    color={item.iconColor ?? currentTheme.sidebar.link.color}
+                  />
                 ) : (
                   item.icon
                 );
@@ -40,13 +40,13 @@ export const OptSidebar = ({
                 <S.SidebarNavLink
                   to={item.path}
                   className={({ isActive }) =>
-                    isActive ? S.activeLinkClass : ""
+                    isActive ? S.activeLinkClass : ''
                   }
                   end={item.activeShouldBeExact}
                   key={index}
                 >
                   <S.SidebarListItem button>
-                    <S.SidebarListItemIcon>{item.icon}</S.SidebarListItemIcon>
+                    <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
                     {!hideLinkDescription && (
                       <S.SidebarListItemText primary={item.title} />
                     )}
@@ -61,4 +61,4 @@ export const OptSidebar = ({
       <S.FooterActionsContainer>{footerActions}</S.FooterActionsContainer>
     </S.SidebarContainer>
   );
-};
+}

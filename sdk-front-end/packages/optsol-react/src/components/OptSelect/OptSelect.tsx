@@ -1,8 +1,8 @@
-import color from "color";
-import React from "react";
-import Select, { Props } from "react-select";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import { optSelectTheme } from "./OptSelectTheme";
+import color from 'color';
+import React from 'react';
+import Select, { Props } from 'react-select';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { optSelectTheme } from './OptSelectTheme';
 
 export interface OptSelectionOption {
   label: string;
@@ -35,7 +35,7 @@ export const OptSelect = React.forwardRef<
         },
       }}
       placeholder="Selecione uma opção"
-      noOptionsMessage={(_) => "Sem opções pré-definidas"}
+      noOptionsMessage={(_) => 'Sem opções pré-definidas'}
       ref={ref as any}
       {...props}
     />

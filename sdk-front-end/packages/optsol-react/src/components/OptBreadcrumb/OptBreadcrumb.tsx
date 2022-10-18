@@ -15,7 +15,7 @@ type BreadcrumbComposition = {
 
 function generateBreadcrumbComposition(
   pathname: string,
-  originalDictionary: BreadcrumbDictionary,
+  originalDictionary: BreadcrumbDictionary
 ): BreadcrumbComposition[] {
   const dictionary = originalDictionary.map((d) => ({
     ...d,
@@ -36,9 +36,7 @@ function generateBreadcrumbComposition(
         .replace(/([A-Z])/g, ' $1')
         .split(' ')
         .map((t) =>
-          t.replace(/^./, (str) => {
-            return str.toUpperCase();
-          }),
+          t.replace(/^./, (str) => str.toUpperCase())
         )
         .join(' ');
 
@@ -48,7 +46,10 @@ function generateBreadcrumbComposition(
         .join('/');
 
       const dictionaryOccurrences = dictionary.filter(
-        (d) => !d.taken && (d.key.toLowerCase() === s.toLowerCase() || d.key.toLowerCase() === name?.toLowerCase()),
+        (d) =>
+          !d.taken &&
+          (d.key.toLowerCase() === s.toLowerCase() ||
+            d.key.toLowerCase() === name?.toLowerCase())
       );
 
       if (dictionaryOccurrences.length > 0) {
@@ -67,7 +68,9 @@ function generateBreadcrumbComposition(
     let name: string | null = 'Home';
 
     const dictionaryOccurrences = dictionary.filter(
-      (d) => !d.taken && (d.key.toLowerCase() === 'home' || d.key.toLowerCase() === '/'),
+      (d) =>
+        !d.taken &&
+        (d.key.toLowerCase() === 'home' || d.key.toLowerCase() === '/')
     );
 
     if (dictionaryOccurrences.length > 0) {
@@ -87,7 +90,7 @@ function generateBreadcrumbComposition(
 
 let currentLocationPathname = '';
 
-export const OptBreadcrumb = () => {
+export function OptBreadcrumb() {
   const location = useLocation();
   const { currentTheme } = useOptTheme();
 
@@ -96,7 +99,10 @@ export const OptBreadcrumb = () => {
     resetValues,
   } = useBreadcrumb();
 
-  const breadcrumb = generateBreadcrumbComposition(location.pathname, dictionary);
+  const breadcrumb = generateBreadcrumbComposition(
+    location.pathname,
+    dictionary
+  );
 
   useEffect(() => {
     // fiz sem estado pra não gerar re-render
@@ -121,7 +127,11 @@ export const OptBreadcrumb = () => {
 
               {index >= 0 && index < breadcrumb.length - 1 && (
                 <span>
-                  <Icon size={0.6} path={mdiChevronRight} color={currentTheme.breadcrumb.separator} />
+                  <Icon
+                    size={0.6}
+                    path={mdiChevronRight}
+                    color={currentTheme.breadcrumb.separator}
+                  />
                 </span>
               )}
             </React.Fragment>
@@ -131,4 +141,4 @@ export const OptBreadcrumb = () => {
       })}
     </S.BreadcrumbContainer>
   );
-};
+}

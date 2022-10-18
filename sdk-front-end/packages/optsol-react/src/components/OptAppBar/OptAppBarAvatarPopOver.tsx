@@ -1,10 +1,10 @@
-import { mdiAccountCog, mdiExitToApp } from "@mdi/js";
-import { Icon } from "@mdi/react";
-import { MenuItem } from "@mui/material";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import { ColorPalette } from "../../shared/styles/colors";
-import { OptAvatar, OptUserProfile } from "../OptAvatar";
-import * as S from "./styles";
+import { mdiAccountCog, mdiExitToApp } from '@mdi/js';
+import { Icon } from '@mdi/react';
+import { MenuItem } from '@mui/material';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { ColorPalette } from '../../shared/styles/colors';
+import { OptAvatar, OptUserProfile } from '../OptAvatar';
+import * as S from './styles';
 
 interface Props {
   profile: OptUserProfile;
@@ -16,7 +16,7 @@ interface Props {
   anchorEl: HTMLElement | null;
 }
 
-export const OptAppBarAvatarPopOver = ({
+export function OptAppBarAvatarPopOver({
   profile,
   onManageProfile,
   onLogout,
@@ -24,9 +24,9 @@ export const OptAppBarAvatarPopOver = ({
   fromSidebar = false,
   open = false,
   onBackdropClick,
-}: Props) => {
+}: Props) {
   const { currentTheme } = useOptTheme();
-  const id = open ? "avatar" : undefined;
+  const id = open ? 'avatar' : undefined;
 
   return (
     <S.AvatarPopOver
@@ -35,12 +35,12 @@ export const OptAppBarAvatarPopOver = ({
       id={id}
       open={open}
       anchorOrigin={{
-        vertical: fromSidebar ? "top" : "bottom",
-        horizontal: fromSidebar ? "right" : "center",
+        vertical: fromSidebar ? 'top' : 'bottom',
+        horizontal: fromSidebar ? 'right' : 'center',
       }}
       transformOrigin={{
-        vertical: fromSidebar ? "center" : "top",
-        horizontal: fromSidebar ? "left" : "center",
+        vertical: fromSidebar ? 'center' : 'top',
+        horizontal: fromSidebar ? 'left' : 'center',
       }}
     >
       <S.MenuAvatarContainer>
@@ -67,4 +67,4 @@ export const OptAppBarAvatarPopOver = ({
       </S.CustomMenuList>
     </S.AvatarPopOver>
   );
-};
+}

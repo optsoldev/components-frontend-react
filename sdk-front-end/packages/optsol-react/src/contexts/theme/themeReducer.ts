@@ -10,15 +10,22 @@ import { CustomOptTheme, ThemeState } from './themeState';
 export type ThemeDispatch = (action: ThemeAction) => void;
 
 export const THEME_INITIAL_DISPATCH = (action: ThemeAction): void => {
-  throw Error('Dispatch not implemented. Action: ' + action);
+  throw Error(`Dispatch not implemented. Action: ${action}`);
 };
 
-export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState {
+export function ThemeReducer(
+  state: ThemeState,
+  action: ThemeAction
+): ThemeState {
   switch (action.type) {
     case ThemeActions.RESET_THEME: {
       const usingDarkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme);
 
-      return { ...state, customTheme: {}, currentTheme: usingDarkTheme ? DarkTheme : LightTheme };
+      return {
+        ...state,
+        customTheme: {},
+        currentTheme: usingDarkTheme ? DarkTheme : LightTheme,
+      };
     }
     case ThemeActions.SET_DARK_THEME: {
       return { ...state, usingDarkTheme: true, currentTheme: action.payload! };
@@ -31,7 +38,7 @@ export function ThemeReducer(state: ThemeState, action: ThemeAction): ThemeState
 
       const currentTheme = generateNewTheme(
         usingDarkTheme ? state.theme.dark : state.theme.light,
-        usingDarkTheme ? action.payload!.dark : action.payload!.light,
+        usingDarkTheme ? action.payload!.dark : action.payload!.light
       );
 
       return { ...state, customTheme: action.payload!, currentTheme };

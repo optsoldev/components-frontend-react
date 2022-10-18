@@ -1,8 +1,7 @@
-
 import { OptAvatarProps } from '.';
 import * as S from './styles';
 
-export const OptAvatar = ({ profile, size = 32 }: OptAvatarProps) => {
+export function OptAvatar({ profile, size = 32 }: OptAvatarProps) {
   let initials = '-';
   const trimmedName = profile.name.trim();
 
@@ -18,8 +17,13 @@ export const OptAvatar = ({ profile, size = 32 }: OptAvatarProps) => {
   }
 
   return (
-    <S.CustomAvatar alt={profile.name} src={profile.avatarSrc} alternativecolor={profile.alternativeColor} size={size}>
+    <S.CustomAvatar
+      alt={profile.name}
+      src={profile.avatarSrc}
+      alternativecolor={profile.alternativeColor}
+      size={size}
+    >
       {!profile.avatarSrc && initials.toUpperCase()}
     </S.CustomAvatar>
   );
-};
+}

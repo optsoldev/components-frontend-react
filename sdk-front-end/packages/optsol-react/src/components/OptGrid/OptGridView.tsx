@@ -5,24 +5,25 @@ import {
   TableBodyProps,
   TablePropGetter,
   TableProps,
-} from "react-table";
+} from 'react-table';
 import {
   OptGridAction,
   OptGridColumn,
   OptGridControls,
   OptGridOptions,
-} from ".";
-import { OptGridHeaders } from "./OptGridHeaders";
-import { OptGridPagination } from "./OptGridPagination";
-import { OptGridRows } from "./OptGridRows";
-import * as S from "./styles";
+} from './@types';
+
+import { OptGridHeaders } from './OptGridHeaders';
+import { OptGridPagination } from './OptGridPagination';
+import { OptGridRows } from './OptGridRows';
+import * as S from './styles';
 
 interface OptGridViewProps<T extends object> {
   title: string;
   getTableProps: (propGetter?: TablePropGetter<T>) => TableProps;
   headerGroups: HeaderGroup<T>[];
   columns: OptGridColumn<T>[];
-  actionsPosition?: "start" | "end";
+  actionsPosition?: 'start' | 'end';
   getTableBodyProps: (propGetter?: TableBodyPropGetter<T>) => TableBodyProps;
   onRowClick?: (data: T) => void;
   page: Row<T>[];
@@ -39,11 +40,11 @@ interface OptGridViewProps<T extends object> {
   setPageSize: (pageSize: number) => void;
   pageIndex: number;
   pageSize: number;
-  headerTitlePosition?: "start" | "center" | "end";
+  headerTitlePosition?: 'start' | 'center' | 'end';
   options?: OptGridOptions;
 }
 
-const OptGridView = <T extends {}>({
+function OptGridView<T extends {}>({
   title,
   getTableProps,
   headerGroups,
@@ -67,7 +68,7 @@ const OptGridView = <T extends {}>({
   pageSize,
   headerTitlePosition,
   options,
-}: OptGridViewProps<T>) => {
+}: OptGridViewProps<T>) {
   return (
     <S.GridContainer className="opt-grid">
       <S.Title $backgroundColor={options?.titleBgColor}>{title}</S.Title>
@@ -93,7 +94,7 @@ const OptGridView = <T extends {}>({
 
             {controls.loading && (
               <tr>
-                <td colSpan={10000} style={{ textAlign: "center" }}>
+                <td colSpan={10000} style={{ textAlign: 'center' }}>
                   Carregando...
                 </td>
               </tr>
@@ -101,7 +102,7 @@ const OptGridView = <T extends {}>({
 
             {controls.error && (
               <tr>
-                <td colSpan={10000} style={{ textAlign: "center" }}>
+                <td colSpan={10000} style={{ textAlign: 'center' }}>
                   Erro ao carregar registros
                 </td>
               </tr>
@@ -109,26 +110,24 @@ const OptGridView = <T extends {}>({
 
             {!controls.data.length && (
               <tr>
-                <td colSpan={10000} style={{ textAlign: "center" }}>
+                <td colSpan={10000} style={{ textAlign: 'center' }}>
                   Não há registros a serem exibidos
                 </td>
               </tr>
             )}
 
             {options?.bottomElement && (
-              <>
-                <tr role="row">
-                  <td
-                    role="cell"
-                    colSpan={10000}
-                    style={{ textAlign: "end", padding: "18px 24px" }}
-                  >
-                    {options.bottomElement}
-                  </td>
-                </tr>
-              </>
+              <tr role="row">
+                <td
+                  role="cell"
+                  colSpan={10000}
+                  style={{ textAlign: 'end', padding: '18px 24px' }}
+                >
+                  {options.bottomElement}
+                </td>
+              </tr>
             )}
-            <tr role="row"></tr>
+            <tr role="row" />
           </tbody>
         </S.StyledTable>
       </div>
@@ -146,6 +145,6 @@ const OptGridView = <T extends {}>({
       />
     </S.GridContainer>
   );
-};
+}
 
 export default OptGridView;

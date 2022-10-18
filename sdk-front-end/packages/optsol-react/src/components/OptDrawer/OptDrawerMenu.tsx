@@ -1,11 +1,11 @@
-import { mdiMenuOpen, mdiPin, mdiPinOff } from "@mdi/js";
-import { Icon } from "@mdi/react";
-import { IconButton, List, ListItemIcon, ListItemText } from "@mui/material";
-import React from "react";
-import { OptMenuSection } from ".";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import { OptDivider } from "../OptDivider";
-import * as S from "./styles";
+import { mdiMenuOpen, mdiPin, mdiPinOff } from '@mdi/js';
+import { Icon } from '@mdi/react';
+import { IconButton, List, ListItemIcon, ListItemText } from '@mui/material';
+import React from 'react';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import { OptMenuSection } from '../../types';
+import { OptDivider } from '../OptDivider';
+import * as S from './styles';
 
 interface OptDrawerMenuProps {
   sections: OptMenuSection[];
@@ -16,17 +16,15 @@ interface OptDrawerMenuProps {
   version: string;
 }
 
-export const OptDrawerMenu = ({
+export function OptDrawerMenu({
   sections,
   onHideDrawer,
   onToggleDockDrawer,
   docked,
   drawerLogo,
   version,
-}: OptDrawerMenuProps) => {
+}: OptDrawerMenuProps) {
   const { currentTheme } = useOptTheme();
-
-  drawerLogo = drawerLogo ?? <div></div>;
 
   return (
     <S.DrawerMenuContainer>
@@ -51,17 +49,17 @@ export const OptDrawerMenu = ({
               <S.DrawerNavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  isActive ? S.activeLinkClass : ""
+                  isActive ? S.activeLinkClass : ''
                 }
                 end={item.activeShouldBeExact}
                 key={index}
               >
                 <S.MenuListItem button>
                   <ListItemIcon>
-                    {typeof item.icon === "string" ? (
+                    {typeof item.icon === 'string' ? (
                       <Icon size={1} path={item.icon} />
                     ) : (
-                      <>{item.icon}</>
+                      item.icon
                     )}
                   </ListItemIcon>
                   <ListItemText primary={item.title} />
@@ -74,7 +72,7 @@ export const OptDrawerMenu = ({
 
       <S.Footer>
         <S.FooterHeader>
-          {drawerLogo}
+          {drawerLogo ?? <div />}
 
           <IconButton onClick={onToggleDockDrawer} size="large">
             <Icon
@@ -89,4 +87,4 @@ export const OptDrawerMenu = ({
       </S.Footer>
     </S.DrawerMenuContainer>
   );
-};
+}

@@ -19,34 +19,43 @@ export interface OptMiniUploadProps {
   name?: string;
 }
 
-export const OptMiniUpload = React.forwardRef<HTMLInputElement, OptMiniUploadProps>(
-  ({ filesDescription, onChange, options, value, ...props }, ref) => {
-    const [firstRender, setFirstRender] = useState(true);
-    const { acceptedFiles, getRootProps, getInputProps, isDragAccept, isDragActive, isDragReject } =
-      useDropzone(options);
+export const OptMiniUpload = React.forwardRef<
+  HTMLInputElement,
+  OptMiniUploadProps
+>(({ filesDescription, onChange, options, value, ...props }, ref) => {
+  const [firstRender, setFirstRender] = useState(true);
+  const {
+    acceptedFiles,
+    getRootProps,
+    getInputProps,
+    isDragAccept,
+    isDragActive,
+    isDragReject,
+  } = useDropzone(options);
 
-    const hasFiles = (acceptedFiles && acceptedFiles.length > 0) || (!!value && value.length > 0);
+  const hasFiles =
+    (acceptedFiles && acceptedFiles.length > 0) ||
+    (!!value && value.length > 0);
 
-    useEffect(() => {
-      if (!firstRender) {
-        onChange(acceptedFiles);
-      } else {
-        setFirstRender(false);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [acceptedFiles]);
+  useEffect(() => {
+    if (!firstRender) {
+      onChange(acceptedFiles);
+    } else {
+      setFirstRender(false);
+    }
+  }, [acceptedFiles, firstRender, onChange]);
 
-    return (
-      <S.StyledMiniUploadContainer
-        className="opt-mini-upload"
-        hasFiles={hasFiles}
-        size={options?.size}
-        borderStyle={options?.borderStyle}
-        {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
-        ref={ref}>
-        <input {...getInputProps()} {...props} />
-        <Icon path={options?.icon ?? mdiPaperclip} size={1.4} />
-      </S.StyledMiniUploadContainer>
-    );
-  },
-);
+  return (
+    <S.StyledMiniUploadContainer
+      className="opt-mini-upload"
+      hasFiles={hasFiles}
+      size={options?.size}
+      borderStyle={options?.borderStyle}
+      {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
+      ref={ref}
+    >
+      <input {...getInputProps()} {...props} />
+      <Icon path={options?.icon ?? mdiPaperclip} size={1.4} />
+    </S.StyledMiniUploadContainer>
+  );
+});

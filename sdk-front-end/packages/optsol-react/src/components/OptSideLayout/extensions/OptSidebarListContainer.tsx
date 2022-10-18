@@ -1,12 +1,12 @@
-import React, { PropsWithChildren } from "react";
-import { ActiveLinkClass } from "../../../shared/constants";
-import { ColorPalette } from "../../../shared/styles/colors";
-import { OptLoading } from "../../OptLoading";
+import React, { PropsWithChildren } from 'react';
+import { ActiveLinkClass } from '../../../shared/constants';
+import { ColorPalette } from '../../../shared/styles/colors';
+import { OptLoading } from '../../OptLoading';
 import {
   OptSidebarListBaseContainer,
   OptSidebarListBaseProps,
-} from "./OptSidebarListBaseContainer";
-import * as S from "./styles";
+} from './OptSidebarListBaseContainer';
+import * as S from './styles';
 
 interface Props<T> extends OptSidebarListBaseProps {
   data: T[];
@@ -15,7 +15,7 @@ interface Props<T> extends OptSidebarListBaseProps {
   listItemTo: (id: string) => string;
 }
 
-export const OptSidebarListContainer = <
+export function OptSidebarListContainer<
   T extends { id: Key },
   Key extends React.Key
 >({
@@ -24,14 +24,14 @@ export const OptSidebarListContainer = <
   listItemTo,
   title,
   background = ColorPalette.gray6,
-  borderColor = "unset",
+  borderColor = 'unset',
   width = 280,
   loading = false,
   render,
   goBackRoute,
   children,
   header,
-}: PropsWithChildren<Props<T>>) => {
+}: PropsWithChildren<Props<T>>) {
   return (
     <OptSidebarListBaseContainer
       title={title}
@@ -47,19 +47,19 @@ export const OptSidebarListContainer = <
       {loading && <OptLoading size={40} />}
 
       {!loading && (
-        <React.Fragment>
+        <>
           {data.map((item) => (
             <S.CustomListItem button key={item.id}>
               <S.CustomSidebarNavLink
                 to={listItemTo(item.id.toString())}
-                className={({ isActive }) => (isActive ? ActiveLinkClass : "")}
+                className={({ isActive }) => (isActive ? ActiveLinkClass : '')}
               >
                 <S.MainContainer>{render(item)}</S.MainContainer>
               </S.CustomSidebarNavLink>
             </S.CustomListItem>
           ))}
-        </React.Fragment>
+        </>
       )}
     </OptSidebarListBaseContainer>
   );
-};
+}

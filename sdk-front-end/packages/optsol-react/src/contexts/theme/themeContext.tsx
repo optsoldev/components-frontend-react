@@ -1,13 +1,13 @@
-import React, { createContext, useReducer } from "react";
-import { LocalStorageKeys } from "../../shared/constants";
-import { ThemeActions } from "./themeActions";
-import { generateNewTheme } from "./themeFunctions";
+import React, { createContext, useReducer } from 'react';
+import { LocalStorageKeys } from '../../shared/constants';
+import { ThemeActions } from './themeActions';
+import { generateNewTheme } from './themeFunctions';
 import {
   ThemeDispatch,
   ThemeReducer,
   THEME_INITIAL_DISPATCH,
-} from "./themeReducer";
-import { CustomOptTheme, ThemeState, THEME_INITIAL_STATE } from "./themeState";
+} from './themeReducer';
+import { CustomOptTheme, ThemeState, THEME_INITIAL_STATE } from './themeState';
 
 const ThemeStateContext = createContext<ThemeState>(THEME_INITIAL_STATE);
 const ThemeDispatchContext = createContext<ThemeDispatch>(
@@ -33,7 +33,7 @@ function useOptTheme() {
 
   if (state === undefined) {
     throw new Error(
-      "useThemeState deve ser utilizando dentro de um ThemeProvider"
+      'useThemeState deve ser utilizando dentro de um ThemeProvider'
     );
   }
 
@@ -41,7 +41,7 @@ function useOptTheme() {
 
   if (dispatch === undefined) {
     throw new Error(
-      "useThemeDispatch deve ser utilizando dentro de um ThemeProvider"
+      'useThemeDispatch deve ser utilizando dentro de um ThemeProvider'
     );
   }
 
@@ -49,7 +49,7 @@ function useOptTheme() {
 
   function setCurrentTheme(darkTheme: boolean) {
     if (darkTheme) {
-      localStorage.setItem(LocalStorageKeys.DarkTheme, "1");
+      localStorage.setItem(LocalStorageKeys.DarkTheme, '1');
 
       const currentTheme = generateNewTheme(
         state.theme.dark,

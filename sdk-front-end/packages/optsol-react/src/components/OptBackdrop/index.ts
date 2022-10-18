@@ -1,3 +1,2 @@
-export { OptBackdrop } from "./OptBackdrop";
-export type { OptBackdropProps } from "./OptBackdrop";
-
+export { OptBackdrop } from './OptBackdrop';
+export type { OptBackdropProps } from './OptBackdrop';

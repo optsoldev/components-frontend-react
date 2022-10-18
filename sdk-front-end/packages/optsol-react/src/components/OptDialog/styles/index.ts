@@ -42,7 +42,7 @@ export const DialogIconContainer = styled.div`
 
   & svg {
     border-radius: 50%;
-    background-color: ${({ color }) => color + '10'};
+    background-color: ${({ color }) => `${color  }10`};
     padding: 16px;
   }
 `;

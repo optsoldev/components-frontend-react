@@ -11,14 +11,15 @@ interface CustomToolbarProps {
 
 export const CustomToolbar = styled(Toolbar)<CustomToolbarProps>`
   min-height: 65px;
-  ${({ $noborder, theme }) => !$noborder && `border-bottom: 1px solid ${theme.divider};`}
+  ${({ $noborder, theme }) =>
+    !$noborder && `border-bottom: 1px solid ${theme.divider};`}
   ${({ $nopadding }) => ($nopadding ? `padding: 0;` : `padding: 10px;`)}
 
   color: ${({ color }) => color ?? 'inherit'};
   background: ${({ background }) => background ?? 'inherit'};
 
   ${({ clearmargin }) =>
-    !!clearmargin
+    clearmargin
       ? 'margin: unset'
       : `margin: -${containerPadding}px -${containerPadding}px ${containerPadding}px -${containerPadding}px`};
 `;

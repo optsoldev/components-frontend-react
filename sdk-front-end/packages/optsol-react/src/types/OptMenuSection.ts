@@ -1,4 +1,4 @@
-import { OptMenuItem } from "./OptMenuItem";
+import { OptMenuItem } from './OptMenuItem';
 
 export interface OptMenuSection {
   title?: string;

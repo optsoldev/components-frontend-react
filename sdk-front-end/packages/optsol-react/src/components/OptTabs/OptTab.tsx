@@ -1,7 +1,7 @@
-import { TabClasses } from "@mui/material";
-import styled from "@emotion/styled";
-import React from "react";
-import * as S from "./styles";
+import styled from '@emotion/styled';
+import { TabClasses } from '@mui/material';
+import React from 'react';
+import * as S from './styles';
 
 const CustomTab = styled(S.CustomTab)`
   min-height: 24px;
@@ -33,7 +33,7 @@ interface Props {
    * The position of the icon relative to the label.
    * @default 'top'
    */
-  iconPosition?: "top" | "bottom" | "start" | "end";
+  iconPosition?: 'top' | 'bottom' | 'start' | 'end';
   /**
    * The label element.
    */
@@ -53,12 +53,5 @@ interface Props {
 }
 
 export const OptTab = React.forwardRef<HTMLDivElement, Props>(
-  ({ ...props }, ref) => {
-    return (
-      <CustomTab
-        ref={ref}
-        {...props}
-      />
-    );
-  }
+  ({ ...props }, ref) => <CustomTab ref={ref} {...props} />
 );

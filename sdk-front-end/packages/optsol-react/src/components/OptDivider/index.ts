@@ -1,3 +1,2 @@
-export { OptDivider } from "./OptDivider";
-export type { OptDividerProps } from "./OptDivider";
-
+export { OptDivider } from './OptDivider';
+export type { OptDividerProps } from './OptDivider';

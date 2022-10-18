@@ -24,7 +24,7 @@ function checkActionIcon(
   theme: OptFullTheme,
   icon: IconPathColor | JSX.Element | undefined,
   disabled: boolean,
-  loading: boolean,
+  loading: boolean
 ) {
   if (icon) {
     if (loading) {
@@ -32,7 +32,8 @@ function checkActionIcon(
       icon = <CircularProgress size={18} style={{ color: theme.primary }} />;
     } else if (typeof icon === 'object') {
       icon = icon as IconPathColor;
-      icon.color = loading || disabled ? theme.color : icon.color || theme.primary;
+      icon.color =
+        loading || disabled ? theme.color : icon.color || theme.primary;
       icon = <Icon path={icon.path} size={0.8} color={icon.color} />;
     }
   }
@@ -40,7 +41,7 @@ function checkActionIcon(
   return icon;
 }
 
-export const OptActionButton = ({
+export function OptActionButton({
   startIcon,
   endIcon,
   onClick,
@@ -49,7 +50,7 @@ export const OptActionButton = ({
   loading,
   textColor = 'inherit',
   hover,
-}: PropsWithChildren<OptActionButtonProps>) => {
+}: PropsWithChildren<OptActionButtonProps>) {
   const { currentTheme } = useOptTheme();
 
   let hoverTextColor: string = hover?.textColor ?? 'inherit';
@@ -73,8 +74,9 @@ export const OptActionButton = ({
       endIcon={endIcon}
       onClick={onClick}
       disabled={disabled || loading}
-      style={{ textTransform: 'inherit' }}>
+      style={{ textTransform: 'inherit' }}
+    >
       {children}
     </S.CustomButton>
   );
-};
+}

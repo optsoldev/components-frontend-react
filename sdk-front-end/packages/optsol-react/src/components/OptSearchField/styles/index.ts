@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { ColorPalette } from "../../../shared/styles/colors";
+import styled, { css } from 'styled-components';
+import { ColorPalette } from '../../../shared/styles/colors';
 
 interface Props {
   $noborder?: boolean;
@@ -10,7 +10,7 @@ interface Props {
 export const AdvancedSearchContainer = styled.div<Props>`
   display: flex;
   margin-bottom: 12px;
-  width: ${({ width }) => width + "px" ?? "100%"};
+  width: ${({ width }) => `${width  }px` ?? '100%'};
   ${({ paddingx }) =>
     css`
       padding: 0 ${paddingx}px;
@@ -24,7 +24,7 @@ export const AdvancedSearchContainer = styled.div<Props>`
     height: 48px;
     border: none;
     border: ${({ $noborder }) =>
-      $noborder ? "unset" : `1px solid ${ColorPalette.gray6}`};
+      $noborder ? 'unset' : `1px solid ${ColorPalette.gray6}`};
     border-right: unset;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -33,7 +33,7 @@ export const AdvancedSearchContainer = styled.div<Props>`
   & .MuiOutlinedInput-notchedOutline {
     border: none;
     border: ${({ $noborder }) =>
-      $noborder ? "unset" : `1px solid ${ColorPalette.gray6}`};
+      $noborder ? 'unset' : `1px solid ${ColorPalette.gray6}`};
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
   }
@@ -66,18 +66,19 @@ export const AdvancedSearchContainer = styled.div<Props>`
   }
 
   &
-    [class*="MuiInputBase-root-MuiOutlinedInput-root"]:hover
+    [class*='MuiInputBase-root-MuiOutlinedInput-root']:hover
     .MuiOutlinedInput-notchedOutline {
     border: ${({ $noborder }) =>
-      $noborder ? "unset" : `1px solid ${ColorPalette.gray5}`};
+      $noborder ? 'unset' : `1px solid ${ColorPalette.gray5}`};
   }
 
   & .Mui-focused .MuiOutlinedInput-notchedOutline,
-  [class*="MuiInputBase-root-MuiOutlinedInput-root"]:hover.Mui-focused
+  [class*='MuiInputBase-root-MuiOutlinedInput-root']:hover.Mui-focused
     .MuiOutlinedInput-notchedOutline {
     border: ${({ $noborder }) =>
-      $noborder ? "unset" : `2px solid ${ColorPalette.primaryTints.tint1}`};
-  }`;
+      $noborder ? 'unset' : `2px solid ${ColorPalette.primaryTints.tint1}`};
+  }
+`;
 
 AdvancedSearchContainer.defaultProps = {
   $noborder: false,

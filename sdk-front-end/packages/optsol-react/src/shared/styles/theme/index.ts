@@ -135,6 +135,49 @@ export interface OptFullTheme {
   };
 }
 
+function buildAppBarTheme(t: OptBasicTheme) {
+  return {
+    background: t.style === 'soft' ? ColorPalette.gray6 : t.primary,
+    color: t.style === 'soft' ? t.primary : t.primaryContrast,
+    boxShadowColor: 'rgba(0, 0, 0, 0.05)',
+    noBoxShadow: false,
+
+    side: {
+      divider:
+        t.style === 'soft'
+          ? ColorPalette.gray5
+          : color(t.primary).lighten(0.1).hex(),
+      borderColor: ColorPalette.gray6,
+
+      link: {
+        color: t.style === 'soft' ? t.primary : t.primaryContrast,
+
+        active: {
+          background: t.style === 'soft' ? t.primary : t.primaryContrast,
+          color: t.style === 'soft' ? t.primaryContrast : t.primary,
+        },
+        hover: {
+          background: color(t.primary).lighten(0.25).hex(),
+          color: t.primaryContrast,
+        },
+      },
+    },
+
+    menuButton: {
+      color: t.primaryContrast,
+
+      hover: {
+        background: t.primaryContrast,
+        color: t.primary,
+      },
+    },
+    avatar: {
+      background: t.secondary,
+      color: t.secondaryContrast,
+    },
+  };
+}
+
 export function transformTheme(t: OptBasicTheme): OptFullTheme {
   return {
     primary: t.primary,
@@ -222,49 +265,6 @@ export function transformTheme(t: OptBasicTheme): OptFullTheme {
       outline: ColorPalette.gray6,
       outlineFocus: t.primary,
       outlineHover: ColorPalette.gray5,
-    },
-  };
-}
-
-function buildAppBarTheme(t: OptBasicTheme) {
-  return {
-    background: t.style === 'soft' ? ColorPalette.gray6 : t.primary,
-    color: t.style === 'soft' ? t.primary : t.primaryContrast,
-    boxShadowColor: 'rgba(0, 0, 0, 0.05)',
-    noBoxShadow: false,
-
-    side: {
-      divider:
-        t.style === 'soft'
-          ? ColorPalette.gray5
-          : color(t.primary).lighten(0.1).hex(),
-      borderColor: ColorPalette.gray6,
-
-      link: {
-        color: t.style === 'soft' ? t.primary : t.primaryContrast,
-
-        active: {
-          background: t.style === 'soft' ? t.primary : t.primaryContrast,
-          color: t.style === 'soft' ? t.primaryContrast : t.primary,
-        },
-        hover: {
-          background: color(t.primary).lighten(0.25).hex(),
-          color: t.primaryContrast,
-        },
-      },
-    },
-
-    menuButton: {
-      color: t.primaryContrast,
-
-      hover: {
-        background: t.primaryContrast,
-        color: t.primary,
-      },
-    },
-    avatar: {
-      background: t.secondary,
-      color: t.secondaryContrast,
     },
   };
 }

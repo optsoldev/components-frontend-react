@@ -3,11 +3,11 @@ import {
   mdiChevronRight,
   mdiPageFirst,
   mdiPageLast,
-} from "@mdi/js";
-import { Icon } from "@mdi/react";
-import { IconButton, MenuItem, Select } from "@mui/material";
-import { useOptTheme } from "../../contexts/theme/themeContext";
-import * as S from "./styles";
+} from '@mdi/js';
+import { Icon } from '@mdi/react';
+import { IconButton, MenuItem, Select } from '@mui/material';
+import { useOptTheme } from '../../contexts/theme/themeContext';
+import * as S from './styles';
 
 interface Props {
   canPreviousPage: boolean;
@@ -22,7 +22,7 @@ interface Props {
   pageSize: number;
 }
 
-export const OptGridPagination = ({
+export function OptGridPagination({
   canPreviousPage,
   canNextPage,
   pageOptions,
@@ -33,7 +33,7 @@ export const OptGridPagination = ({
   setPageSize,
   pageIndex,
   pageSize,
-}: Props) => {
+}: Props) {
   const { currentTheme } = useOptTheme();
 
   return (
@@ -76,10 +76,10 @@ export const OptGridPagination = ({
       </IconButton>
 
       <span>
-        Página{" "}
+        Página{' '}
         <strong>
           {pageOptions.length ? pageIndex + 1 : 0} de {pageOptions.length}
-        </strong>{" "}
+        </strong>{' '}
       </span>
 
       <IconButton onClick={() => nextPage()} disabled={!canNextPage}>
@@ -118,4 +118,4 @@ export const OptGridPagination = ({
       </span>{' '} */}
     </S.PaginationContainer>
   );
-};
+}

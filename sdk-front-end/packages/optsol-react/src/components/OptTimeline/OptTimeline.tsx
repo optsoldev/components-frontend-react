@@ -1,10 +1,10 @@
-import { TimelineOppositeContent } from "@mui/lab";
-import Timeline from "@mui/lab/Timeline";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import { TimelineOppositeContent } from '@mui/lab';
+import Timeline from '@mui/lab/Timeline';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import {
   Avatar,
   Table,
@@ -13,14 +13,14 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from "@mui/material";
-import { useEffect, useState } from "react";
-import { OptLoading } from "../OptLoading";
+} from '@mui/material';
+import { useEffect, useState } from 'react';
+import { OptLoading } from '../OptLoading';
 import {
   OptTimelineField,
   OptTimelineTableValue,
-} from "./OptTimelineTableValue";
-import * as S from "./styles";
+} from './OptTimelineTableValue';
+import * as S from './styles';
 
 export interface OptTimelineAction {
   order: number;
@@ -37,14 +37,14 @@ export interface OptTimelineProps {
   maxWidth?: number;
   data: OptTimelineAction[] | (() => Promise<OptTimelineAction[]>);
   dotColor?:
-    | "primary"
-    | "secondary"
-    | "inherit"
-    | "grey"
-    | "success"
-    | "error"
-    | "info"
-    | "warning";
+    | 'primary'
+    | 'secondary'
+    | 'inherit'
+    | 'grey'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning';
   valuesTableOptions?: {
     nameHeader?: string;
     valueHeader?: string;
@@ -53,24 +53,24 @@ export interface OptTimelineProps {
   };
 }
 
-export const OptTimeline = ({
+export function OptTimeline({
   maxWidth,
   data,
   dotColor,
   // ***** valuesTableOptions
   valuesTableOptions: {
-    nameHeader = "Nome",
-    valueHeader = "Valor",
+    nameHeader = 'Nome',
+    valueHeader = 'Valor',
     valueRender = undefined,
     onValueClick = undefined,
   } = {
-    nameHeader: "Nome",
-    valueHeader: "Valor",
+    nameHeader: 'Nome',
+    valueHeader: 'Valor',
     valueRender: undefined,
     onValueClick: undefined,
   },
 }: // ***** valuesTableOptions
-OptTimelineProps) => {
+OptTimelineProps) {
   const isDataFunction = !Array.isArray(data);
   const hasValueRenderFunction = !!valueRender;
 
@@ -95,7 +95,7 @@ OptTimelineProps) => {
   }, []);
 
   return (
-    <S.Secao style={{ maxWidth: hasMaxWidth ? `${maxWidth}px` : "100%" }}>
+    <S.Secao style={{ maxWidth: hasMaxWidth ? `${maxWidth}px` : '100%' }}>
       {loading && <OptLoading size={50} />}
 
       {!loading && (
@@ -105,8 +105,8 @@ OptTimelineProps) => {
             versoes.map((versao) => {
               let payload: OptTimelineField[] = [];
 
-              if (!!versao.payload) {
-                if (typeof versao.payload === "string") {
+              if (versao.payload) {
+                if (typeof versao.payload === 'string') {
                   payload = JSON.parse(versao.payload) as OptTimelineField[];
                 } else {
                   payload = versao.payload;
@@ -123,7 +123,7 @@ OptTimelineProps) => {
 
                   <TimelineSeparator>
                     <TimelineDot color={dotColor}>
-                      <Avatar sx={{ bgcolor: "transparent" }}>
+                      <Avatar sx={{ bgcolor: 'transparent' }}>
                         {versao.order}
                       </Avatar>
                     </TimelineDot>
@@ -187,4 +187,4 @@ OptTimelineProps) => {
       )}
     </S.Secao>
   );
-};
+}

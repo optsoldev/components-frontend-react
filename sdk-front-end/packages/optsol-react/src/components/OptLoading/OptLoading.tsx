@@ -1,12 +1,14 @@
 import { CircularProgress } from '@mui/material';
 
-
 export interface OptLoadingProps {
   size?: number;
   color?: 'primary' | 'secondary' | 'inherit';
 }
 
-export const OptLoading = ({ size = 100, color = 'primary' }: OptLoadingProps) => {
+export function OptLoading({
+  size = 100,
+  color = 'primary',
+}: OptLoadingProps) {
   return (
     <div
       style={{
@@ -17,8 +19,9 @@ export const OptLoading = ({ size = 100, color = 'primary' }: OptLoadingProps) =
         justifyContent: 'center',
         minHeight: size,
         flex: 1,
-      }}>
+      }}
+    >
       <CircularProgress size={size} color={color} />
     </div>
   );
-};
+}
