@@ -2,6 +2,10 @@ import { GenericContext } from '../genericContext';
 import { BreadcrumbActions } from './breadcrumbActions';
 import { BreadcrumbDictionary, BreadcrumbState } from './breadcrumbState';
 
+type BreadcrumbAction =
+  | GenericContext<BreadcrumbActions.SET_VALUES, BreadcrumbDictionary>
+  | GenericContext<BreadcrumbActions.RESET_VALUES>;
+
 export type BreadcrumbDispatch = (action: BreadcrumbAction) => void;
 export const BREADCRUMB_INITIAL_DISPATCH = (action: BreadcrumbAction): void => {
   throw Error(`Dispatch not implemented. Action: ${action}`);
@@ -32,7 +36,3 @@ export function BreadcrumbReducer(
     }
   }
 }
-
-type BreadcrumbAction =
-  | GenericContext<BreadcrumbActions.SET_VALUES, BreadcrumbDictionary>
-  | GenericContext<BreadcrumbActions.RESET_VALUES>;

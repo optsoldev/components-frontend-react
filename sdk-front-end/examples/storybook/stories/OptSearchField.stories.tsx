@@ -1,4 +1,9 @@
-import { OptSearchField, OptSearchFieldProps } from "@optsol/react";
+import {
+  OptLayoutProvider,
+  OptSearchField,
+  OptSearchFieldProps,
+  OptTheme,
+} from "@optsol/react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
@@ -9,8 +14,22 @@ export default {
 
 interface OptSearchFieldArgs extends OptSearchFieldProps {}
 
+export const theme: OptTheme = {
+  light: {
+    style: "soft",
+    primary: "#f00",
+    primaryContrast: "#f5f5f5",
+    secondary: "#A0C938",
+    secondaryContrast: "#f5f5f5",
+  },
+};
+
 const Template: ComponentStory<typeof OptSearchField> = (args) => {
-  return <OptSearchField {...args} />;
+  return (
+    <OptLayoutProvider theme={theme} noRouter>
+      <OptSearchField {...args} />
+    </OptLayoutProvider>
+  );
 };
 
 export const OptSearchFieldExample = Template.bind({});

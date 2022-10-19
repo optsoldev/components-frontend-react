@@ -13,7 +13,7 @@ export interface OptSideLayoutProps {
   sections: OptMenuSection[];
   /** Application routes within a \<Switch\> \</Switch\>   */
   routes?: JSX.Element;
-  profile: OptUserProfile | undefined;
+  profile?: OptUserProfile;
 
   onManageProfile: () => void;
   onLogout: () => void;

@@ -11,7 +11,6 @@ import {
   OptMenuSection,
   OptSideLayout,
   OptTheme,
-  OptUserProfile,
 } from "@optsol/react";
 import { OptMainSidebarFooterAction } from "@optsol/react/lib/esm/components/OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions";
 import { ComponentMeta, Story } from "@storybook/react";
@@ -40,8 +39,7 @@ const Template: Story<
     },
   };
 
-  let userProfile: OptUserProfile = {} as OptUserProfile;
-
+  let userProfile;
   if (args.hasProfile) {
     userProfile = {
       name: "Luciano Rocha",
@@ -103,15 +101,19 @@ const Template: Story<
     hideLinkDescription: args.appBarConfigHideLinkDescription,
   };
 
+  const props = {
+    profile: userProfile,
+  };
+
   return (
     <OptLayoutProvider theme={theme} noRouter>
       <OptSideLayout
         sections={sectionsArray}
         //routes={}
-        profile={userProfile}
         onManageProfile={() => {}}
         onLogout={() => {}}
         appBarConfig={AppBarConfigExample}
+        {...props}
         version="1.0.0"
       />
     </OptLayoutProvider>

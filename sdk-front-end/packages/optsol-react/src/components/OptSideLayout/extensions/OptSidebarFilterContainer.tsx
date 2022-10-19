@@ -7,7 +7,6 @@ import {
   SidebarWithToolbarContainer,
   SidebarWithToolbarContent,
 } from '../../OptSidebar/styles';
-import * as S from './styles';
 
 interface Props {
   titulo?: string;
@@ -15,7 +14,6 @@ interface Props {
   borderColor?: string;
   width?: number;
   loading?: boolean;
-  header?: S.HeaderProps;
   goBackRoute?: string;
 }
 

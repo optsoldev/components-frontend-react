@@ -26,16 +26,13 @@ function checkActionIcon(
   disabled: boolean,
   loading: boolean
 ) {
-  if (icon) {
-    if (loading) {
-      icon = icon as IconPathColor;
-      icon = <CircularProgress size={18} style={{ color: theme.primary }} />;
-    } else if (typeof icon === 'object') {
-      icon = icon as IconPathColor;
-      icon.color =
-        loading || disabled ? theme.color : icon.color || theme.primary;
-      icon = <Icon path={icon.path} size={0.8} color={icon.color} />;
-    }
+  if (loading) {
+    return <CircularProgress size={18} style={{ color: theme.primary }} />;
+  }
+
+  if (icon && 'path' in icon) {
+    const color = disabled ? theme.color : icon.color || theme.primary;
+    return <Icon path={icon.path} size={0.8} color={color} />;
   }
 
   return icon;
@@ -63,15 +60,26 @@ export function OptActionButton({
     hoverTextColor = (endIcon as IconPathColor).color!;
   }
 
-  startIcon = checkActionIcon(currentTheme, startIcon, !!disabled, !!loading);
-  endIcon = checkActionIcon(currentTheme, endIcon, !!disabled, !!loading);
+  const getStartIcon = checkActionIcon(
+    currentTheme,
+    startIcon,
+    !!disabled,
+    !!loading
+  );
+
+  const getEndIcon = checkActionIcon(
+    currentTheme,
+    endIcon,
+    !!disabled,
+    !!loading
+  );
 
   return (
     <S.CustomButton
       textcolor={textColor}
       hover={{ textcolor: hoverTextColor }}
-      startIcon={startIcon}
-      endIcon={endIcon}
+      startIcon={getStartIcon}
+      endIcon={getEndIcon}
       onClick={onClick}
       disabled={disabled || loading}
       style={{ textTransform: 'inherit' }}

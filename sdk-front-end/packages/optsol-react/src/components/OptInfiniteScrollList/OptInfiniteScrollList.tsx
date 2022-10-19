@@ -54,16 +54,31 @@ export function OptInfiniteScrollList<T extends object>({
   const todosRegistrosCarregados = possuiItens && lista.length === total;
   const naoPossuiRegistrosNaPagina = total === 0 && lista.length === total;
 
+  function adicionarNovosItens(response: OptSearchResponse<T>, reset = false) {
+    setState((currentState) => ({
+      ...currentState,
+      total: response.total,
+      pagina: response.page,
+      lista: reset
+        ? [...response.data]
+        : [...currentState.lista, ...response.data],
+      carregando: false,
+    }));
+
+    if (primeiroCarregamento) {
+      setPrimeiroCarregamento(false);
+    }
+  }
+
   async function recarregarLista() {
     setState({ ...state, carregando: true });
 
     try {
       const response = await carregar(termoPesquisa, pagina, pageSize);
-
       adicionarNovosItens(response, true);
     } catch (err) {
       setState({ ...state, carregando: false });
-      onError && onError('Falha ao carregar registros!');
+      if (onError) onError('Falha ao carregar registros!');
     }
   }
 
@@ -87,11 +102,7 @@ export function OptInfiniteScrollList<T extends object>({
   }
 
   const scrollObserver = useCallback((node: HTMLElement | null) => {
-    const options: IntersectionObserverInit = {
-      rootMargin: `${distanciaEmPixel}px`,
-    };
-
-    const listener: IntersectionObserverCallback = (entries) => {
+    const listener = (entries: IntersectionObserverEntry[]): void => {
       if (entries) {
         entries.forEach((en) => {
           if (en.intersectionRatio > 0) {
@@ -101,6 +112,10 @@ export function OptInfiniteScrollList<T extends object>({
       }
     };
 
+    const options = {
+      rootMargin: `${distanciaEmPixel}px`,
+    };
+
     const observer = new IntersectionObserver(listener, options);
 
     observer.observe(node!);
@@ -108,30 +123,14 @@ export function OptInfiniteScrollList<T extends object>({
     // eslint-disable-next-line
   }, []);
 
-  function adicionarNovosItens(response: OptSearchResponse<T>, reset = false) {
-    setState((currentState) => ({
-      ...currentState,
-      total: response.total,
-      pagina: response.page,
-      lista: reset
-        ? [...response.data]
-        : [...currentState.lista, ...response.data],
-      carregando: false,
-    }));
-
-    if (primeiroCarregamento) {
-      setPrimeiroCarregamento(false);
-    }
-  }
-
-  function pesquisarPorTermo(termo?: string) {
+  const pesquisarPorTermo = (termo?: string) => {
     if (termo) {
       setState((currentState) => ({
         ...currentState,
         termoPesquisa: termo,
       }));
     }
-  }
+  };
 
   function gerarListaRenderizacao() {
     const novaListaRender: React.ReactElement[] = [];

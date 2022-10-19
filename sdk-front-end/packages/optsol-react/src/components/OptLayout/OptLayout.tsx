@@ -1,11 +1,11 @@
 import { LinearProgress, SwipeableDrawer } from '@mui/material';
 import React, { PropsWithChildren, Suspense, useState } from 'react';
 import { Routes } from 'react-router-dom';
-import { OptUserProfile } from '..';
 import { LocalStorageKeys } from '../../shared/constants';
 import { GlobalStyles } from '../../shared/styles/global';
 import { OptMenuSection } from '../../types';
 import { OptAppBar } from '../OptAppBar';
+import { OptUserProfile } from '../OptAvatar';
 import { OptDrawerMenu } from '../OptDrawer/OptDrawerMenu';
 import { OptSidebar } from '../OptSidebar';
 import * as S from './styles';
@@ -59,15 +59,10 @@ export function OptLayout({
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
-  function handleDrawerOpen() {
-    setDrawerOpen(true);
-  }
+  const handleDrawerOpen = () => setDrawerOpen(true);
+  const handleDrawerClose = () => setDrawerOpen(false);
 
-  function handleDrawerClose() {
-    setDrawerOpen(false);
-  }
-
-  function toggleDockedDrawer() {
+  const toggleDockedDrawer = () => {
     if (!dockedDrawer) {
       localStorage.setItem(LocalStorageKeys.DockedDrawer, 'true');
       setDrawerOpen(false);
@@ -77,7 +72,7 @@ export function OptLayout({
     }
 
     setDockedDrawer(!dockedDrawer);
-  }
+  };
 
   return (
     <>

@@ -27,11 +27,11 @@ interface OptMainSidebarProps {
 
 export function OptSideAppbar({
   sections,
-  hideLinkDescription = false,
   profile,
-  onManageProfile,
-  onLogout,
   footerActions,
+  hideLinkDescription = false,
+  onLogout,
+  onManageProfile,
 }: OptMainSidebarProps) {
   const { currentTheme } = useOptTheme();
   const [expanded, setExpanded] = useState(false);
@@ -40,12 +40,12 @@ export function OptSideAppbar({
   const currentLinkColor =
     currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
 
-  function toggleExpandSidebar() {
+  const toggleExpandSidebar = () => {
     setExpanded(!expanded);
     setCurrentSideAppbarWidth(
       expanded ? S.sideAppbarWidth : S.expandedSideAppbarWidth
     );
-  }
+  };
 
   return (
     <S.SidebarMenuContainer expanded={expanded}>
@@ -55,10 +55,10 @@ export function OptSideAppbar({
             {index > 0 && <S.SidebarMenuDivider style={{ marginBottom: 6 }} />}
 
             {section.items.map((item, index) => {
-              item.iconColor = item.iconColor ?? currentLinkColor;
-              item.icon =
+              const color = item.iconColor ?? currentLinkColor;
+              const icon =
                 typeof item.icon === 'string' ? (
-                  <Icon size={1.2} path={item.icon} color={item.iconColor} />
+                  <Icon size={1.2} path={item.icon} color={color} />
                 ) : (
                   item.icon
                 );
@@ -74,7 +74,7 @@ export function OptSideAppbar({
                 >
                   {expanded && (
                     <SidebarExpandedListItem button>
-                      <S.SidebarListItemIcon>{item.icon}</S.SidebarListItemIcon>
+                      <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
                       <SidebarExpandedListItemText primary={item.title} />
                     </SidebarExpandedListItem>
                   )}
@@ -82,9 +82,7 @@ export function OptSideAppbar({
                   {!expanded && (
                     <Tooltip title={item.title} placement="right">
                       <S.SidebarListItem button>
-                        <S.SidebarListItemIcon>
-                          {item.icon}
-                        </S.SidebarListItemIcon>
+                        <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
                         {!hideLinkDescription && (
                           <S.SidebarListItemText primary={item.title} />
                         )}
@@ -103,7 +101,6 @@ export function OptSideAppbar({
           footerActions={footerActions}
           onLogout={onLogout}
           onManageProfile={onManageProfile}
-          hideLinkDescription={hideLinkDescription}
           profile={profile}
           toggleSidebar={toggleExpandSidebar}
         />
@@ -112,7 +109,6 @@ export function OptSideAppbar({
           footerActions={footerActions}
           onLogout={onLogout}
           onManageProfile={onManageProfile}
-          hideLinkDescription={hideLinkDescription}
           profile={profile}
           toggleSidebar={toggleExpandSidebar}
         />

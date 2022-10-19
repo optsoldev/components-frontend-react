@@ -21,12 +21,10 @@ export interface OptMainSidebarFooterAction {
 
 export interface FooterActionsProps {
   footerActions?: OptMainSidebarFooterAction[];
-
   profile?: OptUserProfile;
   onManageProfile: () => void;
   onLogout: () => void;
   toggleSidebar: () => void;
-  hideLinkDescription?: boolean;
 }
 
 export function FooterActions({
@@ -43,15 +41,10 @@ export function FooterActions({
   return (
     <S.FooterActionsContainer>
       {footerActions?.map((action, index) => {
-        action.iconColor =
-          action.iconColor ?? currentTheme.appBar.side!.link.color;
-        action.icon =
+        const color = action.iconColor ?? currentTheme.appBar.side!.link.color;
+        const icon =
           typeof action.icon === 'string' ? (
-            <Icon
-              size={1.2}
-              path={action.icon}
-              color={action.iconColor ?? currentTheme.appBar.side!.link.color}
-            />
+            <Icon size={1.2} path={action.icon} color={color} />
           ) : (
             action.icon
           );
@@ -59,7 +52,7 @@ export function FooterActions({
         return (
           <Tooltip title={action.title} placement="right" key={index}>
             <IconButton onClick={action.onClick} size="large">
-              {action.icon}
+              {icon}
             </IconButton>
           </Tooltip>
         );
@@ -107,15 +100,11 @@ export function ExpandedFooterActions({
     <S.ExpandedFooterActionsContainer>
       <S.CustomList>
         {footerActions?.map((action, index) => {
-          action.iconColor =
+          const color =
             action.iconColor ?? currentTheme.appBar.side!.link.color;
-          action.icon =
+          const icon =
             typeof action.icon === 'string' ? (
-              <Icon
-                size={1}
-                path={action.icon}
-                color={action.iconColor ?? currentTheme.appBar.side!.link.color}
-              />
+              <Icon size={1} path={action.icon} color={color} />
             ) : (
               action.icon
             );
@@ -126,7 +115,7 @@ export function ExpandedFooterActions({
               onClick={action.onClick}
               key={index}
             >
-              <SidebarListItemIcon>{action.icon}</SidebarListItemIcon>
+              <SidebarListItemIcon>{icon}</SidebarListItemIcon>
               <S.SidebarExpandedListItemText primary={action.title} />
             </S.SidebarExpandedListItem>
           );

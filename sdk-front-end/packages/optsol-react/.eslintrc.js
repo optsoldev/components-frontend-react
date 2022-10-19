@@ -18,13 +18,13 @@ module.exports = {
     'airbnb',
     'plugin:security/recommended',
     'plugin:import/typescript',
-    'react-hooks',
     'prettier',
   ],
   globals: {
     React: true,
     JSX: true,
   },
+  ignorePatterns: ['lib/**'],
   rules: {
     'import/extensions': [
       'error',
@@ -36,9 +36,9 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'no-shadow': 'warn',
-    'no-unused-vars': 'warn',
-    'no-use-before-define': 'error',
+    'no-shadow': 'off',
+    'no-unused-vars': 'off',
+    'no-use-before-define': 'off',
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'error',
     'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],

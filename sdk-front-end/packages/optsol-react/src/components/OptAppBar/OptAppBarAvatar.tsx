@@ -4,7 +4,7 @@ import { OptAvatar, OptUserProfile } from '../OptAvatar';
 import { OptAppBarAvatarPopOver } from './OptAppBarAvatarPopOver';
 
 interface Props {
-  profile: OptUserProfile | undefined;
+  profile?: OptUserProfile;
   onManageProfile: () => void;
   onLogout: () => void;
   fromSidebar?: boolean;
@@ -46,5 +46,5 @@ export function OptAppBarAvatar({
     );
   }
 
-  return <span>Não autenticado</span>;
+  return null;
 }

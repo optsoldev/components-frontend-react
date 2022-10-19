@@ -7,6 +7,13 @@ import { ThemeActions } from './themeActions';
 import { generateNewTheme } from './themeFunctions';
 import { CustomOptTheme, ThemeState } from './themeState';
 
+type ThemeAction =
+  | GenericContext<ThemeActions.RESET_THEME>
+  | GenericContext<ThemeActions.SET_DARK_THEME, OptFullTheme>
+  | GenericContext<ThemeActions.SET_LIGHT_THEME, OptFullTheme>
+  | GenericContext<ThemeActions.SET_CUSTOM_THEME, CustomOptTheme>
+  | GenericContext<ThemeActions.SET_CURRENT_SIDEAPPBARWIDTH, number>;
+
 export type ThemeDispatch = (action: ThemeAction) => void;
 
 export const THEME_INITIAL_DISPATCH = (action: ThemeAction): void => {
@@ -52,10 +59,3 @@ export function ThemeReducer(
     }
   }
 }
-
-type ThemeAction =
-  | GenericContext<ThemeActions.RESET_THEME>
-  | GenericContext<ThemeActions.SET_DARK_THEME, OptFullTheme>
-  | GenericContext<ThemeActions.SET_LIGHT_THEME, OptFullTheme>
-  | GenericContext<ThemeActions.SET_CUSTOM_THEME, CustomOptTheme>
-  | GenericContext<ThemeActions.SET_CURRENT_SIDEAPPBARWIDTH, number>;

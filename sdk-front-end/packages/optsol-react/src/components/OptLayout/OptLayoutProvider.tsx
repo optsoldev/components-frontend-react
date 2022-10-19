@@ -23,7 +23,8 @@ import { OptLoading } from '../OptLoading';
 const generateMuiTheme = (
   optTheme: OptFullTheme,
   usingDarkTheme: boolean = false
-) => createTheme({
+) =>
+  createTheme({
     palette: {
       mode: usingDarkTheme ? 'dark' : 'light',
       primary: {
@@ -67,35 +68,9 @@ export interface OptLayoutProviderProps {
   noRouter?: boolean;
 }
 
-export function OptLayoutProvider({
-  children,
-  noRouter = false,
-  ...props
-}: PropsWithChildren<OptLayoutProviderProps>) {
-  return (
-    <OptThemeProvider>
-      {!noRouter && (
-        <BrowserRouter>
-          <BreadcrumbProvider>
-            <OptThemedLayout noRouter={noRouter} {...props}>
-              {children}
-            </OptThemedLayout>
-          </BreadcrumbProvider>
-        </BrowserRouter>
-      )}
-
-      {noRouter && (
-        <BreadcrumbProvider>
-          <OptThemedLayout noRouter={noRouter} {...props}>
-            {children}
-          </OptThemedLayout>
-        </BreadcrumbProvider>
-      )}
-    </OptThemeProvider>
-  );
-}
-
-function OptThemedLayout(props: PropsWithChildren<OptLayoutProviderProps>) {
+function OptThemedLayout(
+  props: PropsWithChildren<Omit<OptLayoutProviderProps, 'noRouter'>>
+) {
   const {
     theme,
     darkTheme = !!localStorage.getItem(LocalStorageKeys.DarkTheme),
@@ -164,8 +139,32 @@ function OptThemedLayout(props: PropsWithChildren<OptLayoutProviderProps>) {
       <StyledComponentsThemeProvider theme={currentTheme}>
         <RobotoFontStyles />
 
-        {!themeLoaded ? <OptLoading /> : <>{children}</>}
+        {!themeLoaded ? <OptLoading /> : children}
       </StyledComponentsThemeProvider>
     </MaterialThemeProvider>
+  );
+}
+
+export function OptLayoutProvider({
+  children,
+  noRouter = false,
+  ...props
+}: PropsWithChildren<OptLayoutProviderProps>) {
+  return (
+    <OptThemeProvider>
+      {!noRouter && (
+        <BrowserRouter>
+          <BreadcrumbProvider>
+            <OptThemedLayout {...props}>{children}</OptThemedLayout>
+          </BreadcrumbProvider>
+        </BrowserRouter>
+      )}
+
+      {noRouter && (
+        <BreadcrumbProvider>
+          <OptThemedLayout {...props}>{children}</OptThemedLayout>
+        </BreadcrumbProvider>
+      )}
+    </OptThemeProvider>
   );
 }

@@ -1,23 +1,19 @@
 import { OptFullTheme } from '../../shared/styles/theme';
 import { RecursivePartial } from '../../types/RecursivePartial';
 
-export function copyInto<T>(to: T, from?: RecursivePartial<T>) {
-  if (from) {
-    Object.entries(from)
-      .filter((kv) => kv[1])
-      .forEach((kv) => {
-        const [key, value] = kv;
-        if (value) {
-          if (typeof value === 'object') {
-            copyInto((to as any)[key], value as any);
-          } else {
-            (to as any)[key] = value;
-          }
-        }
+export function copyInto<T>(to: T, from: RecursivePartial<T>) {
+  if (typeof from === 'object') {
+    const target = to;
+    Object.entries(from).forEach(([key, value]) => {
+      Object.defineProperty(target, key, {
+        value: copyInto(to[key], value),
       });
+    });
+
+    return target;
   }
 
-  return to;
+  return from;
 }
 
 export function generateNewTheme(

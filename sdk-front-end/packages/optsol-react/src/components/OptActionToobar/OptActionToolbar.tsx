@@ -26,12 +26,12 @@ export function OptActionToolbar({
   noPadding = false,
 }: PropsWithChildren<OptActionToolbarProps>) {
   const theme = useOptTheme();
-  color = color ?? theme.currentTheme.toolbar.color;
-  background = background ?? theme.currentTheme.toolbar.background;
+  const getColor = color ?? theme.currentTheme.toolbar.color;
+  const getBackground = background ?? theme.currentTheme.toolbar.background;
 
-  title =
+  const getTitle =
     typeof title === 'string' ? (
-      <S.Title color={color}>{title}</S.Title>
+      <S.Title color={getColor}>{title}</S.Title>
     ) : (
       title
     );
@@ -40,22 +40,22 @@ export function OptActionToolbar({
     <S.CustomToolbar
       clearmargin={clearMargin ? 1 : 0}
       className="opt-toolbar"
-      background={background}
-      color={color}
+      background={getBackground}
+      color={getColor}
       $noborder={noBorder}
       $nopadding={noPadding}
     >
       {goBackRoute && (
         <NavLink to={goBackRoute}>
           <S.CustomIconButton>
-            <Icon size={0.8} path={mdiArrowLeft} color={color} />
+            <Icon size={0.8} path={mdiArrowLeft} color={getColor} />
           </S.CustomIconButton>
         </NavLink>
       )}
 
-      {title}
+      {getTitle}
 
-      <S.ActionsContainer color={color}>{children}</S.ActionsContainer>
+      <S.ActionsContainer color={getColor}>{children}</S.ActionsContainer>
     </S.CustomToolbar>
   );
 }

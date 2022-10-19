@@ -15,10 +15,7 @@ interface Props<T> extends OptSidebarListBaseProps {
   listItemTo: (id: string) => string;
 }
 
-export function OptSidebarListContainer<
-  T extends { id: Key },
-  Key extends React.Key
->({
+export function OptSidebarListContainer<T extends { id: React.Key }>({
   data,
   createTo,
   listItemTo,

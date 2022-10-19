@@ -11,7 +11,7 @@ export function OptTabPanel(props: TabPanelProps) {
 
   return (
     <div role="tabpanel" hidden={value !== index} {...other}>
-      {value === index && <>{children}</>}
+      {value === index && children}
     </div>
   );
 }

@@ -15,7 +15,7 @@ interface Props {
 }
 
 export function OptTimelineTableValue({ field, onClick }: Props) {
-  if (!field.type || field.type === 'text') return <>{field.value}</>;
+  if (!field.type || field.type === 'text') return <span>{field.value}</span>;
 
   if (field.type === 'link')
     return (
@@ -38,5 +38,5 @@ export function OptTimelineTableValue({ field, onClick }: Props) {
       </IconButton>
     );
 
-  return <>{field.value}</>;
+  return <span>{field.value}</span>;
 }

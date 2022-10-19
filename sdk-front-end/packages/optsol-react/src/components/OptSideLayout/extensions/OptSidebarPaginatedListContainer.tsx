@@ -22,10 +22,7 @@ interface Props<T> extends OptSidebarListBaseProps {
   onError?: (error: string) => void;
 }
 
-export function OptSidebarPaginatedListContainer<
-  T extends { id: Key },
-  Key extends React.Key
->({
+export function OptSidebarPaginatedListContainer<T extends { id: React.Key }>({
   createTo,
   listItemTo,
   title,
