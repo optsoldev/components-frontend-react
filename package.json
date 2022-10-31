@@ -6,6 +6,8 @@
   "scripts": {
     "setup": "npx lerna bootstrap --hoist && npx lerna link --force-local",
     "start": "npm run watch",
+    "husky-install": "husky install",
+    "lint-staged": "lint-staged --config lint-staged.js",
     "build": "lerna run build --scope @optsol/react",
     "watch": "lerna run watch --scope @optsol/react",
     "package": "lerna exec --scope @optsol/react -- npm pack"
@@ -26,6 +28,8 @@
   },
   "homepage": "https://github.com/optsoldev/components-frontend-react#readme",
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3"
   }
 }
