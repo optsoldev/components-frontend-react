@@ -4,10 +4,9 @@
   "description": "Kit de UI da OPTSOL",
   "main": "index.js",
   "scripts": {
-    "setup": "npx lerna bootstrap --hoist && npx lerna link --force-local",
+    "setup": "npx lerna bootstrap --hoist && npx lerna link --force-local && npm run husky-install",
     "start": "npm run watch",
     "husky-install": "husky install",
-    "lint-staged": "lint-staged --config lint-staged.js",
     "build": "lerna run build --scope @optsol/react",
     "watch": "lerna run watch --scope @optsol/react",
     "package": "lerna exec --scope @optsol/react -- npm pack"

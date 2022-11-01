@@ -52,6 +52,8 @@ function OptGridInternal<T extends {}>(
     [columns]
   );
 
+  console.log('hello world');
+
   function loadRemote(
     remoteData: OptGridDataRequest<T>,
     pageIndex: number,
