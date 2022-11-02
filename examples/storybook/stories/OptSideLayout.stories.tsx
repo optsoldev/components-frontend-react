@@ -27,6 +27,8 @@ const Template: Story<
     hasProfile: boolean;
     appBarConfigActions: boolean;
     appBarConfigHideLinkDescription: boolean;
+    appBarExpandedSideAppbarWidth?: number;
+    appBarSideAppbarWidth?: number;
   }
 > = (args) => {
   const theme: OptTheme = {
@@ -99,6 +101,8 @@ const Template: Story<
   const AppBarConfigExample = {
     actions: actionsArrayAppBarConfig,
     hideLinkDescription: args.appBarConfigHideLinkDescription,
+    expandedSideAppbarWidth: args.appBarExpandedSideAppbarWidth,
+    sideAppbarWidth: args.appBarSideAppbarWidth,
   };
 
   const props = {
@@ -125,6 +129,8 @@ export const OptSideLayoutExample = Template.bind({});
 OptSideLayoutExample.args = {
   appBarConfigActions: true,
   appBarConfigHideLinkDescription: true,
+  appBarSideAppbarWidth: 50,
+  appBarExpandedSideAppbarWidth: 250,
   hasProfile: true,
 };
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { containerPadding } from '../../OptLayout/styles';
 
 interface CustomToolbarProps {
-  clearmargin: boolean | 1 | 0;
+  $clearmargin: boolean;
   background?: string;
   $noborder?: boolean;
   $nopadding?: boolean;
@@ -18,10 +18,10 @@ export const CustomToolbar = styled(Toolbar)<CustomToolbarProps>`
   color: ${({ color }) => color ?? 'inherit'};
   background: ${({ background }) => background ?? 'inherit'};
 
-  ${({ clearmargin }) =>
-    clearmargin
-      ? 'margin: unset'
-      : `margin: -${containerPadding}px -${containerPadding}px ${containerPadding}px -${containerPadding}px`};
+  ${({ $clearmargin }) =>
+    $clearmargin
+      ? `margin: -${containerPadding}px -${containerPadding}px ${containerPadding}px -${containerPadding}px`
+      : 'margin: unset'};
 `;
 
 CustomToolbar.defaultProps = {

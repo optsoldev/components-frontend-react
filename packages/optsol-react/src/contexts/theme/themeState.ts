@@ -1,4 +1,3 @@
-import { sideAppbarWidth } from '../../components/OptSideAppbar/styles';
 import { LocalStorageKeys } from '../../shared/constants';
 import { OptFullTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
@@ -27,5 +26,5 @@ export const THEME_INITIAL_STATE: ThemeState = {
   customTheme: {},
   theme: { dark: DarkTheme, light: LightTheme },
   currentTheme: usingDarkTheme ? DarkTheme : LightTheme,
-  currentSideAppbarWidth: sideAppbarWidth,
+  currentSideAppbarWidth: 50,
 };

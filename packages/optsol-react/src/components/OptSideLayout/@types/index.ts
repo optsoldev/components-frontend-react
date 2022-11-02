@@ -23,6 +23,8 @@ export interface OptSideLayoutProps {
     actions?: OptMainSidebarFooterAction[];
     /** Removes items description from the main sidebar */
     hideLinkDescription?: boolean;
+    sideAppbarWidth?: number;
+    expandedSideAppbarWidth?: number;
   };
 
   version: string;

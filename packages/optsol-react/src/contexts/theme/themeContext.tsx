@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useCallback, useReducer } from 'react';
 import { LocalStorageKeys } from '../../shared/constants';
 import { ThemeActions } from './themeActions';
 import { generateNewTheme } from './themeFunctions';
@@ -77,9 +77,12 @@ function useOptTheme() {
     dispatch({ type: actions.RESET_THEME });
   }
 
-  function setCurrentSideAppbarWidth(width: number) {
-    dispatch({ type: actions.SET_CURRENT_SIDEAPPBARWIDTH, payload: width });
-  }
+  const setCurrentSideAppbarWidth = useCallback(
+    (width: number) => {
+      dispatch({ type: actions.SET_CURRENT_SIDEAPPBARWIDTH, payload: width });
+    },
+    [actions.SET_CURRENT_SIDEAPPBARWIDTH, dispatch]
+  );
 
   return {
     state,

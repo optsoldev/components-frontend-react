@@ -38,12 +38,12 @@ export function OptActionToolbar({
 
   return (
     <S.CustomToolbar
-      clearmargin={clearMargin ? 1 : 0}
       className="opt-toolbar"
       background={getBackground}
       color={getColor}
       $noborder={noBorder}
       $nopadding={noPadding}
+      $clearmargin={clearMargin}
     >
       {goBackRoute && (
         <NavLink to={goBackRoute}>

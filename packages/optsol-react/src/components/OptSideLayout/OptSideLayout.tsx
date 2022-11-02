@@ -1,5 +1,11 @@
 import { LinearProgress } from '@mui/material';
-import { PropsWithChildren, Suspense, useEffect, useRef } from 'react';
+import {
+  PropsWithChildren,
+  Suspense,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from 'react';
 import { Routes, useLocation } from 'react-router-dom';
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { GlobalStyles } from '../../shared/styles/global';
@@ -18,6 +24,7 @@ export function OptSideLayout({
 }: PropsWithChildren<OptSideLayoutProps>) {
   const location = useLocation();
   const {
+    setCurrentSideAppbarWidth,
     state: { currentSideAppbarWidth },
   } = useOptTheme();
 
@@ -40,6 +47,11 @@ export function OptSideLayout({
     }, 300);
   }, [location]);
 
+  useLayoutEffect(() => {
+    const width = appBarConfig?.sideAppbarWidth;
+    if (width) setCurrentSideAppbarWidth(width);
+  }, [appBarConfig?.sideAppbarWidth, setCurrentSideAppbarWidth]);
+
   return (
     <>
       <GlobalStyles noAppBar />
@@ -52,6 +64,8 @@ export function OptSideLayout({
           onLogout={onLogout}
           onManageProfile={onManageProfile}
           hideLinkDescription={appBarConfig?.hideLinkDescription}
+          sideAppbarWidth={appBarConfig?.sideAppbarWidth}
+          expandedSideAppbarWidth={appBarConfig?.expandedSideAppbarWidth}
         />
 
         <S.InitialContainer

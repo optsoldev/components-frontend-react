@@ -4,5 +4,7 @@ import * as S from './styles';
 
 export const OptSideLayoutContent = React.forwardRef<
   HTMLDivElement,
-  ReactDivStyle
->((props, ref) => <S.SideLayoutContent {...props} ref={ref} />);
+  ReactDivStyle & { noPadding?: boolean }
+>(({ noPadding = false, ...props }, ref) => (
+  <S.SideLayoutContent $noPadding={noPadding} {...props} ref={ref} />
+));

@@ -1,22 +1,19 @@
 import styled from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
-import { sideAppbarWidth } from '../../OptSideAppbar';
 
 export const containerPadding = 12;
 
 interface CurrentSidebarWidthProps {
-  currentsidebarwidth?: number;
+  currentsidebarwidth: number;
 }
 
 export const InitialContainer = styled.div<CurrentSidebarWidthProps>`
   display: flex;
   min-width: calc(
-    100vw -
-      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+    100vw - ${({ currentsidebarwidth }) => currentsidebarwidth}px
   );
   max-width: calc(
-    100vw -
-      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+    100vw - ${({ currentsidebarwidth }) => currentsidebarwidth}px
   );
   overflow-x: auto;
 
@@ -26,12 +23,10 @@ export const InitialContainer = styled.div<CurrentSidebarWidthProps>`
 export const StyledOptSideLayoutPortalContainer = styled.div<CurrentSidebarWidthProps>`
   display: flex;
   min-width: calc(
-    100vw -
-      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+    100vw - ${({ currentsidebarwidth }) => currentsidebarwidth}px
   );
   max-width: calc(
-    100vw -
-      ${({ currentsidebarwidth }) => currentsidebarwidth ?? sideAppbarWidth}px
+    100vw - ${({ currentsidebarwidth }) => currentsidebarwidth}px
   );
 `;
 
@@ -40,10 +35,11 @@ export const OptSideLayoutPortalContent = styled.div`
   display: flex;
 `;
 
-export const SideLayoutContent = styled.div`
+export const SideLayoutContent = styled.div<{ $noPadding: boolean }>`
   flex: 1;
   overflow-y: auto;
-  padding: 12px;
+  padding: ${({ $noPadding }) =>
+    $noPadding ? '0px' : `${containerPadding}px`};
   display: flex;
   flex-direction: column;
 

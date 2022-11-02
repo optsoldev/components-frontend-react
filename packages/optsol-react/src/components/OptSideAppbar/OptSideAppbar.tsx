@@ -1,6 +1,6 @@
 import Icon from '@mdi/react';
 import { Tooltip } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { OptMenuSection } from '../../types';
 import { OptUserProfile } from '../OptAvatar';
@@ -23,6 +23,8 @@ interface OptMainSidebarProps {
   onManageProfile: () => void;
   onLogout: () => void;
   hideLinkDescription?: boolean;
+  sideAppbarWidth?: number;
+  expandedSideAppbarWidth?: number;
 }
 
 export function OptSideAppbar({
@@ -32,6 +34,8 @@ export function OptSideAppbar({
   hideLinkDescription = false,
   onLogout,
   onManageProfile,
+  sideAppbarWidth = 50,
+  expandedSideAppbarWidth = 300,
 }: OptMainSidebarProps) {
   const { currentTheme } = useOptTheme();
   const [expanded, setExpanded] = useState(false);
@@ -42,13 +46,24 @@ export function OptSideAppbar({
 
   const toggleExpandSidebar = () => {
     setExpanded(!expanded);
-    setCurrentSideAppbarWidth(
-      expanded ? S.sideAppbarWidth : S.expandedSideAppbarWidth
-    );
   };
 
+  useEffect(() => {
+    const width = expanded ? expandedSideAppbarWidth : sideAppbarWidth;
+    setCurrentSideAppbarWidth(width);
+  }, [
+    expanded,
+    expandedSideAppbarWidth,
+    setCurrentSideAppbarWidth,
+    sideAppbarWidth,
+  ]);
+
   return (
-    <S.SidebarMenuContainer expanded={expanded}>
+    <S.SidebarMenuContainer
+      $expanded={expanded}
+      $sideAppbarWidth={sideAppbarWidth}
+      $expandedSideAppbarWidth={expandedSideAppbarWidth}
+    >
       <S.CustomList>
         {sections.map((section, index) => (
           <React.Fragment key={index}>

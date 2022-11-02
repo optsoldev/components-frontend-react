@@ -45,6 +45,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
+    'react/no-array-index-key': 'warn',
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-unused-vars': ['warn'],
     '@typescript-eslint/no-use-before-define': 'error',

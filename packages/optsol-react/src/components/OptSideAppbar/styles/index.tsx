@@ -10,29 +10,29 @@ import styled, { css } from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 import { SidebarExpandedListItem } from '../OptSideAppbarFooterActions/styles';
 
-export const sideAppbarWidth = 50;
-export const expandedSideAppbarWidth = 260;
 export const activeLinkClass = 'active-link';
 
 interface SidebarMenuContainerProps {
-  expanded?: boolean;
+  $expanded?: boolean;
+  $sideAppbarWidth?: number;
+  $expandedSideAppbarWidth?: number;
 }
 
 export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
-  ${({ expanded }) =>
-    expanded &&
+  ${({ $expanded, $expandedSideAppbarWidth = 260 }) =>
+    $expanded &&
     css`
-      width: ${expandedSideAppbarWidth}px;
-      //min-width: ${expandedSideAppbarWidth}px;
-      //max-width: ${expandedSideAppbarWidth}px;
+      width: ${$expandedSideAppbarWidth}px;
+      //min-width: ${$expandedSideAppbarWidth}px;
+      //max-width: ${$expandedSideAppbarWidth}px;
     `}
 
-  ${({ expanded }) =>
-    !expanded &&
+  ${({ $expanded, $sideAppbarWidth = 50 }) =>
+    !$expanded &&
     css`
-      width: ${sideAppbarWidth}px;
-      //min-width: ${sideAppbarWidth}px;
-      //max-width: ${sideAppbarWidth}px;
+      width: ${$sideAppbarWidth}px;
+      //min-width: ${$sideAppbarWidth}px;
+      //max-width: ${$sideAppbarWidth}px;
     `}
 
   transition: width ease-in-out 200ms;

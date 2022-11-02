@@ -27,6 +27,8 @@ const Template: Story<
     profile: boolean;
     hideLinkDescription: boolean;
     hasFooterActions: boolean;
+    expandedSideAppbarWidth?: number;
+    sideAppbarWidth?: number;
   }
 > = (args) => {
   const theme: OptTheme = {
@@ -102,6 +104,8 @@ const Template: Story<
         onLogout={() => {}}
         hideLinkDescription={args.hideLinkDescription}
         footerActions={footerActions}
+        sideAppbarWidth={args.sideAppbarWidth}
+        expandedSideAppbarWidth={args.expandedSideAppbarWidth}
       />
     </OptLayoutProvider>
   );
@@ -113,6 +117,8 @@ OptSideAppbarExample.args = {
   hasFooterActions: true,
   profile: true,
   hideLinkDescription: true,
+  sideAppbarWidth: 50,
+  expandedSideAppbarWidth: 250,
 };
 
 OptSideAppbarExample.storyName = "Opt Side Appbar";
