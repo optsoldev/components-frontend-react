@@ -29,6 +29,8 @@ OptDialogExample.args = {
   title: "Confirma?",
   icon: { path: mdiTestTube, color: ColorPalette.dark },
   open: false,
+  maxWidth: "sm",
+  paperWidth: "",
 };
 
 OptDialogExample.argTypes = {
@@ -36,6 +38,10 @@ OptDialogExample.argTypes = {
     action: (event: {}, reason: "backdropClick" | "escapeKeyDown") =>
       "Event: " + event + " Reason: " + reason,
     table: { disable: true },
+  },
+  maxWidth: {
+    options: ["lg", "md", "sm", "xl", "xs"],
+    control: { type: "select" },
   },
 };
 
