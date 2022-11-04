@@ -2,7 +2,7 @@ import Icon from '@mdi/react';
 import { Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useOptTheme } from '../../contexts/theme/themeContext';
-import { OptMenuSection } from '../../types';
+import { OptAppLogo, OptMenuSection } from '../../types';
 import { OptUserProfile } from '../OptAvatar';
 import {
   ExpandedFooterActions,
@@ -16,8 +16,10 @@ import {
 import * as S from './styles';
 
 interface OptMainSidebarProps {
+  logo?: OptAppLogo;
   sections: OptMenuSection[];
 
+  expandable?: boolean;
   footerActions?: OptMainSidebarFooterAction[];
   profile?: OptUserProfile;
   onManageProfile: () => void;
@@ -25,17 +27,21 @@ interface OptMainSidebarProps {
   hideLinkDescription?: boolean;
   sideAppbarWidth?: number;
   expandedSideAppbarWidth?: number;
+  sectionsAlignment?: 'start' | 'center' | 'end';
 }
 
 export function OptSideAppbar({
+  logo,
   sections,
   profile,
+  expandable = false,
   footerActions,
   hideLinkDescription = false,
   onLogout,
   onManageProfile,
   sideAppbarWidth = 50,
   expandedSideAppbarWidth = 300,
+  sectionsAlignment = 'start',
 }: OptMainSidebarProps) {
   const { currentTheme } = useOptTheme();
   const [expanded, setExpanded] = useState(false);
@@ -58,13 +64,44 @@ export function OptSideAppbar({
     sideAppbarWidth,
   ]);
 
+  console.log(logo, currentLinkColor);
+
   return (
     <S.SidebarMenuContainer
       $expanded={expanded}
       $sideAppbarWidth={sideAppbarWidth}
       $expandedSideAppbarWidth={expandedSideAppbarWidth}
     >
-      <S.CustomList>
+      {logo && (
+        <>
+          <S.SidebarNavLink
+            to={logo.path ?? '/'}
+            style={{
+              marginTop: -9,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 65,
+            }}
+          >
+            <S.SidebarListItem button>
+              <S.SidebarListItemIcon>
+                {typeof logo.icon === 'string' ? (
+                  <Icon
+                    size={1.5}
+                    path={logo.icon}
+                    color={logo.iconColor ?? currentLinkColor}
+                  />
+                ) : (
+                  logo.icon
+                )}
+              </S.SidebarListItemIcon>
+            </S.SidebarListItem>
+          </S.SidebarNavLink>
+          <S.SidebarMenuDivider />
+        </>
+      )}
+      <S.CustomList $align={sectionsAlignment}>
         {sections.map((section, index) => (
           <React.Fragment key={index}>
             {index > 0 && <S.SidebarMenuDivider style={{ marginBottom: 6 }} />}
@@ -126,6 +163,7 @@ export function OptSideAppbar({
           onManageProfile={onManageProfile}
           profile={profile}
           toggleSidebar={toggleExpandSidebar}
+          expandable={expandable}
         />
       )}
     </S.SidebarMenuContainer>

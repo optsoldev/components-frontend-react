@@ -6,3 +6,5 @@ export interface OptMenuItem {
   iconColor?: string;
   activeShouldBeExact?: boolean;
 }
+
+export type OptAppLogo = Omit<OptMenuItem, 'title' | 'activeShouldBeExact'>;

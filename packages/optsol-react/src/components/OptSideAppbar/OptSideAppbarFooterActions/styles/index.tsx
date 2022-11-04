@@ -7,7 +7,6 @@ export const SidebarMenuDivider = styled(Divider)`
 `;
 
 export const FooterActionsContainer = styled.div`
-  flex: 1;
   justify-content: flex-end;
   align-items: center;
   display: flex;

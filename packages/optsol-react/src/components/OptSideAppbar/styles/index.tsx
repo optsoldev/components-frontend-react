@@ -112,8 +112,16 @@ export const SidebarNavLink = styled(NavLink)`
   }
 `;
 
-export const CustomList = styled(List)`
+export interface CustomListProps {
+  $align?: 'start' | 'center' | 'end';
+}
+
+export const CustomList = styled(List)<CustomListProps>`
   width: 100%;
+  display: flex;
+  flex: 1;
+  justify-content: ${({ $align = 'center' }) => $align};
+  flex-direction: column;
 
   & ${SidebarNavLink}:not(:last-child) > div {
     margin: 20px 0;

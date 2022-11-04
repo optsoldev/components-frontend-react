@@ -25,10 +25,12 @@ export default {
 const Template: Story<
   typeof OptSideLayout & {
     hasProfile: boolean;
+    expandable: boolean;
     appBarConfigActions: boolean;
     appBarConfigHideLinkDescription: boolean;
     appBarExpandedSideAppbarWidth?: number;
     appBarSideAppbarWidth?: number;
+    appBarSectionsAlignment: "start" | "center" | "end";
   }
 > = (args) => {
   const theme: OptTheme = {
@@ -54,17 +56,6 @@ const Template: Story<
     {
       title: "Main",
       items: [
-        {
-          title: "Home",
-          path: "/",
-          icon: mdiHome,
-          activeShouldBeExact: true,
-        },
-        {
-          title: "Account",
-          path: "/account",
-          icon: mdiAccountSupervisorCircle,
-        },
         {
           title: "Documents",
           path: "/documents",
@@ -103,10 +94,14 @@ const Template: Story<
     hideLinkDescription: args.appBarConfigHideLinkDescription,
     expandedSideAppbarWidth: args.appBarExpandedSideAppbarWidth,
     sideAppbarWidth: args.appBarSideAppbarWidth,
+    sectionsAlignment: args.appBarSectionsAlignment,
   };
+
+  console.log(args.expandable);
 
   const props = {
     profile: userProfile,
+    expandable: args.expandable,
   };
 
   return (
@@ -131,7 +126,9 @@ OptSideLayoutExample.args = {
   appBarConfigHideLinkDescription: true,
   appBarSideAppbarWidth: 50,
   appBarExpandedSideAppbarWidth: 250,
+  appBarSectionsAlignment: "center",
   hasProfile: true,
+  expandable: false,
 };
 
 OptSideLayoutExample.storyName = "Opt Side Layout";

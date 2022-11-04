@@ -1,12 +1,13 @@
-import { mdiBellOutline } from "@mdi/js";
+import { mdiBellOutline, mdiHome, mdiMolecule } from "@mdi/js";
 import { version } from "react";
 import { OptSideLayout } from "@optsol/react";
-import { routes } from "./routes/SideAppSample.routes";
+import { Routes, routes } from "./routes/SideAppSample.routes";
 import { sections } from "./SideAppSample.sections";
 
 export const SideAppSample = () => {
   return (
     <OptSideLayout
+      logo={{ icon: mdiMolecule, path: Routes.Home }}
       sections={sections}
       routes={routes}
       onLogout={() => {
@@ -26,7 +27,8 @@ export const SideAppSample = () => {
           },
         ],
         hideLinkDescription: true,
-        sideAppbarWidth: 100,
+        sideAppbarWidth: 75,
+        sectionsAlignment: "center",
       }}
       profile={{
         email: "usuario@optsol.com.br",

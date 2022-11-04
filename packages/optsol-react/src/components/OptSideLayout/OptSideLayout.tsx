@@ -14,6 +14,8 @@ import { OptSideLayoutProps } from './@types';
 import * as S from './styles';
 
 export function OptSideLayout({
+  expandable,
+  logo,
   sections,
   routes,
   profile,
@@ -58,6 +60,7 @@ export function OptSideLayout({
 
       <div style={{ width: '100vw', display: 'flex', overflowX: 'hidden' }}>
         <OptSideAppbar
+          logo={logo}
           sections={sections}
           footerActions={appBarConfig?.actions}
           profile={profile}
@@ -66,6 +69,8 @@ export function OptSideLayout({
           hideLinkDescription={appBarConfig?.hideLinkDescription}
           sideAppbarWidth={appBarConfig?.sideAppbarWidth}
           expandedSideAppbarWidth={appBarConfig?.expandedSideAppbarWidth}
+          sectionsAlignment={appBarConfig?.sectionsAlignment}
+          expandable={expandable}
         />
 
         <S.InitialContainer

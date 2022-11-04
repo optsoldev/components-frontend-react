@@ -20,6 +20,7 @@ export interface OptMainSidebarFooterAction {
 }
 
 export interface FooterActionsProps {
+  expandable?: boolean;
   footerActions?: OptMainSidebarFooterAction[];
   profile?: OptUserProfile;
   onManageProfile: () => void;
@@ -28,6 +29,7 @@ export interface FooterActionsProps {
 }
 
 export function FooterActions({
+  expandable = false,
   footerActions,
   profile,
   onLogout,
@@ -64,16 +66,17 @@ export function FooterActions({
         onManageProfile={onManageProfile}
         fromSidebar
       />
-
-      <Tooltip title="Expandir" placement="right">
-        <IconButton onClick={expandSidebar} size="large">
-          <Icon
-            size={1.2}
-            path={mdiChevronDoubleRight}
-            color={currentLinkColor}
-          />
-        </IconButton>
-      </Tooltip>
+      {expandable && (
+        <Tooltip title="Expandir" placement="right">
+          <IconButton onClick={expandSidebar} size="large">
+            <Icon
+              size={1.2}
+              path={mdiChevronDoubleRight}
+              color={currentLinkColor}
+            />
+          </IconButton>
+        </Tooltip>
+      )}
     </S.FooterActionsContainer>
   );
 }
@@ -84,7 +87,7 @@ export function ExpandedFooterActions({
   onLogout,
   onManageProfile,
   toggleSidebar: collapseSidebar,
-}: FooterActionsProps) {
+}: Omit<FooterActionsProps, 'expandalble'>) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const { currentTheme } = useOptTheme();
   const currentLinkColor =
