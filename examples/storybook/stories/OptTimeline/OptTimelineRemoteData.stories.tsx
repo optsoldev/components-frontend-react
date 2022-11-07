@@ -1,10 +1,13 @@
 import {
+  OptLayoutProvider,
   OptTimeline,
   OptTimelineAction,
   OptTimelineProps,
 } from "@optsol/react";
+import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { ColorPalette } from "../../shared/colors";
+import { theme } from "../../shared/theme";
 
 export default {
   title: "OptTimeline",
@@ -14,12 +17,21 @@ export default {
 function carregar(): Promise<OptTimelineAction[]> {
   const data: OptTimelineAction[] = [
     {
+      order: 6,
+      action: "Revisar",
+      description: "Iniciar revisão do componente de timeline",
+      createdDate: "19/02/2022 15:00",
+      dateTimeAction: "19/02/2022 15:00",
+      userName: "Vladimir Christ",
+      payload: [],
+    },
+    {
       order: 5,
       action: "Publicar pacote",
       description: "Alterações no pacote publicadas com sucesso!",
       createdDate: "18/02/2022 11:01",
       dateTimeAction: "18/02/2022 11:01",
-      userName: "Felipe Carvalho",
+      userName: "Luciano Rocha",
       payload: [
         {
           name: "Recurso adicionado",
@@ -37,7 +49,7 @@ function carregar(): Promise<OptTimelineAction[]> {
       description: "Iniciar implementação de componente de timeline",
       createdDate: "17/02/2022 15:00",
       dateTimeAction: "17/02/2022 15:00",
-      userName: "Felipe Carvalho",
+      userName: "Luciano Rocha",
       payload: [],
     },
     {
@@ -54,7 +66,7 @@ function carregar(): Promise<OptTimelineAction[]> {
         },
         {
           name: "Requisito",
-          value: "valuees",
+          value: "Valores",
         },
         {
           name: "Requisito",
@@ -68,7 +80,7 @@ function carregar(): Promise<OptTimelineAction[]> {
       description: null,
       createdDate: "19/02/2022 14:01",
       dateTimeAction: "19/02/2022 14:01",
-      userName: "Weslley Carneiro",
+      userName: "Vladimir Christ",
       payload: [
         {
           name: "Desenvolvedor",
@@ -81,9 +93,9 @@ function carregar(): Promise<OptTimelineAction[]> {
       action: "Conceber ideia",
       description:
         "Necessidade de reutilizar e padronizar exibição de logs de sistemas",
-        createdDate: "19/02/2022 14:00",
+      createdDate: "19/02/2022 14:00",
       dateTimeAction: "19/02/2022 14:00",
-      userName: "Rômulo Louzada & Weslley Carneiro",
+      userName: "Rômulo Louzada",
     },
   ];
 
@@ -95,29 +107,20 @@ function carregar(): Promise<OptTimelineAction[]> {
 }
 
 export const OptTimelineRemoteData: Story<OptTimelineProps> = (args) => (
-  <OptTimeline {...args}></OptTimeline>
+  <OptLayoutProvider theme={theme} noRouter>
+    <OptTimeline {...args}></OptTimeline>
+  </OptLayoutProvider>
 );
 
 OptTimelineRemoteData.args = {
   maxWidth: 800,
   data: carregar,
-  dotColor: "primary",
+  color: undefined,
 };
 
 OptTimelineRemoteData.argTypes = {
-  dotColor: {
-    control: "select",
-    options: [
-      "primary",
-      "secondary",
-      "inherit",
-      "grey",
-      "success",
-      "error",
-      "info",
-      "warning",
-      undefined,
-    ],
+  color: {
+    type: "string",
   },
 };
 

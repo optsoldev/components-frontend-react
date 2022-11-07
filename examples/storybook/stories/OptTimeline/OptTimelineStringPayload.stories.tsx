@@ -65,23 +65,12 @@ export const OptTimelineStringPayload: Story<OptTimelineProps & ExtraProps> = ({
 OptTimelineStringPayload.args = {
   maxWidth: 800,
   data: data,
-  dotColor: "primary",
+  color: undefined,
 };
 
 OptTimelineStringPayload.argTypes = {
-  dotColor: {
-    control: "select",
-    options: [
-      "primary",
-      "secondary",
-      "inherit",
-      "grey",
-      "success",
-      "error",
-      "info",
-      "warning",
-      undefined,
-    ],
+  color: {
+    type: "string",
   },
   onValueClick: {
     action: (data) => "onValueClick fired " + data,

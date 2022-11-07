@@ -7,6 +7,7 @@ import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import {
   Avatar,
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -14,7 +15,8 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { randomRgbColor } from '../../shared/functions';
 import { OptLoading } from '../OptLoading';
 import {
   OptTimelineField,
@@ -33,30 +35,22 @@ export interface OptTimelineAction {
   payload?: OptTimelineField[] | string;
 }
 
-export interface OptTimelineProps {
+export type OptTimelineProps = {
   maxWidth?: number;
   data: OptTimelineAction[] | (() => Promise<OptTimelineAction[]>);
-  dotColor?:
-    | 'primary'
-    | 'secondary'
-    | 'inherit'
-    | 'grey'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning';
+  color?: string;
   valuesTableOptions?: {
     nameHeader?: string;
     valueHeader?: string;
     valueRender?: (data: OptTimelineField) => JSX.Element;
     onValueClick?: (data: OptTimelineField) => void;
   };
-}
+};
 
 export function OptTimeline({
   maxWidth,
   data,
-  dotColor,
+  color,
   // ***** valuesTableOptions
   valuesTableOptions: {
     nameHeader = 'Nome',
@@ -79,20 +73,38 @@ OptTimelineProps) {
     !isDataFunction ? data : []
   );
 
+  const userNameColorMapRef = useRef<Map<string, string>>(new Map());
+
   const hasMaxWidth = maxWidth !== null && maxWidth !== undefined;
-
-  async function loadVersoes() {
-    if (isDataFunction) {
-      setLoading(true);
-      const novasVersoes = await (data as () => Promise<OptTimelineAction[]>)();
-      setVersoes(novasVersoes);
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
+    async function loadVersoes() {
+      if (isDataFunction) {
+        setLoading(true);
+        const novasVersoes = await (
+          data as () => Promise<OptTimelineAction[]>
+        )();
+        setVersoes(novasVersoes);
+        setLoading(false);
+      }
+    }
+
     loadVersoes();
-  }, []);
+  }, [data, isDataFunction]);
+
+  function renderColor(userName: string) {
+    const hasColor = userNameColorMapRef.current.get(userName);
+
+    if (hasColor) return hasColor;
+
+    const userColor = randomRgbColor().hex();
+
+    if (userColor) {
+      userNameColorMapRef.current.set(userName, userColor);
+      return userColor;
+    }
+
+    return 'primary';
+  }
 
   return (
     <S.Secao style={{ maxWidth: hasMaxWidth ? `${maxWidth}px` : '100%' }}>
@@ -122,11 +134,19 @@ OptTimelineProps) {
                   </TimelineOppositeContent>
 
                   <TimelineSeparator>
-                    <TimelineDot color={dotColor}>
-                      <Avatar sx={{ bgcolor: 'transparent' }}>
-                        {versao.order}
-                      </Avatar>
-                    </TimelineDot>
+                    <Box
+                      bgcolor={color ?? renderColor(versao.userName)}
+                      width="fit-content"
+                      height="fit-content"
+                      borderRadius="50%"
+                      my={1}
+                    >
+                      <TimelineDot color="inherit" sx={{ margin: 0 }}>
+                        <Avatar sx={{ bgcolor: 'transparent' }}>
+                          {versao.order}
+                        </Avatar>
+                      </TimelineDot>
+                    </Box>
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent>
