@@ -3,6 +3,7 @@ import {
   OptTimelineProps,
   OptTimelineAction,
 } from "@optsol/react";
+import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 
 export default {
@@ -39,7 +40,7 @@ export const OptTimelineValueRender: Story<OptTimelineProps> = (args) => (
 OptTimelineValueRender.args = {
   maxWidth: 800,
   data: data,
-  color: "primary",
+  color: undefined,
   valuesTableOptions: {
     valueRender: (field) => {
       return <h4>Value: {field.value}</h4>;
@@ -49,18 +50,7 @@ OptTimelineValueRender.args = {
 
 OptTimelineValueRender.argTypes = {
   color: {
-    control: "select",
-    options: [
-      "primary",
-      "secondary",
-      "inherit",
-      "grey",
-      "success",
-      "error",
-      "info",
-      "warning",
-      undefined,
-    ],
+    type: "string",
   },
 };
 

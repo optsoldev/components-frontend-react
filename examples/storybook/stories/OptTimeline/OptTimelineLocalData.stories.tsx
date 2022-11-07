@@ -2,9 +2,11 @@ import {
   OptTimeline,
   OptTimelineAction,
   OptTimelineProps,
+  OptLayoutProvider,
 } from "@optsol/react";
+import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
-import { ColorPalette } from "../../shared/colors";
+import { theme } from "../../shared/theme";
 
 export default {
   title: "OptTimeline",
@@ -96,29 +98,20 @@ const data: OptTimelineAction[] = [
 ];
 
 export const OptTimelineLocalData: Story<OptTimelineProps> = (args) => (
-  <OptTimeline {...args}></OptTimeline>
+  <OptLayoutProvider theme={theme} noRouter>
+    <OptTimeline {...args}></OptTimeline>
+  </OptLayoutProvider>
 );
 
 OptTimelineLocalData.args = {
   maxWidth: 800,
   data: data,
-  color: "primary",
+  color: undefined,
 };
 
 OptTimelineLocalData.argTypes = {
   color: {
-    control: "select",
-    options: [
-      "primary",
-      "secondary",
-      "inherit",
-      "grey",
-      "success",
-      "error",
-      "info",
-      "warning",
-      undefined,
-    ],
+    type: "string",
   },
 };
 

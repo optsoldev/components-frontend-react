@@ -3,6 +3,7 @@ import {
   OptTimelineAction,
   OptTimelineProps,
 } from "@optsol/react";
+import React from "react";
 import { OptTimelineField } from "@optsol/react/lib/esm/components/OptTimeline/OptTimelineTableValue";
 import { Meta, Story } from "@storybook/react/types-6-0";
 
@@ -47,23 +48,12 @@ export const OptTimelineEvents: Story<OptTimelineProps & ExtraProps> = ({
 OptTimelineEvents.args = {
   maxWidth: 800,
   data: data,
-  color: "primary",
+  color: undefined,
 };
 
 OptTimelineEvents.argTypes = {
   color: {
-    control: "select",
-    options: [
-      "primary",
-      "secondary",
-      "inherit",
-      "grey",
-      "success",
-      "error",
-      "info",
-      "warning",
-      undefined,
-    ],
+    type: "string",
   },
   onValueClick: {
     action: (data) => "onValueClick fired " + data,

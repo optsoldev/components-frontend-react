@@ -6,6 +6,7 @@ import {
 } from "@optsol/react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { theme } from "../shared/theme";
 
 export default {
   title: "OptSearchField",
@@ -13,16 +14,6 @@ export default {
 } as ComponentMeta<typeof OptSearchField>;
 
 interface OptSearchFieldArgs extends OptSearchFieldProps {}
-
-export const theme: OptTheme = {
-  light: {
-    style: "soft",
-    primary: "#f00",
-    primaryContrast: "#f5f5f5",
-    secondary: "#A0C938",
-    secondaryContrast: "#f5f5f5",
-  },
-};
 
 const Template: ComponentStory<typeof OptSearchField> = (args) => {
   return (

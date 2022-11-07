@@ -2,11 +2,12 @@ import { TimelineOppositeContent } from '@mui/lab';
 import Timeline from '@mui/lab/Timeline';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot, { TimelineDotProps } from '@mui/lab/TimelineDot';
+import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import {
   Avatar,
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -15,6 +16,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
+import { randomRgbColor } from '../../shared/functions';
 import { OptLoading } from '../OptLoading';
 import {
   OptTimelineField,
@@ -33,22 +35,10 @@ export interface OptTimelineAction {
   payload?: OptTimelineField[] | string;
 }
 
-const dotColorOptions = [
-  'primary',
-  'secondary',
-  'inherit',
-  'grey',
-  'success',
-  'error',
-  'info',
-  'warning',
-];
-
-type DotColor = Pick<TimelineDotProps, 'color'>;
-
-export type OptTimelineProps = DotColor & {
+export type OptTimelineProps = {
   maxWidth?: number;
   data: OptTimelineAction[] | (() => Promise<OptTimelineAction[]>);
+  color?: string;
   valuesTableOptions?: {
     nameHeader?: string;
     valueHeader?: string;
@@ -83,54 +73,37 @@ OptTimelineProps) {
     !isDataFunction ? data : []
   );
 
-  const userNameColorMapRef = useRef<Map<string, DotColor['color']>>(new Map());
+  const userNameColorMapRef = useRef<Map<string, string>>(new Map());
 
   const hasMaxWidth = maxWidth !== null && maxWidth !== undefined;
-
-  async function loadVersoes() {
-    if (isDataFunction) {
-      setLoading(true);
-      const novasVersoes = await (data as () => Promise<OptTimelineAction[]>)();
-      setVersoes(novasVersoes);
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    loadVersoes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    async function loadVersoes() {
+      if (isDataFunction) {
+        setLoading(true);
+        const novasVersoes = await (
+          data as () => Promise<OptTimelineAction[]>
+        )();
+        setVersoes(novasVersoes);
+        setLoading(false);
+      }
+    }
 
-  function renderColor(userName: string): DotColor['color'] {
+    loadVersoes();
+  }, [data, isDataFunction]);
+
+  function renderColor(userName: string) {
     const hasColor = userNameColorMapRef.current.get(userName);
 
-    if (hasColor) {
-      return hasColor;
-    }
+    if (hasColor) return hasColor;
 
-    let userColor = dotColorOptions[
-      Math.floor(Math.random() * dotColorOptions.length)
-    ] as DotColor['color'];
+    const userColor = randomRgbColor().hex();
 
-    const usedColor = [...userNameColorMapRef.current].find(
-      ([key, value]) => userName === key
-    );
-
-    if (usedColor && usedColor[1] === userColor) {
-      let i = 0;
-      while (usedColor[1] === userColor || i < 3) {
-        i += 1;
-        userColor = dotColorOptions[
-          Math.floor(Math.random() * dotColorOptions.length)
-        ] as DotColor['color'];
-
-        userNameColorMapRef.current.set(userName, userColor);
-      }
-    } else {
+    if (userColor) {
       userNameColorMapRef.current.set(userName, userColor);
+      return userColor;
     }
 
-    return userColor;
+    return 'primary';
   }
 
   return (
@@ -161,11 +134,19 @@ OptTimelineProps) {
                   </TimelineOppositeContent>
 
                   <TimelineSeparator>
-                    <TimelineDot color={color ?? renderColor(versao.userName)}>
-                      <Avatar sx={{ bgcolor: 'transparent' }}>
-                        {versao.order}
-                      </Avatar>
-                    </TimelineDot>
+                    <Box
+                      bgcolor={color ?? renderColor(versao.userName)}
+                      width="fit-content"
+                      height="fit-content"
+                      borderRadius="50%"
+                      my={1}
+                    >
+                      <TimelineDot color="inherit" sx={{ margin: 0 }}>
+                        <Avatar sx={{ bgcolor: 'transparent' }}>
+                          {versao.order}
+                        </Avatar>
+                      </TimelineDot>
+                    </Box>
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent>
