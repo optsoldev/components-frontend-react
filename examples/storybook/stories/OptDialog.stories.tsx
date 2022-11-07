@@ -30,7 +30,7 @@ OptDialogExample.args = {
   icon: { path: mdiTestTube, color: ColorPalette.dark },
   open: false,
   maxWidth: "sm",
-  paperWidth: "",
+  width: "",
 };
 
 OptDialogExample.argTypes = {
@@ -57,6 +57,8 @@ OptConfirmationDialogExample.args = {
   title: "Confirma?",
   icon: { path: mdiDeleteOutline, color: ColorPalette.primary },
   open: false,
+  maxWidth: "sm",
+  width: "",
 };
 
 OptConfirmationDialogExample.argTypes = {
@@ -64,6 +66,10 @@ OptConfirmationDialogExample.argTypes = {
     action: (event: {}, reason: "backdropClick" | "escapeKeyDown") =>
       "Event: " + event + " Reason: " + reason,
     table: { disable: true },
+  },
+  maxWidth: {
+    options: ["lg", "md", "sm", "xl", "xs"],
+    control: { type: "select" },
   },
 };
 

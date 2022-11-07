@@ -6,6 +6,7 @@ import {
   DialogTitle,
   Paper,
   PaperProps,
+  Breakpoint,
 } from '@mui/material';
 import { PropsWithChildren } from 'react';
 import Draggable from 'react-draggable';
@@ -32,6 +33,8 @@ export interface OptConfirmationDialogProps {
   onConfirm: () => void;
   onCancel: () => void;
   onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  maxWidth?: Breakpoint | false;
+  width?: string;
 }
 
 export function OptConfirmationDialog({
@@ -44,6 +47,8 @@ export function OptConfirmationDialog({
   onCancel,
   onConfirm,
   children,
+  maxWidth,
+  width = '',
 }: PropsWithChildren<OptConfirmationDialogProps>) {
   return (
     <S.StyledDialog
@@ -51,6 +56,8 @@ export function OptConfirmationDialog({
       onClose={onClose}
       aria-labelledby="draggable-dialog-title"
       PaperComponent={PaperComponent}
+      maxWidth={maxWidth}
+      PaperProps={{ style: { width } }}
     >
       <div style={{ cursor: 'move' }} id="draggable-dialog-title">
         {icon && (

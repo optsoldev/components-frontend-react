@@ -13,12 +13,21 @@ export default {
 
 const data: OptTimelineAction[] = [
   {
+    order: 6,
+    action: "Revisar",
+    description: "Iniciar revisão do componente de timeline",
+    createdDate: "19/02/2022 15:00",
+    dateTimeAction: "19/02/2022 15:00",
+    userName: "Vladimir Christ",
+    payload: [],
+  },
+  {
     order: 5,
     action: "Publicar pacote",
     description: "Alterações no pacote publicadas com sucesso!",
     createdDate: "18/02/2022 11:01",
     dateTimeAction: "18/02/2022 11:01",
-    userName: "Felipe Carvalho",
+    userName: "Luciano Rocha",
     payload: [
       {
         name: "Recurso adicionado",
@@ -36,7 +45,7 @@ const data: OptTimelineAction[] = [
     description: "Iniciar implementação de componente de timeline",
     createdDate: "17/02/2022 15:00",
     dateTimeAction: "17/02/2022 15:00",
-    userName: "Felipe Carvalho",
+    userName: "Luciano Rocha",
     payload: [],
   },
   {
@@ -67,7 +76,7 @@ const data: OptTimelineAction[] = [
     description: null,
     createdDate: "19/02/2022 14:01",
     dateTimeAction: "19/02/2022 14:01",
-    userName: "Weslley Carneiro",
+    userName: "Vladimir Christ",
     payload: [
       {
         name: "Desenvolvedor",
@@ -82,7 +91,7 @@ const data: OptTimelineAction[] = [
       "Necessidade de reutilizar e padronizar exibição de logs de sistemas",
     createdDate: "19/02/2022 14:00",
     dateTimeAction: "19/02/2022 14:00",
-    userName: "Rômulo Louzada & Weslley Carneiro",
+    userName: "Rômulo Louzada",
   },
 ];
 
@@ -93,11 +102,11 @@ export const OptTimelineLocalData: Story<OptTimelineProps> = (args) => (
 OptTimelineLocalData.args = {
   maxWidth: 800,
   data: data,
-  dotColor: "primary",
+  color: "primary",
 };
 
 OptTimelineLocalData.argTypes = {
-  dotColor: {
+  color: {
     control: "select",
     options: [
       "primary",

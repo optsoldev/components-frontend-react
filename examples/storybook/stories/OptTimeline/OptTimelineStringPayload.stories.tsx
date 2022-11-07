@@ -65,11 +65,11 @@ export const OptTimelineStringPayload: Story<OptTimelineProps & ExtraProps> = ({
 OptTimelineStringPayload.args = {
   maxWidth: 800,
   data: data,
-  dotColor: "primary",
+  color: "primary",
 };
 
 OptTimelineStringPayload.argTypes = {
-  dotColor: {
+  color: {
     control: "select",
     options: [
       "primary",

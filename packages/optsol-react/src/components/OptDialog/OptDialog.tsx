@@ -1,5 +1,5 @@
 import Icon from '@mdi/react';
-import { DialogTitle } from '@mui/material';
+import { Breakpoint, DialogTitle } from '@mui/material';
 import { PropsWithChildren } from 'react';
 import { IconPathColor } from '../../types/IconPathColor';
 import * as S from './styles';
@@ -9,8 +9,8 @@ export interface OptDialogProps {
   title: string;
   icon?: IconPathColor;
   onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
-  maxWidth?: 'lg' | 'md' | 'sm' | 'xl' | 'xs' | false;
-  paperWidth?: string;
+  maxWidth?: Breakpoint | false;
+  width?: string;
 }
 
 export function OptDialog({
@@ -19,15 +19,15 @@ export function OptDialog({
   icon,
   onClose,
   children,
-  maxWidth = 'sm',
-  paperWidth = '',
+  maxWidth,
+  width = '',
 }: PropsWithChildren<OptDialogProps>) {
   return (
     <S.StyledDialog
       open={open}
       onClose={onClose}
       maxWidth={maxWidth}
-      PaperProps={{ style: { width: paperWidth } }}
+      PaperProps={{ style: { width } }}
     >
       <div style={{ cursor: 'move' }} id="draggable-dialog-title">
         {icon && (

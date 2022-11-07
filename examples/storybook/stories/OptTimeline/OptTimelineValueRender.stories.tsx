@@ -39,7 +39,7 @@ export const OptTimelineValueRender: Story<OptTimelineProps> = (args) => (
 OptTimelineValueRender.args = {
   maxWidth: 800,
   data: data,
-  dotColor: "primary",
+  color: "primary",
   valuesTableOptions: {
     valueRender: (field) => {
       return <h4>Value: {field.value}</h4>;
@@ -48,7 +48,7 @@ OptTimelineValueRender.args = {
 };
 
 OptTimelineValueRender.argTypes = {
-  dotColor: {
+  color: {
     control: "select",
     options: [
       "primary",

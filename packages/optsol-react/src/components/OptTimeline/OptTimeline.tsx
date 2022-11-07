@@ -2,7 +2,7 @@ import { TimelineOppositeContent } from '@mui/lab';
 import Timeline from '@mui/lab/Timeline';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
+import TimelineDot, { TimelineDotProps } from '@mui/lab/TimelineDot';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import {
@@ -14,7 +14,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { OptLoading } from '../OptLoading';
 import {
   OptTimelineField,
@@ -33,30 +33,34 @@ export interface OptTimelineAction {
   payload?: OptTimelineField[] | string;
 }
 
-export interface OptTimelineProps {
+const dotColorOptions = [
+  'primary',
+  'secondary',
+  'inherit',
+  'grey',
+  'success',
+  'error',
+  'info',
+  'warning',
+];
+
+type DotColor = Pick<TimelineDotProps, 'color'>;
+
+export type OptTimelineProps = DotColor & {
   maxWidth?: number;
   data: OptTimelineAction[] | (() => Promise<OptTimelineAction[]>);
-  dotColor?:
-    | 'primary'
-    | 'secondary'
-    | 'inherit'
-    | 'grey'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning';
   valuesTableOptions?: {
     nameHeader?: string;
     valueHeader?: string;
     valueRender?: (data: OptTimelineField) => JSX.Element;
     onValueClick?: (data: OptTimelineField) => void;
   };
-}
+};
 
 export function OptTimeline({
   maxWidth,
   data,
-  dotColor,
+  color,
   // ***** valuesTableOptions
   valuesTableOptions: {
     nameHeader = 'Nome',
@@ -79,6 +83,8 @@ OptTimelineProps) {
     !isDataFunction ? data : []
   );
 
+  const userNameColorMapRef = useRef<Map<string, DotColor['color']>>(new Map());
+
   const hasMaxWidth = maxWidth !== null && maxWidth !== undefined;
 
   async function loadVersoes() {
@@ -92,7 +98,40 @@ OptTimelineProps) {
 
   useEffect(() => {
     loadVersoes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function renderColor(userName: string): DotColor['color'] {
+    const hasColor = userNameColorMapRef.current.get(userName);
+
+    if (hasColor) {
+      return hasColor;
+    }
+
+    let userColor = dotColorOptions[
+      Math.floor(Math.random() * dotColorOptions.length)
+    ] as DotColor['color'];
+
+    const usedColor = [...userNameColorMapRef.current].find(
+      ([key, value]) => userName === key
+    );
+
+    if (usedColor && usedColor[1] === userColor) {
+      let i = 0;
+      while (usedColor[1] === userColor || i < 3) {
+        i += 1;
+        userColor = dotColorOptions[
+          Math.floor(Math.random() * dotColorOptions.length)
+        ] as DotColor['color'];
+
+        userNameColorMapRef.current.set(userName, userColor);
+      }
+    } else {
+      userNameColorMapRef.current.set(userName, userColor);
+    }
+
+    return userColor;
+  }
 
   return (
     <S.Secao style={{ maxWidth: hasMaxWidth ? `${maxWidth}px` : '100%' }}>
@@ -122,7 +161,7 @@ OptTimelineProps) {
                   </TimelineOppositeContent>
 
                   <TimelineSeparator>
-                    <TimelineDot color={dotColor}>
+                    <TimelineDot color={color ?? renderColor(versao.userName)}>
                       <Avatar sx={{ bgcolor: 'transparent' }}>
                         {versao.order}
                       </Avatar>
