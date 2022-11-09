@@ -4,7 +4,7 @@
 
 ## [Live Storybook](https://optsoldev.github.io/components-frontend-react/)
 
-## **Setup**
+### **Setup**
 
     npm run setup
 
@@ -12,13 +12,9 @@
 
 ### **Development mode**
 
-In optsol-react:
+In packages/optsol-react:
 
       npm run watch
-
-In sdk-front-end:
-
-      npm start
 
 In examples/storybook:
 
