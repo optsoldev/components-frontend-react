@@ -1,5 +1,5 @@
 import { CustomOptTheme } from '../../../contexts/theme/themeState';
-import { OptAppLogo, OptMenuItem, OptMenuSection } from '../../../types';
+import { OptAppLogo, OptMenuSection } from '../../../types';
 import { OptUserProfile } from '../../OptAvatar';
 import { OptMainSidebarFooterAction } from '../../OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions';
 
