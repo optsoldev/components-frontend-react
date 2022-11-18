@@ -41,6 +41,7 @@ export function OptGridPagination({
       <Select
         value={pageSize}
         onChange={(e) => {
+          console.log('Page size', e.target.value);
           setPageSize(Number(e.target.value));
         }}
         size="small"
@@ -82,7 +83,13 @@ export function OptGridPagination({
         </strong>{' '}
       </span>
 
-      <IconButton onClick={() => nextPage()} disabled={!canNextPage}>
+      <IconButton
+        onClick={() => {
+          nextPage();
+          console.log('exec nextPage', pageIndex);
+        }}
+        disabled={!canNextPage}
+      >
         <Icon
           size={1}
           path={mdiChevronRight}

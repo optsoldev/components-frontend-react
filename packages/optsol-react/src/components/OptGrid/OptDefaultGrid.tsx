@@ -20,6 +20,8 @@ function OptGridInternal<T extends {}>(
   }: OptInternalGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) {
+  console.log('render OptGridInternal', options?.pageSize);
+
   const table = useTable<T>(
     {
       columns: internalColumns,
@@ -64,7 +66,13 @@ function OptGridInternal<T extends {}>(
   }));
 
   React.useEffect(() => {
+    console.log(pageIndex, pageSize);
     load(pageIndex, pageSize);
+  }, [pageSize, load, pageIndex]);
+
+  React.useEffect(() => {
+    console.log('only pageIndex', pageIndex);
+    console.log('only pageSize', pageSize);
   }, [pageIndex, pageSize]);
 
   return (
