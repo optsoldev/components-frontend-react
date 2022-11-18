@@ -46,9 +46,9 @@ export function OptGridPagination({
         }}
         size="small"
       >
-        {[5, 10, 25, 50, 100].map((pageSize) => (
-          <MenuItem key={pageSize} value={pageSize}>
-            {pageSize} linhas
+        {[5, 10, 25, 50, 100].map((pgSize) => (
+          <MenuItem key={pgSize} value={pgSize}>
+            {pgSize} linhas
           </MenuItem>
         ))}
       </Select>

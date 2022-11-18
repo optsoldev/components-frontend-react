@@ -24,17 +24,13 @@ function OptGridInternal<T extends {}>(
   }: OptGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) {
-  const isRemote = !Array.isArray(data);
-  const tableData = useMemo(() => {
-    console.log('useMemo', data);
-    return isRemote ? [] : data;
-  }, [data, isRemote]);
+  const isRemote = useMemo(() => !Array.isArray(data), [data]);
 
   const [controls, setControls] = useState<OptGridControls<T>>({
     totalCount: isRemote ? 0 : data.length,
     pageCount: isRemote ? 0 : Math.ceil(data.length / 10),
     loading: isRemote,
-    data: tableData,
+    data: isRemote ? [] : (data as T[]),
     error: false,
   });
 
@@ -66,10 +62,11 @@ function OptGridInternal<T extends {}>(
         search: '',
       };
 
+      console.log('Remote', controls.data.length, controls.loading);
+
       if (!controls.loading || controls.data.length > 0)
         setControls((previous) => ({
           ...previous,
-          data: [],
           loading: true,
         }));
 
@@ -97,61 +94,105 @@ function OptGridInternal<T extends {}>(
   );
 
   const loadLocal = useCallback(
-    (localData: T[], pageIndex: number, pageSize: number) => {
+    (tableData: T[], pageIndex: number, pageSize: number) => {
       const startRow = pageSize * pageIndex;
       const endRow = startRow + pageSize;
-      const slicedData = localData.slice(startRow, endRow);
-      console.log('Exec localData', localData, pageIndex, pageSize);
-      setControls((previous) => ({
-        ...previous,
-        data: slicedData,
-        totalCount: localData.length,
-        pageCount: Math.ceil(localData.length / pageSize),
-        loading: false,
-        error: false,
-      }));
+
+      const slicedData = tableData.slice(startRow, endRow);
+
+      console.log(
+        'Exec data',
+        tableData.length,
+        pageIndex,
+        pageSize,
+        startRow,
+        endRow
+      );
+      setControls((previous) => {
+        console.log('set Controls');
+
+        return {
+          ...previous,
+          data: slicedData,
+          totalCount: tableData.length,
+          pageCount: Math.ceil(tableData.length / pageSize),
+          loading: false,
+          error: false,
+        };
+      });
     },
     []
   );
 
   const load = useCallback(
     (pageIndex: number, pageSize: number) => {
-      console.log(pageIndex, pageSize);
-      console.log(data, isRemote);
-      if (isRemote) {
-        loadRemote(data, pageIndex, pageSize);
-      } else {
-        // todo
-        loadLocal(tableData, pageIndex, pageSize);
-      }
+      console.log('load', data, pageIndex, pageSize);
+      if (!Array.isArray(data)) loadRemote(data, pageIndex, pageSize);
+      else loadLocal(data, pageIndex, pageSize);
     },
-    [tableData, isRemote, loadLocal, loadRemote, data]
+    [loadLocal, loadRemote, data]
   );
 
-  const hiddenColumns = columns
-    .filter((column) => column.hidden)
-    .map((column) => column.field.toString());
+  const hiddenColumns = useMemo(
+    () =>
+      columns
+        .filter((column) => column.hidden)
+        .map((column) => column.field.toString()),
+    [columns]
+  );
 
-  const attrs = {
-    ref,
-    columns,
-    hiddenColumns,
-    internalColumns,
-    options,
-    title,
-    actions,
-    actionsPosition,
-    headerTitlePosition,
-    controls,
-    load,
-    onRowClick,
-    onSelect: options?.selection ? onSelect : undefined,
-  };
+  // const attrs = {
+  //   ref,
+  //   columns,
+  //   hiddenColumns,
+  //   internalColumns,
+  //   options,
+  //   title,
+  //   actions,
+  //   actionsPosition,
+  //   headerTitlePosition,
+  //   controls,
+  //   load,
+  //   onRowClick,
+  //   onSelect: options?.selection ? onSelect : undefined,
+  // };
 
+  console.log('render Optgrid ');
   return (
     <>
-      {options?.selection && <OptSelectableGrid {...attrs} />}
-      {!options?.selection && <OptDefaultGrid {...attrs} />}
+      {options?.selection && (
+        <OptSelectableGrid
+          ref={ref}
+          columns={columns}
+          hiddenColumns={hiddenColumns}
+          internalColumns={internalColumns}
+          options={options}
+          title={title}
+          actions={actions}
+          actionsPosition={actionsPosition}
+          headerTitlePosition={headerTitlePosition}
+          controls={controls}
+          load={load}
+          onRowClick={onRowClick}
+          onSelect={options?.selection ? onSelect : undefined}
+        />
+      )}
+      {!options?.selection && (
+        <OptDefaultGrid
+          ref={ref}
+          columns={columns}
+          hiddenColumns={hiddenColumns}
+          internalColumns={internalColumns}
+          options={options}
+          title={title}
+          actions={actions}
+          actionsPosition={actionsPosition}
+          headerTitlePosition={headerTitlePosition}
+          controls={controls}
+          load={load}
+          onRowClick={onRowClick}
+        />
+      )}
     </>
   );
 }
