@@ -62,13 +62,11 @@ function OptGridInternal<T extends {}>(
         search: '',
       };
 
-      console.log('Remote', controls.data.length, controls.loading);
-
-      if (!controls.loading || controls.data.length > 0)
-        setControls((previous) => ({
-          ...previous,
-          loading: true,
-        }));
+      setControls((previous) => ({
+        ...previous,
+        loading: true,
+        error: false,
+      }));
 
       remoteData(query)
         .then((result) => {
@@ -90,43 +88,29 @@ function OptGridInternal<T extends {}>(
           }));
         });
     },
-    [controls.data.length, controls.loading]
+    []
   );
 
   const loadLocal = useCallback(
     (tableData: T[], pageIndex: number, pageSize: number) => {
       const startRow = pageSize * pageIndex;
       const endRow = startRow + pageSize;
-
       const slicedData = tableData.slice(startRow, endRow);
 
-      console.log(
-        'Exec data',
-        tableData.length,
-        pageIndex,
-        pageSize,
-        startRow,
-        endRow
-      );
-      setControls((previous) => {
-        console.log('set Controls');
-
-        return {
-          ...previous,
-          data: slicedData,
-          totalCount: tableData.length,
-          pageCount: Math.ceil(tableData.length / pageSize),
-          loading: false,
-          error: false,
-        };
-      });
+      setControls((previous) => ({
+        ...previous,
+        data: slicedData,
+        totalCount: tableData.length,
+        pageCount: Math.ceil(tableData.length / pageSize),
+        loading: false,
+        error: false,
+      }));
     },
     []
   );
 
   const load = useCallback(
     (pageIndex: number, pageSize: number) => {
-      console.log('load', data, pageIndex, pageSize);
       if (!Array.isArray(data)) loadRemote(data, pageIndex, pageSize);
       else loadLocal(data, pageIndex, pageSize);
     },
@@ -141,60 +125,25 @@ function OptGridInternal<T extends {}>(
     [columns]
   );
 
-  // const attrs = {
-  //   ref,
-  //   columns,
-  //   hiddenColumns,
-  //   internalColumns,
-  //   options,
-  //   title,
-  //   actions,
-  //   actionsPosition,
-  //   headerTitlePosition,
-  //   controls,
-  //   load,
-  //   onRowClick,
-  //   onSelect: options?.selection ? onSelect : undefined,
-  // };
+  const attrs = {
+    ref,
+    columns,
+    hiddenColumns,
+    internalColumns,
+    options,
+    title,
+    actions,
+    actionsPosition,
+    headerTitlePosition,
+    controls,
+    load,
+    onRowClick,
+    onSelect: options?.selection ? onSelect : undefined,
+  };
 
-  console.log('render Optgrid ');
-  return (
-    <>
-      {options?.selection && (
-        <OptSelectableGrid
-          ref={ref}
-          columns={columns}
-          hiddenColumns={hiddenColumns}
-          internalColumns={internalColumns}
-          options={options}
-          title={title}
-          actions={actions}
-          actionsPosition={actionsPosition}
-          headerTitlePosition={headerTitlePosition}
-          controls={controls}
-          load={load}
-          onRowClick={onRowClick}
-          onSelect={options?.selection ? onSelect : undefined}
-        />
-      )}
-      {!options?.selection && (
-        <OptDefaultGrid
-          ref={ref}
-          columns={columns}
-          hiddenColumns={hiddenColumns}
-          internalColumns={internalColumns}
-          options={options}
-          title={title}
-          actions={actions}
-          actionsPosition={actionsPosition}
-          headerTitlePosition={headerTitlePosition}
-          controls={controls}
-          load={load}
-          onRowClick={onRowClick}
-        />
-      )}
-    </>
-  );
+  if (options?.selection) return <OptSelectableGrid {...attrs} />;
+
+  return <OptDefaultGrid {...attrs} />;
 }
 
 export const OptGrid = React.forwardRef(OptGridInternal) as <T extends {}>(

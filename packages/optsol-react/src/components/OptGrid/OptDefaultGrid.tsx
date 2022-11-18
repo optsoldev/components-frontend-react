@@ -69,17 +69,8 @@ function OptGridInternal<T extends {}>(
   );
 
   React.useEffect(() => {
-    console.log('effect', pageIndex, pageSize);
     load(pageIndex, pageSize);
   }, [load, pageSize, pageIndex]);
-
-  console.log(
-    'render OptGridInternal',
-    controls.data,
-    controls.pageCount,
-    options?.pageSize,
-    pageIndex
-  );
 
   return (
     <OptGridView
