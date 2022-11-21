@@ -24,6 +24,7 @@ function OptGridInternal<T extends {}>(
     {
       columns: internalColumns,
       data: controls.data,
+      autoResetPage: false,
       initialState: {
         pageIndex: 0,
         pageSize: options?.pageSize ?? 10,
@@ -57,15 +58,19 @@ function OptGridInternal<T extends {}>(
     state: { pageIndex, pageSize },
   } = table;
 
-  useImperativeHandle(ref, () => ({
-    refresh: () => {
-      load(pageIndex, pageSize);
-    },
-  }));
+  useImperativeHandle(
+    ref,
+    () => ({
+      refresh: () => {
+        load(pageIndex, pageSize);
+      },
+    }),
+    [load, pageIndex, pageSize]
+  );
 
   React.useEffect(() => {
     load(pageIndex, pageSize);
-  }, [pageIndex, pageSize]);
+  }, [load, pageSize, pageIndex]);
 
   return (
     <OptGridView
