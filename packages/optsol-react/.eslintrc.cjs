@@ -30,6 +30,9 @@ module.exports = {
       'error',
       'ignorePackages',
       {
+        js: 'never',
+        mjs: 'never',
+        jsx: 'never',
         ts: 'never',
         tsx: 'never',
       },
@@ -49,5 +52,8 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-unused-vars': ['warn'],
     '@typescript-eslint/no-use-before-define': 'error',
+  },
+  settings: {
+    'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx'],
   },
 };
