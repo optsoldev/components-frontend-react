@@ -1,13 +1,12 @@
 {
   "name": "@optsol/react",
   "version": "2.0.4",
-  "type": "module",
   "description": "Kit de UI da OPTSOL",
   "scripts": {
     "start": "npm run watch",
     "prepack": "npm run build",
-    "build": "rollup -c --bundleConfigAsCjs",
-    "watch": "rollup -cw --bundleConfigAsCjs",
+    "build": "rollup -c ",
+    "watch": "rollup -cw ",
     "type:check": "tsc",
     "lint": "eslint --ext .tsx,.ts .",
     "lint:fix": "eslint --ext .tsx,.ts . --fix",
@@ -20,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.js",
+  "module": "./lib/esm/index.esm.js",
   "types": "./lib/esm/index.d.ts",
   "files": [
     "/lib"
@@ -55,7 +54,7 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-security": "^1.5.0",
-    "rollup": "^3.4.0",
+    "rollup": "^3.6.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "tsc-files": "^1.1.3",
     "typescript": "^4.9.3"

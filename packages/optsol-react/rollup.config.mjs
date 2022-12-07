@@ -9,8 +9,8 @@ export default {
       format: 'cjs',
     },
     {
-      file: './lib/esm/index.js',
-      format: 'es',
+      file: './lib/esm/index.esm.js',
+      format: 'esm',
     },
   ],
   external: [...Object.keys(pkg.peerDependencies || {})],
