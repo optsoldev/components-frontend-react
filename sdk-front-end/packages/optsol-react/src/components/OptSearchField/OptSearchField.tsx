@@ -13,37 +13,38 @@ export interface OptSearchFieldProps {
   noBorder?: boolean;
 }
 
-export const OptSearchField = ({
+export function OptSearchField({
   placeholder = "Pesquisar",
   onSearch,
   noBorder,
-  // width,
+  width,
   paddingX,
-}: OptSearchFieldProps) => {
+}: OptSearchFieldProps) {
   const ref = createRef<HTMLInputElement>();
   const { currentTheme } = useOptTheme();
 
-  function onClickSearchButton() {
+  const onClickSearchButton = () => {
     onSearch(ref.current?.value ? ref.current?.value : undefined);
-  }
+  };
 
-  function verificarTeclaPressionadaEnter(
+  const verificarTeclaPressionadaEnter = (
     event: React.KeyboardEvent<HTMLInputElement>
-  ) {
+  ) => {
     if (event.key === "Enter") {
       onSearch(ref.current?.value ? ref.current?.value : undefined);
     }
-  }
+  };
 
   return (
     <S.AdvancedSearchContainer
       $noborder={noBorder}
-      // width={width}
+      width={width}
       paddingx={paddingX}
     >
       <OutlinedInput
         inputRef={ref}
         type="text"
+        fullWidth
         placeholder={placeholder}
         onKeyDown={verificarTeclaPressionadaEnter}
         endAdornment={
@@ -56,4 +57,4 @@ export const OptSearchField = ({
       />
     </S.AdvancedSearchContainer>
   );
-};
+}

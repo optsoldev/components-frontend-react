@@ -10,7 +10,7 @@ interface Props {
 export const AdvancedSearchContainer = styled.div<Props>`
   display: flex;
   margin-bottom: 12px;
-  width: ${({ width }) => width + "px" ?? "100%"};
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
   ${({ paddingx }) =>
     css`
       padding: 0 ${paddingx}px;
@@ -75,9 +75,10 @@ export const AdvancedSearchContainer = styled.div<Props>`
   & .Mui-focused .MuiOutlinedInput-notchedOutline,
   [class*="MuiInputBase-root-MuiOutlinedInput-root"]:hover.Mui-focused
     .MuiOutlinedInput-notchedOutline {
-    border: ${({ $noborder }) =>
-      $noborder ? "unset" : `2px solid ${ColorPalette.primaryTints.tint1}`};
-  }`;
+    border: ${({ $noborder, theme }) =>
+      $noborder ? "unset" : `2px solid ${theme.primary}`};
+  }
+`;
 
 AdvancedSearchContainer.defaultProps = {
   $noborder: false,
