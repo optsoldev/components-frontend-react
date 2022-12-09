@@ -1,5 +1,5 @@
 import typescript from 'rollup-plugin-typescript2';
-import pkg from './package.json';
+import pkg from './package.json' assert { type: 'json' };
 
 export default {
   input: 'src/index.ts',
@@ -9,14 +9,14 @@ export default {
       format: 'cjs',
     },
     {
-      file: './lib/esm/index.js',
-      format: 'es',
+      file: './lib/esm/index.esm.js',
+      format: 'esm',
     },
   ],
   external: [...Object.keys(pkg.peerDependencies || {})],
   plugins: [
     typescript({
-      typescript: require('typescript'),
+      tsconfig: 'tsconfig.json',
     }),
   ],
 };

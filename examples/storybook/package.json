@@ -5,14 +5,14 @@
   "license": "MIT",
   "homepage": "https://github.com/optsoldev/components-frontend-react",
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@storybook/addon-actions": "^6.3.12",
-    "@storybook/addon-docs": "^6.3.12",
-    "@storybook/addon-essentials": "^6.3.12",
-    "@storybook/addon-links": "^6.3.12",
-    "@storybook/react": "^6.3.12",
+    "@babel/core": "^7.20.2",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-docs": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
+    "@storybook/react": "^6.5.14",
     "@types/react-router-dom": "^5.3.3",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^9.1.0",
     "gh-pages": "^3.2.3"
   },
   "dependencies": {
@@ -20,13 +20,16 @@
     "@emotion/styled": "^11.10.4",
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
-    "@mui/material": "^5.10.3",
-    "@optsol/react": "^2.0.4",
+    "@mui/material": "^5.10.15",
+    "@optsol/react": "^2.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
-    "storybook": "^6.4.0",
-    "styled-components": "^5.3.6"
+    "react-router-dom": "^6.4.3",
+    "storybook": "^6.5.14",
+    "styled-components": "^5.3.6",
+    "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/manager-webpack5": "^6.5.14",
+    "webpack": "^5.75.0"
   },
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && npm run storybook",

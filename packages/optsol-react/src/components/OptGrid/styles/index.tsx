@@ -1,5 +1,5 @@
 import { Checkbox } from '@mui/material';
-import color from 'color';
+import Color from 'color';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -47,7 +47,7 @@ export const StyledTable = styled.table`
 
   tbody tr:hover {
     background-color: ${({ theme }) =>
-      color(theme.divider).lighten(0.03).hex()};
+      Color(theme.divider).lighten(0.03).hex()};
     cursor: pointer;
   }
 

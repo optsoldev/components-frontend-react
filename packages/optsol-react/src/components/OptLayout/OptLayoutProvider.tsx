@@ -1,7 +1,7 @@
 import {
   createTheme,
   ThemeProvider as MaterialThemeProvider,
-} from '@mui/material/styles';
+} from '@mui/material';
 import { PropsWithChildren, useLayoutEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';

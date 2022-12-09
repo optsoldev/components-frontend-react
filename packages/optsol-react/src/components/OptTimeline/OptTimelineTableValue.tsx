@@ -1,6 +1,6 @@
 import { mdiFile, mdiImage } from '@mdi/js';
 import Icon from '@mdi/react';
-import IconButton from '@mui/material/IconButton';
+import { IconButton } from '@mui/material';
 import * as S from './styles';
 
 export interface OptTimelineField {
