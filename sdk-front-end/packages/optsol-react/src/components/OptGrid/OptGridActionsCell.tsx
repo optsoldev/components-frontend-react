@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { Icon } from "@mdi/react";
 import { IconButton, Tooltip } from "@mui/material";
 import { OptGridAction } from ".";
@@ -8,10 +9,10 @@ interface Props<T extends object> {
   data: T;
 }
 
-export const OptGridActionsCell = <T extends object>({
+export function OptGridActionsCell<T extends object>({
   actions,
   data,
-}: Props<T>) => {
+}: Props<T>) {
   const { currentTheme } = useOptTheme();
 
   return (
@@ -19,15 +20,14 @@ export const OptGridActionsCell = <T extends object>({
       {actions?.map((action, index) => {
         const isFunction = typeof action === "function";
 
-        let currentAction = action as OptGridAction<T>;
+        let currentAction: OptGridAction<T>;
 
-        if (isFunction) {
-          currentAction = (action as (rowData: T) => OptGridAction<T>)(data);
-        }
+        if (isFunction) currentAction = action(data);
+        else currentAction = action;
 
         const color = currentAction.icon.color ?? currentTheme.color;
 
-        let iconButton = (
+        const iconButton = (
           <IconButton
             key={index}
             onClick={(e) => {
@@ -40,7 +40,7 @@ export const OptGridActionsCell = <T extends object>({
         );
 
         if (currentAction.tooltip) {
-          iconButton = (
+          return (
             <Tooltip title={currentAction.tooltip} key={index}>
               {iconButton}
             </Tooltip>
@@ -51,4 +51,4 @@ export const OptGridActionsCell = <T extends object>({
       })}
     </td>
   );
-};
+}

@@ -116,19 +116,17 @@ const OptGridView = <T extends {}>({
             )}
 
             {options?.bottomElement && (
-              <>
-                <tr role="row">
-                  <td
-                    role="cell"
-                    colSpan={10000}
-                    style={{ textAlign: "end", padding: "18px 24px" }}
-                  >
-                    {options.bottomElement}
-                  </td>
-                </tr>
-              </>
+              <tr role="row">
+                <td
+                  role="cell"
+                  colSpan={10000}
+                  style={{ textAlign: "end", padding: "18px 24px" }}
+                >
+                  {options.bottomElement}
+                </td>
+              </tr>
             )}
-            <tr role="row"></tr>
+            <tr role="row" />
           </tbody>
         </S.StyledTable>
       </div>

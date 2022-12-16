@@ -18,7 +18,33 @@ interface OptInternalSelectableGridProps<T extends object>
   onSelect?: (selectedData: T[]) => void;
 }
 
-const OptGridInternal = <T extends {}>(
+function Header<T extends object>({
+  getToggleAllRowsSelectedProps,
+}: HeaderProps<T>) {
+  return (
+    <S.CustomCheckbox
+      {...getToggleAllRowsSelectedProps()}
+      onClick={(e: any) => {
+        e.stopPropagation();
+      }}
+    />
+  );
+}
+
+function Cell<T extends object>({ row }: CellProps<T>) {
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <S.CustomCheckbox
+        {...row.getToggleRowSelectedProps()}
+        onClick={(e: any) => {
+          e.stopPropagation();
+        }}
+      />
+    </div>
+  );
+}
+
+function OptGridInternal<T extends {}>(
   {
     title,
     controls,
@@ -34,9 +60,9 @@ const OptGridInternal = <T extends {}>(
     load,
   }: OptInternalSelectableGridProps<T>,
   ref: ForwardedRef<OptGridRef>
-) => {
+) {
   const selectionHook = (hooks: Hooks<T>) => {
-    hooks.allColumns.push((columns) => [
+    hooks.allColumns.push((allColumns) => [
       // Let's make a column for selection
       {
         id: "_selector",
@@ -46,57 +72,37 @@ const OptGridInternal = <T extends {}>(
         align: "center",
         // The header can use the table's getToggleAllRowsSelectedProps method
         // to render a checkbox
-        Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<T>) => (
-          <S.CustomCheckbox
-            {...getToggleAllRowsSelectedProps()}
-            onClick={(e: any) => {
-              e.stopPropagation();
-            }}
-          />
-        ),
+        Header,
         // The cell can use the individual row's getToggleRowSelectedProps method
         // to the render a checkbox
-        Cell: ({ row }: CellProps<T>) => (
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <S.CustomCheckbox
-              {...row.getToggleRowSelectedProps()}
-              onClick={(e: any) => {
-                e.stopPropagation();
-              }}
-            />
-          </div>
-        ),
+        Cell,
       },
-      ...columns,
+      ...allColumns,
     ]);
   };
 
-  function constructTable() {
-    const tableOptions = {
-      columns: internalColumns,
-      data: controls.data,
-      initialState: {
-        pageIndex: 0,
-        pageSize: options?.pageSize ?? 10,
-        hiddenColumns: hiddenColumns,
-      }, // Pass our hoisted table state
-      manualPagination: true, // Tell the usePagination
-      // hook that we'll handle our own data fetching
-      // This means we'll also have to provide our own
-      // pageCount.
-      pageCount: controls.pageCount,
-    };
+  const tableOptions = {
+    columns: internalColumns,
+    data: controls.data,
+    initialState: {
+      pageIndex: 0,
+      pageSize: options?.pageSize ?? 10,
+      hiddenColumns,
+    }, // Pass our hoisted table state
+    manualPagination: true, // Tell the usePagination
+    // hook that we'll handle our own data fetching
+    // This means we'll also have to provide our own
+    // pageCount.
+    pageCount: controls.pageCount,
+  };
 
-    return useTable<T>(
-      tableOptions,
-      useSortBy,
-      usePagination,
-      useRowSelect,
-      selectionHook
-    );
-  }
-
-  const table = constructTable();
+  const table = useTable<T>(
+    tableOptions,
+    useSortBy,
+    usePagination,
+    useRowSelect,
+    selectionHook
+  );
 
   const {
     getTableProps,
@@ -128,12 +134,10 @@ const OptGridInternal = <T extends {}>(
     const isFunction = typeof onSelect === "function";
 
     if (isFunction) onSelect(selected);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFlatRows.length]);
 
   React.useEffect(() => {
     load(pageIndex, pageSize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageIndex, pageSize]);
 
   return (
@@ -163,7 +167,7 @@ const OptGridInternal = <T extends {}>(
       options={options}
     />
   );
-};
+}
 
 export const OptSelectableGrid = React.forwardRef(OptGridInternal) as <
   T extends {}

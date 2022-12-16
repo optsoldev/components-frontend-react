@@ -24,6 +24,7 @@ const OptGridInternal = <T extends {}>(
     {
       columns: internalColumns,
       data: controls.data,
+      autoResetPage: false,
       initialState: {
         pageIndex: 0,
         pageSize: options?.pageSize ?? 10,
@@ -65,8 +66,7 @@ const OptGridInternal = <T extends {}>(
 
   React.useEffect(() => {
     load(pageIndex, pageSize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageIndex, pageSize]);
+  }, [load, pageIndex, pageSize]);
 
   return (
     <OptGridView
