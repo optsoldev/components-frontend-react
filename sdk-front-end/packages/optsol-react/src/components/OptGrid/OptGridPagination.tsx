@@ -79,10 +79,10 @@ export const OptGridPagination = ({
         Página{" "}
         <strong>
           {pageOptions.length ? pageIndex + 1 : 0} de {pageOptions.length}
-        </strong>{" "}
+        </strong>
       </span>
 
-      <IconButton onClick={() => nextPage()} disabled={!canNextPage}>
+      <IconButton onClick={nextPage} disabled={!canNextPage}>
         <Icon
           size={1}
           path={mdiChevronRight}
