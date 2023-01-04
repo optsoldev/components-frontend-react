@@ -51,6 +51,7 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   bottomElement?: React.ReactNode;
   titleBgColor: string;
   headerBgColor: string;
+  disabledAction: boolean;
 }
 
 export const OptGridRemota: Story<OptGridArgs> = ({
@@ -66,6 +67,7 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   bottomElement,
   titleBgColor,
   headerBgColor,
+  disabledAction
 }) => {
   const options: OptGridOptions = {
     search,
@@ -130,13 +132,13 @@ export const OptGridRemota: Story<OptGridArgs> = ({
             icon: { path: mdiDelete, color: ColorPalette.gray3 },
             tooltip: "Deletar usuário",
             onClick: () => onDelete(rowData),
-            disabled: false,
+            disabled: disabledAction,
           }),
           (rowData) => ({
             icon: { path: mdiCheck, color: ColorPalette.green2 },
             tooltip: "Aprovar usuário",
             onClick: () => onApprove(rowData),
-            disabled: false,
+            disabled: disabledAction,
           }),
         ]}
         actionsPosition={actionsPosition}
@@ -157,6 +159,7 @@ OptGridRemota.args = {
   bottomElement: "",
   titleBgColor: "",
   headerBgColor: "",
+  disabledAction:false,
 };
 
 OptGridRemota.argTypes = {
@@ -223,5 +226,9 @@ OptGridRemota.argTypes = {
   onApprove: {
     action: (data: Pessoa) => "onApprove clicked" + data,
     table: { disable: true },
+  },
+  disabledAction: {
+    defaultValue: false,
+    name: "Disabled Action",
   },
 };

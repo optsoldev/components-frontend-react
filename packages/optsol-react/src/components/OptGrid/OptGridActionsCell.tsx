@@ -2,6 +2,7 @@
 import { Icon } from '@mdi/react';
 import { IconButton, Tooltip } from '@mui/material';
 import { useOptTheme } from '../../contexts/theme/themeContext';
+import { ColorPalette } from '../../shared/styles/colors';
 import { OptGridAction } from './@types';
 
 interface Props<T extends object> {
@@ -17,31 +18,33 @@ export function OptGridActionsCell<T extends object>({
 
   return (
     <td className="td-opt" style={{ display: 'flex' }}>
-      {actions?.map((action, index) => {
-        const isFunction = typeof action === 'function';
+      {actions?.map((_action, index) => {
+        const isFunction = typeof _action === 'function';
 
-        let currentAction: OptGridAction<T>;
+        let action: OptGridAction<T>;
 
-        if (isFunction) currentAction = action(data);
-        else currentAction = action;
+        if (isFunction) action = _action(data);
+        else action = _action;
 
-        const color = currentAction.icon.color ?? currentTheme.color;
+        let color = action.icon.color ?? currentTheme.color;
+        color = action.disabled ? ColorPalette.gray4 : color;
 
         const iconButton = (
           <IconButton
             key={index}
             onClick={(e) => {
               e.stopPropagation();
-              currentAction.onClick(e, data);
+              action.onClick(e, data);
             }}
+            disabled={action.disabled}
           >
-            <Icon size={1} path={currentAction.icon.path} color={color} />
+            <Icon size={1} path={action.icon.path} color={color} />
           </IconButton>
         );
 
-        if (currentAction.tooltip) {
+        if (action.tooltip) {
           return (
-            <Tooltip title={currentAction.tooltip} key={index}>
+            <Tooltip title={action.tooltip} key={index}>
               {iconButton}
             </Tooltip>
           );

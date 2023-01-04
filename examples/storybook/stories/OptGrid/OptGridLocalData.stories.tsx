@@ -137,6 +137,7 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   bottomElement?: React.ReactNode;
   titleBgColor: string;
   headerBgColor: string;
+  disabledAction: boolean;
 }
 
 export const OptGridLocalData: Story<OptGridArgs> = ({
@@ -151,6 +152,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
   bottomElement,
   titleBgColor,
   headerBgColor,
+  disabledAction
 }) => {
   const options: OptGridOptions = {
     search,
@@ -218,7 +220,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
             icon: { path: mdiDelete },
             tooltip: "Deletar usuário",
             onClick: () => onDelete(rowData),
-            disabled: false,
+            disabled: disabledAction,
           }),
         ]}
         actionsPosition={actionsPosition}
@@ -240,6 +242,7 @@ OptGridLocalData.args = {
   bottomElement: "",
   titleBgColor: "",
   headerBgColor: "",
+  disabledAction: false
 };
 OptGridLocalData.argTypes = {
   title: {
@@ -301,5 +304,9 @@ OptGridLocalData.argTypes = {
   onDelete: {
     action: (data: Pessoa) => "onDelete fired " + data,
     table: { disable: true },
+  },
+  disabledAction: {
+    defaultValue: false,
+    name: "Disabled Action",
   },
 };
