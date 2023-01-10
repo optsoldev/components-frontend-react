@@ -1,6 +1,6 @@
 {
   "name": "@optsol/react",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Kit de UI da OPTSOL",
   "scripts": {
     "start": "npm run watch",
