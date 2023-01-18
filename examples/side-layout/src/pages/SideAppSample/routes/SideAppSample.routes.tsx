@@ -18,7 +18,7 @@ export const Routes = {
   },
 } as const;
 
-export const routes = (
+export const routes = () => (
   <ReactRoutes>
     <Route path={Routes.Home} element={<Home />} />
     <Route path={Routes.Registro.Principal} element={<RegistroRoutes />} />

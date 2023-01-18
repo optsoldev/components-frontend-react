@@ -6,7 +6,7 @@ import {
   useLayoutEffect,
   useRef,
 } from 'react';
-import { Routes, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { GlobalStyles } from '../../shared/styles/global';
 import { OptSideAppbar } from '../OptSideAppbar/OptSideAppbar';
@@ -17,7 +17,7 @@ export function OptSideLayout({
   expandable,
   logo,
   sections,
-  routes,
+  routes: Element,
   profile,
   children,
   onManageProfile,
@@ -31,10 +31,6 @@ export function OptSideLayout({
   } = useOptTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
-
-  if (routes && routes.type !== Routes) {
-    console.error('Prop routes is not a Routes!');
-  }
 
   const scrollToTop = () =>
     containerRef.current?.scrollTo({
@@ -79,7 +75,7 @@ export function OptSideLayout({
         >
           <S.OptSideLayoutPortalContent>
             {children}
-            {routes && (
+            {Element && (
               <Suspense
                 fallback={
                   <div style={{ flex: 1, marginTop: 1 }}>
@@ -89,7 +85,7 @@ export function OptSideLayout({
                 }
               >
                 <S.OptSideLayoutPortalContent>
-                  {routes}
+                  <Element />
                 </S.OptSideLayoutPortalContent>
               </Suspense>
             )}

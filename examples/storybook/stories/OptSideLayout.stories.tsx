@@ -4,7 +4,6 @@ import {
   mdiCogs,
   mdiFileDocument,
   mdiFolderTable,
-  mdiHome,
 } from "@mdi/js";
 import {
   OptLayoutProvider,
@@ -65,6 +64,16 @@ const Template: Story<
           title: "Folder",
           path: "/folder",
           icon: mdiFolderTable,
+        },
+        {
+          title: "Account",
+          path: "/account",
+          icon: mdiAccountSupervisorCircle,
+        },
+        {
+          title: "Documents",
+          path: "/documents",
+          icon: mdiFileDocument,
         },
       ],
     },

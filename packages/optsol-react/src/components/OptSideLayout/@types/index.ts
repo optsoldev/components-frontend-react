@@ -1,3 +1,4 @@
+import { Routes } from 'react-router-dom';
 import { CustomOptTheme } from '../../../contexts/theme/themeState';
 import { OptAppLogo, OptMenuSection } from '../../../types';
 import { OptUserProfile } from '../../OptAvatar';
@@ -13,7 +14,7 @@ export interface OptSideLayoutProps {
   /** Sections of the menus. Each object with the menu links will be splitted into different lists, separated by a Divider.  */
   sections: OptMenuSection[];
   /** Application routes within a \<Switch\> \</Switch\>   */
-  routes?: JSX.Element;
+  routes?: typeof Routes;
   profile?: OptUserProfile;
 
   onManageProfile: () => void;

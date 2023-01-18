@@ -41,19 +41,21 @@ const sections: OptMenuSection[] = [
   },
 ];
 
-const routes = (
-  <Routes>
-    <Route path="/" element={<AppSideHome />} />
-    <Route path="/registro/*" element={<AppSideListaRegistrosRoutes />} />
-    <Route element={<RotaNaoEncontrada />} />
-  </Routes>
-);
+const AppRoutes: typeof Routes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<AppSideHome />} />
+      <Route path="/registro/*" element={<AppSideListaRegistrosRoutes />} />
+      <Route element={<RotaNaoEncontrada />} />
+    </Routes>
+  );
+};
 
 export const AppSide = () => {
   return (
     <OptSideLayout
       sections={sections}
-      routes={routes}
+      routes={AppRoutes}
       onLogout={() => {
         console.log("onLogout");
       }}
