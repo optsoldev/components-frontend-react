@@ -14,7 +14,13 @@ export const sections: OptMenuSection[] = [
       {
         icon: mdiMatrix,
         path: Routes.Registro.Principal,
+        activeShouldBeExact: true,
         title: "Registro",
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: "Registro1",
       },
     ],
   },

@@ -64,8 +64,6 @@ export function OptSideAppbar({
     sideAppbarWidth,
   ]);
 
-  console.log(logo, currentLinkColor);
-
   return (
     <S.SidebarMenuContainer
       $expanded={expanded}
@@ -118,11 +116,8 @@ export function OptSideAppbar({
               return (
                 <S.SidebarNavLink
                   to={item.path}
-                  className={({ isActive }) =>
-                    isActive ? S.activeLinkClass : ''
-                  }
-                  end={item.activeShouldBeExact}
                   key={index}
+                  end={item.activeShouldBeExact}
                 >
                   {expanded && (
                     <SidebarExpandedListItem button>

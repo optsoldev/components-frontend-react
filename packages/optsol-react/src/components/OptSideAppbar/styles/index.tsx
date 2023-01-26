@@ -10,7 +10,7 @@ import styled, { css } from 'styled-components';
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 import { SidebarExpandedListItem } from '../OptSideAppbarFooterActions/styles';
 
-export const activeLinkClass = 'active-link';
+export const activeLinkClass = 'active';
 
 interface SidebarMenuContainerProps {
   $expanded?: boolean;
@@ -56,7 +56,7 @@ export const SidebarListItem = styled<any>(ListItem)`
   flex-direction: column;
   font-size: 10px;
   border-radius: 6px;
-  margin: 0 0;
+  margin: 6px 0;
   width: auto;
   min-height: 30px;
   justify-content: center;
@@ -122,10 +122,6 @@ export const CustomList = styled(List)<CustomListProps>`
   flex: 1;
   justify-content: ${({ $align = 'center' }) => $align};
   flex-direction: column;
-
-  & ${SidebarNavLink}:not(:last-child) > div {
-    margin: 20px 0;
-  }
 `;
 
 export const SidebarListItemIcon = styled(ListItemIcon)`
