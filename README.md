@@ -6,7 +6,7 @@
 
 ### **Setup**
 
-    npm run setup
+    yarn
 
 ---
 
