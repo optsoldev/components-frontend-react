@@ -11,16 +11,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 18.x
 
       - name: Install dependencies
         run: yarn install
 
+      - name: Build
+        run: yarn build
+
       - name: Linting
         run: yarn lint
 
-      - name: Test
-        run: yarn test
+      - name: Format check
+        run: yarn format:check
 
-      - name: Build
-        run: yarn build
+      - name: Types check
+        run: yarn types:check

@@ -22,13 +22,13 @@
     "@mdi/react": "^1.6.1",
     "@mui/material": "^5.10.15",
     "@optsol/react": "^2.0.7",
+    "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/manager-webpack5": "^6.5.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "storybook": "^6.5.14",
     "styled-components": "^5.3.6",
-    "@storybook/builder-webpack5": "^6.5.14",
-    "@storybook/manager-webpack5": "^6.5.14",
     "webpack": "^5.75.0"
   },
   "scripts": {
