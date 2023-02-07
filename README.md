@@ -6,7 +6,7 @@
 
 ### **Setup**
 
-    yarn
+    yarn install
 
 ---
 

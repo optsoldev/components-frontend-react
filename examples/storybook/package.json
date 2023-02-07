@@ -1,6 +1,7 @@
 {
   "name": "@optsol/react-storybook",
   "version": "1.0.0",
+  "private": true,
   "main": "index.js",
   "license": "MIT",
   "homepage": "https://github.com/optsoldev/components-frontend-react",
@@ -11,6 +12,7 @@
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-links": "^6.5.14",
     "@storybook/react": "^6.5.14",
+    "@types/react-dom": "^18.0.10",
     "@types/react-router-dom": "^5.3.3",
     "babel-loader": "^9.1.0",
     "gh-pages": "^3.2.3"

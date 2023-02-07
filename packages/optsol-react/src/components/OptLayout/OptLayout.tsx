@@ -118,7 +118,6 @@ export function OptLayout({
           </Suspense>
         )}
       </S.Container>
-
       <SwipeableDrawer
         anchor="left"
         open={drawerOpen}

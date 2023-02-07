@@ -24,7 +24,7 @@ module.exports = {
     React: true,
     JSX: true,
   },
-  ignorePatterns: ['lib/**'],
+  ignorePatterns: ['**/lib/**'],
   rules: {
     'import/extensions': [
       'error',
