@@ -12,7 +12,8 @@
     "build": "lerna run build --scope @optsol/react",
     "lint": "lerna run lint --scope @optsol/react",
     "types:check": "lerna run types:check --scope @optsol/react",
-    "format:check": "lerna run format:check --scope @optsol/react"
+    "format:check": "lerna run format:check --scope @optsol/react",
+    "validate": "lerna run --concurrency 1 --stream validate --since HEAD --exclude-dependents"
   },
   "repository": {
     "type": "git",
