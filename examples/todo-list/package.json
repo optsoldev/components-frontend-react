@@ -35,7 +35,12 @@
     "test": "craco test",
     "eject": "craco eject",
     "lint": "eslint --ext .tsx,.ts . --fix",
-    "start:mock-api": "node data/server.js"
+    "start:mock-api": "node data/server.js",
+    "types:check": "tsc --project tsconfig.json --pretty --noEmit",
+    "lint-staged": "lint-staged --config .lintstagedrc.json",
+    "format:check": "prettier . --ignore-path .gitignore --check",
+    "format:fix": "prettier . --ignore-path .gitignore --write",
+    "validate": "npm-run-all --parallel types:check && lint-staged"
   },
   "eslintConfig": {
     "extends": [
