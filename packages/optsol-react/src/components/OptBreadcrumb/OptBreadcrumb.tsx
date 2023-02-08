@@ -2,9 +2,11 @@ import { mdiChevronRight } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { useBreadcrumb } from '../../contexts/breadcrumb/breadcrumbContext';
 import { BreadcrumbDictionary } from '../../contexts/breadcrumb/breadcrumbState';
 import { useOptTheme } from '../../contexts/theme/themeContext';
+
 import * as S from './styles';
 
 type BreadcrumbComposition = {
@@ -35,9 +37,7 @@ function generateBreadcrumbComposition(
       name = name
         .replace(/([A-Z])/g, ' $1')
         .split(' ')
-        .map((t) =>
-          t.replace(/^./, (str) => str.toUpperCase())
-        )
+        .map((t) => t.replace(/^./, (str) => str.toUpperCase()))
         .join(' ');
 
       const link = pathname

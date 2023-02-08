@@ -3,6 +3,7 @@ import { OptFullTheme } from '../../shared/styles/theme';
 import { DarkTheme } from '../../shared/styles/theme/darkTheme';
 import { LightTheme } from '../../shared/styles/theme/lightTheme';
 import { GenericContext } from '../genericContext';
+
 import { ThemeActions } from './themeActions';
 import { generateNewTheme } from './themeFunctions';
 import { CustomOptTheme, ThemeState } from './themeState';

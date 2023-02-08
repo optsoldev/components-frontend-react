@@ -12,8 +12,6 @@
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-links": "^6.5.14",
     "@storybook/react": "^6.5.14",
-    "@types/react-dom": "^18.0.10",
-    "@types/react-router-dom": "^5.3.3",
     "babel-loader": "^9.1.0",
     "gh-pages": "^3.2.3"
   },

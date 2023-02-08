@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { TabClasses } from '@mui/material';
 import React from 'react';
+
 import * as S from './styles';
 
 const CustomTab = styled(S.CustomTab)`
@@ -55,3 +56,5 @@ interface Props {
 export const OptTab = React.forwardRef<HTMLDivElement, Props>(
   ({ ...props }, ref) => <CustomTab ref={ref} {...props} />
 );
+
+OptTab.displayName = 'OptTab';

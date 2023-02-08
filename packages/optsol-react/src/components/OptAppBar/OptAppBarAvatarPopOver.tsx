@@ -1,9 +1,11 @@
 import { mdiAccountCog, mdiExitToApp } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { MenuItem } from '@mui/material';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { ColorPalette } from '../../shared/styles/colors';
 import { OptAvatar, OptUserProfile } from '../OptAvatar';
+
 import * as S from './styles';
 
 interface Props {

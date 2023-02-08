@@ -1,4 +1,4 @@
-import { OptSideLayoutContent } from "@optsol/react";
+import { OptSideLayoutContent } from '@optsol/react';
 
 export const AppSideListaRegistros = () => {
   return (

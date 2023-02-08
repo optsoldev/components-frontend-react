@@ -1,6 +1,7 @@
 import { IconButton, ListItem } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { ActiveLinkClass } from '../../../../shared/constants';
 import { ColorPalette } from '../../../../shared/styles/colors';
 import { OptChip } from '../../../OptChip';

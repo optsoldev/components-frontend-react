@@ -1,5 +1,6 @@
 import React, { ForwardedRef, useCallback, useMemo, useState } from 'react';
 import { Column } from 'react-table';
+
 import {
   OptGridControls,
   OptGridDataRequest,
@@ -10,7 +11,7 @@ import {
 import { OptDefaultGrid } from './OptDefaultGrid';
 import { OptSelectableGrid } from './OptSelectableGrid';
 
-function OptGridInternal<T extends {}>(
+function OptGridInternal<T extends object>(
   {
     columns,
     data,
@@ -146,6 +147,6 @@ function OptGridInternal<T extends {}>(
   return <OptDefaultGrid {...attrs} />;
 }
 
-export const OptGrid = React.forwardRef(OptGridInternal) as <T extends {}>(
+export const OptGrid = React.forwardRef(OptGridInternal) as <T extends object>(
   props: OptGridProps<T> & { ref?: React.ForwardedRef<OptGridRef> }
 ) => ReturnType<typeof OptGridInternal>;

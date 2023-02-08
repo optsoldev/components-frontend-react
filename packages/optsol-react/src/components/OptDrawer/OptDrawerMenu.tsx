@@ -2,9 +2,11 @@ import { mdiMenuOpen, mdiPin, mdiPinOff } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { IconButton, List, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { OptMenuSection } from '../../types';
 import { OptDivider } from '../OptDivider';
+
 import * as S from './styles';
 
 interface OptDrawerMenuProps {

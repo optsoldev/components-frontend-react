@@ -6,13 +6,13 @@ import {
   TablePropGetter,
   TableProps,
 } from 'react-table';
+
 import {
   OptGridAction,
   OptGridColumn,
   OptGridControls,
   OptGridOptions,
 } from './@types';
-
 import { OptGridHeaders } from './OptGridHeaders';
 import { OptGridPagination } from './OptGridPagination';
 import { OptGridRows } from './OptGridRows';
@@ -44,7 +44,7 @@ interface OptGridViewProps<T extends object> {
   options?: OptGridOptions;
 }
 
-function OptGridView<T extends {}>({
+function OptGridView<T extends object>({
   title,
   getTableProps,
   headerGroups,

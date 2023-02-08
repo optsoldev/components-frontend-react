@@ -1,10 +1,12 @@
 import { PropsWithChildren } from 'react';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
+
 import * as S from './styles';
 
 export function OptSideLayoutPortalContainer({
   children,
-}: PropsWithChildren<{}>) {
+}: PropsWithChildren<object>) {
   const {
     state: { currentSideAppbarWidth },
   } = useOptTheme();

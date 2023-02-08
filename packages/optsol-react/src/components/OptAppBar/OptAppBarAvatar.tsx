@@ -1,6 +1,8 @@
 import { IconButton } from '@mui/material';
 import React from 'react';
+
 import { OptAvatar, OptUserProfile } from '../OptAvatar';
+
 import { OptAppBarAvatarPopOver } from './OptAppBarAvatarPopOver';
 
 interface Props {

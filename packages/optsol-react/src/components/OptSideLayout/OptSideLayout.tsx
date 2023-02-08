@@ -7,9 +7,11 @@ import {
   useRef,
 } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { GlobalStyles } from '../../shared/styles/global';
 import { OptSideAppbar } from '../OptSideAppbar/OptSideAppbar';
+
 import { OptSideLayoutProps } from './@types';
 import * as S from './styles';
 

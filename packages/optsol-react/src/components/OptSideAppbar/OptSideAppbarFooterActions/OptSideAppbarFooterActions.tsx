@@ -2,11 +2,13 @@ import { mdiChevronDoubleLeft, mdiChevronDoubleRight } from '@mdi/js';
 import Icon from '@mdi/react';
 import { IconButton, Tooltip } from '@mui/material';
 import React from 'react';
+
 import { useOptTheme } from '../../../contexts/theme/themeContext';
 import { OptAppBarAvatarPopOver } from '../../OptAppBar/OptAppBarAvatarPopOver';
 import { OptAvatar, OptUserProfile } from '../../OptAvatar';
 import { OptAppBarAvatar } from '../../OptLayout';
 import { SidebarListItemIcon } from '../styles';
+
 import * as S from './styles';
 
 export interface OptMainSidebarFooterAction {

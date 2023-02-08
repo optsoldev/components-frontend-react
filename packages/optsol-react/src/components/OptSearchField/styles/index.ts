@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { ColorPalette } from '../../../shared/styles/colors';
 
 interface Props {

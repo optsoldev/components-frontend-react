@@ -1,9 +1,11 @@
 import Icon from '@mdi/react';
 import { CircularProgress } from '@mui/material';
 import { PropsWithChildren } from 'react';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { OptFullTheme } from '../../shared/styles/theme';
 import { IconPathColor } from '../../types/IconPathColor';
+
 import * as S from './styles';
 
 export type OptActionButtonProps = {

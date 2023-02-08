@@ -2,6 +2,7 @@ import { mdiPaperclip } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { FocusEventHandler, useEffect, useState } from 'react';
 import { DropzoneOptions, useDropzone } from 'react-dropzone';
+
 import * as S from './styles';
 
 export interface UploadContainerOptions extends DropzoneOptions {
@@ -22,7 +23,7 @@ export interface OptMiniUploadProps {
 export const OptMiniUpload = React.forwardRef<
   HTMLInputElement,
   OptMiniUploadProps
->(({ filesDescription, onChange, options, value, ...props }, ref) => {
+>(({ onChange, options, value, ...props }, ref) => {
   const [firstRender, setFirstRender] = useState(true);
   const {
     acceptedFiles,
@@ -59,3 +60,5 @@ export const OptMiniUpload = React.forwardRef<
     </S.StyledMiniUploadContainer>
   );
 });
+
+OptMiniUpload.displayName = 'OptMiniUpload';

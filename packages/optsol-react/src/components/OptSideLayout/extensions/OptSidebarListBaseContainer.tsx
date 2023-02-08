@@ -2,12 +2,14 @@ import { mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
 import { CSSProperties, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { ColorPalette } from '../../../shared/styles/colors';
 import { OptActionToolbar } from '../../OptActionToobar';
 import {
   SidebarWithToolbarContainer,
   SidebarWithToolbarContent,
 } from '../../OptSidebar/styles';
+
 import * as S from './styles';
 
 export interface OptSidebarListBaseProps {

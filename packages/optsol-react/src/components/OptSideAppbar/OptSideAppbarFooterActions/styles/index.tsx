@@ -1,5 +1,6 @@
 import { Divider, List, ListItem, ListItemText } from '@mui/material';
 import styled from 'styled-components';
+
 import { SidebarNavLink } from '../../../OptSidebar/styles';
 
 export const SidebarMenuDivider = styled(Divider)`

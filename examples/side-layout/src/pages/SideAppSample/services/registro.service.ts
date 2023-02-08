@@ -1,6 +1,8 @@
 import { OptSearchResponse } from '@optsol/react';
+
 import { Filtro } from '../../../shared/Filtro';
 import { PostMock } from '../../../shared/PostMock';
+
 import { usersMock } from './usersMock';
 
 export function useRegistroService() {
@@ -12,7 +14,8 @@ export function useRegistroService() {
         const filtros: Filtro[] = [];
 
         usersMock.forEach((user) => {
-          const total = data.filter((x) => x.userId === user.id)?.length + 1 ?? 0;
+          const total =
+            data.filter((x) => x.userId === user.id)?.length + 1 ?? 0;
 
           filtros.push({
             id: user.id,

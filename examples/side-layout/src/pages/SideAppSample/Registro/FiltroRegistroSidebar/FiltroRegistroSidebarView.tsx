@@ -1,4 +1,10 @@
-import { OptSidebarFilterContainer, OptSearchField, OptFilterLink, OptLoading } from '@optsol/react';
+import {
+  OptSidebarFilterContainer,
+  OptSearchField,
+  OptFilterLink,
+  OptLoading,
+} from '@optsol/react';
+
 import { ColorPalette } from '../../../../shared/colors';
 import { Filtro } from '../../../../shared/Filtro';
 import { RotaAtualProps } from '../../../../shared/RotaAtualProps';
@@ -10,9 +16,17 @@ interface Props extends RotaAtualProps {
   loading: boolean;
 }
 
-export const FiltroRegistroSidebarView = ({ data, rotaAtual, pesquisar, loading }: Props) => {
+export const FiltroRegistroSidebarView = ({
+  data,
+  rotaAtual,
+  pesquisar,
+  loading,
+}: Props) => {
   return (
-    <OptSidebarFilterContainer borderColor={rotaAtual ? 'unset' : ColorPalette.gray5} goBackRoute={Routes.Home}>
+    <OptSidebarFilterContainer
+      borderColor={rotaAtual ? 'unset' : ColorPalette.gray5}
+      goBackRoute={Routes.Home}
+    >
       <OptSearchField onSearch={pesquisar} paddingX={12} noBorder />
 
       {data &&

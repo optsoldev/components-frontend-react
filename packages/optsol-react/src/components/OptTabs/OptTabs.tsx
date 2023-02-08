@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
+
 import * as S from './styles';
 
 const CustomTabs = styled(S.CustomTabs)`
@@ -13,7 +14,7 @@ interface Props {
 }
 
 export function OptTabs({ tab, onChange, children }: PropsWithChildren<Props>) {
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (_: React.ChangeEvent<object>, newValue: number) => {
     onChange(newValue);
   };
 

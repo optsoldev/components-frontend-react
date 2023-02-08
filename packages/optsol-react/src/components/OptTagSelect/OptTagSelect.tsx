@@ -2,6 +2,7 @@ import color from 'color';
 import React, { FocusEventHandler, useEffect, useState } from 'react';
 import { GroupBase, MultiValue, PropsValue, SingleValue } from 'react-select';
 import CreatableSelect, { CreatableProps } from 'react-select/creatable';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { OptSelectionOption } from '../OptSelect';
 import { optSelectTheme } from '../OptSelect/OptSelectTheme';
@@ -89,3 +90,5 @@ export const OptTagSelect = React.forwardRef<
     />
   );
 });
+
+OptTagSelect.displayName = 'OptTagSelect';

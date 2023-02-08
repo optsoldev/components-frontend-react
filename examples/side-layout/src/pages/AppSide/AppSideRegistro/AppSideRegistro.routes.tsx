@@ -1,9 +1,11 @@
-import { mdiOneUp, mdiViewList } from "@mdi/js";
-import { OptMenuSection, OptSideLayoutPortal } from "@optsol/react";
-import { useMemo } from "react";
-import { Route, Routes } from "react-router-dom";
-import { AppSideRegistroItem } from "../AppSideRegistroItem";
-import { AppSideRegistro } from "./AppSideRegistro";
+import { mdiOneUp, mdiViewList } from '@mdi/js';
+import { OptMenuSection, OptSideLayoutPortal } from '@optsol/react';
+import { useMemo } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import { AppSideRegistroItem } from '../AppSideRegistroItem';
+
+import { AppSideRegistro } from './AppSideRegistro';
 
 export const AppSideRegistroPortal = () => {
   const sections = useMemo(
@@ -13,13 +15,13 @@ export const AppSideRegistroPortal = () => {
           {
             icon: mdiViewList,
             path: `.`,
-            title: "Principal",
+            title: 'Principal',
             activeShouldBeExact: true,
           },
           {
             icon: mdiOneUp,
             path: `./item`,
-            title: "Item",
+            title: 'Item',
           },
         ],
       },

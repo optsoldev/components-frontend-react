@@ -1,16 +1,18 @@
 import Icon from '@mdi/react';
 import {
+  Breakpoint,
   Button,
   DialogContent,
   DialogContentText,
   DialogTitle,
   Paper,
   PaperProps,
-  Breakpoint,
 } from '@mui/material';
 import { PropsWithChildren } from 'react';
 import Draggable from 'react-draggable';
+
 import { IconPathColor } from '../../types/IconPathColor';
+
 import * as S from './styles';
 
 function PaperComponent(props: PaperProps) {
@@ -32,7 +34,7 @@ export interface OptConfirmationDialogProps {
   icon?: IconPathColor;
   onConfirm: () => void;
   onCancel: () => void;
-  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  onClose?: (event: object, reason: 'backdropClick' | 'escapeKeyDown') => void;
   maxWidth?: Breakpoint | false;
   width?: string;
 }
@@ -74,9 +76,7 @@ export function OptConfirmationDialog({
       </DialogContent>
 
       <S.OptDialogActions>
-        <Button autoFocus onClick={onCancel}>
-          {cancelButtonText ?? 'Cancelar'}
-        </Button>
+        <Button onClick={onCancel}>{cancelButtonText ?? 'Cancelar'}</Button>
 
         <Button onClick={onConfirm}>
           {confirmationButtonText ?? 'Confirmar'}

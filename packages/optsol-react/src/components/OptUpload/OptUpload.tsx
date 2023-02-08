@@ -2,11 +2,13 @@ import { mdiPaperclip } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { FocusEventHandler, useEffect, useState } from 'react';
 import { DropzoneOptions, useDropzone } from 'react-dropzone';
+
 import { bytesToSize } from '../../shared/functions';
 import { FileFix } from '../../types/FileFix';
+
 import * as S from './styles';
 
-export interface UploadContainerOptions extends DropzoneOptions {}
+export type UploadContainerOptions = DropzoneOptions;
 
 export interface OptUploadProps {
   description?: string;
@@ -81,3 +83,5 @@ export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
     );
   }
 );
+
+OptUpload.displayName = 'OptUpload';

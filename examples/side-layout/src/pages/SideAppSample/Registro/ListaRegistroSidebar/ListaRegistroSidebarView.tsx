@@ -1,8 +1,9 @@
-import { OptChip } from '@optsol/react';
 import {
+  OptChip,
   OptSidebarPaginatedListContainer,
   OptSearchResponse,
 } from '@optsol/react';
+
 import { ColorPalette } from '../../../../shared/colors';
 import { PostMock } from '../../../../shared/PostMock';
 import { RotaAtualProps } from '../../../../shared/RotaAtualProps';
@@ -12,7 +13,7 @@ interface Props extends RotaAtualProps {
   carregar: (
     search: string,
     page: number,
-    pageSize: number,
+    pageSize: number
   ) => Promise<OptSearchResponse<PostMock>>;
   filtro: string;
 }
@@ -24,7 +25,7 @@ export const ListaRegistroSidebarView = ({
 }: Props) => {
   return (
     <OptSidebarPaginatedListContainer
-      title='Registros'
+      title="Registros"
       goBackRoute={Routes.Registro.Principal}
       createTo={Routes.Registro.Filtros(filtro).Criar}
       listItemTo={Routes.Registro.Filtros(filtro).Editar}

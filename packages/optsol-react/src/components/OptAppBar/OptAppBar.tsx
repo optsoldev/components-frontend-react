@@ -2,8 +2,10 @@ import styled from '@emotion/styled';
 import { mdiMenu } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Toolbar } from '@mui/material';
+
 import { OptUserProfile } from '../OptAvatar';
 import { OptBreadcrumb } from '../OptBreadcrumb/OptBreadcrumb';
+
 import { OptAppBarAvatar } from './OptAppBarAvatar';
 import * as S from './styles';
 

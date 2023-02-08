@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
+
 import { ScrollbarCSS } from './generic';
 
 const appBarHeight = 48;

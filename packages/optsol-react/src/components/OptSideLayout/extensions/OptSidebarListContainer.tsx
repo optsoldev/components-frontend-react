@@ -1,7 +1,9 @@
 import React, { PropsWithChildren } from 'react';
+
 import { ActiveLinkClass } from '../../../shared/constants';
 import { ColorPalette } from '../../../shared/styles/colors';
 import { OptLoading } from '../../OptLoading';
+
 import {
   OptSidebarListBaseContainer,
   OptSidebarListBaseProps,

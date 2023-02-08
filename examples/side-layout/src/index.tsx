@@ -1,12 +1,13 @@
-import { OptLayoutProvider, OptTheme } from "@optsol/react";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { AppSelector } from "./pages/AppSelector";
-import { ColorPalette } from "./shared/colors";
+import { OptLayoutProvider, OptTheme } from '@optsol/react';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import { AppSelector } from './pages/AppSelector';
+import { ColorPalette } from './shared/colors';
 
 const theme: OptTheme = {
   light: {
-    style: "soft",
+    style: 'soft',
     primary: ColorPalette.primary,
     primaryContrast: ColorPalette.white,
     secondary: ColorPalette.secondary,
@@ -15,7 +16,7 @@ const theme: OptTheme = {
 };
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement
 );
 
 root.render(

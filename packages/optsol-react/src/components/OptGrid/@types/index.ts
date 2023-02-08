@@ -1,5 +1,6 @@
 import React from 'react';
 import { Column } from 'react-table';
+
 import { IconPathColor } from '../../../types/IconPathColor';
 
 export interface OptGridRef {

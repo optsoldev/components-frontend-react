@@ -5,6 +5,7 @@ import {
 import { PropsWithChildren, useLayoutEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components';
+
 import { BreadcrumbProvider } from '../../contexts/breadcrumb/breadcrumbContext';
 import {
   OptThemeProvider,
@@ -20,10 +21,7 @@ import {
 } from '../../shared/styles/theme';
 import { OptLoading } from '../OptLoading';
 
-const generateMuiTheme = (
-  optTheme: OptFullTheme,
-  usingDarkTheme: boolean = false
-) =>
+const generateMuiTheme = (optTheme: OptFullTheme, usingDarkTheme = false) =>
   createTheme({
     palette: {
       mode: usingDarkTheme ? 'dark' : 'light',

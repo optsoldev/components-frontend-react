@@ -2,7 +2,9 @@ import { mdiMagnify } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { ButtonBase, InputAdornment, OutlinedInput } from '@mui/material';
 import React, { createRef } from 'react';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
+
 import * as S from './styles';
 
 export interface OptSearchFieldProps {

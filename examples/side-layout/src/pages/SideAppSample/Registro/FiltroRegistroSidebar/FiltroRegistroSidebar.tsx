@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import { Filtro } from '../../../../shared/Filtro';
 import { RotaAtualProps } from '../../../../shared/RotaAtualProps';
 import { useRegistroService } from '../../services/registro.service';
+
 import { FiltroRegistroSidebarView } from './FiltroRegistroSidebarView';
 
 export const FiltroRegistroSidebar = ({ rotaAtual }: RotaAtualProps) => {
@@ -29,5 +31,12 @@ export const FiltroRegistroSidebar = ({ rotaAtual }: RotaAtualProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <FiltroRegistroSidebarView rotaAtual={rotaAtual} data={filtros} pesquisar={pesquisar} loading={loading} />;
+  return (
+    <FiltroRegistroSidebarView
+      rotaAtual={rotaAtual}
+      data={filtros}
+      pesquisar={pesquisar}
+      loading={loading}
+    />
+  );
 };

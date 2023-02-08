@@ -1,7 +1,9 @@
 import Icon from '@mdi/react';
 import React from 'react';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { OptMenuSection } from '../../types';
+
 import * as S from './styles';
 
 export interface OptSidebarMenuProps {

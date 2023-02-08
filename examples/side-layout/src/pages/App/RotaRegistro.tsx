@@ -1,13 +1,13 @@
-import { useBreadcrumb } from "@optsol/react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useBreadcrumb } from '@optsol/react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function getRegistroMock(id: string) {
-  return id === "1" ? "João da Silva" : "Maria Andrade";
+  return id === '1' ? 'João da Silva' : 'Maria Andrade';
 }
 
 function getItemMock(id: string) {
-  return id === "1" ? "Borracha" : "Papel";
+  return id === '1' ? 'Borracha' : 'Papel';
 }
 
 export const RotaRegistro = () => {
@@ -18,17 +18,17 @@ export const RotaRegistro = () => {
     // depois de carregar o registro, o valor pode ser setado!
     const { id, itemId } = param;
 
-    const registro = getRegistroMock(id ?? "");
-    const item = getItemMock(itemId ?? "");
+    const registro = getRegistroMock(id ?? '');
+    const item = getItemMock(itemId ?? '');
 
     // aqui foi removida a referencia de item, logo, ele não será exibido no breadcrumb!
     // quando o dicionário tiver valores iguais, o breadcrumb irá pegar na ordem dos parametros
     // é o caso de id e itemId serem 1 em alguma das rotas! primeiro pegará o registro e depois o item!
     setDictionary(
-      [id ?? "", registro],
-      [itemId ?? "", item],
-      ["item", null],
-      ["editar", "Edição"]
+      [id ?? '', registro],
+      [itemId ?? '', item],
+      ['item', null],
+      ['editar', 'Edição']
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [param]);

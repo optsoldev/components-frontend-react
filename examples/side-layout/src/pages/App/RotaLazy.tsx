@@ -1,6 +1,17 @@
-import { mdiPencil, mdiThumbUp, mdiThumbDown, mdiFileMultiple, mdiCloseCircle } from '@mdi/js';
+import {
+  mdiPencil,
+  mdiThumbUp,
+  mdiThumbDown,
+  mdiFileMultiple,
+  mdiCloseCircle,
+} from '@mdi/js';
+import {
+  useBreadcrumb,
+  OptActionToolbar,
+  OptActionButton,
+} from '@optsol/react';
 import { useEffect } from 'react';
-import { useBreadcrumb, OptActionToolbar, OptActionButton } from '@optsol/react';
+
 import { ColorPalette } from '../../shared/colors';
 
 export const RotaLazy = () => {
@@ -15,17 +26,31 @@ export const RotaLazy = () => {
   return (
     <div>
       <OptActionToolbar title="Rota Lazy" goBackRoute="home">
-        <OptActionButton startIcon={{ path: mdiPencil, color: ColorPalette.curiousBlue }}>Editar</OptActionButton>
-        <OptActionButton startIcon={{ path: mdiThumbUp, color: ColorPalette.primary }}>
+        <OptActionButton
+          startIcon={{ path: mdiPencil, color: ColorPalette.curiousBlue }}
+        >
+          Editar
+        </OptActionButton>
+        <OptActionButton
+          startIcon={{ path: mdiThumbUp, color: ColorPalette.primary }}
+        >
           Aprovar proposta
         </OptActionButton>
-        <OptActionButton startIcon={{ path: mdiThumbDown, color: ColorPalette.ketchup }} loading>
+        <OptActionButton
+          startIcon={{ path: mdiThumbDown, color: ColorPalette.ketchup }}
+          loading
+        >
           Reprovar proposta
         </OptActionButton>
-        <OptActionButton startIcon={{ path: mdiFileMultiple, color: ColorPalette.secondary }} disabled>
+        <OptActionButton
+          startIcon={{ path: mdiFileMultiple, color: ColorPalette.secondary }}
+          disabled
+        >
           Anexos
         </OptActionButton>
-        <OptActionButton startIcon={{ path: mdiCloseCircle, color: ColorPalette.ketchup }}>
+        <OptActionButton
+          startIcon={{ path: mdiCloseCircle, color: ColorPalette.ketchup }}
+        >
           Cancelar proposta
         </OptActionButton>
       </OptActionToolbar>

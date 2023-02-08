@@ -1,6 +1,7 @@
 import { ListItem } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 
 export const drawerWidth = 250;

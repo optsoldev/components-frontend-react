@@ -1,4 +1,5 @@
 import color from 'color';
+
 import { ColorPalette } from '../colors';
 
 export interface OptBasicTheme {

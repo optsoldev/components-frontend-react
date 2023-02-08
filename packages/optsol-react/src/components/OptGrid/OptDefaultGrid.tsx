@@ -1,10 +1,10 @@
 import React, { ForwardedRef, useImperativeHandle } from 'react';
 import { usePagination, useSortBy, useTable } from 'react-table';
-import { OptGridRef, OptInternalGridProps } from './@types';
 
+import { OptGridRef, OptInternalGridProps } from './@types';
 import OptGridView from './OptGridView';
 
-function OptGridInternal<T extends {}>(
+function OptGridInternal<T extends object>(
   {
     title,
     controls,
@@ -102,7 +102,7 @@ function OptGridInternal<T extends {}>(
 }
 
 export const OptDefaultGrid = React.forwardRef(OptGridInternal) as <
-  T extends {}
+  T extends object
 >(
   props: OptInternalGridProps<T> & { ref?: React.ForwardedRef<OptGridRef> }
 ) => ReturnType<typeof OptGridInternal>;

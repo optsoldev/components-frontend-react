@@ -7,7 +7,6 @@ import {
   TimelineItem,
   TimelineSeparator,
 } from '@mui/lab';
-
 import {
   Avatar,
   Box,
@@ -19,8 +18,10 @@ import {
   Typography,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
+
 import { randomRgbColor } from '../../shared/functions';
 import { OptLoading } from '../OptLoading';
+
 import {
   OptTimelineField,
   OptTimelineTableValue,

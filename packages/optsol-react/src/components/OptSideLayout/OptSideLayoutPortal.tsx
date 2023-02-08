@@ -1,7 +1,9 @@
 import { LinearProgress } from '@mui/material';
 import { PropsWithChildren, Suspense } from 'react';
+
 import { OptMenuSection } from '../../types';
 import { OptSidebar } from '../OptSidebar';
+
 import { OptSideLayoutPortalContainer } from './OptSideLayoutPortalContainer';
 import { OptSideLayoutPortalContent } from './styles';
 

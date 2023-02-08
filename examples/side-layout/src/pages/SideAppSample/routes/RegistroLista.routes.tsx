@@ -1,17 +1,19 @@
 import {
   OptSideLayoutPortalContainer,
   OptSideLayoutPortalContent,
-} from "@optsol/react";
+} from '@optsol/react';
 import {
   Route,
   Routes as ReactRoutes,
   useMatch,
   useParams,
-} from "react-router-dom";
-import { FormRegistro } from "../Registro/FormRegistro/FormRegistro";
-import { ListaRegistro } from "../Registro/ListaRegistro/ListaRegistro";
-import { ListaRegistroSidebar } from "../Registro/ListaRegistroSidebar/ListaRegistroSidebar";
-import { Routes } from "./SideAppSample.routes";
+} from 'react-router-dom';
+
+import { FormRegistro } from '../Registro/FormRegistro/FormRegistro';
+import { ListaRegistro } from '../Registro/ListaRegistro/ListaRegistro';
+import { ListaRegistroSidebar } from '../Registro/ListaRegistroSidebar/ListaRegistroSidebar';
+
+import { Routes } from './SideAppSample.routes';
 
 export const RegistroListaRoutes = () => {
   const match = useMatch({
@@ -22,7 +24,7 @@ export const RegistroListaRoutes = () => {
 
   return (
     <OptSideLayoutPortalContainer>
-      <ListaRegistroSidebar rotaAtual={!!match} filtro={filtro ?? ""} />
+      <ListaRegistroSidebar rotaAtual={!!match} filtro={filtro ?? ''} />
 
       <OptSideLayoutPortalContent>
         <ReactRoutes>

@@ -1,5 +1,6 @@
 import { AppBar, IconButton, List, MenuList, Popover } from '@mui/material';
 import styled from 'styled-components';
+
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 import { drawerWidth } from '../../OptDrawer/styles';
 import { sidebarMenuWidth } from '../../OptSidebar/styles';

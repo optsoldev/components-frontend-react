@@ -1,4 +1,5 @@
 import { Theme } from 'react-select';
+
 import { ColorPalette } from '../../shared/styles/colors';
 
 export const colors = {

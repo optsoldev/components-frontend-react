@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-key */
 import { HeaderGroup } from 'react-table';
+
 import { OptGridActionsHeader } from './OptGridActionsHeader';
 import * as S from './styles';
 
@@ -25,17 +27,17 @@ export function OptGridHeaders<T extends object>({
           {actionsPosition === 'start' && <OptGridActionsHeader />}
 
           {headerGroup.headers.map((column) => (
-              <S.StyledTh
-                {...column.getHeaderProps(column.getSortByToggleProps())}
-                position={headerTitlePosition}
-                customWidth={column.width}
-              >
-                {column.render('Header')}
-                <span>
-                  {column.isSorted && (column.isSortedDesc ? ' ▼' : ' ▲')}
-                </span>
-              </S.StyledTh>
-            ))}
+            <S.StyledTh
+              {...column.getHeaderProps(column.getSortByToggleProps())}
+              position={headerTitlePosition}
+              customWidth={column.width}
+            >
+              {column.render('Header')}
+              <span>
+                {column.isSorted && (column.isSortedDesc ? ' ▼' : ' ▲')}
+              </span>
+            </S.StyledTh>
+          ))}
 
           {actionsPosition === 'end' && <OptGridActionsHeader />}
         </tr>

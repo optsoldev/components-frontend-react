@@ -1,8 +1,10 @@
 import { PropsWithChildren } from 'react';
+
 import { ActiveLinkClass } from '../../../shared/constants';
 import { ColorPalette } from '../../../shared/styles/colors';
 import { OptSearchResponse } from '../../../types';
 import { OptInfiniteScrollList } from '../../OptInfiniteScrollList/OptInfiniteScrollList';
+
 import {
   OptSidebarListBaseContainer,
   OptSidebarListBaseProps,

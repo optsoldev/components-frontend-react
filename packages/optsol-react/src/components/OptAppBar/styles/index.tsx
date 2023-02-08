@@ -1,5 +1,6 @@
 import { AppBar, IconButton, MenuList, Popover } from '@mui/material';
 import styled from 'styled-components';
+
 import { sidebarMenuWidth } from '../../OptSidebar/styles';
 
 export const appBarHeight = 48;

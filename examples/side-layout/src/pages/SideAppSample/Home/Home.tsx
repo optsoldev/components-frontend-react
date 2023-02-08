@@ -1,4 +1,4 @@
-import { OptActionToolbar, OptSideLayoutContent } from "@optsol/react";
+import { OptActionToolbar, OptSideLayoutContent } from '@optsol/react';
 
 export const Home = () => {
   return (

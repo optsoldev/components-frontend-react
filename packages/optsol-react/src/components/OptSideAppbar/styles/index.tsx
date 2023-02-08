@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 import { SidebarExpandedListItem } from '../OptSideAppbarFooterActions/styles';
 

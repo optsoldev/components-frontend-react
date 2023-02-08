@@ -1,5 +1,6 @@
 import color from 'color';
 import styled from 'styled-components';
+
 import { ColorPalette } from '../../../shared/styles/colors';
 
 const getBorderColor = (

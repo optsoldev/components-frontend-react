@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
 import { OptSidebarFilterContainer } from '@optsol/react';
+import { useParams } from 'react-router-dom';
 
 export const AppSideRegistro = () => {
   const param = useParams<{ id: string }>();

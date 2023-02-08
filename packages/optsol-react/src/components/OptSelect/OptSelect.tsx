@@ -1,7 +1,9 @@
 import color from 'color';
 import React from 'react';
 import Select, { Props } from 'react-select';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
+
 import { optSelectTheme } from './OptSelectTheme';
 
 export interface OptSelectionOption {
@@ -9,7 +11,7 @@ export interface OptSelectionOption {
   value: string;
 }
 
-export interface OptSelectProps extends Props {}
+export type OptSelectProps = Props;
 
 export const OptSelect = React.forwardRef<
   Props<OptSelectionOption, boolean>,
@@ -41,3 +43,5 @@ export const OptSelect = React.forwardRef<
     />
   );
 });
+
+OptSelect.displayName = 'OptSelect';

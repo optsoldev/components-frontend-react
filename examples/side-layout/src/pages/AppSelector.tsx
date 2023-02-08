@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
+
 import App from './App/App';
 import { AppSide } from './AppSide/AppSide';
 import { SideAppSample } from './SideAppSample/SideAppSample';
@@ -11,13 +12,25 @@ export const AppSelector = () => {
     <>
       {page === undefined && (
         <div>
-          <Button variant="contained" color="primary" onClick={() => setPage(0)}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setPage(0)}
+          >
             App padrão
           </Button>
-          <Button variant="contained" color="primary" onClick={() => setPage(1)}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setPage(1)}
+          >
             App horizontal (testes)
           </Button>
-          <Button variant="contained" color="primary" onClick={() => setPage(2)}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setPage(2)}
+          >
             APP HORIZONTAL SAMPLE
           </Button>
         </div>

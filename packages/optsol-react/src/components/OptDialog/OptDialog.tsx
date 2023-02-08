@@ -1,14 +1,16 @@
 import Icon from '@mdi/react';
 import { Breakpoint, DialogTitle } from '@mui/material';
 import { PropsWithChildren } from 'react';
+
 import { IconPathColor } from '../../types/IconPathColor';
+
 import * as S from './styles';
 
 export interface OptDialogProps {
   open: boolean;
   title: string;
   icon?: IconPathColor;
-  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  onClose?: (event: object, reason: 'backdropClick' | 'escapeKeyDown') => void;
   maxWidth?: Breakpoint | false;
   width?: string;
 }

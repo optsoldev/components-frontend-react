@@ -1,9 +1,11 @@
 import Icon from '@mdi/react';
 import { Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { OptAppLogo, OptMenuSection } from '../../types';
 import { OptUserProfile } from '../OptAvatar';
+
 import {
   ExpandedFooterActions,
   FooterActions,

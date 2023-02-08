@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ColorPalette } from '../../../shared/styles/colors';
 
 export const Container = styled.div`

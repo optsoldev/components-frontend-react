@@ -1,6 +1,7 @@
 import { Switch } from '@mui/material';
-import { useEffect } from 'react';
 import { useBreadcrumb, useOptTheme } from '@optsol/react';
+import { useEffect } from 'react';
+
 import { ColorPalette } from '../../shared/colors';
 import { transformTheme } from '../../shared/styles/theme';
 
@@ -63,10 +64,12 @@ export const RotaPrincipal = () => {
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>
       <p>
-        Aumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando
-        a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a
-        telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a telaAumentando a
-        telaAumentando a telaAumentando a telaAumentando a telaAumentando a tela
+        Aumentando a telaAumentando a telaAumentando a telaAumentando a
+        telaAumentando a telaAumentando a telaAumentando a telaAumentando a
+        telaAumentando a telaAumentando a telaAumentando a telaAumentando a
+        telaAumentando a telaAumentando a telaAumentando a telaAumentando a
+        telaAumentando a telaAumentando a telaAumentando a telaAumentando a
+        telaAumentando a telaAumentando a telaAumentando a tela
       </p>
       <p>Aumentando a tela</p>
       <p>Aumentando a tela</p>

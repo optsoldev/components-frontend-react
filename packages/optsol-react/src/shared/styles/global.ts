@@ -1,5 +1,7 @@
 import { createGlobalStyle, css } from 'styled-components';
+
 import { appBarHeight } from '../../components/OptLayout/styles';
+
 import { ScrollbarCSS } from './generic';
 
 interface GlobalStylesProps {

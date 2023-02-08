@@ -2,7 +2,9 @@ import { mdiArrowLeft } from '@mdi/js';
 import Icon from '@mdi/react';
 import { PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
+
 import * as S from './styles';
 
 export type OptActionToolbarProps = {

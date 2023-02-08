@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ScrollbarCSS } from '../../../shared/styles/generic';
 
 export const containerPadding = 12;

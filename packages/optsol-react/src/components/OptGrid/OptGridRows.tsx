@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-key */
 import { Row } from 'react-table';
+
 import { OptGridAction, OptGridColumn } from './@types';
 import { OptGridActionsCell } from './OptGridActionsCell';
 
@@ -40,16 +42,13 @@ export function OptGridRows<T extends object>({
             )}
 
             {row.cells.map((cell) => {
-              const currentOptColumn = getOptColumn(cell.column.id)!;
+              const currentOptColumn = getOptColumn(cell.column.id);
 
-              let content = cell.render('Cell');
+              let view = cell.render('Cell');
 
-              const hasCustomRender =
-                currentOptColumn && currentOptColumn.render;
-
-              if (hasCustomRender) {
+              if (currentOptColumn && currentOptColumn.render) {
                 const data = row.values as T;
-                content = currentOptColumn.render!(data);
+                view = currentOptColumn.render(data);
               }
 
               return (
@@ -57,7 +56,7 @@ export function OptGridRows<T extends object>({
                   {...cell.getCellProps()}
                   style={{ textAlign: currentOptColumn?.align ?? 'start' }}
                 >
-                  {content}
+                  {view}
                 </td>
               );
             })}

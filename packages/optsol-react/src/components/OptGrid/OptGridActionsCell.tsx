@@ -1,8 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import { Icon } from '@mdi/react';
 import { IconButton, Tooltip } from '@mui/material';
+
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { ColorPalette } from '../../shared/styles/colors';
+
 import { OptGridAction } from './@types';
 
 interface Props<T extends object> {

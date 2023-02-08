@@ -1,8 +1,9 @@
-import { mdiBellOutline, mdiHome, mdiMolecule } from "@mdi/js";
-import { version } from "react";
-import { OptSideLayout } from "@optsol/react";
-import { Routes, routes } from "./routes/SideAppSample.routes";
-import { sections } from "./SideAppSample.sections";
+import { mdiBellOutline, mdiMolecule } from '@mdi/js';
+import { OptSideLayout } from '@optsol/react';
+import { version } from 'react';
+
+import { Routes, routes } from './routes/SideAppSample.routes';
+import { sections } from './SideAppSample.sections';
 
 export const SideAppSample = () => {
   return (
@@ -11,28 +12,28 @@ export const SideAppSample = () => {
       sections={sections}
       routes={routes}
       onLogout={() => {
-        console.log("onLogout");
+        console.log('onLogout');
       }}
       onManageProfile={() => {
-        console.log("onManageProfile");
+        console.log('onManageProfile');
       }}
       appBarConfig={{
         actions: [
           {
             icon: mdiBellOutline,
             onClick: () => {
-              console.log("Notificações");
+              console.log('Notificações');
             },
-            title: "Notificações",
+            title: 'Notificações',
           },
         ],
         hideLinkDescription: true,
         sideAppbarWidth: 75,
-        sectionsAlignment: "center",
+        sectionsAlignment: 'center',
       }}
       profile={{
-        email: "usuario@optsol.com.br",
-        name: "Usuário A B",
+        email: 'usuario@optsol.com.br',
+        name: 'Usuário A B',
         avatarSrc: undefined,
       }}
       version={`Versão ${version}`}

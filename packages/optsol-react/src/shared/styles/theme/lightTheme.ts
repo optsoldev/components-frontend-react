@@ -1,5 +1,6 @@
-import { OptFullTheme } from '.';
 import { ColorPalette } from '../colors';
+
+import { OptFullTheme } from '.';
 
 export const LightTheme: OptFullTheme = {
   primary: ColorPalette.primary,

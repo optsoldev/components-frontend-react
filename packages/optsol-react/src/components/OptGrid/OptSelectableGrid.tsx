@@ -8,6 +8,7 @@ import {
   useSortBy,
   useTable,
 } from 'react-table';
+
 import { OptGridRef, OptInternalGridProps } from './@types';
 import OptGridView from './OptGridView';
 import * as S from './styles';
@@ -43,7 +44,7 @@ function Cell<T extends object>({ row }: CellProps<T>) {
   );
 }
 
-function OptGridInternal<T extends {}>(
+function OptGridInternal<T extends object>(
   {
     title,
     controls,
@@ -169,7 +170,7 @@ function OptGridInternal<T extends {}>(
 }
 
 export const OptSelectableGrid = React.forwardRef(OptGridInternal) as <
-  T extends {}
+  T extends object
 >(
   props: OptInternalSelectableGridProps<T> & {
     ref?: React.ForwardedRef<OptGridRef>;

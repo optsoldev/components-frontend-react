@@ -1,6 +1,7 @@
-import { RotaAtualProps } from "../../../../shared/RotaAtualProps";
-import { useRegistroService } from "../../services/registro.service";
-import { ListaRegistroSidebarView } from "./ListaRegistroSidebarView";
+import { RotaAtualProps } from '../../../../shared/RotaAtualProps';
+import { useRegistroService } from '../../services/registro.service';
+
+import { ListaRegistroSidebarView } from './ListaRegistroSidebarView';
 
 interface Props extends RotaAtualProps {
   filtro: string;
@@ -13,5 +14,11 @@ export const ListaRegistroSidebar = ({ rotaAtual, filtro }: Props) => {
     return buscar(page, pageSize);
   }
 
-  return <ListaRegistroSidebarView carregar={carregar} rotaAtual={rotaAtual} filtro={filtro} />;
+  return (
+    <ListaRegistroSidebarView
+      carregar={carregar}
+      rotaAtual={rotaAtual}
+      filtro={filtro}
+    />
+  );
 };
