@@ -23,6 +23,101 @@ export const sections: OptMenuSection[] = [
         path: Routes.Registro.Filtros().ListaRegistro,
         title: 'Registro1',
       },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
+      {
+        icon: mdiMatrix,
+        path: Routes.Registro.Filtros().ListaRegistro,
+        title: 'Registro1',
+      },
     ],
   },
 ];

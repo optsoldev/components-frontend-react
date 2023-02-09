@@ -118,11 +118,31 @@ export interface CustomListProps {
 }
 
 export const CustomList = styled(List)<CustomListProps>`
+  flex: 1;
   width: 100%;
   display: flex;
-  flex: 1;
-  justify-content: ${({ $align = 'center' }) => $align};
+  overflow-y: auto;
   flex-direction: column;
+  justify-content: ${({ $align = 'start' }) => $align};
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5px;
+    background-color: #d0d4ce;
+  }
+
+  ::-webkit-scrollbar {
+    width: 2px;
+    border-radius: 0.5px;
+    background-color: #d0d4ce;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.5px;
+    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export const SidebarListItemIcon = styled(ListItemIcon)`

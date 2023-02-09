@@ -29,7 +29,6 @@ export const SideAppSample = () => {
         ],
         hideLinkDescription: true,
         sideAppbarWidth: 75,
-        sectionsAlignment: 'center',
       }}
       profile={{
         email: 'usuario@optsol.com.br',
