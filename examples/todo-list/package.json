@@ -9,7 +9,7 @@
     "@mdi/react": "^1.6.1",
     "@mui/material": "^5.10.12",
     "@mui/x-date-pickers": "^5.0.16",
-    "@optsol/react": "^2.0.7",
+    "@optsol/react": "^2.0.8",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
