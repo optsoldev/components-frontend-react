@@ -10,6 +10,7 @@
     "start": "npm run watch",
     "watch": "lerna run watch --scope @optsol/react",
     "package": "lerna exec --scope @optsol/react -- npm pack",
+    "publish": "lerna exec --scope @optsol/react npm run build && npm publish",
     "build": "lerna run build --scope @optsol/react",
     "lint": "lerna run --concurrency 1 --stream lint",
     "types:check": "lerna run types:check --scope @optsol/react",
