@@ -122,6 +122,7 @@ export const CustomList = styled(List)<CustomListProps>`
   width: 100%;
   display: flex;
   overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
   justify-content: ${({ $align = 'start' }) => $align};
 
