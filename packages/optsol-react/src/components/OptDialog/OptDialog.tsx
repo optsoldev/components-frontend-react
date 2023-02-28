@@ -30,6 +30,7 @@ export function OptDialog({
       onClose={onClose}
       maxWidth={maxWidth}
       PaperProps={{ style: { width } }}
+      onClick={(e) => e.stopPropagation()}
     >
       <div style={{ cursor: 'move' }} id="draggable-dialog-title">
         {icon && (

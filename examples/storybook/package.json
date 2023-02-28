@@ -1,6 +1,6 @@
 {
   "name": "@optsol/react-storybook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "main": "index.js",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
     "@mui/material": "^5.10.15",
-    "@optsol/react": "2.0.8",
+    "@optsol/react": "^2.0.9",
     "@storybook/builder-webpack5": "^6.5.14",
     "@storybook/manager-webpack5": "^6.5.14",
     "react": "^18.2.0",

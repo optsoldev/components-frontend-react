@@ -56,10 +56,11 @@ export function OptConfirmationDialog({
     <S.StyledDialog
       open={open}
       onClose={onClose}
-      aria-labelledby="draggable-dialog-title"
-      PaperComponent={PaperComponent}
       maxWidth={maxWidth}
+      PaperComponent={PaperComponent}
       PaperProps={{ style: { width } }}
+      onClick={(e) => e.stopPropagation()}
+      aria-labelledby="draggable-dialog-title"
     >
       <div style={{ cursor: 'move' }} id="draggable-dialog-title">
         {icon && (
