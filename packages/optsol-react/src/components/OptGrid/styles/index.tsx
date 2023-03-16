@@ -32,16 +32,21 @@ export const PaginationContainer = styled.div`
   }
 `;
 
-export const Title = styled.div<{ $backgroundColor?: string }>`
+export const Title = styled.div<{ $backgroundColor?: string; $color?: string }>`
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.6rem;
   letter-spacing: 0.0075em;
-  padding: 12px 24px;
-  background-color: ${(prop) => prop.$backgroundColor ?? ''};
+  border-radius: 16px 16px 0 0;
+  padding: 12px 16px;
+  background-color: ${({ $backgroundColor }) => $backgroundColor ?? ''};
+  color: ${({ $color }) => $color ?? ''};
 `;
 
-export const StyledTable = styled.table`
+export const StyledTable = styled.table<{ $showBorderRadius?: boolean }>`
+  overflow: hidden;
+  border-radius: ${({ $showBorderRadius = false }) =>
+    $showBorderRadius ? '16px 16px 0 0' : ''};
   border-spacing: 0;
   width: 100%;
 

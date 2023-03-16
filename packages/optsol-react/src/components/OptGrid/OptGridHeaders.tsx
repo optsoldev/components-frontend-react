@@ -5,32 +5,39 @@ import { OptGridActionsHeader } from './OptGridActionsHeader';
 import * as S from './styles';
 
 interface Props<T extends object> {
-  headerGroups: HeaderGroup<T>[];
+  groups: HeaderGroup<T>[];
   actionsPosition?: 'start' | 'end';
-  headerTitlePosition?: 'start' | 'center' | 'end';
-  headerBgColor?: string;
+  titlePosition?: 'start' | 'center' | 'end';
+  bgColor?: string;
+  color?: string;
 }
 
 export function OptGridHeaders<T extends object>({
-  headerGroups,
+  groups,
   actionsPosition,
-  headerTitlePosition,
-  headerBgColor,
+  titlePosition,
+  bgColor,
+  color,
 }: Props<T>) {
   return (
     <thead>
-      {headerGroups.map((headerGroup) => (
+      {groups.map((headerGroup) => (
         <tr
           {...headerGroup.getHeaderGroupProps()}
-          style={{ backgroundColor: headerBgColor || '' }}
+          style={{
+            backgroundColor: bgColor || '',
+          }}
         >
           {actionsPosition === 'start' && <OptGridActionsHeader />}
 
           {headerGroup.headers.map((column) => (
             <S.StyledTh
               {...column.getHeaderProps(column.getSortByToggleProps())}
-              position={headerTitlePosition}
+              position={titlePosition}
               customWidth={column.width}
+              style={{
+                color: color ?? '',
+              }}
             >
               {column.render('Header')}
               <span>

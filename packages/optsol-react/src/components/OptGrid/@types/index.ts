@@ -28,7 +28,9 @@ export interface OptGridOptions {
   selection?: boolean;
   bottomElement?: React.ReactNode;
   titleBgColor?: string;
+  titleTextColor?: string;
   headerBgColor?: string;
+  headerTextColor?: string;
 }
 
 export interface OptGridAction<T> {

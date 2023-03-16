@@ -72,6 +72,7 @@ export function OptSideLayout({
         />
 
         <S.InitialContainer
+          id={'content-container'}
           ref={containerRef}
           currentsidebarwidth={currentSideAppbarWidth}
         >
