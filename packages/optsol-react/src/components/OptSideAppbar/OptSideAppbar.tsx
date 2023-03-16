@@ -71,7 +71,9 @@ export function OptSideAppbar({
       $expanded={expanded}
       $sideAppbarWidth={sideAppbarWidth}
       $expandedSideAppbarWidth={expandedSideAppbarWidth}
+      id={'sidebar-menu-container'}
     >
+      <div style={{ width: '5px', height: '5px' }}></div>
       {logo && (
         <>
           <S.SidebarNavLink
@@ -101,7 +103,7 @@ export function OptSideAppbar({
           <S.SidebarMenuDivider />
         </>
       )}
-      <S.CustomList $align={sectionsAlignment}>
+      <S.CustomList $align={sectionsAlignment} id={'sections-list'}>
         {sections.map((section, index) => (
           <React.Fragment key={index}>
             {index > 0 && <S.SidebarMenuDivider style={{ marginBottom: 6 }} />}

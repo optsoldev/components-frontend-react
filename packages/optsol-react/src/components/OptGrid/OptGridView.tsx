@@ -19,7 +19,7 @@ import { OptGridRows } from './OptGridRows';
 import * as S from './styles';
 
 interface OptGridViewProps<T extends object> {
-  title: string;
+  title?: string;
   getTableProps: (propGetter?: TablePropGetter<T>) => TableProps;
   headerGroups: HeaderGroup<T>[];
   columns: OptGridColumn<T>[];
@@ -71,15 +71,23 @@ function OptGridView<T extends object>({
 }: OptGridViewProps<T>) {
   return (
     <S.GridContainer className="opt-grid">
-      <S.Title $backgroundColor={options?.titleBgColor}>{title}</S.Title>
+      {title && (
+        <S.Title
+          $backgroundColor={options?.titleBgColor}
+          $color={options?.titleTextColor}
+        >
+          {title}
+        </S.Title>
+      )}
 
       <div className="tableWrap">
-        <S.StyledTable {...getTableProps()}>
+        <S.StyledTable $showBorderRadius={!title} {...getTableProps()}>
           <OptGridHeaders
-            headerGroups={headerGroups}
+            groups={headerGroups}
             actionsPosition={actionsPosition}
-            headerTitlePosition={headerTitlePosition}
-            headerBgColor={options?.headerBgColor}
+            titlePosition={headerTitlePosition}
+            bgColor={options?.headerBgColor}
+            color={options?.headerTextColor}
           />
 
           <tbody {...getTableBodyProps()}>
