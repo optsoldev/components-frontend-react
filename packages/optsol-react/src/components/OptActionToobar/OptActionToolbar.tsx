@@ -38,6 +38,8 @@ export function OptActionToolbar({
       title
     );
 
+  console.log({ clearMargin });
+
   return (
     <S.CustomToolbar
       className="opt-toolbar"

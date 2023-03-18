@@ -36,7 +36,6 @@ export function OptSidebarFilterContainer({
       <OptActionToolbar
         title={titulo}
         goBackRoute={goBackRoute}
-        clearMargin
         noBorder={borderColor === 'unset'}
       />
 

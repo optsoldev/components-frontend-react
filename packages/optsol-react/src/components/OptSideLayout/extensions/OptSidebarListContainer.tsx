@@ -30,6 +30,7 @@ export function OptSidebarListContainer<T extends { id: React.Key }>({
   goBackRoute,
   children,
   header,
+  ...props
 }: PropsWithChildren<Props<T>>) {
   return (
     <OptSidebarListBaseContainer
@@ -40,6 +41,7 @@ export function OptSidebarListContainer<T extends { id: React.Key }>({
       goBackRoute={goBackRoute}
       header={header}
       width={width}
+      {...props}
     >
       {children}
 

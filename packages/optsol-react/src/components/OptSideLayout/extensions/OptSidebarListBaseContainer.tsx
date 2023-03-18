@@ -4,7 +4,7 @@ import { CSSProperties, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { ColorPalette } from '../../../shared/styles/colors';
-import { OptActionToolbar } from '../../OptActionToobar';
+import { OptActionToolbar, OptActionToolbarProps } from '../../OptActionToobar';
 import {
   SidebarWithToolbarContainer,
   SidebarWithToolbarContent,
@@ -12,7 +12,7 @@ import {
 
 import * as S from './styles';
 
-export interface OptSidebarListBaseProps {
+export interface OptSidebarListBaseProps extends OptActionToolbarProps {
   createTo?: string;
   title: string;
   background?: string;
@@ -33,6 +33,7 @@ export function OptSidebarListBaseContainer({
   children,
   header,
   style,
+  ...props
 }: PropsWithChildren<OptSidebarListBaseProps>) {
   return (
     <SidebarWithToolbarContainer
@@ -43,11 +44,11 @@ export function OptSidebarListBaseContainer({
     >
       <OptActionToolbar
         title={title}
-        goBackRoute={goBackRoute}
-        clearMargin
-        background={header?.background}
         color={header?.color}
+        goBackRoute={goBackRoute}
+        background={header?.background}
         noBorder={borderColor === 'unset'}
+        {...props}
       >
         {createTo && (
           <NavLink to={createTo}>
