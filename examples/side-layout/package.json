@@ -9,7 +9,7 @@
     "@mdi/react": "^1.6.1",
     "@mui/material": "^5.10.15",
     "@mui/styled-engine": "^5.10.14",
-    "@optsol/react": "^2.0.10",
+    "@optsol/react": "^2.0.11",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
