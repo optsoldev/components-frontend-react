@@ -1,6 +1,0 @@
-{
-  "npmClient": "npm",
-  "packages": ["examples/*", "packages/*"],
-  "version": "independent",
-  "forceLocal": true
-}

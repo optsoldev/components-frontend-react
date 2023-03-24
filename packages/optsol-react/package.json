@@ -1,0 +1,47 @@
+{
+  "name": "@optsol/react",
+  "version": "2.0.11",
+  "private": false,
+  "description": "Kit de UI da OPTSOL",
+  "scripts": {
+    "start": "npm run watch",
+    "prepack": "npm run build",
+    "build": "rollup -c ",
+    "watch": "rollup -cw ",
+    "types:check": "tsc --project tsconfig.json --pretty --noEmit",
+    "lint": "eslint --ext .tsx,.ts . --fix",
+    "lint-staged": "lint-staged --config .lintstagedrc.json",
+    "format:check": "prettier . --ignore-path .gitignore --check",
+    "format:fix": "prettier . --ignore-path .gitignore --write",
+    "validate": "npm-run-all --parallel types:check && lint-staged"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.esm.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "peerDependencies": {
+    "@mdi/js": "^7.0.96",
+    "@mdi/react": "^1.6.1",
+    "@mui/material": "^5.10.15",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "react-router-dom": "^6.4.3",
+    "styled-components": "^5.3.6"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mdi/js": "^7.0.96",
+    "@mui/lab": "^5.0.0-alpha.109",
+    "color": "^4.2.3",
+    "react-draggable": "^4.4.4",
+    "react-dropzone": "^11.4.2",
+    "react-select": "^5.6.1",
+    "react-table": "^7.8.0"
+  }
+}
