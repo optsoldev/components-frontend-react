@@ -1,4 +1,9 @@
-import React, { ForwardedRef, useImperativeHandle } from 'react';
+import React, {
+  ForwardedRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import {
   CellProps,
   HeaderProps,
@@ -61,7 +66,10 @@ function OptGridInternal<T extends object>(
   }: OptInternalSelectableGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) {
-  const selectionHook = (hooks: Hooks<T>) => {
+  const loadRef = useRef(load);
+  const onSelectRef = useRef(onSelect);
+
+  const selectionHook = useCallback((hooks: Hooks<T>) => {
     hooks.allColumns.push((allColumns) => [
       // Let's make a column for selection
       {
@@ -79,25 +87,24 @@ function OptGridInternal<T extends object>(
       },
       ...allColumns,
     ]);
-  };
-
-  const tableOptions = {
-    columns: internalColumns,
-    data: controls.data,
-    initialState: {
-      pageIndex: 0,
-      pageSize: options?.pageSize ?? 10,
-      hiddenColumns,
-    }, // Pass our hoisted table state
-    manualPagination: true, // Tell the usePagination
-    // hook that we'll handle our own data fetching
-    // This means we'll also have to provide our own
-    // pageCount.
-    pageCount: controls.pageCount,
-  };
+  }, []);
 
   const table = useTable<T>(
-    tableOptions,
+    {
+      columns: internalColumns,
+      data: controls.data,
+      autoResetPage: false,
+      initialState: {
+        pageIndex: 0,
+        pageSize: options?.pageSize ?? 10,
+        hiddenColumns,
+      }, // Pass our hoisted table state
+      manualPagination: true, // Tell the usePagination
+      // hook that we'll handle our own data fetching
+      // This means we'll also have to provide our own
+      // pageCount.
+      pageCount: controls.pageCount,
+    },
     useSortBy,
     usePagination,
     useRowSelect,
@@ -125,19 +132,19 @@ function OptGridInternal<T extends object>(
 
   useImperativeHandle(ref, () => ({
     refresh: () => {
-      load(pageIndex, pageSize);
+      loadRef.current(pageIndex, pageSize);
     },
   }));
 
   React.useEffect(() => {
     const selected = selectedFlatRows.map((value) => value.original);
-    const isFunction = typeof onSelect === 'function';
+    const isFunction = typeof onSelectRef.current === 'function';
 
-    if (isFunction) onSelect(selected);
-  }, [selectedFlatRows.length]);
+    if (onSelectRef.current && isFunction) onSelectRef.current(selected);
+  }, [selectedFlatRows, selectedFlatRows.length]);
 
   React.useEffect(() => {
-    load(pageIndex, pageSize);
+    loadRef.current(pageIndex, pageSize);
   }, [pageIndex, pageSize]);
 
   return (
