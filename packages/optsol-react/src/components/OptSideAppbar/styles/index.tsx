@@ -67,6 +67,22 @@ export const SidebarListItem = styled<any>(ListItem)`
   }
 `;
 
+export const SidebarListItemLOGO = styled<any>(ListItem)`
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  border-radius: 6px;
+  margin: 6px 0;
+  width: auto;
+  min-height: 30px;
+  justify-content: center;
+  background-color: transparent;
+
+  &.MuiListItem-gutters {
+    padding: 2px;
+  }
+`;
+
 export const SidebarNavLink = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.appBar.side!.link.color};
