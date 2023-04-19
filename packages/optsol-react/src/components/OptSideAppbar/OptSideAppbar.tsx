@@ -86,7 +86,7 @@ export function OptSideAppbar({
               height: 65,
             }}
           >
-            <S.SidebarListItemLOGO button>
+            <S.SidebarListItemLogo button>
               <S.SidebarListItemIcon>
                 {typeof logo.icon === 'string' ? (
                   <Icon
@@ -98,7 +98,7 @@ export function OptSideAppbar({
                   logo.icon
                 )}
               </S.SidebarListItemIcon>
-            </S.SidebarListItemLOGO>
+            </S.SidebarListItemLogo>
           </S.SidebarNavLink>
         </>
       )}

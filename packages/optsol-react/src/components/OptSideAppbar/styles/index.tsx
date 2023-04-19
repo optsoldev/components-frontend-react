@@ -67,7 +67,7 @@ export const SidebarListItem = styled<any>(ListItem)`
   }
 `;
 
-export const SidebarListItemLOGO = styled<any>(ListItem)`
+export const SidebarListItemLogo = styled<any>(ListItem)`
   display: flex;
   flex-direction: column;
   font-size: 10px;
