@@ -86,7 +86,7 @@ export function OptSideAppbar({
               height: 65,
             }}
           >
-            <S.SidebarListItem button>
+            <S.SidebarListItemLogo button>
               <S.SidebarListItemIcon>
                 {typeof logo.icon === 'string' ? (
                   <Icon
@@ -98,9 +98,8 @@ export function OptSideAppbar({
                   logo.icon
                 )}
               </S.SidebarListItemIcon>
-            </S.SidebarListItem>
+            </S.SidebarListItemLogo>
           </S.SidebarNavLink>
-          <S.SidebarMenuDivider />
         </>
       )}
       <S.CustomList $align={sectionsAlignment} id={'sections-list'}>
