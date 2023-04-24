@@ -1,4 +1,4 @@
-import React, { ForwardedRef, useImperativeHandle, useRef } from 'react';
+import React, { ForwardedRef, useEffect, useImperativeHandle } from 'react';
 import { usePagination, useSortBy, useTable } from 'react-table';
 
 import { OptGridRef, OptInternalGridProps } from './@types';
@@ -20,8 +20,6 @@ function OptGridInternal<T extends object>(
   }: OptInternalGridProps<T>,
   ref: ForwardedRef<OptGridRef>
 ) {
-  const loadRef = useRef(load);
-
   const table = useTable<T>(
     {
       columns: internalColumns,
@@ -64,15 +62,15 @@ function OptGridInternal<T extends object>(
     ref,
     () => ({
       refresh: () => {
-        loadRef.current(pageIndex, pageSize);
+        load(pageIndex, pageSize);
       },
     }),
-    [pageIndex, pageSize]
+    [pageIndex, pageSize, load]
   );
 
-  React.useEffect(() => {
-    loadRef.current(pageIndex, pageSize);
-  }, [pageIndex, pageSize]);
+  useEffect(() => {
+    load(pageIndex, pageSize);
+  }, [pageIndex, pageSize, load]);
 
   return (
     <OptGridView
