@@ -1,13 +1,18 @@
 import { mdiMagnify } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { ButtonBase, InputAdornment, OutlinedInput } from '@mui/material';
+import {
+  ButtonBase,
+  InputAdornment,
+  OutlinedInput,
+  OutlinedInputProps,
+} from '@mui/material';
 import React, { createRef } from 'react';
 
 import { useOptTheme } from '../../contexts/theme/themeContext';
 
 import * as S from './styles';
 
-export interface OptSearchFieldProps {
+export interface OptSearchFieldProps extends OutlinedInputProps {
   placeholder?: string;
   onSearch: (searchTerm?: string) => void;
   width?: number;
@@ -21,6 +26,7 @@ export function OptSearchField({
   noBorder,
   width,
   paddingX,
+  ...inputProps
 }: OptSearchFieldProps) {
   const ref = createRef<HTMLInputElement>();
   const { currentTheme } = useOptTheme();
@@ -45,6 +51,7 @@ export function OptSearchField({
     >
       <OutlinedInput
         inputRef={ref}
+        {...inputProps}
         type="text"
         fullWidth
         placeholder={placeholder}
