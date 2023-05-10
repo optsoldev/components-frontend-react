@@ -54,11 +54,11 @@ function OptGridInternal<T extends object>(
   );
 
   const loadRemote = useCallback(
-    (remoteData: OptGridDataRequest<T>, pageIndex: number, pageSize = 10) => {
+    (remoteData: OptGridDataRequest<T>, page: number, pageSize = 10) => {
       const query: OptGridRequest = {
         orderBy: '',
         orderDirection: 'asc',
-        page: pageIndex,
+        page,
         pageSize,
         search: '',
       };

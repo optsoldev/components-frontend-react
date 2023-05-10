@@ -22,6 +22,7 @@ export interface OptGridRequest {
 }
 
 export interface OptGridOptions {
+  pageIndex?: number;
   pageSize?: number;
   search?: boolean;
   toolbar?: boolean;
