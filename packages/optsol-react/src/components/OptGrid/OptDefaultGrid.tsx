@@ -26,7 +26,7 @@ function OptGridInternal<T extends object>(
       data: controls.data,
       autoResetPage: false,
       initialState: {
-        pageIndex: 0,
+        pageIndex: options?.pageIndex ?? 0,
         pageSize: options?.pageSize ?? 10,
         hiddenColumns,
       }, // Pass our hoisted table state
