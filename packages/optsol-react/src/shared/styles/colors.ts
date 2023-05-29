@@ -27,6 +27,7 @@ export const ColorPalette = {
   white: '#ffffff',
 
   ketchup: '#EB5757',
+  red1: '#ed6d6d',
   eclipseOrange: '#F2994A',
   yellow: '#e0c237',
 

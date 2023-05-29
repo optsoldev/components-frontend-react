@@ -86,6 +86,8 @@ const Template: Story<
       {
         title: "Alert",
         icon: mdiBellOutline,
+        isBadge:true,
+        badgeValue:0,
         iconColor: ColorPalette.green3,
         onClick: () => {},
       },
