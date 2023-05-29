@@ -1,7 +1,9 @@
 import { mdiChevronDoubleLeft, mdiChevronDoubleRight } from '@mdi/js';
 import Icon from '@mdi/react';
-import { IconButton, Tooltip } from '@mui/material';
+import { Badge, BadgeProps, IconButton, Tooltip, styled } from '@mui/material';
 import React from 'react';
+
+import { ColorPalette } from 'packages/optsol-react/src/shared/styles/colors';
 
 import { useOptTheme } from '../../../contexts/theme/themeContext';
 import { OptAppBarAvatarPopOver } from '../../OptAppBar/OptAppBarAvatarPopOver';
@@ -16,6 +18,7 @@ export interface OptMainSidebarFooterAction {
   icon: string | React.ReactNode;
   iconColor?: string;
   title: string;
+  qtdNotifications?: number;
   onClick: (
     event: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
   ) => void;
@@ -42,9 +45,21 @@ export function FooterActions({
   const currentLinkColor =
     currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
 
+  const StyledBadge = styled(Badge)<BadgeProps>(() => ({
+    '& .MuiBadge-badge': {
+      right: 0,
+      top: 4,
+      border: `none`,
+      padding: '0 4px',
+      backgroundColor: ColorPalette.red1,
+      color: 'white',
+    },
+  }));
+
   return (
     <S.FooterActionsContainer>
       {footerActions?.map((action, index) => {
+        const { qtdNotifications = 0 } = action;
         const color = action.iconColor ?? currentTheme.appBar.side!.link.color;
         const icon =
           typeof action.icon === 'string' ? (
@@ -53,13 +68,25 @@ export function FooterActions({
             action.icon
           );
 
-        return (
-          <Tooltip title={action.title} placement="right" key={index}>
-            <IconButton onClick={action.onClick} size="large">
-              {icon}
-            </IconButton>
-          </Tooltip>
-        );
+        if (qtdNotifications > 0) {
+          return (
+            <Tooltip title={action.title} placement="right" key={index}>
+              <IconButton onClick={action.onClick} size="large">
+                <StyledBadge badgeContent={qtdNotifications} color="secondary">
+                  {icon}
+                </StyledBadge>
+              </IconButton>
+            </Tooltip>
+          );
+        } else {
+          return (
+            <Tooltip title={action.title} placement="right" key={index}>
+              <IconButton onClick={action.onClick} size="large">
+                {icon}
+              </IconButton>
+            </Tooltip>
+          );
+        }
       })}
 
       <OptAppBarAvatar

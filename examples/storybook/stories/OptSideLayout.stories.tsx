@@ -86,6 +86,7 @@ const Template: Story<
       {
         title: "Alert",
         icon: mdiBellOutline,
+        qtdNotifications:1,
         iconColor: ColorPalette.green3,
         onClick: () => {},
       },
