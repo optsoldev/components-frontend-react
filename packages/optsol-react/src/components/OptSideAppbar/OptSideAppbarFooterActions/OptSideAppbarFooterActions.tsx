@@ -18,8 +18,7 @@ export interface OptMainSidebarFooterAction {
   icon: string | React.ReactNode;
   iconColor?: string;
   title: string;
-  isBadge?: boolean;
-  badgeValue?: number;
+  qtdNotifications?: number;
   onClick: (
     event: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
   ) => void;
@@ -60,6 +59,7 @@ export function FooterActions({
   return (
     <S.FooterActionsContainer>
       {footerActions?.map((action, index) => {
+        const { qtdNotifications = 0 } = action;
         const color = action.iconColor ?? currentTheme.appBar.side!.link.color;
         const icon =
           typeof action.icon === 'string' ? (
@@ -68,11 +68,11 @@ export function FooterActions({
             action.icon
           );
 
-        if (action.isBadge) {
+        if (qtdNotifications > 0) {
           return (
             <Tooltip title={action.title} placement="right" key={index}>
               <IconButton onClick={action.onClick} size="large">
-                <StyledBadge badgeContent={action.badgeValue} color="secondary">
+                <StyledBadge badgeContent={qtdNotifications} color="secondary">
                   {icon}
                 </StyledBadge>
               </IconButton>
