@@ -39,9 +39,13 @@
     "@mdi/js": "^7.0.96",
     "@mui/lab": "^5.0.0-alpha.109",
     "color": "^4.2.3",
+    "lodash.merge": "^4.6.2",
     "react-draggable": "^4.4.4",
     "react-dropzone": "^11.4.2",
     "react-select": "^5.6.1",
     "react-table": "^7.8.0"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.7"
   }
 }
