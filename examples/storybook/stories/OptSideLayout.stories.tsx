@@ -4,20 +4,21 @@ import {
   mdiCogs,
   mdiFileDocument,
   mdiFolderTable,
-} from "@mdi/js";
+} from '@mdi/js';
 import {
   OptLayoutProvider,
   OptMenuSection,
   OptSideLayout,
   OptTheme,
-} from "@optsol/react";
-import { OptMainSidebarFooterAction } from "@optsol/react/lib/esm/components/OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions";
-import { ComponentMeta, Story } from "@storybook/react";
-import React from "react";
-import { ColorPalette } from "../shared/colors";
+} from '@optsol/react';
+import { OptMainSidebarFooterAction } from '@optsol/react/lib/esm/components/OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions';
+import { ComponentMeta, Story } from '@storybook/react';
+
+import { ColorPalette } from '../shared/colors';
+import { optLogo } from '../shared/optLogo';
 
 export default {
-  title: "OptSideLayout",
+  title: 'OptSideLayout',
   component: OptSideLayout,
 } as ComponentMeta<typeof OptSideLayout>;
 
@@ -29,12 +30,12 @@ const Template: Story<
     appBarConfigHideLinkDescription: boolean;
     appBarExpandedSideAppbarWidth?: number;
     appBarSideAppbarWidth?: number;
-    appBarSectionsAlignment: "start" | "center" | "end";
+    appBarSectionsAlignment: 'start' | 'center' | 'end';
   }
 > = (args) => {
   const theme: OptTheme = {
     light: {
-      style: "soft",
+      style: 'soft',
       primary: ColorPalette.green2,
       primaryContrast: ColorPalette.white,
       secondary: ColorPalette.green3,
@@ -45,34 +46,34 @@ const Template: Story<
   let userProfile;
   if (args.hasProfile) {
     userProfile = {
-      name: "Luciano Rocha",
-      email: "rochinha@email.com.br",
-      avatarSrc: "",
+      name: 'Luciano Rocha',
+      email: 'rochinha@email.com.br',
+      avatarSrc: '',
     };
   }
 
   const sectionsArray: OptMenuSection[] = [
     {
-      title: "Main",
+      title: 'Main',
       items: [
         {
-          title: "Documents",
-          path: "/documents",
+          title: 'Documents',
+          path: '/documents',
           icon: mdiFileDocument,
         },
         {
-          title: "Folder",
-          path: "/folder",
+          title: 'Folder',
+          path: '/folder',
           icon: mdiFolderTable,
         },
         {
-          title: "Account",
-          path: "/account",
+          title: 'Account',
+          path: '/account',
           icon: mdiAccountSupervisorCircle,
         },
         {
-          title: "Documents",
-          path: "/documents",
+          title: 'Documents',
+          path: '/documents',
           icon: mdiFileDocument,
         },
       ],
@@ -84,14 +85,14 @@ const Template: Story<
   if (args.appBarConfigActions) {
     actionsArrayAppBarConfig = [
       {
-        title: "Alert",
+        title: 'Alert',
         icon: mdiBellOutline,
-        qtdNotifications:1,
+        qtdNotifications: 1,
         iconColor: ColorPalette.green3,
         onClick: () => {},
       },
       {
-        title: "Config",
+        title: 'Config',
         icon: mdiCogs,
         iconColor: ColorPalette.green3,
         onClick: () => {},
@@ -117,8 +118,9 @@ const Template: Story<
   return (
     <OptLayoutProvider theme={theme} noRouter>
       <OptSideLayout
-        sections={sectionsArray}
         //routes={}
+        logo={{ icon: optLogo, iconColor: 'transparent', path: '/' }}
+        sections={sectionsArray}
         onManageProfile={() => {}}
         onLogout={() => {}}
         appBarConfig={AppBarConfigExample}
@@ -136,9 +138,9 @@ OptSideLayoutExample.args = {
   appBarConfigHideLinkDescription: true,
   appBarSideAppbarWidth: 50,
   appBarExpandedSideAppbarWidth: 250,
-  appBarSectionsAlignment: "center",
+  appBarSectionsAlignment: 'center',
   hasProfile: true,
   expandable: false,
 };
 
-OptSideLayoutExample.storyName = "Opt Side Layout";
+OptSideLayoutExample.storyName = 'Opt Side Layout';
