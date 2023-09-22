@@ -20,6 +20,7 @@ interface SidebarMenuContainerProps {
 }
 
 export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
+  overflow-y: hideen;
   ${({ $expanded, $expandedSideAppbarWidth = 260 }) =>
     $expanded &&
     css`

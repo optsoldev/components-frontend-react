@@ -17,7 +17,7 @@ export interface OptSideLayoutProps {
   /** Application routes within a \<Switch\> \</Switch\>   */
   routes?: typeof Routes;
   profile?: OptUserProfile;
-
+  limitedSectionsView?: boolean;
   onManageProfile: () => void;
   onLogout: () => void;
   expandable?: boolean;
