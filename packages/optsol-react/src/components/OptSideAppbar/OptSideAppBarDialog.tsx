@@ -1,20 +1,27 @@
-import { Box, Dialog, DialogContent } from '@mui/material';
+import Icon from '@mdi/react';
+import { Box, Dialog, DialogContent, Tooltip } from '@mui/material';
+
+import { OptMenuItem } from '../../types';
+
+import * as S from './styles';
 
 interface OptSideAppBarDialogProps {
   isOpen: boolean;
   onClose: () => void;
   handleOpenModal: () => void;
-  children: React.ReactNode;
   position: {
     top: number;
     left: number;
   };
+  sectionItems: OptMenuItem[];
+  currentLinkColor: string;
 }
 
 export default function OptSideAppBarDialog({
   isOpen,
   onClose,
-  children,
+  sectionItems,
+  currentLinkColor,
   position,
   handleOpenModal,
 }: OptSideAppBarDialogProps) {
@@ -49,7 +56,29 @@ export default function OptSideAppBarDialog({
             borderRadius: 2,
           }}
         >
-          {children}
+          {sectionItems.slice(5, sectionItems.length).map((item, index) => {
+            const color = item.iconColor ?? currentLinkColor;
+            const icon =
+              typeof item.icon === 'string' ? (
+                <Icon size={1.2} path={item.icon} color={color} />
+              ) : (
+                item.icon
+              );
+
+            return (
+              <S.SidebarNavLink
+                to={item.path}
+                key={index}
+                end={item.activeShouldBeExact}
+              >
+                <Tooltip title={item.title} placement="top">
+                  <S.SidebarListItem button>
+                    <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
+                  </S.SidebarListItem>
+                </Tooltip>
+              </S.SidebarNavLink>
+            );
+          })}
         </Box>
       </DialogContent>
     </Dialog>

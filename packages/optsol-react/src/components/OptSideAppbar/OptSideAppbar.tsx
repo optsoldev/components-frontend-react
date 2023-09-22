@@ -195,47 +195,9 @@ export function OptSideAppbar({
               onClose={() => setIsModalOpen(false)}
               handleOpenModal={handleOpenModal}
               position={dialogPosition}
-            >
-              {section.items
-                .slice(5, section.items.length)
-                .map((item, index) => {
-                  const color = item.iconColor ?? currentLinkColor;
-                  const icon =
-                    typeof item.icon === 'string' ? (
-                      <Icon size={1.2} path={item.icon} color={color} />
-                    ) : (
-                      item.icon
-                    );
-
-                  return (
-                    <S.SidebarNavLink
-                      to={item.path}
-                      key={index}
-                      end={item.activeShouldBeExact}
-                    >
-                      {expanded && (
-                        <SidebarExpandedListItem button>
-                          <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
-                          <SidebarExpandedListItemText primary={item.title} />
-                        </SidebarExpandedListItem>
-                      )}
-
-                      {!expanded && (
-                        <Tooltip title={item.title} placement="top">
-                          <S.SidebarListItem button>
-                            <S.SidebarListItemIcon>
-                              {icon}
-                            </S.SidebarListItemIcon>
-                            {!hideLinkDescription && (
-                              <S.SidebarListItemText primary={item.title} />
-                            )}
-                          </S.SidebarListItem>
-                        </Tooltip>
-                      )}
-                    </S.SidebarNavLink>
-                  );
-                })}
-            </OptSideAppBarDialog>
+              currentLinkColor={currentLinkColor}
+              sectionItems={section.items}
+            />
           </React.Fragment>
         ))}
       </S.CustomList>
