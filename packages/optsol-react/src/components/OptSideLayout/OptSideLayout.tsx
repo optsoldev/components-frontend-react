@@ -25,6 +25,7 @@ export function OptSideLayout({
   onManageProfile,
   onLogout,
   appBarConfig,
+  limitedSectionsView,
 }: PropsWithChildren<OptSideLayoutProps>) {
   const location = useLocation();
   const {
@@ -62,6 +63,7 @@ export function OptSideLayout({
           sections={sections}
           footerActions={appBarConfig?.actions}
           profile={profile}
+          limitedSectionsView={limitedSectionsView}
           onLogout={onLogout}
           onManageProfile={onManageProfile}
           hideLinkDescription={appBarConfig?.hideLinkDescription}

@@ -1,11 +1,13 @@
+import { mdiDotsHorizontal } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Tooltip } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useOptTheme } from '../../contexts/theme/themeContext';
 import { OptAppLogo, OptMenuSection } from '../../types';
 import { OptUserProfile } from '../OptAvatar';
 
+import OptSideAppBarDialog from './OptSideAppBarDialog';
 import {
   ExpandedFooterActions,
   FooterActions,
@@ -20,7 +22,7 @@ import * as S from './styles';
 interface OptMainSidebarProps {
   logo?: OptAppLogo;
   sections: OptMenuSection[];
-
+  limitedSectionsView?: boolean;
   expandable?: boolean;
   footerActions?: OptMainSidebarFooterAction[];
   profile?: OptUserProfile;
@@ -39,6 +41,7 @@ export function OptSideAppbar({
   expandable = false,
   footerActions,
   hideLinkDescription = false,
+  limitedSectionsView = false,
   onLogout,
   onManageProfile,
   sideAppbarWidth = 50,
@@ -47,7 +50,27 @@ export function OptSideAppbar({
 }: OptMainSidebarProps) {
   const { currentTheme } = useOptTheme();
   const [expanded, setExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [dialogPosition, setDialogPosition] = useState({ top: 0, left: 0 });
+
+  // Crie uma ref para o ícone
+  const iconRef = useRef<HTMLButtonElement>(null);
+
   const { setCurrentSideAppbarWidth } = useOptTheme();
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+
+    // Verifique se a ref do ícone existe antes de chamar getBoundingClientRect()
+    if (iconRef.current) {
+      const iconRect = iconRef.current.getBoundingClientRect();
+      setDialogPosition({
+        top: iconRect.top + window.scrollY + iconRect.height - 90, // Ajuste a posição conforme necessário
+        left: iconRect.left + window.scrollX,
+      });
+    }
+  };
 
   const currentLinkColor =
     currentTheme.appBar.side?.link.color ?? currentTheme.appBar.color;
@@ -106,46 +129,116 @@ export function OptSideAppbar({
         {sections.map((section, index) => (
           <React.Fragment key={index}>
             {index > 0 && <S.SidebarMenuDivider style={{ marginBottom: 6 }} />}
+            {section.items
+              .slice(0, limitedSectionsView ? 5 : section.items.length)
+              .map((item, index) => {
+                const color = item.iconColor ?? currentLinkColor;
+                const icon =
+                  typeof item.icon === 'string' ? (
+                    <Icon size={1.2} path={item.icon} color={color} />
+                  ) : (
+                    item.icon
+                  );
 
-            {section.items.map((item, index) => {
-              const color = item.iconColor ?? currentLinkColor;
-              const icon =
-                typeof item.icon === 'string' ? (
-                  <Icon size={1.2} path={item.icon} color={color} />
-                ) : (
-                  item.icon
-                );
-
-              return (
-                <S.SidebarNavLink
-                  to={item.path}
-                  key={index}
-                  end={item.activeShouldBeExact}
-                >
-                  {expanded && (
-                    <SidebarExpandedListItem button>
-                      <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
-                      <SidebarExpandedListItemText primary={item.title} />
-                    </SidebarExpandedListItem>
-                  )}
-
-                  {!expanded && (
-                    <Tooltip title={item.title} placement="right">
-                      <S.SidebarListItem button>
+                return (
+                  <S.SidebarNavLink
+                    to={item.path}
+                    key={index}
+                    end={item.activeShouldBeExact}
+                  >
+                    {expanded && (
+                      <SidebarExpandedListItem button>
                         <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
-                        {!hideLinkDescription && (
-                          <S.SidebarListItemText primary={item.title} />
-                        )}
-                      </S.SidebarListItem>
-                    </Tooltip>
+                        <SidebarExpandedListItemText primary={item.title} />
+                      </SidebarExpandedListItem>
+                    )}
+
+                    {!expanded && (
+                      <Tooltip title={item.title} placement="right">
+                        <S.SidebarListItem button>
+                          <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
+                          {!hideLinkDescription && (
+                            <S.SidebarListItemText primary={item.title} />
+                          )}
+                        </S.SidebarListItem>
+                      </Tooltip>
+                    )}
+                  </S.SidebarNavLink>
+                );
+              })}
+            {section.items.length > 4 && limitedSectionsView && (
+              <button
+                style={{ border: 'none' }}
+                onClick={handleOpenModal}
+                onMouseEnter={handleOpenModal}
+                onMouseLeave={() => {
+                  setIsModalOpen(false);
+                }}
+              >
+                <S.SidebarListItem button>
+                  <S.SidebarListItemIcon ref={iconRef}>
+                    <Icon
+                      path={mdiDotsHorizontal}
+                      size={1.2}
+                      color={currentLinkColor}
+                    />
+                  </S.SidebarListItemIcon>
+                  {!hideLinkDescription && (
+                    <S.SidebarListItemText primary={'Outros'} />
                   )}
-                </S.SidebarNavLink>
-              );
-            })}
+                </S.SidebarListItem>
+              </button>
+            )}
+
+            <OptSideAppBarDialog
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              handleOpenModal={handleOpenModal}
+              position={dialogPosition}
+            >
+              {section.items
+                .slice(5, section.items.length)
+                .map((item, index) => {
+                  const color = item.iconColor ?? currentLinkColor;
+                  const icon =
+                    typeof item.icon === 'string' ? (
+                      <Icon size={1.2} path={item.icon} color={color} />
+                    ) : (
+                      item.icon
+                    );
+
+                  return (
+                    <S.SidebarNavLink
+                      to={item.path}
+                      key={index}
+                      end={item.activeShouldBeExact}
+                    >
+                      {expanded && (
+                        <SidebarExpandedListItem button>
+                          <S.SidebarListItemIcon>{icon}</S.SidebarListItemIcon>
+                          <SidebarExpandedListItemText primary={item.title} />
+                        </SidebarExpandedListItem>
+                      )}
+
+                      {!expanded && (
+                        <Tooltip title={item.title} placement="top">
+                          <S.SidebarListItem button>
+                            <S.SidebarListItemIcon>
+                              {icon}
+                            </S.SidebarListItemIcon>
+                            {!hideLinkDescription && (
+                              <S.SidebarListItemText primary={item.title} />
+                            )}
+                          </S.SidebarListItem>
+                        </Tooltip>
+                      )}
+                    </S.SidebarNavLink>
+                  );
+                })}
+            </OptSideAppBarDialog>
           </React.Fragment>
         ))}
       </S.CustomList>
-
       {expanded ? (
         <ExpandedFooterActions
           footerActions={footerActions}

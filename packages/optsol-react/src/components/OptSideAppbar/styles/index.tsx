@@ -20,6 +20,7 @@ interface SidebarMenuContainerProps {
 }
 
 export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
+  overflow-y: hideen;
   ${({ $expanded, $expandedSideAppbarWidth = 260 }) =>
     $expanded &&
     css`
@@ -41,6 +42,7 @@ export const SidebarMenuContainer = styled.div<SidebarMenuContainerProps>`
   background: ${({ theme }) => theme.appBar.background};
   color: ${({ theme }) => theme.appBar.color};
   height: auto;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 8px;
