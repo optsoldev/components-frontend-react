@@ -56,7 +56,7 @@ export default function OptSideAppBarDialog({
             borderRadius: 2,
           }}
         >
-          {sectionItems.slice(5, sectionItems.length).map((item, index) => {
+          {sectionItems.map((item, index) => {
             const color = item.iconColor ?? currentLinkColor;
             const icon =
               typeof item.icon === 'string' ? (

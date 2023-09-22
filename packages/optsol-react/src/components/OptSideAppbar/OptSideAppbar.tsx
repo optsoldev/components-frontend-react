@@ -196,7 +196,7 @@ export function OptSideAppbar({
               handleOpenModal={handleOpenModal}
               position={dialogPosition}
               currentLinkColor={currentLinkColor}
-              sectionItems={section.items}
+              sectionItems={section.items.slice(5, section.items.length)}
             />
           </React.Fragment>
         ))}
