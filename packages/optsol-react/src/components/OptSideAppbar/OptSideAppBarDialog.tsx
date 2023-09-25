@@ -35,24 +35,26 @@ export default function OptSideAppBarDialog({
           top: position.top,
           left: position.left,
           backgroundColor: 'transparent',
-          boxShadow: 'none', // Cor de fundo da modal
+          boxShadow: 'red', // Cor de fundo da modal
         },
       }}
       slotProps={{
         backdrop: {
-          style: { backgroundColor: 'rgba(0, 0, 0, 0.0)' },
+          style: { backgroundColor: 'rgba(0, 0, 0, 0.0)', padding: 0 },
         },
       }} // Personalize o estilo do Backdrop
       onMouseLeave={onClose}
       onMouseEnter={handleOpenModal}
     >
-      <DialogContent>
+      <DialogContent sx={{ padding: 0 }}>
         <Box
           sx={{
             boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;',
             display: 'flex',
+            backgroundColor: '#fff',
             gap: 2,
             paddingX: 2,
+            paddingY: 1,
             borderRadius: 2,
           }}
         >
