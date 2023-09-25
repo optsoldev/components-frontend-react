@@ -66,7 +66,7 @@ export function OptSideAppbar({
     if (iconRef.current) {
       const iconRect = iconRef.current.getBoundingClientRect();
       setDialogPosition({
-        top: iconRect.top + window.scrollY + iconRect.height - 80, // Ajuste a posição conforme necessário
+        top: iconRect.top + window.scrollY + iconRect.height - 75, // Ajuste a posição conforme necessário
         left: iconRect.left + window.scrollX + 18,
       });
     }

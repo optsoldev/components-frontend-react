@@ -9,6 +9,7 @@ import { Box, Container } from '@mui/material';
 import { PropsWithChildren, useLayoutEffect } from 'react';
 import { Routes as ReactRoutes, Route, useNavigate } from 'react-router-dom';
 
+import { OptActionToolbar } from '@optsol/react';
 import { MsalConfig } from '../authentication/config/msalConfig';
 import { Currency } from '../components/Currency';
 import { useUserContext } from '../contexts/User.context';
@@ -28,7 +29,15 @@ const AuthError: React.ElementType<MsalAuthenticationResult> = () => {
 
 export const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <Box display="flex" flexDirection="column" flex={1}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      flex={1}
+      sx={{ overflowY: 'scroll' }}
+    >
+      <Box position="sticky" top={0}>
+        <OptActionToolbar />
+      </Box>
       <Container maxWidth="lg" sx={{ height: 1 }}>
         {children}
       </Container>

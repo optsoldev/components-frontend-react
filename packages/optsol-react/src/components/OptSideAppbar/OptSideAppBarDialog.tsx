@@ -49,13 +49,14 @@ export default function OptSideAppBarDialog({
       <DialogContent sx={{ padding: 0 }}>
         <Box
           sx={{
-            boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;',
+            boxShadow: 'box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;',
             display: 'flex',
             backgroundColor: '#fff',
-            gap: 2,
-            paddingX: 2,
             paddingY: 1,
             borderRadius: 2,
+            flexWrap: 'wrap',
+            maxWidth: '8rem',
+            justifyContent: 'space-evenly',
           }}
         >
           {sectionItems.map((item, index) => {
