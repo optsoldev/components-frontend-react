@@ -14,7 +14,9 @@ import {
 } from '@optsol/react';
 import { OptMainSidebarFooterAction } from '@optsol/react/lib/esm/components/OptSideAppbar/OptSideAppbarFooterActions/OptSideAppbarFooterActions';
 import { ComponentMeta, Story } from '@storybook/react';
+
 import { ColorPalette } from '../shared/colors';
+import { optLogo } from '../shared/optLogo';
 
 export default {
   title: 'OptSideLayout',
@@ -72,8 +74,8 @@ const Template: Story<
           icon: mdiAccountSupervisorCircle,
         },
         {
-          title: 'Documents1',
-          path: '/documents312a',
+          title: 'Documents',
+          path: '/documents',
           icon: mdiFileDocument,
         },
         {
@@ -150,8 +152,9 @@ const Template: Story<
   return (
     <OptLayoutProvider theme={theme} noRouter>
       <OptSideLayout
-        sections={sectionsArray}
         //routes={}
+        logo={{ icon: optLogo, iconColor: 'transparent', path: '/' }}
+        sections={sectionsArray}
         onManageProfile={() => {}}
         onLogout={() => {}}
         appBarConfig={AppBarConfigExample}

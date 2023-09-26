@@ -16,7 +16,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "**/lib"]

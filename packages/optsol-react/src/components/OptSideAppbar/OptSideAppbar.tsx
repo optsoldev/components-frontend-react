@@ -66,8 +66,8 @@ export function OptSideAppbar({
     if (iconRef.current) {
       const iconRect = iconRef.current.getBoundingClientRect();
       setDialogPosition({
-        top: iconRect.top + window.scrollY + iconRect.height - 90, // Ajuste a posição conforme necessário
-        left: iconRect.left + window.scrollX,
+        top: iconRect.top + window.scrollY + iconRect.height - 75, // Ajuste a posição conforme necessário
+        left: iconRect.left + window.scrollX + 18,
       });
     }
   };
@@ -168,7 +168,7 @@ export function OptSideAppbar({
               })}
             {section.items.length > 4 && limitedSectionsView && (
               <button
-                style={{ border: 'none' }}
+                style={{ border: 'none', backgroundColor: 'transparent' }}
                 onClick={handleOpenModal}
                 onMouseEnter={handleOpenModal}
                 onMouseLeave={() => {
