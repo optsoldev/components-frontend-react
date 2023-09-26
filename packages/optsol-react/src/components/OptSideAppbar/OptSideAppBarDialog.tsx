@@ -35,7 +35,7 @@ export default function OptSideAppBarDialog({
           top: position.top,
           left: position.left,
           backgroundColor: 'transparent',
-          boxShadow: 'red', // Cor de fundo da modal
+          boxShadow: 'none', // Cor de fundo da modal
         },
       }}
       slotProps={{
