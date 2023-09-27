@@ -36,7 +36,7 @@ const Registros = () => {
 
   return (
     <OptSideLayoutContent>
-      <OptGrid title="" data={[]} columns={columns} options={options} />
+      <OptGrid data={[]} columns={columns} options={options} />
     </OptSideLayoutContent>
   );
 };
