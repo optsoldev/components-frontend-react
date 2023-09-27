@@ -9,8 +9,6 @@ const Registros = () => {
   const options: OptGridOptions = {
     search: true,
     pageSize: 10,
-    titleBgColor: 'blue',
-    headerBgColor: 'red',
   };
 
   const columns: OptGridColumn<any>[] = [
@@ -38,7 +36,7 @@ const Registros = () => {
 
   return (
     <OptSideLayoutContent>
-      <OptGrid title="" data={[]} columns={columns} options={options} />
+      <OptGrid data={[]} columns={columns} options={options} />
     </OptSideLayoutContent>
   );
 };

@@ -51,15 +51,16 @@ function Cell<T extends object>({ row }: CellProps<T>) {
 
 function OptGridInternal<T extends object>(
   {
-    title,
     controls,
     options,
     columns,
     hiddenColumns,
     internalColumns,
+    headerStyle,
+    cellStyle,
+    rowStyle,
     actions,
     actionsPosition,
-    headerTitlePosition,
     onRowClick,
     onSelect,
     load,
@@ -149,7 +150,6 @@ function OptGridInternal<T extends object>(
 
   return (
     <OptGridView
-      title={title}
       getTableProps={getTableProps}
       headerGroups={headerGroups}
       columns={columns}
@@ -158,6 +158,9 @@ function OptGridInternal<T extends object>(
       onRowClick={onRowClick}
       page={page}
       prepareRow={prepareRow}
+      headerStyle={headerStyle}
+      cellStyle={cellStyle}
+      rowStyle={rowStyle}
       actions={actions}
       controls={controls}
       canPreviousPage={canPreviousPage}
@@ -170,7 +173,6 @@ function OptGridInternal<T extends object>(
       setPageSize={setPageSize}
       pageIndex={pageIndex}
       pageSize={pageSize}
-      headerTitlePosition={headerTitlePosition}
       options={options}
     />
   );

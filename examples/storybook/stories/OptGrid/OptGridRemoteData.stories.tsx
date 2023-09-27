@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { mdiCheck, mdiDelete } from "@mdi/js";
+import { mdiCheck, mdiDelete } from '@mdi/js';
 import {
   OptGrid,
   OptGridOptions,
@@ -7,10 +7,11 @@ import {
   OptGridRef,
   OptGridRequest,
   OptGridResponse,
-} from "@optsol/react";
-import { Meta, Story } from "@storybook/react";
-import React, { useRef } from "react";
-import { ColorPalette } from "../../shared/colors";
+} from '@optsol/react';
+import { Meta, Story } from '@storybook/react';
+import React, { useRef } from 'react';
+
+import { ColorPalette } from '../../shared/colors';
 
 interface Pessoa {
   id: number;
@@ -20,14 +21,14 @@ interface Pessoa {
 }
 
 export default {
-  title: "OptGrid",
+  title: 'OptGrid',
   component: OptGrid,
 } as Meta;
 
 function carregar(query: OptGridRequest): Promise<OptGridResponse<Pessoa>> {
-  let url = "https://reqres.in/api/users?";
-  url += "per_page=" + query.pageSize;
-  url += "&page=" + (query.page + 1);
+  let url = 'https://reqres.in/api/users?';
+  url += 'per_page=' + query.pageSize;
+  url += '&page=' + (query.page + 1);
 
   return fetch(url)
     .then((response) => response.json())
@@ -45,11 +46,10 @@ interface OptGridArgs extends OptGridProps<Pessoa> {
   search: boolean;
   onDelete: (data: Pessoa) => string;
   onApprove: (data: Pessoa) => string;
-  actionsPosition: "start" | "end";
-  headerTitlePosition: "start" | "center" | "end";
+  actionsPosition: 'start' | 'end';
+  headerTitlePosition: 'start' | 'center' | 'end';
   selection: boolean;
   bottomElement?: React.ReactNode;
-  titleBgColor: string;
   headerBgColor: string;
   disabledAction: boolean;
 }
@@ -65,15 +65,13 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   onApprove,
   selection,
   bottomElement,
-  titleBgColor,
   headerBgColor,
-  disabledAction
+  disabledAction,
 }) => {
   const options: OptGridOptions = {
     search,
     selection,
     bottomElement,
-    titleBgColor,
     headerBgColor,
   };
 
@@ -96,31 +94,31 @@ export const OptGridRemota: Story<OptGridArgs> = ({
         ref={ref}
         columns={[
           {
-            title: "Avatar",
-            field: "avatar",
+            title: 'Avatar',
+            field: 'avatar',
             render: (rowData) => (
               <img
-                style={{ height: 36, borderRadius: "50%" }}
+                style={{ height: 36, borderRadius: '50%' }}
                 src={rowData.avatar}
                 alt={rowData.avatar}
               />
             ),
             width: 90,
-            align: "center",
+            align: 'center',
           },
           {
-            title: "Id",
-            field: "id",
+            title: 'Id',
+            field: 'id',
             width: 80,
             hidden: true,
           },
           {
-            title: "Nome",
-            field: "first_name",
+            title: 'Nome',
+            field: 'first_name',
           },
           {
-            title: "Sobrenome",
-            field: "last_name",
+            title: 'Sobrenome',
+            field: 'last_name',
           },
         ]}
         data={carregar}
@@ -130,13 +128,13 @@ export const OptGridRemota: Story<OptGridArgs> = ({
         actions={[
           (rowData) => ({
             icon: { path: mdiDelete, color: ColorPalette.gray3 },
-            tooltip: "Deletar usuário",
+            tooltip: 'Deletar usuário',
             onClick: () => onDelete(rowData),
             disabled: disabledAction,
           }),
           (rowData) => ({
             icon: { path: mdiCheck, color: ColorPalette.green2 },
-            tooltip: "Aprovar usuário",
+            tooltip: 'Aprovar usuário',
             onClick: () => onApprove(rowData),
             disabled: disabledAction,
           }),
@@ -148,56 +146,51 @@ export const OptGridRemota: Story<OptGridArgs> = ({
   );
 };
 
-OptGridRemota.storyName = "Remote data Grid";
+OptGridRemota.storyName = 'Remote data Grid';
 
 OptGridRemota.args = {
-  title: "Remote grid",
+  title: 'Remote grid',
   search: true,
-  actionsPosition: "start",
-  headerTitlePosition: "start",
+  actionsPosition: 'start',
+  headerTitlePosition: 'start',
   selection: false,
-  bottomElement: "",
-  titleBgColor: "",
-  headerBgColor: "",
-  disabledAction:false,
+  bottomElement: '',
+  headerBgColor: '',
+  disabledAction: false,
 };
 
 OptGridRemota.argTypes = {
   title: {
-    defaultValue: "Remote grid",
-    name: "Título",
+    defaultValue: 'Remote grid',
+    name: 'Título',
   },
   search: {
     defaultValue: true,
-    name: "Fast search",
+    name: 'Fast search',
   },
   actionsPosition: {
-    defaultValue: "start",
-    name: "Action column position",
+    defaultValue: 'start',
+    name: 'Action column position',
   },
   headerTitlePosition: {
-    defaultValue: "start",
-    name: "Header title position",
+    defaultValue: 'start',
+    name: 'Header title position',
   },
   selection: {
     defaultValue: false,
-    name: "Selectable",
+    name: 'Selectable',
   },
   bottomElement: {
-    name: "Bottom Element",
-    options: ["SemBottomElement", "ComBottomElement"],
+    name: 'Bottom Element',
+    options: ['SemBottomElement', 'ComBottomElement'],
     mapping: {
-      SemBottomElement: "",
+      SemBottomElement: '',
       ComBottomElement: <p>BOTTOM ELEMENT</p>,
     },
   },
-  titleBgColor: {
-    defaultValue: "#fff",
-    name: "Title Background Color",
-  },
   headerBgColor: {
-    defaultValue: "#fff",
-    name: "Header Background Color",
+    defaultValue: '#fff',
+    name: 'Header Background Color',
   },
   data: {
     table: { disable: true },
@@ -212,23 +205,23 @@ OptGridRemota.argTypes = {
     table: { disable: true },
   },
   onRowClick: {
-    action: "onRowClick clicked",
+    action: 'onRowClick clicked',
     table: { disable: true },
   },
   onDelete: {
-    action: (data: Pessoa) => "onDelete clicked" + data,
+    action: (data: Pessoa) => 'onDelete clicked' + data,
     table: { disable: true },
   },
   onSelect: {
-    action: (data) => "onSelect fired " + data,
+    action: (data) => 'onSelect fired ' + data,
     table: { disable: true },
   },
   onApprove: {
-    action: (data: Pessoa) => "onApprove clicked" + data,
+    action: (data: Pessoa) => 'onApprove clicked' + data,
     table: { disable: true },
   },
   disabledAction: {
     defaultValue: false,
-    name: "Disabled Action",
+    name: 'Disabled Action',
   },
 };

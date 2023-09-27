@@ -8,26 +8,17 @@ interface Props<T extends object> {
   groups: HeaderGroup<T>[];
   actionsPosition?: 'start' | 'end';
   titlePosition?: 'start' | 'center' | 'end';
-  bgColor?: string;
-  color?: string;
 }
 
 export function OptGridHeaders<T extends object>({
   groups,
   actionsPosition,
   titlePosition,
-  bgColor,
-  color,
 }: Props<T>) {
   return (
     <thead>
       {groups.map((headerGroup) => (
-        <tr
-          {...headerGroup.getHeaderGroupProps()}
-          style={{
-            backgroundColor: bgColor || '',
-          }}
-        >
+        <tr {...headerGroup.getHeaderGroupProps()}>
           {actionsPosition === 'start' && <OptGridActionsHeader />}
 
           {headerGroup.headers.map((column) => (
@@ -35,9 +26,6 @@ export function OptGridHeaders<T extends object>({
               {...column.getHeaderProps(column.getSortByToggleProps())}
               position={titlePosition}
               customWidth={column.width}
-              style={{
-                color: color ?? '',
-              }}
             >
               {column.render('Header')}
               <span>
