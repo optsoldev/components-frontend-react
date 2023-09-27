@@ -8,6 +8,7 @@ import {
 } from '@optsol/react';
 import { Meta, Story } from '@storybook/react';
 import React, { useRef } from 'react';
+import { CSSObject } from 'styled-components';
 
 interface Pessoa {
   id: number;
@@ -128,47 +129,39 @@ const LOCAL_DATA = [
 ];
 
 interface OptGridArgs extends OptGridProps<Pessoa> {
-  title: string;
   search: boolean;
   onDelete: (data: Pessoa) => string;
   actionsPosition: 'start' | 'end';
-  headerTitlePosition: 'start' | 'center' | 'end';
   selection: boolean;
   bottomElement?: React.ReactNode;
-  titleBgColor: string;
-  titleTextColor: string;
-  headerBgColor: string;
-  headerTextColor: string;
   disabledAction: boolean;
+  headerStyle?: CSSObject;
+  cellStyle?: CSSObject;
+  rowStyle?: CSSObject;
+  onRowClick: () => void;
+  onSelect: () => void;
 }
 
 export const OptGridLocalData: Story<OptGridArgs> = ({
-  title,
   search,
+  headerStyle,
+  cellStyle,
+  rowStyle,
   actionsPosition,
-  headerTitlePosition,
   onRowClick,
   onSelect,
   onDelete,
   selection,
   bottomElement,
-  titleBgColor,
-  titleTextColor,
-  headerBgColor,
-  headerTextColor,
   disabledAction,
 }) => {
   const options: OptGridOptions = {
     search,
     selection,
     bottomElement,
-    titleBgColor,
-    titleTextColor,
-    headerBgColor,
-    headerTextColor,
   };
 
-  const ref = useRef<OptGridRef>();
+  const ref = useRef<OptGridRef>(null);
 
   function recarregar() {
     ref.current?.refresh();
@@ -183,8 +176,10 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
       </div>
 
       <OptGrid
-        title={title}
         ref={ref}
+        headerStyle={headerStyle}
+        cellStyle={cellStyle}
+        rowStyle={rowStyle}
         columns={[
           {
             title: 'Avatar',
@@ -222,7 +217,7 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
         onRowClick={onRowClick}
         onSelect={onSelect}
         actions={[
-          (rowData) => ({
+          (rowData: Pessoa) => ({
             icon: { path: mdiDelete },
             tooltip: 'Deletar usuário',
             onClick: () => onDelete(rowData),
@@ -230,7 +225,6 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
           }),
         ]}
         actionsPosition={actionsPosition}
-        headerTitlePosition={headerTitlePosition}
       />
     </React.Fragment>
   );
@@ -239,23 +233,13 @@ export const OptGridLocalData: Story<OptGridArgs> = ({
 OptGridLocalData.storyName = 'Local data Grid';
 
 OptGridLocalData.args = {
-  title: 'Local data Grid',
   search: true,
   actionsPosition: 'end',
-  headerTitlePosition: 'start',
   selection: false,
   bottomElement: '',
-  titleTextColor: '',
-  headerTextColor: '',
-  titleBgColor: '',
-  headerBgColor: '',
   disabledAction: false,
 };
 OptGridLocalData.argTypes = {
-  title: {
-    defaultValue: 'Local data Grid',
-    name: 'Title',
-  },
   search: {
     defaultValue: true,
     name: 'Fast search',
@@ -263,10 +247,6 @@ OptGridLocalData.argTypes = {
   actionsPosition: {
     defaultValue: 'start',
     name: 'Action column position',
-  },
-  headerTitlePosition: {
-    defaultValue: 'start',
-    name: 'Header title position',
   },
   selection: {
     defaultValue: false,
@@ -279,22 +259,6 @@ OptGridLocalData.argTypes = {
       SemBottomElement: '',
       ComBottomElement: <p>BOTTOM ELEMENT</p>,
     },
-  },
-  titleBgColor: {
-    defaultValue: '#fff',
-    name: 'Title Background Color',
-  },
-  titleTextColor: {
-    defaultValue: '#fff',
-    name: 'Title Text Color',
-  },
-  headerBgColor: {
-    defaultValue: '#fff',
-    name: 'Header Background Color',
-  },
-  headerTextColor: {
-    defaultValue: '#fff',
-    name: 'Header Text Color',
   },
   data: {
     table: { disable: true },
@@ -313,7 +277,7 @@ OptGridLocalData.argTypes = {
     table: { disable: true },
   },
   onSelect: {
-    action: (data) => 'onSelect fired ' + data,
+    action: (data: Pessoa) => 'onSelect fired ' + data,
     table: { disable: true },
   },
   onDelete: {
@@ -324,4 +288,7 @@ OptGridLocalData.argTypes = {
     defaultValue: false,
     name: 'Disabled Action',
   },
+  rowStyle: {},
+  cellStyle: {},
+  headerStyle: {},
 };

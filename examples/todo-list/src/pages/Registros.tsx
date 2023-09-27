@@ -9,8 +9,6 @@ const Registros = () => {
   const options: OptGridOptions = {
     search: true,
     pageSize: 10,
-    titleBgColor: 'blue',
-    headerBgColor: 'red',
   };
 
   const columns: OptGridColumn<any>[] = [

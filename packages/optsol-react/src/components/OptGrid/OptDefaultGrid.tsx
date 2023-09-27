@@ -6,15 +6,16 @@ import OptGridView from './OptGridView';
 
 function OptGridInternal<T extends object>(
   {
-    title,
     controls,
+    headerStyle,
+    cellStyle,
+    rowStyle,
     options,
     columns,
     hiddenColumns,
     internalColumns,
     actions,
     actionsPosition,
-    headerTitlePosition,
     onRowClick,
     load,
   }: OptInternalGridProps<T>,
@@ -74,7 +75,6 @@ function OptGridInternal<T extends object>(
 
   return (
     <OptGridView
-      title={title}
       getTableProps={getTableProps}
       headerGroups={headerGroups}
       columns={columns}
@@ -85,6 +85,9 @@ function OptGridInternal<T extends object>(
       prepareRow={prepareRow}
       actions={actions}
       controls={controls}
+      headerStyle={headerStyle}
+      cellStyle={cellStyle}
+      rowStyle={rowStyle}
       canPreviousPage={canPreviousPage}
       canNextPage={canNextPage}
       pageOptions={pageOptions}
@@ -95,7 +98,6 @@ function OptGridInternal<T extends object>(
       setPageSize={setPageSize}
       pageIndex={pageIndex}
       pageSize={pageSize}
-      headerTitlePosition={headerTitlePosition}
       options={options}
     />
   );

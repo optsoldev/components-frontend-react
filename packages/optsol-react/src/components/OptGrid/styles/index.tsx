@@ -1,15 +1,12 @@
 import { Checkbox } from '@mui/material';
 import Color from 'color';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { CSSObject, css } from 'styled-components';
 
 export const GridContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.divider};
-  border-radius: 16px;
-
   display: block;
   max-width: 100%;
-
   .tableWrap {
     display: block;
     max-width: 100%;
@@ -37,19 +34,20 @@ export const Title = styled.div<{ $backgroundColor?: string; $color?: string }>`
   font-weight: 500;
   line-height: 1.6rem;
   letter-spacing: 0.0075em;
-  border-radius: 16px 16px 0 0;
   padding: 12px 16px;
   background-color: ${({ $backgroundColor }) => $backgroundColor ?? ''};
   color: ${({ $color }) => $color ?? ''};
 `;
 
-export const StyledTable = styled.table<{ $showBorderRadius?: boolean }>`
+export const StyledTable = styled.table<{
+  $showBorderRadius?: boolean;
+  $headerStyle?: CSSObject;
+  $cellStyle?: CSSObject;
+  $rowStyle?: CSSObject;
+}>`
   overflow: hidden;
-  border-radius: ${({ $showBorderRadius = false }) =>
-    $showBorderRadius ? '16px 16px 0 0' : ''};
   border-spacing: 0;
   width: 100%;
-
   tbody tr:hover {
     background-color: ${({ theme }) =>
       Color(theme.divider).lighten(0.03).hex()};
@@ -62,16 +60,30 @@ export const StyledTable = styled.table<{ $showBorderRadius?: boolean }>`
         border-bottom: 0;
       }
     }
+    ${({ $rowStyle }) =>
+      $rowStyle &&
+      css`
+        ${$rowStyle};
+      `}
+  }
+  th {
+    background-color: ${({ theme }) =>
+      Color(theme.divider).lighten(0.02).hex()};
+    margin: 0;
+    color: black;
+    padding: 0.5rem;
+    ${({ $headerStyle: headerStyle }) =>
+      headerStyle &&
+      css`
+        ${headerStyle};
+      `}
   }
 
-  th,
   td {
     margin: 0;
     padding: 0.5rem;
     border-bottom: 1px solid ${({ theme }) => theme.divider};
-    border-right: 1px solid ${({ theme }) => theme.divider};
 
-    /* But "collapsed" cells should be as small as possible */
     &.collapse {
       width: 0.0000000001%;
     }
@@ -79,6 +91,11 @@ export const StyledTable = styled.table<{ $showBorderRadius?: boolean }>`
     :last-child {
       border-right: 0;
     }
+    ${({ $cellStyle }) =>
+      $cellStyle &&
+      css`
+        ${$cellStyle};
+      `}
   }
 `;
 

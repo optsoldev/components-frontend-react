@@ -6,6 +6,7 @@ import {
   TablePropGetter,
   TableProps,
 } from 'react-table';
+import { CSSObject } from 'styled-components';
 
 import {
   OptGridAction,
@@ -42,10 +43,15 @@ interface OptGridViewProps<T extends object> {
   pageSize: number;
   headerTitlePosition?: 'start' | 'center' | 'end';
   options?: OptGridOptions;
+  headerStyle?: CSSObject;
+  cellStyle?: CSSObject;
+  rowStyle?: CSSObject;
 }
 
 function OptGridView<T extends object>({
   title,
+  cellStyle,
+  rowStyle,
   getTableProps,
   headerGroups,
   columns,
@@ -62,6 +68,7 @@ function OptGridView<T extends object>({
   pageCount,
   gotoPage,
   nextPage,
+  headerStyle,
   previousPage,
   setPageSize,
   pageIndex,
@@ -71,23 +78,18 @@ function OptGridView<T extends object>({
 }: OptGridViewProps<T>) {
   return (
     <S.GridContainer className="opt-grid">
-      {title && (
-        <S.Title
-          $backgroundColor={options?.titleBgColor}
-          $color={options?.titleTextColor}
-        >
-          {title}
-        </S.Title>
-      )}
-
       <div className="tableWrap">
-        <S.StyledTable $showBorderRadius={!title} {...getTableProps()}>
+        <S.StyledTable
+          $showBorderRadius={!title}
+          $headerStyle={headerStyle}
+          $cellStyle={cellStyle}
+          $rowStyle={rowStyle}
+          {...getTableProps()}
+        >
           <OptGridHeaders
             groups={headerGroups}
             actionsPosition={actionsPosition}
             titlePosition={headerTitlePosition}
-            bgColor={options?.headerBgColor}
-            color={options?.headerTextColor}
           />
 
           <tbody {...getTableBodyProps()}>

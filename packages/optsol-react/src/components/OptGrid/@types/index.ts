@@ -1,5 +1,6 @@
 import React from 'react';
 import { Column } from 'react-table';
+import { CSSObject } from 'styled-components';
 
 import { IconPathColor } from '../../../types/IconPathColor';
 
@@ -28,10 +29,7 @@ export interface OptGridOptions {
   toolbar?: boolean;
   selection?: boolean;
   bottomElement?: React.ReactNode;
-  titleBgColor?: string;
-  titleTextColor?: string;
   headerBgColor?: string;
-  headerTextColor?: string;
 }
 
 export interface OptGridAction<T> {
@@ -93,11 +91,12 @@ export interface OptGridProps<T> {
   options?: OptGridOptions;
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
   actionsPosition?: 'start' | 'end';
-  headerTitlePosition?: 'start' | 'center' | 'end';
   columns: OptGridColumn<T>[];
   onRowClick?: (data: T) => void;
   onSelect?: (selectedData: T[]) => void;
-  title: string;
+  headerStyle?: CSSObject;
+  cellStyle?: CSSObject;
+  rowStyle?: CSSObject;
 }
 
 export interface OptGridControls<T> {
@@ -109,12 +108,13 @@ export interface OptGridControls<T> {
 }
 
 export interface OptInternalGridProps<T extends object> {
-  title: string;
   controls: OptGridControls<T>;
+  headerStyle?: CSSObject;
+  cellStyle?: CSSObject;
+  rowStyle?: CSSObject;
   options?: OptGridOptions;
   actions?: (OptGridAction<T> | ((rowData: T) => OptGridAction<T>))[];
   actionsPosition?: 'start' | 'end';
-  headerTitlePosition?: 'start' | 'center' | 'end';
   columns: OptGridColumn<T>[];
   hiddenColumns: string[];
   internalColumns: Column<T>[];
