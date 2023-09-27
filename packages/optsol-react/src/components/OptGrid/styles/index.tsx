@@ -6,6 +6,7 @@ import styled, { CSSObject, css } from 'styled-components';
 export const GridContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.divider};
   display: block;
+  border-radius: 5px;
   max-width: 100%;
   .tableWrap {
     display: block;
