@@ -56,6 +56,9 @@ function OptGridInternal<T extends object>(
     columns,
     hiddenColumns,
     internalColumns,
+    headerStyle,
+    cellStyle,
+    rowStyle,
     actions,
     actionsPosition,
     onRowClick,
@@ -155,6 +158,9 @@ function OptGridInternal<T extends object>(
       onRowClick={onRowClick}
       page={page}
       prepareRow={prepareRow}
+      headerStyle={headerStyle}
+      cellStyle={cellStyle}
+      rowStyle={rowStyle}
       actions={actions}
       controls={controls}
       canPreviousPage={canPreviousPage}
