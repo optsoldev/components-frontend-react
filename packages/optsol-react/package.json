@@ -1,6 +1,6 @@
 {
   "name": "@optsol/react",
-  "version": "2.2.2",
+  "version": "3.0.0-rc.1",
   "private": false,
   "description": "Kit de UI da OPTSOL",
   "scripts": {
