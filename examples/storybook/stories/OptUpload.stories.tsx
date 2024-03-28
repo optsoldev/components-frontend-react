@@ -3,12 +3,12 @@ import {
   OptMiniUploadProps,
   OptUpload,
   OptUploadProps,
-} from "@optsol/react";
-import { Meta, Story } from "@storybook/react/types-6-0";
-import React, { useState } from "react";
+} from '@optsol/react';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import React, { useState } from 'react';
 
 export default {
-  title: "OptUpload",
+  title: 'OptUpload',
   component: OptUpload,
 } as Meta;
 
@@ -18,7 +18,7 @@ export const OptUploadDialog: Story<OptUploadProps> = ({ ...args }) => (
 
 OptUploadDialog.args = {};
 
-OptUploadDialog.storyName = "Opt Upload";
+OptUploadDialog.storyName = 'Opt Upload';
 
 OptUploadDialog.argTypes = {
   ref: {
@@ -44,12 +44,21 @@ export const OptMiniUploadDialog: Story<OptMiniUploadProps> = ({ ...args }) => {
   );
 };
 
-OptMiniUploadDialog.args = {};
+OptMiniUploadDialog.args = {
+  options: {
+    width: '100px',
+    height: '100px',
+  },
+};
 
-OptMiniUploadDialog.storyName = "Opt Mini Upload";
+OptMiniUploadDialog.storyName = 'Opt Mini Upload';
 
 OptMiniUploadDialog.argTypes = {
   ref: {
     table: { disable: true },
+  },
+  options: {
+    width: '100px',
+    height: '100px',
   },
 };
