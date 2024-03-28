@@ -7,7 +7,8 @@ import * as S from './styles';
 
 export interface UploadContainerOptions extends DropzoneOptions {
   icon?: string;
-  size?: number;
+  width?: string;
+  height?: string;
   borderStyle?: 'dashed' | 'solid';
 }
 
@@ -50,7 +51,8 @@ export const OptMiniUpload = React.forwardRef<
     <S.StyledMiniUploadContainer
       className="opt-mini-upload"
       hasFiles={hasFiles}
-      size={options?.size}
+      width={options?.width}
+      height={options?.height}
       borderStyle={options?.borderStyle}
       {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
       ref={ref}

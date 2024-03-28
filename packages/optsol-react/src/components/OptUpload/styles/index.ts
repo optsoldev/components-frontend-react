@@ -59,7 +59,8 @@ export const StyledUploadContainer = styled.div<{ hasFiles: boolean }>`
 
 interface StyledMiniUploadContainerProps {
   hasFiles: boolean;
-  size?: number;
+  width?: string;
+  height?: string;
   borderStyle?: 'dashed' | 'solid';
 }
 
@@ -69,8 +70,8 @@ export const StyledMiniUploadContainer = styled.div<StyledMiniUploadContainerPro
   align-items: center;
   justify-content: center;
 
-  width: ${({ size }) => size ?? 100}px;
-  height: ${({ size }) => size ?? 100}px;
+  width: ${({ width }) => width ?? '100px'};
+  height: ${({ height }) => height ?? '100px'};
 
   padding: 20px;
   border-width: 2px;

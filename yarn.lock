@@ -4666,6 +4666,22 @@
   dependencies:
     "@octokit/openapi-types" "^16.0.0"
 
+"@optsol/react@^2.2.0":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@optsol/react/-/react-2.2.2.tgz#fa9490bcfcd85706f3b5a9391c4b24c6376fd1fd"
+  integrity sha512-Ws6yJcJ2LDAKiXwsfyVJkJCggREPqeKCszQImNEnhc7Wi25KBdaynf/BJhzrqelu+MxIQWF69iXzfJW+bNjPrg==
+  dependencies:
+    "@emotion/react" "^11.10.4"
+    "@emotion/styled" "^11.10.4"
+    "@mdi/js" "^7.0.96"
+    "@mui/lab" "^5.0.0-alpha.109"
+    color "^4.2.3"
+    lodash.merge "^4.6.2"
+    react-draggable "^4.4.4"
+    react-dropzone "^11.4.2"
+    react-select "^5.6.1"
+    react-table "^7.8.0"
+
 "@parcel/watcher@2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@parcel/watcher/-/watcher-2.0.4.tgz#f300fef4cc38008ff4b8c29d92588eced3ce014b"
