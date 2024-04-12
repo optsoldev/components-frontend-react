@@ -28,7 +28,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "storybook": "^6.5.14",
-    "styled-components": "^5.3.6",
+    "styled-components": "^6.1.8",
     "webpack": "^5.75.0"
   },
   "scripts": {

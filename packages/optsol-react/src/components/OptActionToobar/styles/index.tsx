@@ -1,5 +1,7 @@
+import styled from '@emotion/styled';
 import { Button, IconButton, Toolbar } from '@mui/material';
-import styled from 'styled-components';
+
+import { ColorPalette } from 'packages/optsol-react/src/shared/styles/colors';
 
 import { containerPadding } from '../../OptLayout/styles';
 
@@ -12,8 +14,8 @@ interface CustomToolbarProps {
 
 export const CustomToolbar = styled(Toolbar)<CustomToolbarProps>`
   min-height: 65px;
-  ${({ $noborder, theme }) =>
-    !$noborder && `border-bottom: 1px solid ${theme.divider};`}
+  ${({ $noborder }) =>
+    !$noborder && `border-bottom: 1px solid ${ColorPalette.gray2};`}
   ${({ $nopadding }) => ($nopadding ? `padding: 0;` : `padding: 10px;`)}
 
   color: ${({ color }) => color ?? 'inherit'};
