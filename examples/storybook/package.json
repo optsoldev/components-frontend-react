@@ -21,7 +21,7 @@
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
     "@mui/material": "^5.10.15",
-    "@optsol/react": "3.0.0-rc.2",
+    "@optsol/react": "3.0.0-rc.3",
     "@storybook/builder-webpack5": "^6.5.14",
     "@storybook/manager-webpack5": "^6.5.14",
     "react": "^18.2.0",
