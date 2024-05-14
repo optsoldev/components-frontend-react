@@ -39,12 +39,12 @@ export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
       acceptedFiles,
       getRootProps,
       getInputProps,
-      isDragAccept,
-      isDragActive,
-      isDragReject,
+      isDragAccept: $isDragAccept,
+      isDragActive: $isDragActive,
+      isDragReject: $isDragReject,
     } = useDropzone(options);
 
-    const hasFiles =
+    const $hasFiles =
       (acceptedFiles && acceptedFiles.length > 0) ||
       (!!value && value.length > 0);
 
@@ -69,8 +69,8 @@ export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
 
     return (
       <S.StyledUploadContainer
-        hasFiles={hasFiles}
-        {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
+        hasFiles={$hasFiles}
+        {...getRootProps({ $isDragActive, $isDragAccept, $isDragReject })}
         ref={ref}
         style={style}
       >
