@@ -1,7 +1,7 @@
 {
   "name": "optsoldev",
   "version": "3.0.0-rc.3",
-  "private": false,
+  "private": true,
   "description": "Kit de UI da OPTSOL",
   "main": "index.js",
   "scripts": {
