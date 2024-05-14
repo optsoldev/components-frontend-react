@@ -5,23 +5,23 @@ import { ColorPalette } from '../../../shared/styles/colors';
 
 const getBorderColor = (
   primaryColor: string,
-  hasFiles: boolean,
+  $hasFiles: boolean,
   props: any
 ) => {
-  if (hasFiles) return primaryColor;
+  if ($hasFiles) return primaryColor;
   if (props.isDragAccept) return ColorPalette.green2;
   if (props.isDragReject) return ColorPalette.ketchup;
   return ColorPalette.gray6;
 };
 
-const getTextColor = (primaryColor: string, hasFiles: boolean, props: any) => {
-  if (hasFiles) return primaryColor;
+const getTextColor = (primaryColor: string, $hasFiles: boolean, props: any) => {
+  if ($hasFiles) return primaryColor;
   if (props.isDragAccept) return ColorPalette.green;
   if (props.isDragReject) return ColorPalette.ketchup;
   return ColorPalette.gray4;
 };
 
-export const StyledUploadContainer = styled.div<{ hasFiles: boolean }>`
+export const StyledUploadContainer = styled.div<{ $hasFiles: boolean }>`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -30,12 +30,12 @@ export const StyledUploadContainer = styled.div<{ hasFiles: boolean }>`
   padding: 20px;
   border-width: 2px;
   border-radius: 20px;
-  border-color: ${({ hasFiles, theme, ...props }) =>
-    getBorderColor(theme.primary, hasFiles, props)};
+  border-color: ${({ $hasFiles: $hasFiles, theme, ...props }) =>
+    getBorderColor(theme.primary, $hasFiles, props)};
   border-style: dashed;
   background-color: ${ColorPalette.white};
-  color: ${({ hasFiles, theme, ...props }) =>
-    getTextColor(theme.primary, hasFiles, props)};
+  color: ${({ $hasFiles: $hasFiles, theme, ...props }) =>
+    getTextColor(theme.primary, $hasFiles, props)};
   outline: none;
   transition: all 0.24s ease-in-out;
   cursor: pointer;
@@ -58,7 +58,7 @@ export const StyledUploadContainer = styled.div<{ hasFiles: boolean }>`
 `;
 
 interface StyledMiniUploadContainerProps {
-  hasFiles: boolean;
+  $hasFiles: boolean;
   width?: string;
   height?: string;
   borderStyle?: 'dashed' | 'solid';
@@ -76,12 +76,12 @@ export const StyledMiniUploadContainer = styled.div<StyledMiniUploadContainerPro
   padding: 20px;
   border-width: 2px;
   border-radius: 20px;
-  border-color: ${({ hasFiles, theme, ...props }) =>
-    getBorderColor(theme.primary, hasFiles, props)};
+  border-color: ${({ $hasFiles: $hasFiles, theme, ...props }) =>
+    getBorderColor(theme.primary, $hasFiles, props)};
   border-style: ${({ borderStyle }) => borderStyle ?? 'dashed'};
   background-color: ${ColorPalette.white};
-  color: ${({ hasFiles, theme, ...props }) =>
-    getTextColor(theme.primary, hasFiles, props)};
+  color: ${({ $hasFiles: $hasFiles, theme, ...props }) =>
+    getTextColor(theme.primary, $hasFiles, props)};
   outline: none;
   transition: all 0.24s ease-in-out;
   cursor: pointer;

@@ -50,7 +50,7 @@ export const OptMiniUpload = React.forwardRef<
   return (
     <S.StyledMiniUploadContainer
       className="opt-mini-upload"
-      hasFiles={hasFiles}
+      $hasFiles={hasFiles}
       width={options?.width}
       height={options?.height}
       borderStyle={options?.borderStyle}

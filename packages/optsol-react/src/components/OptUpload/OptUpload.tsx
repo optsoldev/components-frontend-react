@@ -69,7 +69,7 @@ export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
 
     return (
       <S.StyledUploadContainer
-        hasFiles={$hasFiles}
+        $hasFiles={$hasFiles}
         {...getRootProps({ $isDragActive, $isDragAccept, $isDragReject })}
         ref={ref}
         style={style}
