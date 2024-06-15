@@ -21,6 +21,9 @@ export const THEME_INITIAL_DISPATCH = (action: ThemeAction): void => {
   throw Error(`Dispatch not implemented. Action: ${action}`);
 };
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function ThemeReducer(
   state: ThemeState,
   action: ThemeAction

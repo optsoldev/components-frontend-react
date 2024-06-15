@@ -1,10 +1,10 @@
 import {
-  TimelineOppositeContent,
   Timeline,
   TimelineConnector,
   TimelineContent,
   TimelineDot,
   TimelineItem,
+  TimelineOppositeContent,
   TimelineSeparator,
 } from '@mui/lab';
 import {
@@ -28,6 +28,9 @@ import {
 } from './OptTimelineTableValue';
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptTimelineAction {
   order: number;
   action: string;
@@ -39,6 +42,9 @@ export interface OptTimelineAction {
   payload?: OptTimelineField[] | string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export type OptTimelineProps = {
   maxWidth?: number;
   data: OptTimelineAction[] | (() => Promise<OptTimelineAction[]>);

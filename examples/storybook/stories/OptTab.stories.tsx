@@ -1,10 +1,10 @@
-import { OptLayoutProvider, OptTab, OptTabs } from "@optsol/react";
-import { Meta, Story } from "@storybook/react/types-6-0";
-import React from "react";
-import { TEST_THEME } from "../shared/constants";
+import { OptLayoutProvider, OptTab, OptTabs } from '@optsol/react';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import React from 'react';
+import { TEST_THEME } from '../shared/constants';
 
 export default {
-  title: "OptTabs",
+  title: 'OptTabs',
   component: OptTabs,
 } as Meta;
 
@@ -26,6 +26,6 @@ export const OptTabsExample: Story<{}> = (args) => {
 
 OptTabsExample.args = {};
 
-OptTabsExample.storyName = "Opt Tabs";
+OptTabsExample.storyName = 'Opt Tabs';
 
 OptTabsExample.argTypes = {};

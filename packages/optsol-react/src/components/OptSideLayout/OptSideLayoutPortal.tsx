@@ -11,6 +11,9 @@ interface Props {
   sections: OptMenuSection[];
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptSideLayoutPortal({
   sections,
   children,

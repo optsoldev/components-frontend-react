@@ -5,6 +5,9 @@ import { OptMenuItem } from '../../types';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 interface OptSideAppBarDialogProps {
   isOpen: boolean;
   onClose: () => void;
@@ -17,6 +20,9 @@ interface OptSideAppBarDialogProps {
   currentLinkColor: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export default function OptSideAppBarDialog({
   isOpen,
   onClose,

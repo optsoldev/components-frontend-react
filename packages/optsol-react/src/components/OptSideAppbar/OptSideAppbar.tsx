@@ -19,6 +19,9 @@ import {
 } from './OptSideAppbarFooterActions/styles';
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 interface OptMainSidebarProps {
   logo?: OptAppLogo;
   sections: OptMenuSection[];
@@ -34,6 +37,9 @@ interface OptMainSidebarProps {
   sectionsAlignment?: 'start' | 'center' | 'end';
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptSideAppbar({
   logo,
   sections,

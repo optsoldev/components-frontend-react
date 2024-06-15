@@ -15,6 +15,9 @@ import { OptSideAppbar } from '../OptSideAppbar/OptSideAppbar';
 import { OptSideLayoutProps } from './@types';
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptSideLayout({
   expandable,
   logo,

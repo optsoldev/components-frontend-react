@@ -12,6 +12,9 @@ import { useOptTheme } from '../../contexts/theme/themeContext';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptSearchFieldProps extends OutlinedInputProps {
   placeholder?: string;
   onSearch: (searchTerm?: string) => void;
@@ -20,6 +23,9 @@ export interface OptSearchFieldProps extends OutlinedInputProps {
   noBorder?: boolean;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptSearchField({
   placeholder = 'Pesquisar',
   onSearch,

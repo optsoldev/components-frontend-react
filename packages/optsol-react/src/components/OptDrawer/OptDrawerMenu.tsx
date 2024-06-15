@@ -18,6 +18,9 @@ interface OptDrawerMenuProps {
   version: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptDrawerMenu({
   sections,
   onHideDrawer,

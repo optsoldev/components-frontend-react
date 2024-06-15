@@ -26,6 +26,9 @@ function PaperComponent(props: PaperProps) {
   );
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptConfirmationDialogProps {
   open: boolean;
   title: string;
@@ -39,6 +42,9 @@ export interface OptConfirmationDialogProps {
   width?: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptConfirmationDialog({
   open,
   title,

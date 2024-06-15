@@ -5,11 +5,11 @@ import { LocalStorageKeys } from '../../shared/constants';
 import { ThemeActions } from './themeActions';
 import { generateNewTheme } from './themeFunctions';
 import {
+  THEME_INITIAL_DISPATCH,
   ThemeDispatch,
   ThemeReducer,
-  THEME_INITIAL_DISPATCH,
 } from './themeReducer';
-import { CustomOptTheme, ThemeState, THEME_INITIAL_STATE } from './themeState';
+import { CustomOptTheme, THEME_INITIAL_STATE, ThemeState } from './themeState';
 
 const ThemeStateContext = createContext<ThemeState>(THEME_INITIAL_STATE);
 const ThemeDispatchContext = createContext<ThemeDispatch>(
@@ -18,6 +18,9 @@ const ThemeDispatchContext = createContext<ThemeDispatch>(
 
 type ThemeProps = { children: React.ReactNode };
 
+/**
+ * @deprecated This will be removed soon
+ */
 function OptThemeProvider({ children }: ThemeProps) {
   const [state, dispatch] = useReducer(ThemeReducer, THEME_INITIAL_STATE);
 
@@ -30,6 +33,9 @@ function OptThemeProvider({ children }: ThemeProps) {
   );
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 function useOptTheme() {
   const state = React.useContext(ThemeStateContext);
 

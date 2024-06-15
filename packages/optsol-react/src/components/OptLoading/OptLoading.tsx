@@ -5,6 +5,9 @@ export interface OptLoadingProps {
   color?: 'primary' | 'secondary' | 'inherit';
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptLoading({ size = 100, color = 'primary' }: OptLoadingProps) {
   return (
     <div

@@ -6,6 +6,9 @@ import { IconPathColor } from '../../types/IconPathColor';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptDialogProps {
   open: boolean;
   title: string;
@@ -15,6 +18,9 @@ export interface OptDialogProps {
   width?: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptDialog({
   open,
   title,

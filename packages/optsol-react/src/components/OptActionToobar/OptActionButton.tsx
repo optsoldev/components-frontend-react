@@ -8,6 +8,9 @@ import { IconPathColor } from '../../types/IconPathColor';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export type OptActionButtonProps = {
   /** path do @mdi/js */
   startIcon?: IconPathColor | JSX.Element;
@@ -40,6 +43,9 @@ function checkActionIcon(
   return icon;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptActionButton({
   startIcon,
   endIcon,

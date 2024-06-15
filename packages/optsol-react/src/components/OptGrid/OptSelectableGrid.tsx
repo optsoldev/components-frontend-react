@@ -178,6 +178,9 @@ function OptGridInternal<T extends object>(
   );
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptSelectableGrid = React.forwardRef(OptGridInternal) as <
   T extends object
 >(

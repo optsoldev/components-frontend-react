@@ -53,6 +53,9 @@ interface Props {
   tabIndex: number;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptTab = React.forwardRef<HTMLDivElement, Props>(
   ({ ...props }, ref) => <CustomTab ref={ref} {...props} />
 );

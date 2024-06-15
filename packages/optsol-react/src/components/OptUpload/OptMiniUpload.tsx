@@ -5,6 +5,9 @@ import { DropzoneOptions, useDropzone } from 'react-dropzone';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface UploadContainerOptions extends DropzoneOptions {
   icon?: string;
   width?: string;
@@ -12,6 +15,9 @@ export interface UploadContainerOptions extends DropzoneOptions {
   borderStyle?: 'dashed' | 'solid';
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptMiniUploadProps {
   filesDescription?: string;
   onChange: (files: File[]) => void;
@@ -21,6 +27,9 @@ export interface OptMiniUploadProps {
   name?: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptMiniUpload = React.forwardRef<
   HTMLInputElement,
   OptMiniUploadProps

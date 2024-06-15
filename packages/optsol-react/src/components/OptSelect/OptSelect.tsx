@@ -13,6 +13,9 @@ export interface OptSelectionOption {
 
 export type OptSelectProps = Props;
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptSelect = React.forwardRef<
   Props<OptSelectionOption, boolean>,
   OptSelectProps
