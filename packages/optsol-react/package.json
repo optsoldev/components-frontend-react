@@ -1,6 +1,6 @@
 {
   "name": "@optsol/react",
-  "version": "3.0.0-rc.5",
+  "version": "3.0.0-rc.6",
   "private": false,
   "description": "Kit de UI da OPTSOL",
   "scripts": {
@@ -30,14 +30,16 @@
     "@mui/material": "^5.10.15",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
-    "react-router-dom": "^6.4.3",
+    "react-router-dom": "^6.23.0",
     "styled-components": "^5.3.6"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@fluentui/react-icons": "^2.0.244",
     "@mdi/js": "^7.0.96",
     "@mui/lab": "^5.0.0-alpha.109",
+    "@tanstack/react-table": "^8.17.3",
     "color": "^4.2.3",
     "lodash.merge": "^4.6.2",
     "react-draggable": "^4.4.4",

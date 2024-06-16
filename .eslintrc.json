@@ -1,15 +1,21 @@
 {
   "root": true,
   "env": {
-    "node": true,
-    "es6": true
+    "browser": true,
+    "es2020": true
   },
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module"
   },
-  "ignorePatterns": ["**/build", "**/node_modules", "**/lib"],
-  "extends": ["eslint:recommended"],
+  "ignorePatterns": ["node_modules/*", "dist"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:storybook/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "plugins": ["react-refresh"],
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
@@ -25,11 +31,6 @@
         "import/resolver": {
           "typescript": {}
         }
-      },
-      "env": {
-        "browser": true,
-        "node": true,
-        "es6": true
       },
       "extends": [
         "eslint:recommended",
@@ -61,7 +62,7 @@
             "newlines-between": "always",
             "alphabetize": {
               "order": "asc",
-              "caseInsensitive": true
+              "caseInsensitive": false
             }
           }
         ],
@@ -73,14 +74,12 @@
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": [
           "error",
-          {
-            "argsIgnorePattern": "^_"
-          }
+          { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
         ],
-        "@typescript-eslint/explicit-function-return-type": ["off"],
-        "@typescript-eslint/explicit-module-boundary-types": ["off"],
-        "@typescript-eslint/no-empty-function": ["off"],
-        "@typescript-eslint/no-explicit-any": ["off"],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "prettier/prettier": [
           "error",
           {
