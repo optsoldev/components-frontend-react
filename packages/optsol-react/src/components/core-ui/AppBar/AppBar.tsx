@@ -17,7 +17,7 @@ const AppBar = forwardRef<HTMLDivElement, PropsWithChildren>(
         </Toolbar>
       </MaterialAppBar>
     );
-  }
+  },
 );
 
 AppBar.displayName = 'AppBar';

@@ -15,9 +15,11 @@ export * from './OptLoading';
 export * from './OptSearchField/OptSearchField';
 export * from './OptSelect';
 export * from './OptSideAppbar';
-export * from './OptSidebar';
 export * from './OptSideLayout';
+export * from './OptSidebar';
 export * from './OptTabs';
 export * from './OptTagSelect';
 export * from './OptTimeline';
 export * from './OptUpload';
+
+export * from './core-ui';

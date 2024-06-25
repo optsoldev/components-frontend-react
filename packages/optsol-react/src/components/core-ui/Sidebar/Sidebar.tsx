@@ -1,7 +1,5 @@
-import { Box, Tooltip } from '@mui/material';
+import { Box, BoxProps, Tooltip } from '@mui/material';
 import { PropsWithChildren, useLayoutEffect, useRef, useState } from 'react';
-
-import { ColorPalette } from '@/config/colors';
 
 type SidebarIconProps = {
   onClick?: () => void;
@@ -11,7 +9,7 @@ type SidebarIconProps = {
 const SidebarIcon = ({
   title,
   onClick,
-  children
+  children,
 }: PropsWithChildren<SidebarIconProps>) => {
   return (
     <Tooltip title={title} placement="right">
@@ -29,7 +27,14 @@ const SidebarIcon = ({
   );
 };
 
-const Sidebar = ({ children }: PropsWithChildren) => {
+interface SidebarProps {
+  bgcolor?: BoxProps['bgcolor'];
+}
+
+const Sidebar = ({
+  children,
+  bgcolor = 'primary.main',
+}: PropsWithChildren<SidebarProps>) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -52,9 +57,9 @@ const Sidebar = ({ children }: PropsWithChildren) => {
       width={width}
       height="100dvh"
       position="fixed"
-      bgcolor={ColorPalette.primary.main}
+      bgcolor={bgcolor}
       sx={{
-        transition: 'width 0.3s ease'
+        transition: 'width 0.3s ease',
       }}
     >
       {children}

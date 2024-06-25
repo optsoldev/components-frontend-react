@@ -2728,22 +2728,6 @@
   dependencies:
     "@octokit/openapi-types" "^18.0.0"
 
-"@optsol/react@^2.2.0":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@optsol/react/-/react-2.2.2.tgz#fa9490bcfcd85706f3b5a9391c4b24c6376fd1fd"
-  integrity sha512-Ws6yJcJ2LDAKiXwsfyVJkJCggREPqeKCszQImNEnhc7Wi25KBdaynf/BJhzrqelu+MxIQWF69iXzfJW+bNjPrg==
-  dependencies:
-    "@emotion/react" "^11.10.4"
-    "@emotion/styled" "^11.10.4"
-    "@mdi/js" "^7.0.96"
-    "@mui/lab" "^5.0.0-alpha.109"
-    color "^4.2.3"
-    lodash.merge "^4.6.2"
-    react-draggable "^4.4.4"
-    react-dropzone "^11.4.2"
-    react-select "^5.6.1"
-    react-table "^7.8.0"
-
 "@parcel/watcher@2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@parcel/watcher/-/watcher-2.0.4.tgz#f300fef4cc38008ff4b8c29d92588eced3ce014b"
@@ -10810,6 +10794,11 @@ globby@^9.2.0:
     ignore "^4.0.3"
     pify "^4.0.1"
     slash "^2.0.0"
+
+globrex@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/globrex/-/globrex-0.1.2.tgz#dd5d9ec826232730cd6793a5e33a9302985e6098"
+  integrity sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==
 
 gopd@^1.0.1:
   version "1.0.1"
@@ -19626,6 +19615,11 @@ tsc-files@^1.1.3:
   resolved "https://registry.yarnpkg.com/tsc-files/-/tsc-files-1.1.4.tgz#e0b2042a9494500f528769f52a0d0105a48457dd"
   integrity sha512-RePsRsOLru3BPpnf237y1Xe1oCGta8rmSYzM76kYo5tLGsv5R2r3s64yapYorGTPuuLyfS9NVbh9ydzmvNie2w==
 
+tsconfck@^3.0.3:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/tsconfck/-/tsconfck-3.1.0.tgz#30c63b15972b591adb41dc9a339a02743d090c81"
+  integrity sha512-CMjc5zMnyAjcS9sPLytrbFmj89st2g+JYtY/c02ug4Q+CZaAtCgbyviI0n1YvjZE/pzoc6FbNsINS13DOL1B9w==
+
 tsconfig-paths@^3.15.0:
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.15.0.tgz#5299ec605e55b1abb23ec939ef15edaf483070d4"
@@ -20339,6 +20333,15 @@ vite-node@0.32.4:
     pathe "^1.1.1"
     picocolors "^1.0.0"
     vite "^3.0.0 || ^4.0.0"
+
+vite-tsconfig-paths@^4.3.1:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-4.3.2.tgz#321f02e4b736a90ff62f9086467faf4e2da857a9"
+  integrity sha512-0Vd/a6po6Q+86rPlntHye7F31zA2URZMbH8M3saAZ/xR9QoGN/L21bxEGfXdWmFdNkqPpRdxFT7nmNe12e9/uA==
+  dependencies:
+    debug "^4.1.1"
+    globrex "^0.1.2"
+    tsconfck "^3.0.3"
 
 "vite@^3.0.0 || ^4.0.0", vite@^4.3.9:
   version "4.5.3"

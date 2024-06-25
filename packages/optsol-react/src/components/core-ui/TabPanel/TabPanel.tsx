@@ -7,7 +7,7 @@ interface TabPanelProps<T> {
 }
 
 export function TabPanel<T>(
-  props: Readonly<PropsWithChildren<TabPanelProps<T>>>
+  props: Readonly<PropsWithChildren<TabPanelProps<T>>>,
 ) {
   const { children, value, index, ...other } = props;
 

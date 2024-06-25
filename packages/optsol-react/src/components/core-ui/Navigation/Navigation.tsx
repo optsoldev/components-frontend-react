@@ -1,26 +1,27 @@
-import { Backdrop, Box } from '@mui/material';
+import { Backdrop, Box, BoxProps } from '@mui/material';
 import {
   PropsWithChildren,
   useEffect,
   useLayoutEffect,
   useRef,
-  useState
+  useState,
 } from 'react';
 
-import { ColorPalette } from '@/config/colors';
-import { Button } from '@/optsol/core-ui/button';
+import { Button } from '../Button';
 
 type NavigationProps = {
   open: boolean;
   onClose: () => void;
   onClick: () => void;
+  bgcolor?: BoxProps['color'];
 };
 
 const Navigation = ({
   open,
+  bgcolor = 'white',
   onClose,
   onClick,
-  children
+  children,
 }: PropsWithChildren<NavigationProps>) => {
   const [width, setWidth] = useState(0);
   const navigationRef = useRef<HTMLDivElement>(null);
@@ -43,23 +44,23 @@ const Navigation = ({
 
   return (
     <Backdrop
-      onClick={onClick}
       open={open}
+      onClick={onClick}
       ref={navigationRef}
       sx={{
         position: 'absolute',
         width: '100dvw',
-        left: width
+        left: width,
       }}
     >
       <Box
         height="100dvh"
         minWidth={250}
         position="absolute"
-        bgcolor={ColorPalette.primaryContrast.main}
+        bgcolor={bgcolor}
         sx={{
           top: 0,
-          left: 0
+          left: 0,
         }}
       >
         {children}

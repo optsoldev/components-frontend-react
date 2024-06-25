@@ -1,10 +1,4 @@
 import {
-  BoxSearchRegular,
-  DataPieRegular,
-  LocationArrowFilled,
-  ReceiptRegular
-} from '@fluentui/react-icons';
-import {
   Box,
   ClickAwayListener,
   Divider,
@@ -13,30 +7,60 @@ import {
   MenuList,
   Paper,
   Popper,
-  Typography
+  Typography,
 } from '@mui/material';
-import { useLayoutEffect, useRef, useState } from 'react';
+import React, {
+  ReactElement,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { ColorPalette } from '@/config/colors';
-import { SIDEBAR_WIDTH } from '@/config/theme';
-import { FlexBox } from '@/optsol/core-ui/flexbox';
-import { Route, routes } from '@/routes/index.routes';
-
+import {
+  FlexBox,
+  FlexBoxProps,
+} from '@optsol/react/src/components/core-ui/Flexbox';
+import Link from '@optsol/react/src/components/core-ui/Link';
+import Sidebar from '@optsol/react/src/components/core-ui/Sidebar/Sidebar';
+import { SIDEBAR_WIDTH } from '../../shared/theme';
 import AppBar from '../AppBar';
-import Link from '../Link';
-import Sidebar from '../Sidebar/Sidebar';
 
-type SubmenuItem = {
-  title: string;
+export type Route = {
   path: string;
+  title: string;
+  claim?: string;
+  icon?: ReactElement;
+  children?: SubRoutes[];
+};
+
+export type SubRoutes = {
+  path: string;
+  title: string;
   claim?: string;
 };
 
-export const Layout = () => {
+export type Routes = {
+  [key: string]: Route;
+};
+
+type Props = {
+  routes: Routes;
+  userClaim?: string;
+  sidebarWidth?: number | string;
+  color?: FlexBoxProps['color'];
+};
+
+export const Layout = ({
+  routes,
+  userClaim,
+  color = 'white',
+  sidebarWidth = SIDEBAR_WIDTH,
+}: Props) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
-  const [submenuItems, setSubmenuItems] = useState<Array<SubmenuItem>>([]);
+  const [submenuItems, setSubmenuItems] = useState<Array<SubRoutes>>([]);
 
   const anchorRef = useRef<HTMLAnchorElement | null>();
   const appBarRef = useRef<HTMLDivElement>(null);
@@ -51,7 +75,7 @@ export const Layout = () => {
 
   const onMouseEnter = (
     event: React.MouseEvent<HTMLAnchorElement>,
-    route: Route
+    route: Route,
   ) => {
     const { title, children: subRoutes } = route;
     if (!subRoutes || subRoutes.length === 0) return handleClose();
@@ -76,7 +100,40 @@ export const Layout = () => {
 
   const appBarHeigth = appBarRef.current?.getBoundingClientRect().height ?? 0;
 
-  const hasAccess = false;
+  const hasAccess = useCallback(
+    (key: string) => {
+      const { claim } = routes[key];
+      if (!claim) return true;
+      if (claim === userClaim) return true;
+
+      return false;
+    },
+    [routes, userClaim],
+  );
+
+  const getRoute = useCallback(
+    (sub: string) => {
+      const { children } = routes[sub];
+      if (!children) return routes[sub].path;
+
+      const [subroute] =
+        children.filter((sm) => sm.claim === userClaim || !sm.claim) ?? [];
+
+      if (subroute) return subroute.path;
+
+      return '';
+    },
+    [routes, userClaim],
+  );
+
+  const getTitle = useCallback(
+    (sub: string) => {
+      const { children } = routes[sub];
+      if (!children) return routes[sub].title;
+      return '';
+    },
+    [routes],
+  );
 
   return (
     <>
@@ -85,70 +142,32 @@ export const Layout = () => {
         <FlexBox
           position="relative"
           sx={{ zIndex: 3 }}
-          width={SIDEBAR_WIDTH}
-          color={ColorPalette.primaryContrast.light}
+          width={sidebarWidth}
+          color={color}
         >
           <Sidebar>
             <Box
-              aria-label="nav menu"
               component="nav"
+              aria-label="nav menu"
               onMouseLeave={handleClose}
             >
-              <Link
-                to={routes.home.children?.[0].path ?? routes.home.path}
-                onMouseEnter={(e) => onMouseEnter(e, routes.home)}
-              >
-                <Sidebar.Icon title="Home">
-                  <DataPieRegular fontSize={28} />
-                </Sidebar.Icon>
-              </Link>
-              <Link
-                to={
-                  routes.cadastros.children?.filter((sm) => !sm.claim)[0]
-                    .path ?? routes.cadastros.path
-                }
-                onMouseEnter={(e) => onMouseEnter(e, routes.cadastros)}
-              >
-                <Sidebar.Icon
-                  title={!routes.cadastros.children ? 'Cadastros' : ''}
-                >
-                  <ReceiptRegular fontSize={24} />
-                </Sidebar.Icon>
-              </Link>
-              {hasAccess && (
-                <Link
-                  to={
-                    routes.recebimento.children?.[0].path ??
-                    routes.recebimento.path
-                  }
-                  onClick={handleClick}
-                  onMouseEnter={(e) => onMouseEnter(e, routes.recebimento)}
-                >
-                  <Sidebar.Icon
-                    title={!routes.recebimento.children ? 'Recebimento' : ''}
+              {Object.entries(routes).map(([key, value]) => {
+                if (!value.icon) return null;
+                if (!hasAccess(key)) return null;
+
+                return (
+                  <Link
+                    key={key}
+                    to={getRoute(key)}
+                    onClick={handleClick}
+                    onMouseEnter={(e) => onMouseEnter(e, value)}
                   >
-                    <BoxSearchRegular fontSize={24} />
-                  </Sidebar.Icon>
-                </Link>
-              )}
-              <Link
-                to={
-                  routes.gestaoEmbarques.children?.filter((sm) => !sm.claim)[0]
-                    .path ?? routes.gestaoEmbarques.path
-                }
-                onClick={handleClick}
-                onMouseEnter={(e) => onMouseEnter(e, routes.gestaoEmbarques)}
-              >
-                <Sidebar.Icon
-                  title={
-                    !routes.gestaoEmbarques.children
-                      ? 'Gestão de embarques'
-                      : ''
-                  }
-                >
-                  <LocationArrowFilled fontSize={24} />
-                </Sidebar.Icon>
-              </Link>
+                    <Sidebar.Icon title={getTitle(key)}>
+                      {value.icon}
+                    </Sidebar.Icon>
+                  </Link>
+                );
+              })}
             </Box>
 
             <Popper
@@ -168,7 +187,7 @@ export const Layout = () => {
                     transformOrigin:
                       placement === 'bottom-start'
                         ? 'rigth top'
-                        : 'rigth bottom'
+                        : 'rigth bottom',
                   }}
                 >
                   <Paper onMouseLeave={handleClose}>
