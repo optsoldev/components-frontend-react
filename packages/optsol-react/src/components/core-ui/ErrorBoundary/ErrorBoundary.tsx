@@ -12,21 +12,21 @@ interface State {
 
 export class ErrorBoundary extends Component<PropsWithChildren<Props>, State> {
   public state: State = {
-    hasError: false
+    hasError: false,
   };
 
   public static getDerivedStateFromError(error: Error): State {
     return {
       hasError: true,
       error: {
-        message: error.message
-      }
+        message: error.message,
+      },
     };
   }
 
   render() {
     if (this.state.hasError) {
-      return <span>Errou! Faz de novo, faz direito!</span>;
+      return <span>Algo inexperado aconteceu, tente novamente!</span>;
     }
 
     return this.props.children;

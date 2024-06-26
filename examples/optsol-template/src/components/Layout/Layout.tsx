@@ -18,12 +18,7 @@ import React, {
 } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import {
-  FlexBox,
-  FlexBoxProps,
-} from '@optsol/react/src/components/core-ui/Flexbox';
-import Link from '@optsol/react/src/components/core-ui/Link';
-import Sidebar from '@optsol/react/src/components/core-ui/Sidebar/Sidebar';
+import { FlexBox, FlexBoxProps, Link, Sidebar } from '@optsol/react';
 import { SIDEBAR_WIDTH } from '../../shared/theme';
 import AppBar from '../AppBar';
 

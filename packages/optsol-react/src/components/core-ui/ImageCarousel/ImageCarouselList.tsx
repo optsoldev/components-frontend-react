@@ -64,11 +64,9 @@ export const ImageCarouselList = ({
         alignItems="center"
         justifyContent="center"
       >
-        {itens.map((child, index) => (
-          <Box key={index} width={itemWidth}>
-            {child}
-          </Box>
-        ))}
+        {Children.toArray(
+          itens.map((child) => <Box width={itemWidth}>{child}</Box>),
+        )}
       </FlexBox>
       <IconButton
         onClick={handleNextPage}

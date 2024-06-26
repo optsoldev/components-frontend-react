@@ -7,6 +7,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import { Layout } from '../components/Layout';
+import Cadastro from '../pages/Cadastro';
 enum Claim {
   COMERCIAL = 'Comercial',
 }
@@ -44,7 +45,7 @@ export const router = createBrowserRouter(
     <Route path="/" element={<Layout routes={routes} />}>
       <Route
         index
-        element={<span>Dashboard</span>}
+        element={<Cadastro />}
         handle={{ breadcrumb: () => 'Home' }}
       />
 

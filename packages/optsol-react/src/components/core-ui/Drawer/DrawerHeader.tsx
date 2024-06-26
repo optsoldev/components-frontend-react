@@ -3,7 +3,7 @@ import {
   Box,
   Grid,
   GridProps,
-  DrawerProps as MuiDrawerProps
+  DrawerProps as MuiDrawerProps,
 } from '@mui/material';
 import { PropsWithChildren } from 'react';
 
