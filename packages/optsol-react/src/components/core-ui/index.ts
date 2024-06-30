@@ -13,6 +13,7 @@ export * from './Form';
 export * from './Formatter';
 export * from './ImageCarousel';
 export * from './Link';
+export * from './Loading';
 export * from './Sidebar';
 export * from './TabPanel';
 export * from './Table';
