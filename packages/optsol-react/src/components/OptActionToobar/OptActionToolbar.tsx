@@ -7,6 +7,9 @@ import { useOptTheme } from '../../contexts/theme/themeContext';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export type OptActionToolbarProps = {
   title?: string | JSX.Element;
   goBackRoute?: string;
@@ -17,6 +20,9 @@ export type OptActionToolbarProps = {
   noPadding?: boolean;
 };
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptActionToolbar({
   title,
   children,

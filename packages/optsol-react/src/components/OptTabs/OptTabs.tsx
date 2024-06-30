@@ -13,6 +13,9 @@ interface Props {
   onChange: (newTab: number) => void;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptTabs({ tab, onChange, children }: PropsWithChildren<Props>) {
   const handleChange = (_: React.ChangeEvent<object>, newValue: number) => {
     onChange(newValue);

@@ -4,6 +4,9 @@ import { ReactDivStyle } from '../../types/ReactDivStyle';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptSideLayoutContent = React.forwardRef<
   HTMLDivElement,
   ReactDivStyle & { noPadding?: boolean }

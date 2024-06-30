@@ -90,6 +90,9 @@ function generateBreadcrumbComposition(
 
 let currentLocationPathname = '';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptBreadcrumb() {
   const location = useLocation();
   const { currentTheme } = useOptTheme();

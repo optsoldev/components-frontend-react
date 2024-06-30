@@ -6,12 +6,18 @@ import { OptMenuSection } from '../../types';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptSidebarMenuProps {
   sections: OptMenuSection[];
   hideLinkDescription?: boolean;
   footerActions?: React.ReactNode;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptSidebar({
   sections,
   footerActions,

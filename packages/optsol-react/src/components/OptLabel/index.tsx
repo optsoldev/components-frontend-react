@@ -14,7 +14,9 @@ export const OptLabel = styled(MuiInputLabel)`
 `;
 
 type InputLabelProps = MuiInputLabelProps;
-
+/**
+ * @deprecated This will be removed soon
+ */
 export const InputLabel = ({ color, children }: InputLabelProps) => {
   return <MuiInputLabel color={color}>{children}</MuiInputLabel>;
 };

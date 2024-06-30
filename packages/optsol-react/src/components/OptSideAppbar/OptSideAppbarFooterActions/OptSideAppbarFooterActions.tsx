@@ -13,6 +13,9 @@ import { SidebarListItemIcon } from '../styles';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptMainSidebarFooterAction {
   /** Must be an @mdi/js path or a ReactNode */
   icon: string | React.ReactNode;
@@ -24,6 +27,9 @@ export interface OptMainSidebarFooterAction {
   ) => void;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface FooterActionsProps {
   expandable?: boolean;
   footerActions?: OptMainSidebarFooterAction[];

@@ -12,6 +12,9 @@ import { OptSidebar } from '../OptSidebar';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptLayoutProps {
   /** Sections of the menus. Each object with the menu links will be splitted into different lists, separated by a Divider.  */
   sections: OptMenuSection[];
@@ -37,6 +40,9 @@ export interface OptLayoutProps {
   version: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptLayout({
   sections,
   routes,

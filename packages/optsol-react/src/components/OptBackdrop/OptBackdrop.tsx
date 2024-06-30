@@ -13,6 +13,9 @@ export type OptBackdropProps = {
   open: boolean;
 };
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptBackdrop({ open }: OptBackdropProps) {
   return (
     <CustomBackdrop open={open}>

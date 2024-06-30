@@ -10,6 +10,9 @@ import * as S from './styles';
 
 export type UploadContainerOptions = DropzoneOptions;
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptUploadProps {
   description?: string;
   filesDescription?: string;
@@ -21,6 +24,9 @@ export interface OptUploadProps {
   style?: React.CSSProperties;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptUpload = React.forwardRef<HTMLInputElement, OptUploadProps>(
   (
     {

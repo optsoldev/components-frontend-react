@@ -4,6 +4,9 @@ import { IconButton } from '@mui/material';
 
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptTimelineField {
   name: string;
   value: string;
@@ -15,6 +18,9 @@ interface Props {
   onClick?: (data: OptTimelineField) => void;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptTimelineTableValue({ field, onClick }: Props) {
   if (!field.type || field.type === 'text') return <span>{field.value}</span>;
 

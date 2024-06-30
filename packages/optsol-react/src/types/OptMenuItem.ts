@@ -1,3 +1,6 @@
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptMenuItem {
   title: string;
   path: string;

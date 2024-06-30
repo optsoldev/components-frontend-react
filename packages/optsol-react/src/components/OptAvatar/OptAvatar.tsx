@@ -1,5 +1,8 @@
 import * as S from './styles';
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptUserProfile {
   name: string;
   email: string;
@@ -8,12 +11,18 @@ export interface OptUserProfile {
   alternativeColor?: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptAvatarProps {
   profile: OptUserProfile;
   //* * Size in pixels */
   size?: number;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptAvatar({ profile, size = 32 }: OptAvatarProps) {
   let initials = '-';
   const trimmedName = profile.name.trim();

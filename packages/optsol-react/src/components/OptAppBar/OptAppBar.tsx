@@ -25,6 +25,9 @@ export interface OptAppBarProps {
   actions?: React.ReactNode;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptAppBar({
   profile,
   onManageProfile,

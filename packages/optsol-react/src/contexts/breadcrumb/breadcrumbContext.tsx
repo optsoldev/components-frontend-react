@@ -2,14 +2,14 @@ import React, { createContext, useReducer } from 'react';
 
 import { BreadcrumbActions } from './breadcrumbActions';
 import {
+  BREADCRUMB_INITIAL_DISPATCH,
   BreadcrumbDispatch,
   BreadcrumbReducer,
-  BREADCRUMB_INITIAL_DISPATCH,
 } from './breadcrumbReducer';
 import {
+  BREADCRUMB_INITIAL_STATE,
   BreadcrumbDictionary,
   BreadcrumbState,
-  BREADCRUMB_INITIAL_STATE,
 } from './breadcrumbState';
 
 const BreadcrumbStateContext = createContext<BreadcrumbState>(
@@ -21,6 +21,9 @@ const BreadcrumbDispatchContext = createContext<BreadcrumbDispatch>(
 
 type BreadcrumbProps = { children: React.ReactNode };
 
+/**
+ * @deprecated This will be removed soon
+ */
 function BreadcrumbProvider({ children }: BreadcrumbProps) {
   const [state, dispatch] = useReducer(
     BreadcrumbReducer,
@@ -36,6 +39,9 @@ function BreadcrumbProvider({ children }: BreadcrumbProps) {
   );
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 function useBreadcrumb() {
   const state = React.useContext(BreadcrumbStateContext);
 

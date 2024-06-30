@@ -6,6 +6,9 @@ export interface OptChipProps {
   backgroundcolor?: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptChip = styled(Chip)<OptChipProps>`
   font-weight: 600;
   ${({ backgroundcolor }) =>

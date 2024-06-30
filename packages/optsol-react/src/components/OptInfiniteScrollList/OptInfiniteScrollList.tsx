@@ -29,6 +29,9 @@ interface State<T extends object> {
   termoPesquisa: string;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export function OptInfiniteScrollList<T extends object>({
   carregar,
   renderItem,

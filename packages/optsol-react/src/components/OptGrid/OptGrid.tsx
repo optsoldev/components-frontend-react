@@ -149,6 +149,9 @@ function OptGridInternal<T extends object>(
   return <OptDefaultGrid {...attrs} />;
 }
 
+/**
+ * @deprecated This will be removed soon
+ */
 export const OptGrid = React.forwardRef(OptGridInternal) as <T extends object>(
   props: OptGridProps<T> & { ref?: React.ForwardedRef<OptGridRef> }
 ) => ReturnType<typeof OptGridInternal>;

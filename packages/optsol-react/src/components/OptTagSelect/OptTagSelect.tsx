@@ -22,6 +22,9 @@ type OriginalCreatableProps = Omit<
   'ref'
 >;
 
+/**
+ * @deprecated This will be removed soon
+ */
 export interface OptTagSelectProps extends OriginalCreatableProps {
   onChange: (tags: string[]) => void;
   onBlur: FocusEventHandler;
