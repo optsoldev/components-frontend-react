@@ -14,27 +14,24 @@ import React, {
   useImperativeHandle,
 } from 'react';
 
-import { TableAction, TableControls, TableOptions, TableRef } from './@types';
+import { TableControls, TableRef, TableRowProps } from './@types';
 import TableView from './TableView';
 
 export interface InternalTableProps<T extends object> {
   controls: TableControls<T>;
-  options?: TableOptions;
-  actions?: (TableAction<T> | ((rowData: T) => TableAction<T>))[];
-  actionsPosition?: 'start' | 'end';
   columns: ColumnDef<T>[];
   hiddenColumns?: { [key: string]: boolean };
   load: (pageIndex: number, pageSize: number) => void;
-  ActionsComponent?: React.ElementType;
+  TableRowProps?: TableRowProps<T>;
 }
 
 const TableInternal = <T extends object>(
   {
     load,
     controls,
-    options,
     columns,
     hiddenColumns,
+    TableRowProps,
   }: Readonly<InternalTableProps<T>>,
   ref: ForwardedRef<TableRef>,
 ) => {
@@ -73,7 +70,11 @@ const TableInternal = <T extends object>(
 
   return (
     <Paper sx={{ width: '100%' }}>
-      <TableView table={table} options={options} controls={controls} />
+      <TableView
+        table={table}
+        controls={controls}
+        TableRowProps={TableRowProps}
+      />
       <TablePagination
         size="small"
         component="div"

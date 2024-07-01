@@ -11,7 +11,7 @@ import {
 import { DefaultTable } from './DefaultTable';
 
 function TableInternal<T extends object>(
-  { columns, data }: TableProps<T>,
+  { columns, data, TableRowProps }: TableProps<T>,
   ref: ForwardedRef<TableRef>,
 ) {
   const isRemote = useMemo(() => !Array.isArray(data), [data]);
@@ -112,15 +112,16 @@ function TableInternal<T extends object>(
     [columns],
   );
 
-  const attrs = {
-    ref,
-    columns: internalColumns,
-    controls,
-    hiddenColumns,
-    load,
-  };
-
-  return <DefaultTable {...attrs} />;
+  return (
+    <DefaultTable
+      ref={ref}
+      columns={internalColumns}
+      controls={controls}
+      hiddenColumns={hiddenColumns}
+      load={load}
+      TableRowProps={TableRowProps}
+    />
+  );
 }
 
 export const Table = React.forwardRef(TableInternal) as <T extends object>(

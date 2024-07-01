@@ -1,6 +1,3 @@
-import { ColumnDef } from '@tanstack/react-table';
-import React from 'react';
-
 export interface TableRef {
   refresh: () => void;
 }
@@ -15,26 +12,6 @@ export interface TableRequest {
   search: string;
   orderBy: string;
   orderDirection: 'asc' | 'desc';
-}
-
-export interface TableOptions {
-  pageIndex?: number;
-  pageSize?: number;
-  search?: boolean;
-  toolbar?: boolean;
-  selection?: boolean;
-  bottomElement?: React.ReactNode;
-  headerBgColor?: string;
-}
-
-export interface TableAction<T> {
-  disabled?: boolean;
-  icon: JSX.Element;
-  isFreeAction?: boolean;
-  position?: 'auto' | 'toolbar' | 'toolbarOnSelect' | 'row';
-  tooltip?: string;
-  onClick: (event: any, data: T | T[]) => void;
-  hidden?: boolean;
 }
 
 type Primitive = null | undefined | string | number | boolean | symbol | bigint;
@@ -82,10 +59,14 @@ export type TableDataRequest<T> = (
   query: TableRequest,
 ) => Promise<TableResponse<T>>;
 
+export interface TableRowProps<T> {
+  onClick?: (value: T, event?: React.MouseEvent<HTMLTableRowElement>) => void;
+}
+
 export interface TableProps<T> {
   data: T[] | TableDataRequest<T>;
-  options?: TableOptions;
   columns: TableColumn<T>[];
+  TableRowProps?: TableRowProps<T>;
 }
 
 export interface TableControls<T> {
@@ -94,15 +75,4 @@ export interface TableControls<T> {
   loading: boolean;
   error: boolean;
   data: T[];
-}
-
-export interface InternalTableProps<T extends object> {
-  controls: TableControls<T>;
-  options?: TableOptions;
-  actions?: (TableAction<T> | ((rowData: T) => TableAction<T>))[];
-  actionsPosition?: 'start' | 'end';
-  columns: ColumnDef<T>[];
-  hiddenColumns?: string[];
-  onRowClick?: (data: T) => void;
-  ActionsComponent?: React.ComponentType;
 }

@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { Layout } from '../components/Layout';
 import Cadastro from '../pages/Cadastro';
+import TablePage from '../pages/Table';
 enum Claim {
   COMERCIAL = 'Comercial',
 }
@@ -36,6 +37,11 @@ export const routes: Routes = {
     title: 'Home',
     icon: <DataPieRegular fontSize={28} />,
   },
+  table: {
+    path: '/table',
+    title: 'Table',
+    icon: <DataPieRegular fontSize={28} />,
+  },
   accessDenied: { path: '/access-denied', title: 'Acesso negado' },
   naoEncontrado: { path: '*', title: '404' },
 };
@@ -47,6 +53,11 @@ export const router = createBrowserRouter(
         index
         element={<Cadastro />}
         handle={{ breadcrumb: () => 'Home' }}
+      />
+      <Route
+        path={routes.table.path}
+        element={<TablePage />}
+        handle={{ breadcrumb: () => 'Table' }}
       />
 
       <Route
