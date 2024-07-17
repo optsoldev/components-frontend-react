@@ -40,7 +40,7 @@ const DrawerHeader = ({
         <Grid item display="flex" alignItems="center">
           <Box
             sx={{ cursor: 'pointer' }}
-            onClick={() => onClose?.call(this, {}, 'backdropClick')}
+            onClick={(e) => onClose?.call(undefined, e, 'backdropClick')}
           >
             <DismissRegular fontSize={20} />
           </Box>

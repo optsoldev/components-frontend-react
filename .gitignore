@@ -1,3 +1,4 @@
 node_modules
 storybook-static
 packages/optsol-react/lib
+.DS_Store
