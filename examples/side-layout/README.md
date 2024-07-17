@@ -1,2 +1,0 @@
-# side-layout example
-
