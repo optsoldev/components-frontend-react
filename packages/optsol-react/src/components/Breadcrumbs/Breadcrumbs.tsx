@@ -1,7 +1,6 @@
 import { Breadcrumbs as MuiBreadcrumbs, Typography } from '@mui/material';
-import { UIMatch, useMatches } from 'react-router-dom';
+import { Link, UIMatch, useMatches } from 'react-router-dom';
 
-import { Link } from '../Link';
 interface HandleType {
   breadcrumb: (param?: any) => React.ReactNode;
   color?: string;
