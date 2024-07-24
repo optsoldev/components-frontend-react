@@ -8,6 +8,7 @@ import { ControlledNumericInput, NumericInput } from './NumericInput';
 import PatternInput from './PatternInput/PatternInput';
 import RadioInput from './RadioInput';
 import { ControlledSelect, Select } from './Select';
+import { Switch } from './Switch';
 
 export {
   AutoComplete,
@@ -24,5 +25,6 @@ export {
   PatternInput,
   RadioInput,
   SearchInput,
-  Select
+  Select,
+  Switch,
 };
