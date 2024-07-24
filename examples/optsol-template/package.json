@@ -18,7 +18,7 @@
     "@hookform/resolvers": "^3.1.1",
     "@mui/material": "^5.13.5",
     "@mui/x-date-pickers": "^6.7.0",
-    "@optsol/react": "^4.0.0-rc.1",
+    "@optsol/react": "^4.0.0-rc.2",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "lodash.debounce": "^4.0.8",
