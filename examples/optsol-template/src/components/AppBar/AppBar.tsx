@@ -1,17 +1,18 @@
-import Logo from '@/assets/logo.svg';
 import { Box, Divider } from '@mui/material';
 import {
   AppBarLogo,
   AppBarUser,
   Breadcrumbs,
   FlexBox,
-  AppBar as OptsolAppBar,
+  AppBar as OptsolAppBar
 } from '@optsol/react';
 import { forwardRef } from 'react';
-import { SIDEBAR_WIDTH } from '../../shared/theme';
+
+import Logo from '@/assets/logo.svg';
+import { SIDEBAR_WIDTH } from '@/config/theme';
 
 const AppBar = forwardRef<HTMLDivElement>((_, ref) => {
-  const user = { name: 'John Doe' };
+  const user = { name: '' };
   const logout = () => {};
 
   return (

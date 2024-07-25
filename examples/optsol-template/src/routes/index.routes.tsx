@@ -1,72 +1,39 @@
-import { DataPieRegular } from '@fluentui/react-icons';
-
-import { ReactElement } from 'react';
 import {
-  Route,
   createBrowserRouter,
   createRoutesFromElements,
+  Route,
 } from 'react-router-dom';
-import { Layout } from '../components/Layout';
-import Cadastro from '../pages/Cadastro';
-import TablePage from '../pages/Table';
-enum Claim {
-  COMERCIAL = 'Comercial',
-}
 
-export type Route = {
-  path: string;
-  title: string;
-  claim?: Claim;
-  icon?: ReactElement;
-  children?: SubRoutes[];
-};
+import { Layout } from '@/components/Layout';
+import { CustomRoute, CustomRoutes, routes } from './app.routes';
 
-export type SubRoutes = {
-  path: string;
-  title: string;
-  claim?: Claim;
-};
+const createRoutes = (routes: CustomRoutes) => {
+  const generateRoutesTree = (route: CustomRoute, parentKey: string) => {
+    if (!route.routes || route.index) {
+      return <Route key={parentKey} {...route} />;
+    }
 
-export type Routes = {
-  [key: string]: Route;
-};
+    const { routes, ...routeProps } = route;
 
-export const routes: Routes = {
-  home: {
-    path: '/',
-    title: 'Home',
-    icon: <DataPieRegular fontSize={28} />,
-  },
-  table: {
-    path: '/table',
-    title: 'Table',
-    icon: <DataPieRegular fontSize={28} />,
-  },
-  accessDenied: { path: '/access-denied', title: 'Acesso negado' },
-  naoEncontrado: { path: '*', title: '404' },
-};
+    return (
+      <Route key={parentKey} {...routeProps}>
+        {routes.map((childRoute, childIndex) =>
+          generateRoutesTree(childRoute, childIndex.toString()),
+        )}
+      </Route>
+    );
+  };
 
-export const router = createBrowserRouter(
-  createRoutesFromElements(
+  const parsedRoutes = Object.entries(routes).map(([key, route]) =>
+    generateRoutesTree(route, key),
+  );
+
+  return createRoutesFromElements(
     <Route path="/" element={<Layout routes={routes} />}>
-      <Route
-        index
-        element={<Cadastro />}
-        handle={{ breadcrumb: () => 'Home' }}
-      />
-      <Route
-        path={routes.table.path}
-        element={<TablePage />}
-        handle={{ breadcrumb: () => 'Table' }}
-      />
-
-      <Route
-        path={routes.accessDenied.path}
-        element={
-          <span>Você não possui permissão para acessar este conteúdo!</span>
-        }
-      />
-      <Route path="*" element={<span>404</span>} />
+      {parsedRoutes}
+      <Route key={'not-found'} path={'*'} element={<span>404</span>} />
     </Route>,
-  ),
-);
+  );
+};
+
+export const router = createBrowserRouter(createRoutes(routes));

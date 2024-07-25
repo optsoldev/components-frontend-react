@@ -1,47 +1,26 @@
 import {
   Box,
   ClickAwayListener,
+  Container,
   Divider,
   Grow,
   MenuItem,
   MenuList,
   Paper,
   Popper,
-  Typography,
+  Typography
 } from '@mui/material';
-import React, {
-  ReactElement,
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import { FlexBox, FlexBoxProps, Link, Sidebar } from '@optsol/react';
+import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { FlexBox, FlexBoxProps, Link, Sidebar } from '@optsol/react';
-import { SIDEBAR_WIDTH } from '../../shared/theme';
+import { SIDEBAR_WIDTH } from '@/config/theme';
+import { CustomRoute, CustomRoutes, SubRoutes } from '@/routes/app.routes';
+
 import AppBar from '../AppBar';
 
-export type Route = {
-  path: string;
-  title: string;
-  claim?: string;
-  icon?: ReactElement;
-  children?: SubRoutes[];
-};
-
-export type SubRoutes = {
-  path: string;
-  title: string;
-  claim?: string;
-};
-
-export type Routes = {
-  [key: string]: Route;
-};
-
 type Props = {
-  routes: Routes;
+  routes: CustomRoutes;
   userClaim?: string;
   sidebarWidth?: number | string;
   color?: FlexBoxProps['color'];
@@ -51,7 +30,7 @@ export const Layout = ({
   routes,
   userClaim,
   color = 'white',
-  sidebarWidth = SIDEBAR_WIDTH,
+  sidebarWidth = SIDEBAR_WIDTH
 }: Props) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
@@ -70,14 +49,14 @@ export const Layout = ({
 
   const onMouseEnter = (
     event: React.MouseEvent<HTMLAnchorElement>,
-    route: Route,
+    route: CustomRoute
   ) => {
-    const { title, children: subRoutes } = route;
+    const { label, routes: subRoutes } = route;
     if (!subRoutes || subRoutes.length === 0) return handleClose();
 
     anchorRef.current = event.currentTarget;
     setSubmenuItems(subRoutes);
-    setTitle(title);
+    setTitle(label);
     setOpen(true);
   };
 
@@ -96,38 +75,40 @@ export const Layout = ({
   const appBarHeigth = appBarRef.current?.getBoundingClientRect().height ?? 0;
 
   const hasAccess = useCallback(
-    (key: string) => {
+    (key: keyof CustomRoutes) => {
       const { claim } = routes[key];
       if (!claim) return true;
       if (claim === userClaim) return true;
 
       return false;
     },
-    [routes, userClaim],
+    [routes, userClaim]
   );
 
   const getRoute = useCallback(
-    (sub: string) => {
-      const { children } = routes[sub];
+    (sub: keyof CustomRoutes) => {
+      const { routes: children } = routes[sub];
       if (!children) return routes[sub].path;
 
       const [subroute] =
-        children.filter((sm) => sm.claim === userClaim || !sm.claim) ?? [];
+        children.filter(
+          (sm) => (sm.claim === userClaim || !sm.claim) && !sm.internal
+        ) ?? [];
 
       if (subroute) return subroute.path;
 
-      return '';
+      return null;
     },
-    [routes, userClaim],
+    [routes, userClaim]
   );
 
   const getTitle = useCallback(
-    (sub: string) => {
+    (sub: keyof CustomRoutes) => {
       const { children } = routes[sub];
-      if (!children) return routes[sub].title;
+      if (!children) return routes[sub].label;
       return '';
     },
-    [routes],
+    [routes]
   );
 
   return (
@@ -147,17 +128,23 @@ export const Layout = ({
               onMouseLeave={handleClose}
             >
               {Object.entries(routes).map(([key, value]) => {
+                if (!(key in routes)) return;
+                const routesKey: keyof CustomRoutes = key as keyof CustomRoutes;
+
                 if (!value.icon) return null;
-                if (!hasAccess(key)) return null;
+                if (!hasAccess(routesKey)) return null;
+
+                const route = getRoute(routesKey);
+                if (!route) return null;
 
                 return (
                   <Link
                     key={key}
-                    to={getRoute(key)}
+                    to={route}
                     onClick={handleClick}
                     onMouseEnter={(e) => onMouseEnter(e, value)}
                   >
-                    <Sidebar.Icon title={getTitle(key)}>
+                    <Sidebar.Icon title={getTitle(routesKey)}>
                       {value.icon}
                     </Sidebar.Icon>
                   </Link>
@@ -175,42 +162,48 @@ export const Layout = ({
               onMouseEnter={() => setOpen(true)}
               placement="right-start"
             >
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
-                  style={{
-                    transformOrigin:
-                      placement === 'bottom-start'
-                        ? 'rigth top'
-                        : 'rigth bottom',
-                  }}
-                >
-                  <Paper onMouseLeave={handleClose}>
-                    <ClickAwayListener onClickAway={handleClose}>
-                      <MenuList
-                        autoFocusItem={open}
-                        sx={{ width: 240 }}
-                        id="composition-menu"
-                        aria-labelledby="composition-button"
-                      >
-                        <Typography py={1} px={2} fontWeight="bold">
-                          {title}
-                        </Typography>
-                        <Divider />
-                        {submenuItems
-                          .filter((sm) => !sm.claim)
-                          .map((menu) => (
+              {({ TransitionProps, placement }) => {
+                const filteredSubmenuItems = submenuItems.filter(
+                  (sm) => !sm.claim && !sm.internal
+                );
+
+                if (filteredSubmenuItems.length === 0) return null;
+
+                return (
+                  <Grow
+                    {...TransitionProps}
+                    style={{
+                      transformOrigin:
+                        placement === 'bottom-start'
+                          ? 'rigth top'
+                          : 'rigth bottom'
+                    }}
+                  >
+                    <Paper onMouseLeave={handleClose}>
+                      <ClickAwayListener onClickAway={handleClose}>
+                        <MenuList
+                          autoFocusItem={open}
+                          sx={{ width: 240 }}
+                          id="composition-menu"
+                          aria-labelledby="composition-button"
+                        >
+                          <Typography py={1} px={2} fontWeight="bold">
+                            {title}
+                          </Typography>
+                          <Divider />
+                          {filteredSubmenuItems.map((menu) => (
                             <Link to={menu.path} key={menu.path} color="white">
                               <MenuItem sx={{ width: 1 }} color="green">
-                                {menu.title}
+                                {menu.label}
                               </MenuItem>
                             </Link>
                           ))}
-                      </MenuList>
-                    </ClickAwayListener>
-                  </Paper>
-                </Grow>
-              )}
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                );
+              }}
             </Popper>
           </Sidebar>
         </FlexBox>
@@ -220,7 +213,9 @@ export const Layout = ({
           position="relative"
           height={`calc(100dvh - ${appBarHeigth}px)`}
         >
-          <Outlet />
+          <Container maxWidth="lg">
+            <Outlet />
+          </Container>
         </FlexBox>
       </FlexBox>
     </>
