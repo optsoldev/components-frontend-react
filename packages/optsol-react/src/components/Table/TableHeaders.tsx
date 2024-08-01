@@ -15,7 +15,11 @@ export function TableHeaders<T extends object>({ groups }: Readonly<Props<T>>) {
           {headerGroup.headers.map((header) => {
             const { column } = header;
             return (
-              <TableCell key={header.id} colSpan={header.colSpan}>
+              <TableCell
+                key={header.id}
+                colSpan={header.colSpan}
+                width={header.getSize()}
+              >
                 <Typography fontWeight={600}>
                   {flexRender(column.columnDef.header, header.getContext())}
                 </Typography>

@@ -16,3 +16,9 @@ declare module '*.svg' {
   export { ReactComponent };
   export default content;
 }
+
+declare module '@mui/x-date-pickers/models' {
+  interface PickerValidDateLookup {
+    'date-fns': Date;
+  }
+}

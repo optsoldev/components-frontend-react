@@ -10,7 +10,7 @@ interface Props<T extends object> {
 
 export function TableRows<T extends object>({
   table,
-  TableRowProps,
+  TableRowProps
 }: Readonly<Props<T>>) {
   const { onClick } = TableRowProps || {};
 
@@ -23,7 +23,7 @@ export function TableRows<T extends object>({
             sx={{ cursor: onClick ? 'pointer' : 'default' }}
             {...(onClick && {
               onClick: (e: React.MouseEvent<HTMLTableRowElement> | undefined) =>
-                onClick(row.original, e),
+                onClick(row.original, e)
             })}
           >
             {row.getVisibleCells().map((cell) => {

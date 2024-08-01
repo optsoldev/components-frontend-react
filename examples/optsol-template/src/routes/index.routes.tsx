@@ -1,11 +1,12 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Route,
+  Route
 } from 'react-router-dom';
 
-import { Layout } from '@/components/Layout';
 import { CustomRoute, CustomRoutes, routes } from './app.routes';
+
+import { Layout } from '@/components/Layout';
 
 const createRoutes = (routes: CustomRoutes) => {
   const generateRoutesTree = (route: CustomRoute, parentKey: string) => {
@@ -18,21 +19,21 @@ const createRoutes = (routes: CustomRoutes) => {
     return (
       <Route key={parentKey} {...routeProps}>
         {routes.map((childRoute, childIndex) =>
-          generateRoutesTree(childRoute, childIndex.toString()),
+          generateRoutesTree(childRoute, childIndex.toString())
         )}
       </Route>
     );
   };
 
   const parsedRoutes = Object.entries(routes).map(([key, route]) =>
-    generateRoutesTree(route, key),
+    generateRoutesTree(route, key)
   );
 
   return createRoutesFromElements(
     <Route path="/" element={<Layout routes={routes} />}>
       {parsedRoutes}
       <Route key={'not-found'} path={'*'} element={<span>404</span>} />
-    </Route>,
+    </Route>
   );
 };
 

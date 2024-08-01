@@ -1,5 +1,6 @@
-import Table from '@/pages/Table';
 import { SubRoutes } from './app.routes';
+
+import Table from '@/pages/Table';
 
 export const cadastroRoutes: SubRoutes[] = [
   {
@@ -8,8 +9,8 @@ export const cadastroRoutes: SubRoutes[] = [
     element: <span>Cliente</span>,
     handle: {
       breadcrumb: () => 'Clientes',
-      path: '/cadastros/cliente',
-    },
+      path: '/cadastros/cliente'
+    }
   },
   {
     label: 'Fabricante',
@@ -17,7 +18,7 @@ export const cadastroRoutes: SubRoutes[] = [
     element: <Table />,
     handle: {
       breadcrumb: () => 'Fabricante',
-      path: '/cadastros/fabricante',
-    },
-  },
+      path: '/cadastros/fabricante'
+    }
+  }
 ];

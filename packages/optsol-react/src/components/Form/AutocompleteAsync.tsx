@@ -1,7 +1,7 @@
 import {
   CircularProgress,
   TextField,
-  UseAutocompleteProps,
+  UseAutocompleteProps
 } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import debounce from 'lodash.debounce';
@@ -9,7 +9,7 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
-  useState,
+  useState
 } from 'react';
 import {
   Controller,
@@ -17,7 +17,7 @@ import {
   FieldError,
   FieldValues,
   get,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 
 import { FlexBox } from '../Flexbox';
@@ -32,7 +32,7 @@ interface Props<
   T extends FieldValues,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  FreeSolo extends boolean | undefined = undefined
 > extends PartiallyRequired<
       Omit<
         UseAutocompleteProps<R, Multiple, DisableClearable, FreeSolo>,
@@ -61,8 +61,6 @@ const AutocompleteAsync = <R, T extends FieldValues>({
   getOptionLabel,
   ...rest
 }: Props<R, T>) => {
-  const loadRef = React.useRef(load);
-
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState<readonly R[]>([]);
   const [searchValue, setSearchValue] = useState('');
@@ -78,11 +76,11 @@ const AutocompleteAsync = <R, T extends FieldValues>({
     if (!open) return;
     setLoading(true);
 
-    loadRef.current.call({}, searchValue).then((values: R[]) => {
+    load.call({}, searchValue).then((values: R[]) => {
       setLoading(false);
       setOptions(values);
     });
-  }, [searchValue, open]);
+  }, [searchValue, open, load]);
 
   const changeHandler = useCallback((value: string) => {
     setSearchValue(value);
@@ -141,7 +139,7 @@ const AutocompleteAsync = <R, T extends FieldValues>({
                       ) : null}
                       {params.InputProps.endAdornment}
                     </React.Fragment>
-                  ),
+                  )
                 }}
               />
             )}

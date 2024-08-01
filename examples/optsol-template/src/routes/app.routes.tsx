@@ -1,16 +1,17 @@
 import {
   AddRegular,
   CalendarRegular,
-  DataPieRegular,
+  DataPieRegular
 } from '@fluentui/react-icons';
 import { ReactElement } from 'react';
 import { RouteProps } from 'react-router-dom';
 
-import Cadastro from '@/pages/Cadastro';
 import { cadastroRoutes } from './cadastros.routes';
 
+import Cadastro from '@/pages/Cadastro';
+
 enum Claim {
-  COMERCIAL = 'Comercial',
+  COMERCIAL = 'Comercial'
 }
 
 export type CustomRoute = RouteProps & {
@@ -32,7 +33,7 @@ export const Views = {
   HOME: 'HOME',
   CADASTROS: 'CADASTROS',
   CONFIGURACOES: 'CONFIGURACOES',
-  NOT_FOUND: 'NOT_FOUND',
+  NOT_FOUND: 'NOT_FOUND'
 } as const;
 
 export const routes: CustomRoutes = {
@@ -43,18 +44,18 @@ export const routes: CustomRoutes = {
     element: <Cadastro />,
     handle: {
       breadcrumb: () => 'Home',
-      path: '/',
-    },
+      path: '/'
+    }
   },
   [Views.CADASTROS]: {
     path: '/cadastros',
     label: 'Cadastros',
     handle: {
       breadcrumb: () => 'Cadastros',
-      path: '/cadastros',
+      path: '/cadastros'
     },
     icon: <CalendarRegular fontSize={28} />,
-    routes: cadastroRoutes,
+    routes: cadastroRoutes
   },
   [Views.CONFIGURACOES]: {
     path: '/configuracoes',
@@ -63,11 +64,11 @@ export const routes: CustomRoutes = {
     element: <span>Configurações</span>,
     handle: {
       breadcrumb: () => 'Configurações',
-      path: '/configuracoes',
-    },
+      path: '/configuracoes'
+    }
   },
   [Views.NOT_FOUND]: {
     path: '*',
-    label: '404',
-  },
+    label: '404'
+  }
 };

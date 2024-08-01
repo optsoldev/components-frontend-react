@@ -4,6 +4,6 @@
   "singleQuote": true,
   "printWidth": 80,
   "bracketSpacing": true,
-  "endOfLine": "crlf",
+  "endOfLine": "lf",
   "tabWidth": 2
 }

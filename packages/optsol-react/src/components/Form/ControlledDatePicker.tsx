@@ -1,7 +1,7 @@
 import { TextFieldProps } from '@mui/material';
 import {
   DatePicker as MaterialDatePicker,
-  DatePickerProps as MaterialDatePickerProps,
+  DatePickerProps as MaterialDatePickerProps
 } from '@mui/x-date-pickers';
 import {
   Controller,
@@ -10,7 +10,7 @@ import {
   FieldValues,
   get,
   useFormContext,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 
 import { FlexBox } from '../Flexbox';
@@ -55,8 +55,8 @@ export default function ControlledDatePicker<T extends FieldValues>({
                 error: !!error,
                 fullWidth: true,
                 sx: { marginTop: 0.5 },
-                inputProps: { placeholder },
-              },
+                inputProps: { placeholder }
+              }
             }}
           />
         )}

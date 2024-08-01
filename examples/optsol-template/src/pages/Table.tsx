@@ -6,7 +6,7 @@ function TablePage() {
     { id: 1, name: 'John Doe', age: 33 },
     { id: 2, name: 'Jane Doe', age: 31 },
     { id: 3, name: 'John Smith', age: 35 },
-    { id: 4, name: 'Jane Smith', age: 32 },
+    { id: 4, name: 'Jane Smith', age: 32 }
   ];
 
   return (
@@ -16,10 +16,10 @@ function TablePage() {
         columns={[
           { title: 'ID', field: 'id', hidden: false },
           { title: 'Name', field: 'name', hidden: false },
-          { title: 'Age', field: 'age', hidden: false },
+          { title: 'Age', field: 'age', hidden: false, width: 200 }
         ]}
         TableRowProps={{
-          onClick: console.log,
+          onClick: console.log
         }}
       />
     </Box>

@@ -7,12 +7,12 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   base: './',
   resolve: {
-    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }]
   },
   plugins: [react(), tsconfigPaths()],
   test: {
     environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
-    globals: true,
-  },
+    globals: true
+  }
 });
