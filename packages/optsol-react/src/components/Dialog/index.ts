@@ -1,5 +1,8 @@
 import ConfirmationDialog from './ConfirmationDialog';
-import { ConfirmationDialogProvider } from './ConfirmationDialog.context';
+import {
+  ConfirmationDialogProvider,
+  useConfirmationDialog
+} from './ConfirmationDialog.context';
 import { Dialog, DialogProps } from './Dialog';
 import DialogActions from './DialogActions';
 import DialogContent from './DialogContent';
@@ -11,7 +14,8 @@ export {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle
+  DialogTitle,
+  useConfirmationDialog
 };
 
 export type { DialogProps };
