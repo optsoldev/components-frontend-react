@@ -8,7 +8,7 @@ import {
   FieldValues,
   get,
   useFormContext,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 
 import { FlexBox } from '../Flexbox';
@@ -19,7 +19,7 @@ export interface AutoCompleteProps<
   T extends FieldValues,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  FreeSolo extends boolean | undefined = undefined
 > extends Omit<
       AutocompleteProps<
         { [x: string]: any },

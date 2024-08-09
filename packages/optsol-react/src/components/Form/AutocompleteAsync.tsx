@@ -1,9 +1,11 @@
 import {
+  ChipProps,
+  ChipTypeMap,
   CircularProgress,
   TextField,
   UseAutocompleteProps
 } from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { AutocompleteValue } from '@mui/material/Autocomplete';
 import debounce from 'lodash.debounce';
 import React, {
   useCallback,
@@ -28,30 +30,39 @@ type PartiallyRequired<T, K extends keyof T> = Omit<T, K> &
   Required<Pick<T, K>>;
 
 interface Props<
-  R,
   T extends FieldValues,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
+  Value,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
 > extends PartiallyRequired<
       Omit<
-        UseAutocompleteProps<R, Multiple, DisableClearable, FreeSolo>,
+        UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
         'value' | 'defaultValue' | 'name' | 'renderInput' | 'options'
       >,
       'getOptionLabel' | 'isOptionEqualToValue'
     >,
     Omit<ControllerProps<T>, 'render'> {
-  value?: R | null;
+  ChipProps?: ChipProps<ChipComponent>;
+  value?: AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo>;
   label?: string;
   placeholder?: string;
   errors?: FieldError | string;
-  load: (value: string) => Promise<R[]>;
+  load: (value: string) => Promise<Value[]>;
 }
 
-const AutocompleteAsync = <R, T extends FieldValues>({
+const AutocompleteAsync = <
+  T extends FieldValues,
+  Value,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
+>({
   label,
   placeholder,
-  value = null,
+  value,
   control,
   errors,
   load,
@@ -60,13 +71,13 @@ const AutocompleteAsync = <R, T extends FieldValues>({
   isOptionEqualToValue,
   getOptionLabel,
   ...rest
-}: Props<R, T>) => {
+}: Props<T, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) => {
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState<readonly R[]>([]);
+  const [options, setOptions] = useState<readonly Value[]>([]);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const [selectedValue, setSelectedValue] = useState<R | null>(value);
+  const [selectedValue, setSelectedValue] = useState(value);
 
   useEffect(() => {
     setSelectedValue(value);
@@ -76,7 +87,7 @@ const AutocompleteAsync = <R, T extends FieldValues>({
     if (!open) return;
     setLoading(true);
 
-    load.call({}, searchValue).then((values: R[]) => {
+    load.call({}, searchValue).then((values: Value[]) => {
       setLoading(false);
       setOptions(values);
     });
@@ -99,7 +110,8 @@ const AutocompleteAsync = <R, T extends FieldValues>({
         name={name}
         control={control}
         render={({ field: { onChange: onInputChange } }) => (
-          <Autocomplete<R, false>
+          <Autocomplete<Value, Multiple, DisableClearable, FreeSolo>
+            fullWidth
             {...rest}
             open={open}
             loading={loading}

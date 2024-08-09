@@ -1,10 +1,15 @@
 import { Grid } from '@mui/material';
+import {
+  AutoComplete,
+  AutocompleteAsync,
+  ControlledInput,
+  PatternInput
+} from '@optsol/react';
 import debounce from 'lodash.debounce';
 import React, { useCallback, useRef } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { FieldValues, useFormContext } from 'react-hook-form';
 import * as Yup from 'yup';
 
-import { AutoComplete, ControlledInput, PatternInput } from '@optsol/react';
 import { useCEP } from '../../hooks';
 import { useYupFunctions } from '../../hooks/useYupFunctions';
 import { ENDERECO_DEFAULT, Endereco } from '../../models';
@@ -36,9 +41,13 @@ const states = [
   { value: 'SC', label: 'SC - Santa Catarina' },
   { value: 'SP', label: 'SP - São Paulo' },
   { value: 'SE', label: 'SE - Sergipe' },
-  { value: 'TO', label: 'TO - Tocantins' },
+  { value: 'TO', label: 'TO - Tocantins' }
 ];
 
+const getOptions = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+  return Promise.resolve(states);
+};
 export interface EnderecoProps {
   validationSchema: Yup.ObjectSchema<Endereco>;
 }
@@ -47,7 +56,9 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
   const { buscar } = useCEP();
   const { isFieldRequired } = useYupFunctions();
 
-  const { control, setValue, setError } = useFormContext();
+  const { control, setValue, setError } = useFormContext<{
+    endereco: Endereco;
+  }>();
   const bairroRef = useRef<HTMLInputElement>(null);
   const numeroRef = useRef<HTMLInputElement>(null);
 
@@ -68,7 +79,7 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
           setValue('endereco', { ...ENDERECO_DEFAULT, cep });
         });
     },
-    [buscar, setError, setValue],
+    [buscar, setError, setValue]
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -99,6 +110,23 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         />
       </Grid>
 
+      <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+        <AutocompleteAsync
+          multiple
+          control={control}
+          label="Estado"
+          placeholder={getPlaceholder('estado', 'Estado')}
+          name="endereco.estado"
+          load={getOptions}
+          getOptionLabel={(o) => o.label}
+          isOptionEqualToValue={function (
+            option: FieldValues,
+            value: FieldValues
+          ): boolean {
+            return option.value === value.value;
+          }}
+        />
+      </Grid>
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
         <ControlledInput
           label="Cidade"
