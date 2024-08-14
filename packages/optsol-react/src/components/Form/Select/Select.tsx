@@ -1,4 +1,9 @@
-import { InputLabel, Select as MuiSelect, SelectProps } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  Select as MuiSelect,
+  SelectProps
+} from '@mui/material';
 import { PropsWithChildren } from 'react';
 
 import { FlexBox } from '../../Flexbox';
@@ -14,10 +19,21 @@ const Select = ({
 }: PropsWithChildren<InputProps>) => {
   return (
     <FlexBox flexDirection="column">
-      {label && <InputLabel>{label}</InputLabel>}
-      <MuiSelect fullWidth size="small" sx={{ marginTop: 0.5 }} {...props}>
-        {children}
-      </MuiSelect>
+      <FormControl size="small">
+        <InputLabel sx={{ marginTop: 0.5 }} id={`${name}-select-small-label`}>
+          {label}
+        </InputLabel>
+
+        <MuiSelect
+          label={label}
+          fullWidth
+          size="small"
+          sx={{ marginTop: 0.5 }}
+          {...props}
+        >
+          {children}
+        </MuiSelect>
+      </FormControl>
     </FlexBox>
   );
 };
