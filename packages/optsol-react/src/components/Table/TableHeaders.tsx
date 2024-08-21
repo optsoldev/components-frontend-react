@@ -1,17 +1,43 @@
-/* eslint-disable react/jsx-key */
-import { TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import {
+  Checkbox,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography
+} from '@mui/material';
 import { HeaderGroup, flexRender } from '@tanstack/react-table';
 
 interface Props<T extends object> {
   groups: HeaderGroup<T>[];
   titlePosition?: 'start' | 'center' | 'end';
+  selectableRows?: boolean;
+  disableSelectAll?: boolean;
+  onSelectAll?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  isAllSelected?: 'all' | 'indeterminate' | 'none';
 }
 
-export function TableHeaders<T extends object>({ groups }: Readonly<Props<T>>) {
+export function TableHeaders<T extends object>({
+  groups,
+  titlePosition = 'start',
+  selectableRows = false,
+  disableSelectAll = false,
+  onSelectAll,
+  isAllSelected
+}: Readonly<Props<T>>) {
   return (
     <TableHead>
       {groups.map((headerGroup) => (
         <TableRow key={headerGroup.id}>
+          {selectableRows && (
+            <TableCell padding="checkbox">
+              <Checkbox
+                indeterminate={isAllSelected === 'indeterminate'}
+                checked={isAllSelected === 'all'}
+                onChange={onSelectAll}
+                disabled={disableSelectAll}
+              />
+            </TableCell>
+          )}
           {headerGroup.headers.map((header) => {
             const { column } = header;
             return (
@@ -19,6 +45,7 @@ export function TableHeaders<T extends object>({ groups }: Readonly<Props<T>>) {
                 key={header.id}
                 colSpan={header.colSpan}
                 width={header.getSize()}
+                style={{ textAlign: titlePosition }}
               >
                 <Typography fontWeight={600}>
                   {flexRender(column.columnDef.header, header.getContext())}

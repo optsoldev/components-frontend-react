@@ -6,13 +6,21 @@ import {
   TableDataRequest,
   TableProps,
   TableRef,
-  TableRequest,
+  TableRequest
 } from './@types';
 import { DefaultTable } from './DefaultTable';
 
 function TableInternal<T extends object>(
-  { columns, data, TableRowProps }: TableProps<T>,
-  ref: ForwardedRef<TableRef>,
+  {
+    columns,
+    data,
+    TableRowProps,
+    selectableRows = false,
+    selectedRowIds = {},
+    onSelectRow,
+    disableSelectAll = false
+  }: TableProps<T>,
+  ref: ForwardedRef<TableRef>
 ) {
   const isRemote = useMemo(() => !Array.isArray(data), [data]);
 
@@ -21,7 +29,7 @@ function TableInternal<T extends object>(
     pageCount: isRemote ? 0 : Math.ceil(data.length / 10),
     loading: isRemote,
     data: isRemote ? [] : (data as T[]),
-    error: false,
+    error: false
   });
 
   const loadRemote = useCallback(
@@ -31,13 +39,13 @@ function TableInternal<T extends object>(
         orderDirection: 'asc',
         page,
         pageSize,
-        search: '',
+        search: ''
       };
 
       setControls((previous) => ({
         ...previous,
         loading: true,
-        error: false,
+        error: false
       }));
 
       remoteData(query)
@@ -48,7 +56,7 @@ function TableInternal<T extends object>(
             totalCount: result.total,
             pageCount: Math.ceil(result.total / pageSize),
             loading: false,
-            error: false,
+            error: false
           }));
         })
         .catch(() => {
@@ -56,11 +64,11 @@ function TableInternal<T extends object>(
             ...previous,
             data: [],
             loading: false,
-            error: true,
+            error: true
           }));
         });
     },
-    [],
+    []
   );
 
   const loadLocal = useCallback(
@@ -75,10 +83,10 @@ function TableInternal<T extends object>(
         totalCount: tableData.length,
         pageCount: Math.ceil(tableData.length / pageSize),
         loading: false,
-        error: false,
+        error: false
       }));
     },
-    [],
+    []
   );
 
   const load = useCallback(
@@ -86,7 +94,7 @@ function TableInternal<T extends object>(
       if (!Array.isArray(data)) loadRemote(data, pageIndex, pageSize);
       else loadLocal(data, pageIndex, pageSize);
     },
-    [loadLocal, loadRemote, data],
+    [loadLocal, loadRemote, data]
   );
 
   const hiddenColumns: { [key: string]: boolean } = useMemo(
@@ -95,7 +103,7 @@ function TableInternal<T extends object>(
         if (cur.field) return { ...acc, [cur.field]: !cur.hidden };
         return acc;
       }, {}),
-    [columns],
+    [columns]
   );
 
   const internalColumns = React.useMemo(
@@ -107,9 +115,9 @@ function TableInternal<T extends object>(
           if (column.render) return column.render(info.row.original);
           return info.getValue();
         },
-        ...(column.width && { size: column.width }),
+        ...(column.width && { size: column.width })
       })),
-    [columns],
+    [columns]
   );
 
   return (
@@ -120,10 +128,14 @@ function TableInternal<T extends object>(
       hiddenColumns={hiddenColumns}
       load={load}
       TableRowProps={TableRowProps}
+      selectableRows={selectableRows}
+      selectedRowIds={selectedRowIds}
+      onSelectRow={onSelectRow}
+      disableSelectAll={disableSelectAll}
     />
   );
 }
 
 export const Table = React.forwardRef(TableInternal) as <T extends object>(
-  props: TableProps<T> & { ref?: React.ForwardedRef<TableRef> },
+  props: TableProps<T> & { ref?: React.ForwardedRef<TableRef> }
 ) => ReturnType<typeof TableInternal>;

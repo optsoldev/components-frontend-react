@@ -56,7 +56,7 @@ export interface TableColumn<T> {
 }
 
 export type TableDataRequest<T> = (
-  query: TableRequest,
+  query: TableRequest
 ) => Promise<TableResponse<T>>;
 
 export interface TableRowProps<T> {
@@ -67,6 +67,10 @@ export interface TableProps<T> {
   data: T[] | TableDataRequest<T>;
   columns: TableColumn<T>[];
   TableRowProps?: TableRowProps<T>;
+  selectableRows?: boolean;
+  selectedRowIds?: Record<string, boolean>;
+  onSelectRow?: (rowId: string, isSelected: boolean) => void;
+  disableSelectAll?: boolean;
 }
 
 export interface TableControls<T> {

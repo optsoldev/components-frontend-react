@@ -5,13 +5,14 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  useReactTable,
+  useReactTable
 } from '@tanstack/react-table';
 import React, {
   ForwardedRef,
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useState
 } from 'react';
 
 import { TableControls, TableRef, TableRowProps } from './@types';
@@ -23,6 +24,10 @@ export interface InternalTableProps<T extends object> {
   hiddenColumns?: { [key: string]: boolean };
   load: (pageIndex: number, pageSize: number) => void;
   TableRowProps?: TableRowProps<T>;
+  selectableRows?: boolean;
+  selectedRowIds?: Record<string, boolean>;
+  onSelectRow?: (rowId: string, isSelected: boolean) => void;
+  disableSelectAll?: boolean;
 }
 
 const TableInternal = <T extends object>(
@@ -32,36 +37,54 @@ const TableInternal = <T extends object>(
     columns,
     hiddenColumns,
     TableRowProps,
+    selectableRows = false,
+    selectedRowIds = {},
+    onSelectRow,
+    disableSelectAll = false
   }: Readonly<InternalTableProps<T>>,
-  ref: ForwardedRef<TableRef>,
+  ref: ForwardedRef<TableRef>
 ) => {
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 10
   });
+
+  const [localSelectedRowIds, setLocalSelectedRowIds] =
+    useState<Record<string, boolean>>(selectedRowIds);
 
   const table = useReactTable<T>({
     data: controls.data,
     columns,
     state: {
       columnVisibility: hiddenColumns,
-      pagination,
+      pagination
     },
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    manualPagination: true,
+    manualPagination: true
   });
 
   const { pageIndex, pageSize } = pagination;
 
+  const handleSelectRow = (rowId: string, isSelected: boolean) => {
+    setLocalSelectedRowIds((prevSelected) => ({
+      ...prevSelected,
+      [rowId]: isSelected
+    }));
+
+    if (onSelectRow) {
+      onSelectRow(rowId, isSelected);
+    }
+  };
+
   useImperativeHandle(
     ref,
     () => ({
-      refresh: () => load(pageIndex, pageSize),
+      refresh: () => load(pageIndex, pageSize)
     }),
-    [pageIndex, pageSize, load],
+    [pageIndex, pageSize, load]
   );
 
   useEffect(() => {
@@ -74,6 +97,10 @@ const TableInternal = <T extends object>(
         table={table}
         controls={controls}
         TableRowProps={TableRowProps}
+        selectableRows={selectableRows}
+        selectedRowIds={localSelectedRowIds}
+        onSelectRow={handleSelectRow}
+        disableSelectAll={disableSelectAll}
       />
       <TablePagination
         size="small"
@@ -96,5 +123,5 @@ const TableInternal = <T extends object>(
 };
 
 export const DefaultTable = forwardRef(TableInternal) as <T extends object>(
-  props: InternalTableProps<T> & { ref?: React.ForwardedRef<TableRef> },
+  props: InternalTableProps<T> & { ref?: React.ForwardedRef<TableRef> }
 ) => ReturnType<typeof TableInternal>;
