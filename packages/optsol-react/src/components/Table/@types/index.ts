@@ -63,15 +63,27 @@ export interface TableRowProps<T> {
   onClick?: (value: T, event?: React.MouseEvent<HTMLTableRowElement>) => void;
 }
 
-export interface TableProps<T> {
+export type SelectionProps = {
+  // rowSelection?: true;
+  // multipleSelection?: boolean;
+  // onSelectRow?: (rows: T, isSelected: boolean) => void;
+  // onChangeSelection?: (rows: T[]) => void;
+  rowSelection?: boolean;
+  selectedRowIds?: Record<string, boolean>;
+  onSelectRow?: (row: string, isSelected: boolean) => void;
+  disableMultipleSelection?: boolean;
+} & {
+  rowSelection?: boolean;
+  selectedRowIds?: Record<string, boolean>;
+  onSelectRow?: (row: string, isSelected: boolean) => void;
+  disableMultipleSelection?: never | boolean;
+};
+
+export type TableProps<T> = {
   data: T[] | TableDataRequest<T>;
   columns: TableColumn<T>[];
   TableRowProps?: TableRowProps<T>;
-  selectableRows?: boolean;
-  selectedRowIds?: Record<string, boolean>;
-  onSelectRow?: (rowId: string, isSelected: boolean) => void;
-  disableSelectAll?: boolean;
-}
+} & SelectionProps;
 
 export interface TableControls<T> {
   totalCount: number;

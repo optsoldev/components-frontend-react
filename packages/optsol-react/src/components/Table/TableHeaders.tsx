@@ -10,8 +10,8 @@ import { HeaderGroup, flexRender } from '@tanstack/react-table';
 interface Props<T extends object> {
   groups: HeaderGroup<T>[];
   titlePosition?: 'start' | 'center' | 'end';
-  selectableRows?: boolean;
-  disableSelectAll?: boolean;
+  rowSelection?: boolean;
+  disableMultipleSelection?: boolean;
   onSelectAll?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isAllSelected?: 'all' | 'indeterminate' | 'none';
 }
@@ -19,8 +19,8 @@ interface Props<T extends object> {
 export function TableHeaders<T extends object>({
   groups,
   titlePosition = 'start',
-  selectableRows = false,
-  disableSelectAll = false,
+  rowSelection = false,
+  disableMultipleSelection = false,
   onSelectAll,
   isAllSelected
 }: Readonly<Props<T>>) {
@@ -28,13 +28,13 @@ export function TableHeaders<T extends object>({
     <TableHead>
       {groups.map((headerGroup) => (
         <TableRow key={headerGroup.id}>
-          {selectableRows && (
+          {rowSelection && (
             <TableCell padding="checkbox">
               <Checkbox
                 indeterminate={isAllSelected === 'indeterminate'}
                 checked={isAllSelected === 'all'}
                 onChange={onSelectAll}
-                disabled={disableSelectAll}
+                disabled={disableMultipleSelection}
               />
             </TableCell>
           )}

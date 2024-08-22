@@ -25,11 +25,8 @@ function TablePage() {
         TableRowProps={{
           onClick: (value) => console.log(value)
         }}
-        selectableRows
-        onSelectRow={(rowId, isSelected) =>
-          console.log(`Row ${rowId} selected: ${isSelected}`)
-        }
-        disableSelectAll={false}
+        rowSelection
+        onSelectRow={(rowId, isSelected) => console.log(rowId, isSelected)}
       />
     </Box>
   );

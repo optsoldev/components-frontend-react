@@ -6,49 +6,50 @@ import {
   TableRow
 } from '@mui/material';
 import { Table as ReactTable } from '@tanstack/react-table';
+import { useEffect } from 'react';
 
-import { TableControls, TableRowProps } from './@types';
+import { SelectionProps, TableControls, TableRowProps } from './@types';
 import { TableHeaders } from './TableHeaders';
 import { TableRows } from './TableRows';
 
-interface TableViewProps<T extends object> {
+type TableViewProps<T extends object> = {
   title?: string;
   table: ReactTable<T>;
   controls: TableControls<T>;
   headerTitlePosition?: 'start' | 'center' | 'end';
   TableRowProps?: TableRowProps<T>;
-  selectableRows?: boolean;
-  selectedRowIds?: Record<string, boolean>;
-  onSelectRow?: (rowId: string, isSelected: boolean) => void;
-  disableSelectAll?: boolean;
-}
+  // rowSelection?: boolean;
+  // selectedRowIds?: Record<string, boolean>;
+  // onSelectRow?: (rowId: string, isSelected: boolean) => void;
+  // disableMultipleSelection?: boolean;
+} & SelectionProps;
 
 function TableView<T extends object>({
   table,
   controls,
   headerTitlePosition,
   TableRowProps,
-  selectableRows = false,
+  rowSelection = false,
   selectedRowIds = {},
   onSelectRow,
-  disableSelectAll = false
+  disableMultipleSelection = false
 }: Readonly<TableViewProps<T>>) {
-  const rows = table.getRowModel().rows;
+  useEffect(() => {
+    if (onSelectRow) {
+      table.getRowModel().rows.forEach((row: any) => {
+        if (selectedRowIds[row.id]) {
+          onSelectRow(row.id, false);
+        }
+      });
+    }
+  }, [table.getState().pagination.pageIndex]);
 
-  const isAllSelected = rows.every((row) => selectedRowIds[row.id]);
-
-  const isIndeterminate =
-    Object.keys(selectedRowIds).length > 0 && !isAllSelected;
-
-  const handleSelectAllChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const isChecked = event.target.checked;
-
-    rows.forEach((row) => {
-      if (onSelectRow) {
-        onSelectRow(row.id, isChecked);
-      }
+  const handleSelectAll = () => {
+    const allSelected = table
+      .getRowModel()
+      .rows.every((row: any) => selectedRowIds[row.id]);
+    table.getRowModel().rows.forEach((row: any) => {
+      onSelectRow && onSelectRow(row.id, !allSelected);
     });
   };
 
@@ -58,11 +59,18 @@ function TableView<T extends object>({
         <TableHeaders
           groups={table.getHeaderGroups()}
           titlePosition={headerTitlePosition}
-          selectableRows={selectableRows}
-          disableSelectAll={disableSelectAll}
-          onSelectAll={handleSelectAllChange}
+          rowSelection={rowSelection}
+          disableMultipleSelection={disableMultipleSelection}
+          onSelectAll={handleSelectAll}
           isAllSelected={
-            isAllSelected ? 'all' : isIndeterminate ? 'indeterminate' : 'none'
+            table.getRowModel().rows.every((row: any) => selectedRowIds[row.id])
+              ? 'all'
+              : Object.keys(selectedRowIds).length &&
+                  table
+                    .getRowModel()
+                    .rows.some((row: any) => selectedRowIds[row.id])
+                ? 'indeterminate'
+                : 'none'
           }
         />
 
@@ -70,7 +78,7 @@ function TableView<T extends object>({
           <TableRows
             table={table}
             TableRowProps={TableRowProps}
-            selectableRows={selectableRows}
+            rowSelection={rowSelection}
             selectedRowIds={selectedRowIds}
             onSelectRow={onSelectRow}
           />

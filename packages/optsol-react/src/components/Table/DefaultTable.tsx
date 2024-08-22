@@ -15,20 +15,21 @@ import React, {
   useState
 } from 'react';
 
-import { TableControls, TableRef, TableRowProps } from './@types';
+import {
+  SelectionProps,
+  TableControls,
+  TableRef,
+  TableRowProps
+} from './@types';
 import TableView from './TableView';
 
-export interface InternalTableProps<T extends object> {
+export type InternalTableProps<T extends object> = {
   controls: TableControls<T>;
   columns: ColumnDef<T>[];
   hiddenColumns?: { [key: string]: boolean };
   load: (pageIndex: number, pageSize: number) => void;
   TableRowProps?: TableRowProps<T>;
-  selectableRows?: boolean;
-  selectedRowIds?: Record<string, boolean>;
-  onSelectRow?: (rowId: string, isSelected: boolean) => void;
-  disableSelectAll?: boolean;
-}
+} & SelectionProps;
 
 const TableInternal = <T extends object>(
   {
@@ -37,10 +38,10 @@ const TableInternal = <T extends object>(
     columns,
     hiddenColumns,
     TableRowProps,
-    selectableRows = false,
+    rowSelection = false,
     selectedRowIds = {},
     onSelectRow,
-    disableSelectAll = false
+    disableMultipleSelection
   }: Readonly<InternalTableProps<T>>,
   ref: ForwardedRef<TableRef>
 ) => {
@@ -68,14 +69,15 @@ const TableInternal = <T extends object>(
 
   const { pageIndex, pageSize } = pagination;
 
-  const handleSelectRow = (rowId: string, isSelected: boolean) => {
+  const handleSelectRow = (row: string, isSelected: boolean) => {
+    // const rowId = (row as any).id as string;
     setLocalSelectedRowIds((prevSelected) => ({
       ...prevSelected,
-      [rowId]: isSelected
+      [row]: isSelected
     }));
 
     if (onSelectRow) {
-      onSelectRow(rowId, isSelected);
+      onSelectRow(row, isSelected);
     }
   };
 
@@ -97,10 +99,10 @@ const TableInternal = <T extends object>(
         table={table}
         controls={controls}
         TableRowProps={TableRowProps}
-        selectableRows={selectableRows}
+        rowSelection={rowSelection}
         selectedRowIds={localSelectedRowIds}
         onSelectRow={handleSelectRow}
-        disableSelectAll={disableSelectAll}
+        disableMultipleSelection={disableMultipleSelection}
       />
       <TablePagination
         size="small"

@@ -1,24 +1,20 @@
 import { TableCell, TableRow, Checkbox } from '@mui/material';
 import { Table as ReactTable, flexRender } from '@tanstack/react-table';
 
-import { TableRowProps } from './@types';
+import { SelectionProps, TableRowProps } from './@types';
 
-interface Props<T extends object> {
+type Props<T extends object> = {
   table: ReactTable<T>;
   TableRowProps?: TableRowProps<T>;
-  selectableRows?: boolean;
-  selectedRowIds?: Record<string, boolean>;
-  onSelectRow?: (rowId: string, isSelected: boolean) => void;
-  disableSelectAll?: boolean;
-}
+} & SelectionProps;
 
 export function TableRows<T extends object>({
   table,
   TableRowProps,
-  selectableRows = false,
+  rowSelection = false,
   selectedRowIds = {},
   onSelectRow,
-  disableSelectAll = false
+  disableMultipleSelection
 }: Readonly<Props<T>>) {
   const { onClick } = TableRowProps || {};
 
@@ -47,7 +43,7 @@ export function TableRows<T extends object>({
             sx={{ cursor: onClick ? 'pointer' : 'default' }}
             onClick={(e) => handleRowClick(row, e)}
           >
-            {selectableRows && (
+            {rowSelection && (
               <TableCell padding="checkbox">
                 <Checkbox
                   checked={isSelected}
@@ -55,7 +51,8 @@ export function TableRows<T extends object>({
                     onSelectRow && onSelectRow(row.id, e.target.checked);
                   }}
                   disabled={
-                    disableSelectAll && Object.keys(selectedRowIds).length > 0
+                    disableMultipleSelection &&
+                    Object.keys(selectedRowIds).length > 0
                   }
                 />
               </TableCell>

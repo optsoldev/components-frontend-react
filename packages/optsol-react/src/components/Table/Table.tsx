@@ -15,10 +15,10 @@ function TableInternal<T extends object>(
     columns,
     data,
     TableRowProps,
-    selectableRows = false,
+    rowSelection = false,
     selectedRowIds = {},
     onSelectRow,
-    disableSelectAll = false
+    disableMultipleSelection
   }: TableProps<T>,
   ref: ForwardedRef<TableRef>
 ) {
@@ -128,10 +128,10 @@ function TableInternal<T extends object>(
       hiddenColumns={hiddenColumns}
       load={load}
       TableRowProps={TableRowProps}
-      selectableRows={selectableRows}
+      rowSelection={rowSelection}
       selectedRowIds={selectedRowIds}
       onSelectRow={onSelectRow}
-      disableSelectAll={disableSelectAll}
+      disableMultipleSelection={disableMultipleSelection}
     />
   );
 }
