@@ -27,7 +27,6 @@ function TablePage() {
         }}
         rowSelection
         onSelectedRows={(rows) => console.log(rows, 'saiuuuuuuuu')}
-        disableMultipleSelection
       />
     </Box>
   );
