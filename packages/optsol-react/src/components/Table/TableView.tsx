@@ -18,6 +18,7 @@ type TableViewProps<T extends object> = {
   controls: TableControls<T>;
   headerTitlePosition?: 'start' | 'center' | 'end';
   TableRowProps?: TableRowProps<T>;
+  handleSelectAllRows: (row: T[], isSelected: boolean) => void;
 } & SelectionProps<T>;
 
 function TableView<T extends object>({
@@ -28,7 +29,8 @@ function TableView<T extends object>({
   rowSelection = false,
   selectedRowIds = {},
   onSelectRow,
-  disableMultipleSelection = false
+  disableMultipleSelection = false,
+  handleSelectAllRows
 }: Readonly<TableViewProps<T>>) {
   useEffect(() => {
     if (onSelectRow) {
@@ -37,16 +39,20 @@ function TableView<T extends object>({
           onSelectRow(row, false);
         }
       });
+      handleSelectAllRows([], false);
     }
   }, [table.getState().pagination.pageIndex]);
 
   const handleSelectAll = () => {
+    const itens: T[] = [];
     const allSelected = table
       .getRowModel()
       .rows.every((row: any) => selectedRowIds[row.id]);
     table.getRowModel().rows.forEach((row: any) => {
+      itens.push(row);
       onSelectRow && onSelectRow(row, !allSelected);
     });
+    handleSelectAllRows(itens, !allSelected);
   };
 
   return (

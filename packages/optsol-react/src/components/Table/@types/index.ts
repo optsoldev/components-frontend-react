@@ -67,11 +67,13 @@ export type SelectionProps<T> = {
   rowSelection?: boolean;
   selectedRowIds?: Record<string, boolean>;
   onSelectRow?: (row: T, isSelected: boolean) => void;
+  onSelectedRows?: (row: T[]) => void;
   disableMultipleSelection?: boolean;
 } & {
   rowSelection?: boolean;
   selectedRowIds?: Record<string, boolean>;
   onSelectRow?: (row: T, isSelected: boolean) => void;
+  onSelectedRows?: (row: T[]) => void;
   disableMultipleSelection?: never | boolean;
 };
 

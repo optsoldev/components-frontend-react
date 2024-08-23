@@ -41,7 +41,8 @@ const TableInternal = <T extends object>(
     rowSelection = false,
     selectedRowIds = {},
     onSelectRow,
-    disableMultipleSelection
+    disableMultipleSelection,
+    onSelectedRows
   }: Readonly<InternalTableProps<T>>,
   ref: ForwardedRef<TableRef>
 ) => {
@@ -68,6 +69,7 @@ const TableInternal = <T extends object>(
   });
 
   const { pageIndex, pageSize } = pagination;
+  const [currentListObject, setCurrentObjectOnList] = useState<T[]>([]);
 
   const handleSelectRow = (row: T, isSelected: boolean) => {
     const rowId = (row as any).id as string;
@@ -79,7 +81,50 @@ const TableInternal = <T extends object>(
     if (onSelectRow) {
       onSelectRow(row, isSelected);
     }
+    updateObjectsOnList(row, isSelected);
   };
+
+  const handleSelectAllRows = (rows: T[], isSelected: boolean) => {
+    if (isSelected) {
+      const transformedRows = rows.map((row: T) => (row as any)._valuesCache);
+      setCurrentObjectOnList([...transformedRows]);
+    } else {
+      setCurrentObjectOnList([]);
+    }
+  };
+
+  function updateObjectsOnList(object: T, isSelected: boolean) {
+    const exists = currentListObject.some(
+      (existingObject) =>
+        JSON.stringify(existingObject) ===
+        JSON.stringify((object as any)._valuesCache)
+    );
+
+    if (exists) {
+      if (!isSelected) {
+        setCurrentObjectOnList(
+          currentListObject.filter(
+            (existingObject) =>
+              JSON.stringify(existingObject) !==
+              JSON.stringify((object as any)._valuesCache)
+          )
+        );
+      }
+    } else {
+      if (isSelected) {
+        setCurrentObjectOnList([
+          ...currentListObject,
+          (object as any)._valuesCache
+        ]);
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (onSelectedRows) {
+      onSelectedRows(currentListObject);
+    }
+  }, [currentListObject, onSelectedRows]);
 
   useImperativeHandle(
     ref,
@@ -103,6 +148,7 @@ const TableInternal = <T extends object>(
         selectedRowIds={localSelectedRowIds}
         onSelectRow={handleSelectRow}
         disableMultipleSelection={disableMultipleSelection}
+        handleSelectAllRows={handleSelectAllRows}
       />
       <TablePagination
         size="small"

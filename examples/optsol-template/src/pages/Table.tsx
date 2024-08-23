@@ -26,7 +26,8 @@ function TablePage() {
           onClick: (value) => console.log(value)
         }}
         rowSelection
-        onSelectRow={(rowId, isSelected) => console.log(rowId, isSelected)}
+        onSelectedRows={(rows) => console.log(rows, 'saiuuuuuuuu')}
+        disableMultipleSelection
       />
     </Box>
   );

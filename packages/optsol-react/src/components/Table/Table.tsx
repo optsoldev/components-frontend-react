@@ -18,7 +18,8 @@ function TableInternal<T extends object>(
     rowSelection = false,
     selectedRowIds = {},
     onSelectRow,
-    disableMultipleSelection
+    disableMultipleSelection,
+    onSelectedRows
   }: TableProps<T>,
   ref: ForwardedRef<TableRef>
 ) {
@@ -132,6 +133,7 @@ function TableInternal<T extends object>(
       selectedRowIds={selectedRowIds}
       onSelectRow={onSelectRow}
       disableMultipleSelection={disableMultipleSelection}
+      onSelectedRows={onSelectedRows}
     />
   );
 }
