@@ -29,7 +29,7 @@ export type InternalTableProps<T extends object> = {
   hiddenColumns?: { [key: string]: boolean };
   load: (pageIndex: number, pageSize: number) => void;
   TableRowProps?: TableRowProps<T>;
-} & SelectionProps;
+} & SelectionProps<T>;
 
 const TableInternal = <T extends object>(
   {
@@ -69,11 +69,11 @@ const TableInternal = <T extends object>(
 
   const { pageIndex, pageSize } = pagination;
 
-  const handleSelectRow = (row: string, isSelected: boolean) => {
-    // const rowId = (row as any).id as string;
+  const handleSelectRow = (row: T, isSelected: boolean) => {
+    const rowId = (row as any).id as string;
     setLocalSelectedRowIds((prevSelected) => ({
       ...prevSelected,
-      [row]: isSelected
+      [rowId]: isSelected
     }));
 
     if (onSelectRow) {

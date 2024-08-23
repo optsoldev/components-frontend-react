@@ -6,7 +6,7 @@ import { SelectionProps, TableRowProps } from './@types';
 type Props<T extends object> = {
   table: ReactTable<T>;
   TableRowProps?: TableRowProps<T>;
-} & SelectionProps;
+} & SelectionProps<T>;
 
 export function TableRows<T extends object>({
   table,
@@ -48,7 +48,7 @@ export function TableRows<T extends object>({
                 <Checkbox
                   checked={isSelected}
                   onChange={(e) => {
-                    onSelectRow && onSelectRow(row.id, e.target.checked);
+                    onSelectRow && onSelectRow(row.original, e.target.checked);
                   }}
                   disabled={
                     disableMultipleSelection &&

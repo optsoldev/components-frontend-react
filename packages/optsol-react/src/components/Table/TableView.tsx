@@ -18,11 +18,7 @@ type TableViewProps<T extends object> = {
   controls: TableControls<T>;
   headerTitlePosition?: 'start' | 'center' | 'end';
   TableRowProps?: TableRowProps<T>;
-  // rowSelection?: boolean;
-  // selectedRowIds?: Record<string, boolean>;
-  // onSelectRow?: (rowId: string, isSelected: boolean) => void;
-  // disableMultipleSelection?: boolean;
-} & SelectionProps;
+} & SelectionProps<T>;
 
 function TableView<T extends object>({
   table,
@@ -38,7 +34,7 @@ function TableView<T extends object>({
     if (onSelectRow) {
       table.getRowModel().rows.forEach((row: any) => {
         if (selectedRowIds[row.id]) {
-          onSelectRow(row.id, false);
+          onSelectRow(row, false);
         }
       });
     }
@@ -49,7 +45,7 @@ function TableView<T extends object>({
       .getRowModel()
       .rows.every((row: any) => selectedRowIds[row.id]);
     table.getRowModel().rows.forEach((row: any) => {
-      onSelectRow && onSelectRow(row.id, !allSelected);
+      onSelectRow && onSelectRow(row, !allSelected);
     });
   };
 
