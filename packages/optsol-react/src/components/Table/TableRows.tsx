@@ -48,7 +48,7 @@ export function TableRows<T extends object>({
                 <Checkbox
                   checked={isSelected}
                   onChange={(e) => {
-                    onSelectRow && onSelectRow(row.original, e.target.checked);
+                    onSelectRow && onSelectRow(row as any, e.target.checked);
                   }}
                   disabled={
                     disableMultipleSelection &&
