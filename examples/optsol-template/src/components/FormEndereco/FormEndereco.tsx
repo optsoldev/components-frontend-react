@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import {
   AutoComplete,
   AutocompleteAsync,
+  ControlledDatePicker,
   ControlledInput,
   PatternInput
 } from '@optsol/react';
@@ -134,6 +135,17 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
           placeholder={getPlaceholder('cidade', 'Cidade')}
           name="endereco.cidade"
           inputProps={{ maxLength: 100 }}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+        <ControlledDatePicker
+          label="Data"
+          control={control}
+          name="endereco.data"
+          inputProps={{ maxLength: 100 }}
+          onChange={(date: Date | null) => {
+            console.log(date);
+          }}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>

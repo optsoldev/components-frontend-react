@@ -28,7 +28,7 @@ export function TableRows<T extends object>({
         event.target.type === 'checkbox'
       )
     ) {
-      onClick && onClick(row.original, event);
+      onClick && onClick(row, event);
     }
   };
 

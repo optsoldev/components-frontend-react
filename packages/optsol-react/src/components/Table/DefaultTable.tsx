@@ -86,7 +86,7 @@ const TableInternal = <T extends object>(
 
   const handleSelectAllRows = (rows: T[], isSelected: boolean) => {
     if (isSelected) {
-      const transformedRows = rows.map((row: T) => (row as any)._valuesCache);
+      const transformedRows = rows.map((row: T) => (row as any).original);
       setCurrentObjectOnList([...transformedRows]);
     } else {
       setCurrentObjectOnList([]);
@@ -97,7 +97,7 @@ const TableInternal = <T extends object>(
     const exists = currentListObject.some(
       (existingObject) =>
         JSON.stringify(existingObject) ===
-        JSON.stringify((object as any)._valuesCache)
+        JSON.stringify((object as any).original)
     );
 
     if (exists) {
@@ -106,7 +106,7 @@ const TableInternal = <T extends object>(
           currentListObject.filter(
             (existingObject) =>
               JSON.stringify(existingObject) !==
-              JSON.stringify((object as any)._valuesCache)
+              JSON.stringify((object as any).original)
           )
         );
       }
@@ -114,7 +114,7 @@ const TableInternal = <T extends object>(
       if (isSelected) {
         setCurrentObjectOnList([
           ...currentListObject,
-          (object as any)._valuesCache
+          (object as any).original
         ]);
       }
     }

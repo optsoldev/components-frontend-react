@@ -9,7 +9,6 @@ import {
   FieldError,
   FieldValues,
   get,
-  useFormContext,
   useFormState
 } from 'react-hook-form';
 
@@ -31,9 +30,19 @@ export default function ControlledDatePicker<T extends FieldValues>({
   control,
   errors: formErrors,
   placeholder = 'dd/mm/aaaa',
+  onChange,
   ...inputProps
-}: Readonly<DatePickerProps<T>>) {
-  const { setValue } = useFormContext();
+}: Readonly<DatePickerProps<T>> &
+  (
+    | {
+        value: Date;
+        onChange: (date: Date | null) => void;
+      }
+    | {
+        value?: never;
+        onChange?: never;
+      }
+  )) {
   const { errors } = useFormState({ control });
   const error = get(errors, name);
 
@@ -43,11 +52,11 @@ export default function ControlledDatePicker<T extends FieldValues>({
       <Controller
         name={name}
         control={control}
-        render={({ field: { value, name } }) => (
+        render={({ field: { onChange: fieldOnChange, value } }) => (
           <MaterialDatePicker
             label={label}
             value={value ? new Date(value) : null}
-            onChange={(v) => setValue<string>(name, v)}
+            onChange={(e) => (onChange ? onChange(e) : fieldOnChange(e))}
             {...inputProps}
             slotProps={{
               textField: {

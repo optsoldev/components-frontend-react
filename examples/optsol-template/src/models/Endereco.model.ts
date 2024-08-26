@@ -7,6 +7,7 @@ export interface Endereco {
   bairro?: string;
   cidade: string;
   estado: string;
+  data: Date | null;
   complemento?: string | null;
 }
 
@@ -19,7 +20,8 @@ export const ENDERECO_DEFAULT: Endereco = {
   estado: '',
   rua: '',
   numero: '',
-  complemento: ''
+  complemento: '',
+  data: null
 };
 
 const MSG_REQUIRED = 'Campo obrigatório';
@@ -40,6 +42,7 @@ export const EnderecoPJFormModelSchema: Yup.ObjectSchema<Endereco> =
       .required(MSG_REQUIRED),
     bairro: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
     cidade: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
+    data: Yup.date().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
     complemento: Yup.string().nullable().notRequired(),
     estado: Yup.string()
       .required(MSG_REQUIRED)
@@ -59,6 +62,7 @@ export const EnderecoPFFormModelSchema: Yup.ObjectSchema<Endereco> =
       .optional(),
     bairro: Yup.string().optional().typeError(MSG_REQUIRED),
     cidade: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
+    data: Yup.date().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
     complemento: Yup.string().nullable().optional(),
     estado: Yup.string()
       .max(2, 'Excedeu o limite de caracteres')

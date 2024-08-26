@@ -18,8 +18,13 @@ function TablePage() {
       <Table
         data={data}
         columns={[
-          { title: 'ID', field: 'id', hidden: false },
-          { title: 'Name', field: 'name', hidden: false },
+          { title: 'ID', field: 'id', hidden: true },
+          {
+            title: 'Name',
+            field: 'name',
+            hidden: false,
+            render: (value) => <p>{value.name}</p>
+          },
           { title: 'Age', field: 'age', hidden: false, width: 200 }
         ]}
         TableRowProps={{
