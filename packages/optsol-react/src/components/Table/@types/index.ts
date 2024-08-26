@@ -56,18 +56,32 @@ export interface TableColumn<T> {
 }
 
 export type TableDataRequest<T> = (
-  query: TableRequest,
+  query: TableRequest
 ) => Promise<TableResponse<T>>;
 
 export interface TableRowProps<T> {
   onClick?: (value: T, event?: React.MouseEvent<HTMLTableRowElement>) => void;
 }
 
-export interface TableProps<T> {
+export type SelectionProps<T> = {
+  rowSelection?: boolean;
+  selectedRowIds?: Record<string, boolean>;
+  onSelectRow?: (row: T, isSelected: boolean) => void;
+  onSelectedRows?: (row: T[]) => void;
+  disableMultipleSelection?: boolean;
+} & {
+  rowSelection?: boolean;
+  selectedRowIds?: Record<string, boolean>;
+  onSelectRow?: (row: T, isSelected: boolean) => void;
+  onSelectedRows?: (row: T[]) => void;
+  disableMultipleSelection?: never | boolean;
+};
+
+export type TableProps<T> = {
   data: T[] | TableDataRequest<T>;
   columns: TableColumn<T>[];
   TableRowProps?: TableRowProps<T>;
-}
+} & SelectionProps<T>;
 
 export interface TableControls<T> {
   totalCount: number;

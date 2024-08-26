@@ -6,7 +6,11 @@ function TablePage() {
     { id: 1, name: 'John Doe', age: 33 },
     { id: 2, name: 'Jane Doe', age: 31 },
     { id: 3, name: 'John Smith', age: 35 },
-    { id: 4, name: 'Jane Smith', age: 32 }
+    { id: 4, name: 'Jane Smith', age: 32 },
+    { id: 5, name: 'John Doe', age: 33 },
+    { id: 6, name: 'Jane Doe', age: 31 },
+    { id: 7, name: 'John Smith', age: 35 },
+    { id: 8, name: 'Jane Smith', age: 32 }
   ];
 
   return (
@@ -19,8 +23,10 @@ function TablePage() {
           { title: 'Age', field: 'age', hidden: false, width: 200 }
         ]}
         TableRowProps={{
-          onClick: console.log
+          onClick: (value) => console.log(value)
         }}
+        rowSelection
+        onSelectedRows={(rows) => console.log(rows, 'saiuuuuuuuu')}
       />
     </Box>
   );
