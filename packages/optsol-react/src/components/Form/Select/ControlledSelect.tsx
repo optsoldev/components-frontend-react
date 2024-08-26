@@ -2,7 +2,8 @@ import {
   FormControl,
   InputLabel,
   Select,
-  StandardSelectProps,
+  SelectChangeEvent,
+  StandardSelectProps
 } from '@mui/material';
 import { PropsWithChildren } from 'react';
 import {
@@ -11,25 +12,39 @@ import {
   FieldError,
   FieldValues,
   get,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 
 import { FlexBox } from '../../Flexbox';
 import InputError from '../InputError';
 
-export interface ControlledSelectProps<T extends FieldValues>
-  extends Omit<ControllerProps<T>, 'render'>,
-    Omit<StandardSelectProps, 'defaultValue' | 'name' | 'variant'> {
-  label?: string;
-  errors?: FieldError | string;
-}
+export type ControlledSelectProps<T extends FieldValues> = Omit<
+  ControllerProps<T>,
+  'render'
+> &
+  Omit<StandardSelectProps, 'defaultValue' | 'name' | 'variant'> & {
+    label?: string;
+
+    errors?: FieldError | string;
+  } & (
+    | {
+        value: string | number;
+        onChange: (event: SelectChangeEvent<string | number>) => void;
+      }
+    | {
+        value?: never;
+        onChange?: never;
+      }
+  );
 
 export default function ControlledSelect<T extends FieldValues>({
   control,
   errors,
   name,
   label,
+  value,
   children,
+  onChange,
   ...inputProps
 }: Readonly<PropsWithChildren<ControlledSelectProps<T>>>) {
   const formState = useFormState<T>({ control });
@@ -41,7 +56,7 @@ export default function ControlledSelect<T extends FieldValues>({
       <Controller
         name={name}
         control={control}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange: fieldOnChange, value: fieldValue } }) => (
           <FormControl size="small">
             <InputLabel
               sx={{ marginTop: 0.5 }}
@@ -54,8 +69,8 @@ export default function ControlledSelect<T extends FieldValues>({
               label={label}
               size="small"
               error={!!error}
-              value={value ?? ''}
-              onChange={onChange}
+              value={value ?? fieldValue}
+              onChange={(e) => (onChange ? onChange(e) : fieldOnChange(e))}
               sx={{ marginTop: 0.5 }}
               labelId={`${name}-select-small-label`}
               {...inputProps}
