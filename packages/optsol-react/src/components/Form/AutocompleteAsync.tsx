@@ -73,11 +73,12 @@ const AutocompleteAsync = <
   ...rest
 }: Props<T, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) => {
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState<readonly Value[]>([]);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
-
   const [selectedValue, setSelectedValue] = useState(value);
+  const [options, setOptions] = useState<readonly Value[]>(
+    value ? ([value] as Value[]) : []
+  );
 
   useEffect(() => {
     setSelectedValue(value);
