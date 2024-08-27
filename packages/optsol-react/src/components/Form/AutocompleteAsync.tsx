@@ -49,7 +49,7 @@ interface Props<
   label?: string;
   placeholder?: string;
   errors?: FieldError | string;
-  load: (value: string) => Promise<Value[]>;
+  load: ((value: string) => Promise<Value[]>) | Value[];
 }
 
 const AutocompleteAsync = <
@@ -83,6 +83,8 @@ const AutocompleteAsync = <
   }, [value]);
 
   useLayoutEffect(() => {
+    if (Array.isArray(load)) return setOptions(load);
+
     if (!open) return;
     setLoading(true);
 
