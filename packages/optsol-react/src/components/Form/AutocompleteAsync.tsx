@@ -83,7 +83,7 @@ const AutocompleteAsync = <
   }, [value]);
 
   useLayoutEffect(() => {
-    if (!open) return setOptions(value ? ([value] as Value[]) : []);
+    if (!open) return;
     setLoading(true);
 
     load.call({}, searchValue).then((values: Value[]) => {
