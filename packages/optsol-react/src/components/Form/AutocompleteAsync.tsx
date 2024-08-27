@@ -76,23 +76,21 @@ const AutocompleteAsync = <
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedValue, setSelectedValue] = useState(value);
-  const [options, setOptions] = useState<readonly Value[]>(
-    value ? ([value] as Value[]) : []
-  );
+  const [options, setOptions] = useState<readonly Value[]>([]);
 
   useEffect(() => {
     setSelectedValue(value);
   }, [value]);
 
   useLayoutEffect(() => {
-    if (!open) return;
+    if (!open) return setOptions(value ? ([value] as Value[]) : []);
     setLoading(true);
 
     load.call({}, searchValue).then((values: Value[]) => {
       setLoading(false);
       setOptions(values);
     });
-  }, [searchValue, open, load]);
+  }, [searchValue, open, load, value]);
 
   const changeHandler = useCallback((value: string) => {
     setSearchValue(value);
