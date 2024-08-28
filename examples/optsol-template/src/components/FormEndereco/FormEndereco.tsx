@@ -143,9 +143,6 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
           control={control}
           name="endereco.data"
           inputProps={{ maxLength: 100 }}
-          onChange={(date: Date | null) => {
-            console.log(date);
-          }}
           value={null}
         />
       </Grid>

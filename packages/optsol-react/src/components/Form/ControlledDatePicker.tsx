@@ -36,7 +36,7 @@ export default function ControlledDatePicker<T extends FieldValues>({
   (
     | {
         value: Date | null;
-        onChange: (date: Date | null) => void;
+        onChange?: (date: Date | null) => void;
       }
     | {
         value?: never;
