@@ -35,7 +35,7 @@ export default function ControlledDatePicker<T extends FieldValues>({
 }: Readonly<DatePickerProps<T>> &
   (
     | {
-        value: Date;
+        value: Date | null;
         onChange: (date: Date | null) => void;
       }
     | {
