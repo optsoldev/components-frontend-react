@@ -5,20 +5,18 @@ import {
   TextField,
   UseAutocompleteProps
 } from '@mui/material';
-import Autocomplete, { AutocompleteValue } from '@mui/material/Autocomplete';
+import Autocomplete from '@mui/material/Autocomplete';
 import debounce from 'lodash.debounce';
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Controller,
   ControllerProps,
   FieldError,
   FieldValues,
   get,
+  Path,
+  PathValue,
+  useFormContext,
   useFormState
 } from 'react-hook-form';
 
@@ -39,16 +37,17 @@ interface Props<
 > extends PartiallyRequired<
       Omit<
         UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
-        'value' | 'defaultValue' | 'name' | 'renderInput' | 'options'
+        'defaultValue' | 'name' | 'renderInput' | 'options'
       >,
       'getOptionLabel' | 'isOptionEqualToValue'
     >,
     Omit<ControllerProps<T>, 'render'> {
   ChipProps?: ChipProps<ChipComponent>;
-  value?: AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo>;
+
   label?: string;
   placeholder?: string;
   errors?: FieldError | string;
+  defaultInputValue?: string;
   load: ((value: string) => Promise<Value[]>) | Value[];
 }
 
@@ -70,22 +69,19 @@ const AutocompleteAsync = <
   onChange,
   isOptionEqualToValue,
   getOptionLabel,
+  onInputChange: onAutocompleteInputChange,
   ...rest
 }: Props<T, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) => {
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(value);
-  const [options, setOptions] = useState<readonly Value[]>([]);
+  const [options, setOptions] = useState<readonly Value[]>(
+    Array.isArray(load) ? [...load] : []
+  );
 
   useEffect(() => {
-    setSelectedValue(value);
-  }, [value]);
-
-  useLayoutEffect(() => {
-    if (Array.isArray(load)) return setOptions(load);
-
-    if (!open) return;
+    if (Array.isArray(load)) setOptions([...load]);
+    if (!open || Array.isArray(load)) return;
     setLoading(true);
 
     load.call({}, searchValue).then((values: Value[]) => {
@@ -101,6 +97,7 @@ const AutocompleteAsync = <
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(debounce(changeHandler, 500), []);
 
+  const { watch, setValue } = useFormContext<T>();
   const { errors: formErros } = useFormState<T>({ control });
   const error = get(formErros, name);
 
@@ -117,7 +114,7 @@ const AutocompleteAsync = <
             open={open}
             loading={loading}
             options={options}
-            value={selectedValue}
+            value={watch(name)}
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
             getOptionLabel={getOptionLabel}
@@ -125,11 +122,12 @@ const AutocompleteAsync = <
             noOptionsText="Sem dados a exibir"
             onChange={(ev, option, reason, details) => {
               onInputChange({ ...ev, target: { ...ev.currentTarget } });
-              setSelectedValue(option);
+              setValue(name, option as PathValue<T, Path<T>>);
               onChange?.(ev, option, reason, details);
             }}
-            onInputChange={(_e, value) => {
+            onInputChange={(e, value, reason) => {
               debouncedChangeHandler(value);
+              onAutocompleteInputChange?.(e, value, reason);
             }}
             renderInput={(params) => (
               <TextField
