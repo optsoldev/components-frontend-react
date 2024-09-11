@@ -115,11 +115,17 @@ const AutocompleteAsync = <
             loading={loading}
             options={options}
             value={watch(name)}
-            onOpen={() => setOpen(true)}
-            onClose={() => setOpen(false)}
             getOptionLabel={getOptionLabel}
             isOptionEqualToValue={isOptionEqualToValue}
             noOptionsText="Sem dados a exibir"
+            onOpen={(e) => {
+              setOpen(true);
+              rest.onOpen?.(e);
+            }}
+            onClose={(e, r) => {
+              setOpen(false);
+              rest.onClose?.(e, r);
+            }}
             onChange={(ev, option, reason, details) => {
               onInputChange({ ...ev, target: { ...ev.currentTarget } });
               setValue(name, option as PathValue<T, Path<T>>);
