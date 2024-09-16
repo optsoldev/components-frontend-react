@@ -75,7 +75,9 @@ function TablePage() {
           console.log('loop');
           funcTest(rows.map((row) => row.name.toString()));
         }}
-        onSelectRow={(value: Teste) => console.log(value.name)}
+        onSelectRow={(value: Teste, isSelected: boolean) =>
+          console.log(value, isSelected)
+        }
         selectedRowIds={permissoes}
       />
     </Box>

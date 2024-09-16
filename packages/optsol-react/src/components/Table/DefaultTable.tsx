@@ -102,7 +102,12 @@ const TableInternal = <T extends object>(
       },
       {} as Record<string, boolean>
     );
-
+    currentListObject.forEach((selectedObject) => {
+      if (onSelectRow) {
+        onSelectRow(selectedObject, false);
+      }
+    });
+    console.log(currentListObject);
     const updatedList: T[] = [];
 
     setCurrentObjectOnList(updatedList);
