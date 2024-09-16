@@ -1,5 +1,6 @@
 export interface TableRef {
   refresh: () => void;
+  removeSelectedRows: () => void;
 }
 export interface TableResponse<T> {
   data: T[];

@@ -79,7 +79,7 @@ const TableInternal = <T extends object>(
     }));
 
     if (onSelectRow) {
-      onSelectRow(row, isSelected);
+      onSelectRow((row as any).original, isSelected);
     }
     updateObjectsOnList(row, isSelected);
   };
@@ -91,6 +91,22 @@ const TableInternal = <T extends object>(
     } else {
       setCurrentObjectOnList([]);
     }
+  };
+
+  const removeAllSelectedRows = () => {
+    const updatedSelections = currentListObject.reduce(
+      (acc, selectedObject) => {
+        const rowId = (selectedObject as any).id as string;
+        acc[rowId] = false;
+        return acc;
+      },
+      {} as Record<string, boolean>
+    );
+
+    const updatedList: T[] = [];
+
+    setCurrentObjectOnList(updatedList);
+    setLocalSelectedRowIds(updatedSelections);
   };
 
   function updateObjectsOnList(object: T, isSelected: boolean) {
@@ -124,14 +140,15 @@ const TableInternal = <T extends object>(
     if (onSelectedRows) {
       onSelectedRows(currentListObject);
     }
-  }, [currentListObject, onSelectedRows]);
+  }, [currentListObject]);
 
   useImperativeHandle(
     ref,
     () => ({
-      refresh: () => load(pageIndex, pageSize)
+      refresh: () => load(pageIndex, pageSize),
+      removeSelectedRows: removeAllSelectedRows
     }),
-    [pageIndex, pageSize, load]
+    [pageIndex, pageSize, load, removeAllSelectedRows]
   );
 
   useEffect(() => {
