@@ -40,11 +40,12 @@ export function TableHeaders<T extends object>({
           )}
           {headerGroup.headers.map((header) => {
             const { column } = header;
+            const width = isNaN(header.getSize()) ? 'auto' : header.getSize();
             return (
               <TableCell
                 key={header.id}
                 colSpan={header.colSpan}
-                width={header.getSize()}
+                width={width}
                 style={{ textAlign: titlePosition }}
               >
                 <Typography fontWeight={600}>

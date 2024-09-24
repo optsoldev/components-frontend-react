@@ -116,7 +116,7 @@ function TableInternal<T extends object>(
           if (column.render) return column.render(info.row.original);
           return info.getValue();
         },
-        ...(column.width && { size: column.width })
+        size: column.width ?? NaN
       })),
     [columns]
   );
