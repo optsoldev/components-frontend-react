@@ -3,7 +3,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
-  RadioGroupProps,
+  RadioGroupProps
 } from '@mui/material';
 import {
   Controller,
@@ -11,7 +11,7 @@ import {
   FieldError,
   FieldValues,
   get,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 
 import InputError from './InputError/InputError';
@@ -35,6 +35,7 @@ export default function RadioInput<T extends FieldValues>({
   name,
   label,
   values,
+  onChange,
   disabled = false,
   ...radioProps
 }: RadioProps<T>) {
@@ -47,11 +48,11 @@ export default function RadioInput<T extends FieldValues>({
       <Controller
         name={name}
         control={control}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange: onChangeField, value } }) => (
           <RadioGroup
             {...radioProps}
             aria-labelledby="radio-buttons-group-label"
-            onChange={onChange}
+            onChange={onChange ?? onChangeField}
             defaultValue={value}
             value={value}
           >

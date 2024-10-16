@@ -24,7 +24,6 @@ export type ControlledSelectProps<T extends FieldValues> = Omit<
 > &
   Omit<StandardSelectProps, 'defaultValue' | 'name' | 'variant'> & {
     label?: string;
-
     errors?: FieldError | string;
   } & (
     | {

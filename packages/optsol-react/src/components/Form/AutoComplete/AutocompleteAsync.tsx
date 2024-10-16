@@ -20,12 +20,15 @@ import {
   useFormState
 } from 'react-hook-form';
 
-import { FlexBox } from '../Flexbox';
-
-import InputError from './InputError';
+import { FlexBox } from '../../Flexbox';
+import InputError from '../InputError';
 
 type PartiallyRequired<T, K extends keyof T> = Omit<T, K> &
   Required<Pick<T, K>>;
+
+/**
+ * @deprecated This component is deprecated and will be removed in future versions, use ControlledAutocomplete.
+ */
 
 interface Props<
   T extends FieldValues,

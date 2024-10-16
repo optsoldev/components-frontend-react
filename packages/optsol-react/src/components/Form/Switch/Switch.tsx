@@ -2,7 +2,7 @@ import {
   FormControlLabel,
   Switch as MuiSwitch,
   SwitchProps as MuiSwitchProps,
-  Typography,
+  Typography
 } from '@mui/material';
 
 import { FlexBox } from '../../Flexbox';

@@ -6,7 +6,7 @@ export interface Endereco {
   numero?: number | '';
   bairro?: string;
   cidade: string;
-  estado: string;
+  estado: string | null;
   data: Date | null;
   complemento?: string | null;
 }
@@ -17,7 +17,7 @@ export const ENDERECO_DEFAULT: Endereco = {
   cep: '',
   bairro: '',
   cidade: '',
-  estado: '',
+  estado: null,
   rua: '',
   numero: '',
   complemento: '',

@@ -1,14 +1,14 @@
 import { Grid } from '@mui/material';
 import {
   AutoComplete,
-  AutocompleteAsync,
   ControlledDatePicker,
   ControlledInput,
-  PatternInput
+  PatternInput,
+  Virtualize
 } from '@optsol/react';
 import debounce from 'lodash.debounce';
 import React, { useCallback, useRef } from 'react';
-import { FieldValues, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import * as Yup from 'yup';
 
 import { useCEP } from '../../hooks';
@@ -16,38 +16,43 @@ import { useYupFunctions } from '../../hooks/useYupFunctions';
 import { ENDERECO_DEFAULT, Endereco } from '../../models';
 
 const states = [
-  { value: 'AC', label: 'AC - Acre' },
-  { value: 'AL', label: 'AL - Alagoas' },
-  { value: 'AP', label: 'AP - Amapá' },
-  { value: 'AM', label: 'AM - Amazonas' },
-  { value: 'BA', label: 'BA - Bahia' },
-  { value: 'CE', label: 'CE - Ceará' },
-  { value: 'DF', label: 'DF - Distrito Federal' },
-  { value: 'ES', label: 'ES - Espírito Santo' },
-  { value: 'GO', label: 'GO - Goías' },
-  { value: 'MA', label: 'MA - Maranhão' },
-  { value: 'MT', label: 'MT - Mato Grosso' },
-  { value: 'MS', label: 'MS - Mato Grosso do Sul' },
-  { value: 'MG', label: 'MG - Minas Gerais' },
-  { value: 'PA', label: 'PA - Pará' },
-  { value: 'PB', label: 'PB - Paraíba' },
-  { value: 'PR', label: 'PR - Paraná' },
-  { value: 'PE', label: 'PE - Pernambuco' },
-  { value: 'PI', label: 'PI - Piauí' },
-  { value: 'RJ', label: 'RJ - Rio de Janeiro' },
-  { value: 'RN', label: 'RN - Rio Grande do Norte' },
-  { value: 'RS', label: 'RS - Rio Grande do Sul' },
-  { value: 'RO', label: 'RO - Rondônia' },
-  { value: 'RR', label: 'RR - Roraíma' },
-  { value: 'SC', label: 'SC - Santa Catarina' },
-  { value: 'SP', label: 'SP - São Paulo' },
-  { value: 'SE', label: 'SE - Sergipe' },
-  { value: 'TO', label: 'TO - Tocantins' }
+  { value: 'AC', description: 'AC - Acre' },
+  { value: 'AL', description: 'AL - Alagoas' },
+  { value: 'AP', description: 'AP - Amapá' },
+  { value: 'AM', description: 'AM - Amazonas' },
+  { value: 'BA', description: 'BA - Bahia' },
+  { value: 'CE', description: 'CE - Ceará' },
+  { value: 'DF', description: 'DF - Distrito Federal' },
+  { value: 'ES', description: 'ES - Espírito Santo' },
+  { value: 'GO', description: 'GO - Goías' },
+  { value: 'MA', description: 'MA - Maranhão' },
+  { value: 'MT', description: 'MT - Mato Grosso' },
+  { value: 'MS', description: 'MS - Mato Grosso do Sul' },
+  { value: 'MG', description: 'MG - Minas Gerais' },
+  { value: 'PA', description: 'PA - Pará' },
+  { value: 'PB', description: 'PB - Paraíba' },
+  { value: 'PR', description: 'PR - Paraná' },
+  { value: 'PE', description: 'PE - Pernambuco' },
+  { value: 'PI', description: 'PI - Piauí' },
+  { value: 'RJ', description: 'RJ - Rio de Janeiro' },
+  { value: 'RN', description: 'RN - Rio Grande do Norte' },
+  { value: 'RS', description: 'RS - Rio Grande do Sul' },
+  { value: 'RO', description: 'RO - Rondônia' },
+  { value: 'RR', description: 'RR - Roraíma' },
+  { value: 'SC', description: 'SC - Santa Catarina' },
+  { value: 'SP', description: 'SP - São Paulo' },
+  { value: 'SE', description: 'SE - Sergipe' },
+  { value: 'TO', description: 'TO - Tocantins' }
 ];
 
 const getOptions = async () => {
   await new Promise((resolve) => setTimeout(resolve, 5000));
-  return Promise.resolve(states);
+  return Promise.resolve({
+    total: 10000,
+    pageSize: states.length,
+    page: 1,
+    data: states
+  });
 };
 export interface EnderecoProps {
   validationSchema: Yup.ObjectSchema<Endereco>;
@@ -111,7 +116,7 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         />
       </Grid>
 
-      <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+      {/*       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
         <AutocompleteAsync
           multiple
           control={control}
@@ -119,7 +124,7 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
           placeholder={getPlaceholder('estado', 'Estado')}
           name="endereco.estado"
           load={getOptions}
-          getOptionLabel={(o) => o.label}
+          getOptionLabel={(o) => o.description}
           isOptionEqualToValue={function (
             option: FieldValues,
             value: FieldValues
@@ -127,7 +132,7 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
             return option.value === value.value;
           }}
         />
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
         <ControlledInput
           label="Cidade"
@@ -173,6 +178,27 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
           label="Número da residência"
           inputProps={{ maxLength: 5 }}
           placeholder={getPlaceholder('numero', 'Número')}
+        />
+      </Grid>
+      <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Virtualize
+          control={control}
+          label="Estado"
+          name="endereco.estado"
+          getOptionLabel={(o: any) => o.description}
+          placeholder={getPlaceholder('estado', 'Estado')}
+          isOptionEqualToValue={(option, value) => option.value === value.value}
+          load={
+            getOptions /* (req) => {
+            console.log('load', req);
+            return Promise.resolve({
+              total: 10000,
+              pageSize: states.length,
+              page: 1,
+              data: states
+            });
+          } */
+          }
         />
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>

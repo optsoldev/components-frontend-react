@@ -6,7 +6,7 @@ import {
   FieldValues,
   get,
   useFormContext,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 import { NumericFormat, NumericFormatProps } from 'react-number-format';
 
@@ -23,13 +23,14 @@ export interface NumericInputProps<T extends FieldValues>
 }
 
 const ControlledNumericInput = <T extends FieldValues>(
-  props: NumericInputProps<T>,
+  props: NumericInputProps<T>
 ) => {
   const {
     errors: formErrors,
     name,
     label,
     valueType = 'number',
+    onChange,
     ...inputProps
   } = props;
   const { control } = useFormContext<T>();
@@ -44,12 +45,12 @@ const ControlledNumericInput = <T extends FieldValues>(
         control={control}
         render={({ field }) => (
           <NumericFormat
-            {...inputProps}
             fullWidth
             size="small"
             label={label}
             error={!!error}
             sx={{ mt: 0.5 }}
+            onChange={onChange}
             customInput={TextField}
             value={field.value ? field.value : ''}
             onValueChange={(values, source) => {
@@ -66,11 +67,12 @@ const ControlledNumericInput = <T extends FieldValues>(
                   ...event,
                   target: {
                     ...event.target,
-                    value: inputValue,
-                  },
+                    value: inputValue
+                  }
                 });
               }
             }}
+            {...inputProps}
           />
         )}
       />

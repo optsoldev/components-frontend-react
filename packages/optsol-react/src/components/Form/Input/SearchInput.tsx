@@ -13,13 +13,13 @@ export const SearchInput = ({ onChange, value, ...props }: InputProps) => {
     (event) => {
       onChange?.(event);
     },
-    [onChange],
+    [onChange]
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(
     debounce(onFiltarNotaFiscal, 500),
-    [],
+    []
   );
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const SearchInput = ({ onChange, value, ...props }: InputProps) => {
         debouncedChangeHandler(e);
       }}
       InputProps={{
-        endAdornment: <SearchRegular fontSize={24} />,
+        endAdornment: <SearchRegular fontSize={24} />
       }}
       {...props}
     />

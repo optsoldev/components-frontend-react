@@ -6,7 +6,7 @@ import {
   FieldValues,
   get,
   useFormContext,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 import { PatternFormat, PatternFormatProps } from 'react-number-format';
 
@@ -19,7 +19,14 @@ export interface PatternInputProps<T extends FieldValues>
 }
 
 const PatternInput = <T extends FieldValues>(props: PatternInputProps<T>) => {
-  const { errors: formErrors, name, type, label, ...inputProps } = props;
+  const {
+    errors: formErrors,
+    name,
+    type,
+    label,
+    onChange,
+    ...inputProps
+  } = props;
   const { control } = useFormContext<T>();
   const formState = useFormState({ control });
   const error = get(formState.errors, name);
@@ -32,7 +39,6 @@ const PatternInput = <T extends FieldValues>(props: PatternInputProps<T>) => {
         control={control}
         render={({ field }) => (
           <PatternFormat
-            {...inputProps}
             fullWidth
             size="small"
             label={label}
@@ -41,6 +47,7 @@ const PatternInput = <T extends FieldValues>(props: PatternInputProps<T>) => {
             sx={{ marginTop: 0.5 }}
             customInput={TextField}
             value={field.value ? field.value : ''}
+            onChange={onChange}
             onValueChange={(values, source) => {
               if (source.event) {
                 const { event } = source;
@@ -49,11 +56,12 @@ const PatternInput = <T extends FieldValues>(props: PatternInputProps<T>) => {
                   ...event,
                   target: {
                     ...event.target,
-                    value: type === 'text' ? value : formattedValue,
-                  },
+                    value: type === 'text' ? value : formattedValue
+                  }
                 });
               }
             }}
+            {...inputProps}
           />
         )}
       />

@@ -1,7 +1,7 @@
 import {
   FormControlLabel,
   Checkbox as MuiCheckbox,
-  CheckboxProps as MuiCheckboxProps,
+  CheckboxProps as MuiCheckboxProps
 } from '@mui/material';
 import {
   Controller,
@@ -9,7 +9,7 @@ import {
   FieldError,
   FieldValues,
   get,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 
 import InputError from '../InputError';
@@ -28,6 +28,7 @@ export default function ControlledCheckbox<T extends FieldValues>({
   name,
   label,
   disabled = false,
+  onChange,
   ...props
 }: CheckboxProps<T>) {
   const formState = useFormState<T>({ control });
@@ -38,7 +39,7 @@ export default function ControlledCheckbox<T extends FieldValues>({
       <Controller
         name={name}
         control={control}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange: onCheckboxChange, value } }) => (
           <FormControlLabel
             color="primary"
             label={label}
@@ -46,7 +47,10 @@ export default function ControlledCheckbox<T extends FieldValues>({
               <MuiCheckbox
                 checked={value}
                 disabled={disabled}
-                onChange={onChange}
+                onChange={(e, checked) => {
+                  onCheckboxChange(e, checked);
+                  onChange?.(e, checked);
+                }}
                 {...props}
               />
             }

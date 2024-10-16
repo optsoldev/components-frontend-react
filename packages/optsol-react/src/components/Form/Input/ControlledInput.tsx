@@ -5,7 +5,7 @@ import {
   FieldError,
   FieldValues,
   get,
-  useFormState,
+  useFormState
 } from 'react-hook-form';
 
 import { FlexBox } from '../../Flexbox';
@@ -22,6 +22,7 @@ export default function ControlledInput<T extends FieldValues>({
   errors,
   name,
   label,
+  onChange,
   ...inputProps
 }: Readonly<ControlledInputProps<T>>) {
   const formState = useFormState<T>({ control });
@@ -32,16 +33,19 @@ export default function ControlledInput<T extends FieldValues>({
       <Controller
         name={name}
         control={control}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange: onInputChange, value } }) => (
           <TextField
-            {...inputProps}
             label={label}
             fullWidth
             size="small"
             error={!!error}
             value={value ?? ''}
-            onChange={onChange}
             sx={{ marginTop: 0.5 }}
+            onChange={(e) => {
+              onInputChange(e);
+              onChange?.(e);
+            }}
+            {...inputProps}
           />
         )}
       />

@@ -45,7 +45,7 @@ const ControlledNumericInput = (props: NumericInputProps) => {
 
             onChange?.({
               ...event,
-              target: { ...event.currentTarget, value: inputValue },
+              target: { ...event.currentTarget, value: inputValue }
             });
           }
         }}

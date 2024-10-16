@@ -2,7 +2,7 @@ import {
   FormControlLabel,
   Checkbox as MuiCheckbox,
   CheckboxProps as MuiCheckboxProps,
-  Typography,
+  Typography
 } from '@mui/material';
 
 import InputError from '../InputError';
