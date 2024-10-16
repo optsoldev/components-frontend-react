@@ -1,10 +1,11 @@
 import { Grid } from '@mui/material';
 import {
-  AutoComplete,
+  Autocomplete,
+  AutocompleteAsync,
+  ControlledAutocomplete,
   ControlledDatePicker,
   ControlledInput,
-  PatternInput,
-  Virtualize
+  PatternInput
 } from '@optsol/react';
 import debounce from 'lodash.debounce';
 import React, { useCallback, useRef } from 'react';
@@ -45,14 +46,30 @@ const states = [
   { value: 'TO', description: 'TO - Tocantins' }
 ];
 
-const getOptions = async () => {
+const getOptions = async (
+  _request: any
+): Promise<{
+  items: { value: string; description: string }[];
+  pageSize: number;
+  page: number;
+  totalCount: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}> => {
   await new Promise((resolve) => setTimeout(resolve, 5000));
   return Promise.resolve({
-    total: 10000,
+    items: states,
     pageSize: states.length,
     page: 1,
-    data: states
+    totalCount: 1000,
+    hasNextPage: false,
+    hasPreviousPage: false
   });
+};
+
+const getOptionsAutocomplete = async (_termo: string) => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+  return Promise.resolve(states);
 };
 export interface EnderecoProps {
   validationSchema: Yup.ObjectSchema<Endereco>;
@@ -107,32 +124,29 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
-        <AutoComplete
-          options={states}
-          control={control}
+        <Autocomplete
+          load={states}
           label="Estado"
           placeholder={getPlaceholder('estado', 'Estado')}
-          name="endereco.estado"
+          getOptionLabel={(o) => o.description}
+          isOptionEqualToValue={(option, value) => option.value === value.value}
         />
       </Grid>
 
-      {/*       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+      <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
         <AutocompleteAsync
           multiple
           control={control}
           label="Estado"
           placeholder={getPlaceholder('estado', 'Estado')}
           name="endereco.estado"
-          load={getOptions}
+          load={getOptionsAutocomplete}
           getOptionLabel={(o) => o.description}
-          isOptionEqualToValue={function (
-            option: FieldValues,
-            value: FieldValues
-          ): boolean {
+          isOptionEqualToValue={function (option, value) {
             return option.value === value.value;
           }}
         />
-      </Grid> */}
+      </Grid>
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
         <ControlledInput
           label="Cidade"
@@ -181,24 +195,14 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         />
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
-        <Virtualize
+        <ControlledAutocomplete
           control={control}
           label="Estado"
           name="endereco.estado"
-          getOptionLabel={(o: any) => o.description}
+          getOptionLabel={(o) => o.description}
           placeholder={getPlaceholder('estado', 'Estado')}
           isOptionEqualToValue={(option, value) => option.value === value.value}
-          load={
-            getOptions /* (req) => {
-            console.log('load', req);
-            return Promise.resolve({
-              total: 10000,
-              pageSize: states.length,
-              page: 1,
-              data: states
-            });
-          } */
-          }
+          load={getOptions}
         />
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>

@@ -6,7 +6,7 @@ export interface Endereco {
   numero?: number | '';
   bairro?: string;
   cidade: string;
-  estado: string | null;
+  estado: { value: string; description: string } | null;
   data: Date | null;
   complemento?: string | null;
 }
@@ -44,10 +44,10 @@ export const EnderecoPJFormModelSchema: Yup.ObjectSchema<Endereco> =
     cidade: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
     data: Yup.date().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
     complemento: Yup.string().nullable().notRequired(),
-    estado: Yup.string()
-      .required(MSG_REQUIRED)
-      .max(2, 'Excedeu o limite de caracteres')
-      .typeError(MSG_REQUIRED)
+    estado: Yup.object().shape({
+      value: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
+      description: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED)
+    })
   });
 
 export const EnderecoPFFormModelSchema: Yup.ObjectSchema<Endereco> =
@@ -64,8 +64,8 @@ export const EnderecoPFFormModelSchema: Yup.ObjectSchema<Endereco> =
     cidade: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
     data: Yup.date().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
     complemento: Yup.string().nullable().optional(),
-    estado: Yup.string()
-      .max(2, 'Excedeu o limite de caracteres')
-      .required(MSG_REQUIRED)
-      .typeError(MSG_REQUIRED)
+    estado: Yup.object().shape({
+      value: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED),
+      description: Yup.string().required(MSG_REQUIRED).typeError(MSG_REQUIRED)
+    })
   });

@@ -38,11 +38,13 @@ import {
 } from 'react-hook-form';
 import { ListChildComponentProps, VariableSizeList } from 'react-window';
 
-import { FlexBox, InputError } from '@optsol/react';
 import useInfiniteScroll, {
   PaginatedRequest,
   PaginatedResponse
 } from 'packages/optsol-react/src/shared/useInfiniteScroll';
+
+import { FlexBox } from '../../Flexbox';
+import InputError from '../InputError';
 
 const LISTBOX_PADDING = 8; // px
 
