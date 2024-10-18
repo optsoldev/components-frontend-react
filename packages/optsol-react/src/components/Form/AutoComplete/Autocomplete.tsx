@@ -197,7 +197,7 @@ export function Autocomplete<
   ...rest
 }: Props<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
   const [searchValue, setSearchValue] = useState('');
-  const loadFn = useCallback(
+  const loaFn = useCallback(
     (
       req: PaginatedRequest,
       signal?: AbortSignal
@@ -219,7 +219,7 @@ export function Autocomplete<
   const { items, loading, hasNext, lastElementRef } = useInfiniteScroll({
     search: useMemo(() => ({ termo: searchValue }), [searchValue]),
     pageSize: 25,
-    load: loadFn
+    load: loaFn
   });
 
   const changeHandler = useCallback((value: string) => {

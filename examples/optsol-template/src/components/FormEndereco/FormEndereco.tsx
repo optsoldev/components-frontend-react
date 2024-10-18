@@ -42,8 +42,7 @@ const states = [
   { value: 'RR', description: 'RR - Roraíma' },
   { value: 'SC', description: 'SC - Santa Catarina' },
   { value: 'SP', description: 'SP - São Paulo' },
-  { value: 'SE', description: 'SE - Sergipe' },
-  { value: 'TO', description: 'TO - Tocantins' }
+  { value: 'SE', description: 'SE - Sergipe' }
 ];
 
 const getOptions = async (
@@ -79,11 +78,12 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
   const { buscar } = useCEP();
   const { isFieldRequired } = useYupFunctions();
 
-  const { control, setValue, setError } = useFormContext<{
-    endereco: Endereco;
-  }>();
   const bairroRef = useRef<HTMLInputElement>(null);
   const numeroRef = useRef<HTMLInputElement>(null);
+
+  const { control, setValue, setError, watch } = useFormContext<{
+    endereco: Endereco;
+  }>();
 
   const checkCEP = useCallback(
     (e: React.FocusEvent<HTMLInputElement, Element>) => {
@@ -111,6 +111,11 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
   const getPlaceholder = (key: keyof Endereco, placeholder: string) =>
     (isFieldRequired(validationSchema, key) ? '*' : '').concat(placeholder);
 
+  const estado = watch('endereco.estado') ?? {
+    value: 'ES',
+    description: 'ES - Espírito Santo'
+  };
+
   return (
     <Grid container item spacing={3}>
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
@@ -135,15 +140,14 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
 
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
         <AutocompleteAsync
-          multiple
           control={control}
           label="Estado"
-          placeholder={getPlaceholder('estado', 'Estado')}
           name="endereco.estado"
+          placeholder={getPlaceholder('estado', 'Estado')}
           load={getOptionsAutocomplete}
-          getOptionLabel={(o) => o.description}
+          getOptionLabel={(o) => (o ? o.description : '')}
           isOptionEqualToValue={function (option, value) {
-            return option.value === value.value;
+            return option?.value === value?.value;
           }}
         />
       </Grid>
@@ -198,6 +202,7 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         <ControlledAutocomplete
           control={control}
           label="Estado"
+          value={estado}
           name="endereco.estado"
           getOptionLabel={(o) => o.description}
           placeholder={getPlaceholder('estado', 'Estado')}

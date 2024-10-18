@@ -15,6 +15,7 @@ export * from './ImageCarousel';
 export * from './Link';
 export * from './Loading';
 export * from './Sidebar';
-export * from './TabPanel';
 export * from './Table';
+export * from './TabPanel';
+export * from './Timeline';
 export * from './Toolbar';

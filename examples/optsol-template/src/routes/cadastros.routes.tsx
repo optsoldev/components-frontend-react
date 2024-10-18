@@ -1,15 +1,16 @@
 import { SubRoutes } from './app.routes';
 
 import Table from '@/pages/Table';
+import { TimelinePage } from '@/pages/Timeline';
 
 export const cadastroRoutes: SubRoutes[] = [
   {
-    label: 'Cliente',
-    path: '/cadastros/cliente',
-    element: <span>Cliente</span>,
+    label: 'Timeline',
+    path: '/cadastros/timeline',
+    element: <TimelinePage />,
     handle: {
-      breadcrumb: () => 'Clientes',
-      path: '/cadastros/cliente'
+      breadcrumb: () => 'timelines',
+      path: '/cadastros/timeline'
     }
   },
   {
