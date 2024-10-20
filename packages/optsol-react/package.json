@@ -34,7 +34,6 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fluentui/react-icons": "^2.0.244",
-    "@mui/lab": "^5.0.0-alpha.173",
     "@tanstack/react-table": "^8.17.3",
     "color": "^4.2.3",
     "react-dropzone": "^11.4.2",

@@ -25,7 +25,8 @@ export default function Switch({
     <FlexBox flexDirection="column" pl={1}>
       <FormControlLabel
         color="primary"
-        control={<MuiSwitch size="small" disabled={disabled} {...props} />}
+        disabled={disabled}
+        control={<MuiSwitch size="small" {...props} />}
         label={
           <Typography ml={1} color={color}>
             {label}

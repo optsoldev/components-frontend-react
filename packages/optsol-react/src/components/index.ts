@@ -17,5 +17,4 @@ export * from './Loading';
 export * from './Sidebar';
 export * from './Table';
 export * from './TabPanel';
-export * from './Timeline';
 export * from './Toolbar';
