@@ -2,7 +2,8 @@ import { Box, Typography } from '@mui/material';
 import { Component, PropsWithChildren } from 'react';
 
 import AppError from '../assets/application-error.svg';
-import { Colors } from '../shared/colors';
+
+import { ColorPalette } from '@/config/colors';
 
 interface Props {
   component?: string;
@@ -58,7 +59,7 @@ export class ErrorBoundary extends Component<PropsWithChildren<Props>, State> {
               variant="body1"
               fontSize="1.5rem"
               textAlign="center"
-              color={Colors.gray1}
+              color={ColorPalette.grey.main}
             >
               {this.state.error?.message}
             </Typography>

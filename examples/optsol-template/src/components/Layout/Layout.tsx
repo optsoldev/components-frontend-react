@@ -14,10 +14,10 @@ import { FlexBox, FlexBoxProps, Link, Sidebar } from '@optsol/react';
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import AppBar from '../AppBar';
+
 import { SIDEBAR_WIDTH } from '@/config/theme';
 import { CustomRoute, CustomRoutes, SubRoutes } from '@/routes/app.routes';
-
-import AppBar from '../AppBar';
 
 type Props = {
   routes: CustomRoutes;

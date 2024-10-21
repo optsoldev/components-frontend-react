@@ -8,15 +8,16 @@ import { PropsWithChildren } from 'react';
 
 import { FlexBox } from '../../Flexbox';
 
-type InputProps = Omit<SelectProps, 'variant'> & {
+type InputProps<T = unknown> = Omit<SelectProps<T>, 'variant'> & {
   label?: string;
 };
 
-const Select = ({
+export const Select = <T,>({
   label,
+  name,
   children,
   ...props
-}: PropsWithChildren<InputProps>) => {
+}: PropsWithChildren<InputProps<T>>) => {
   return (
     <FlexBox flexDirection="column">
       <FormControl size="small">
@@ -25,9 +26,11 @@ const Select = ({
         </InputLabel>
 
         <MuiSelect
-          label={label}
           fullWidth
           size="small"
+          name={name}
+          label={label}
+          labelId={`${name}-select-small`}
           sx={{ marginTop: 0.5 }}
           {...props}
         >
@@ -37,5 +40,3 @@ const Select = ({
     </FlexBox>
   );
 };
-
-export default Select;

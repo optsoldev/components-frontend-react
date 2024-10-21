@@ -15,7 +15,24 @@ export const muiTheme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: ColorPalette.primary.dark
+          color: ColorPalette.grey.dark
+        }
+      }
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          color: ColorPalette.grey.dark
+        }
+      }
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: ColorPalette.grey.dark,
+          '&.Mui-checked': {
+            color: ColorPalette.primary.main
+          }
         }
       }
     },
@@ -32,7 +49,7 @@ export const muiTheme = createTheme({
       styleOverrides: {
         root: {
           minHeight: 32,
-          '& .MuiTabs-flexContainer': { gap: 28 }
+          '& .MuiTabs-flexContainer': { gap: '0 28px' }
         },
         indicator: {
           borderRadius: 8,
@@ -59,13 +76,27 @@ export const muiTheme = createTheme({
           textTransform: 'none',
           paddingBottom: 8,
           fontWeight: 600,
-          paddingTop: 8
+          paddingTop: 7
         },
         outlined: {
           textTransform: 'none',
-          paddingBottom: 7,
+          paddingBottom: 6,
           fontWeight: 600,
-          paddingTop: 7
+          paddingTop: 5
+        }
+      }
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          height: 22,
+          '&.MuiButtonBase-root': {
+            margin: 1
+          },
+          '& .MuiSvgIcon-root': {
+            fontSize: 16
+          }
         }
       }
     },
@@ -116,6 +147,15 @@ export const muiTheme = createTheme({
     allVariants: {
       padding: 0,
       margin: 0
+    },
+    title2: {
+      fontWeight: 600
+    },
+    title3: {
+      fontSize: 24,
+      fontWeight: 600,
+      lineHeight: 4,
+      color: ColorPalette.grey.dark
     },
     subtitle2: {
       fontSize: 16

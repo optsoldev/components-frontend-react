@@ -5,7 +5,7 @@ import { ptBR } from 'date-fns/locale/pt-BR';
 import { PropsWithChildren } from 'react';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { muiTheme } from './shared/theme';
+import { muiTheme } from './config/theme';
 
 const AppProviders = ({ children }: PropsWithChildren) => {
   return (
