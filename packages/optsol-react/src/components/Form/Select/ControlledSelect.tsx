@@ -18,17 +18,17 @@ import {
 import { FlexBox } from '../../Flexbox';
 import InputError from '../InputError';
 
-export type ControlledSelectProps<T extends FieldValues> = Omit<
-  ControllerProps<T>,
-  'render'
-> &
+export type ControlledSelectProps<
+  T extends FieldValues,
+  Value = unknown
+> = Omit<ControllerProps<T>, 'render'> &
   Omit<StandardSelectProps, 'defaultValue' | 'name' | 'variant'> & {
     label?: string;
     errors?: FieldError | string;
   } & (
     | {
-        value: string | number;
-        onChange: (event: SelectChangeEvent<string | number>) => void;
+        value: Value;
+        onChange: (event: SelectChangeEvent<Value>) => void;
       }
     | {
         value?: never;
@@ -36,7 +36,10 @@ export type ControlledSelectProps<T extends FieldValues> = Omit<
       }
   );
 
-export default function ControlledSelect<T extends FieldValues>({
+export default function ControlledSelect<
+  T extends FieldValues,
+  Value = unknown
+>({
   control,
   errors,
   name,
@@ -45,7 +48,7 @@ export default function ControlledSelect<T extends FieldValues>({
   children,
   onChange,
   ...inputProps
-}: Readonly<PropsWithChildren<ControlledSelectProps<T>>>) {
+}: Readonly<PropsWithChildren<ControlledSelectProps<T, Value>>>) {
   const formState = useFormState<T>({ control });
   const error = get(formState.errors, name);
 
