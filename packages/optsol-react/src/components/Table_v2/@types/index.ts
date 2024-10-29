@@ -78,15 +78,15 @@ export type SelectionProps<T> =
       enableMultiRowSelection?: never;
     };
 
-type SortingState<T> = Array<{
+export type PathSortingState<T> = Array<{
   id: Path<T>;
   desc: boolean;
 }>;
 export type SortingProps<T> =
   | {
       enableMultiSort?: boolean;
-      sorting?: SortingState<T>;
-      onSortingChange: (sorting: SortingState<T>) => void;
+      sorting?: PathSortingState<T>;
+      onSortingChange: (sorting: PathSortingState<T>) => void;
     }
   | {
       sorting?: never;

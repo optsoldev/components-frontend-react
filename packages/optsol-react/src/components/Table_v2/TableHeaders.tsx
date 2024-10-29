@@ -1,6 +1,6 @@
 import {
-  TextSortAscendingRegular,
-  TextSortDescendingRegular
+  TextSortAscendingFilled,
+  TextSortDescendingFilled
 } from '@fluentui/react-icons';
 import { TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import { HeaderGroup, flexRender } from '@tanstack/react-table';
@@ -30,22 +30,28 @@ export function TableHeaders<T extends object>({
                 colSpan={header.colSpan}
                 style={{ textAlign: titlePosition }}
                 onClick={header.column.getToggleSortingHandler()}
-                sx={{
-                  cursor: header.column.getCanSort() ? 'pointer' : 'none'
-                }}
+                sx={{ cursor: header.column.getCanSort() ? 'pointer' : 'none' }}
               >
-                <FlexBox alignItems="center" gap={1}>
-                  {header.column.getCanSort() ? (
-                    header.column.getNextSortingOrder() === 'asc' ? (
-                      <TextSortAscendingRegular />
-                    ) : header.column.getNextSortingOrder() === 'desc' ? (
-                      <TextSortDescendingRegular />
-                    ) : null
-                  ) : undefined}
-
+                <FlexBox
+                  alignItems="center"
+                  gap={1}
+                  title={
+                    header.column.getCanSort()
+                      ? header.column.getNextSortingOrder() === 'asc'
+                        ? 'Sort ascending'
+                        : header.column.getNextSortingOrder() === 'desc'
+                          ? 'Sort descending'
+                          : 'Clear sort'
+                      : undefined
+                  }
+                >
                   <Typography fontWeight={600}>
                     {flexRender(column.columnDef.header, header.getContext())}
                   </Typography>
+                  {{
+                    asc: <TextSortAscendingFilled fontSize={20} />,
+                    desc: <TextSortDescendingFilled fontSize={20} />
+                  }[header.column.getIsSorted() as string] ?? null}
                 </FlexBox>
               </TableCell>
             );
