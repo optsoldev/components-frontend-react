@@ -5,6 +5,8 @@ import {
 import { TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import { HeaderGroup, flexRender } from '@tanstack/react-table';
 
+import { FlexBox } from '../Flexbox';
+
 interface Props<T extends object> {
   groups: HeaderGroup<T>[];
   titlePosition?: 'start' | 'center' | 'end';
@@ -32,17 +34,19 @@ export function TableHeaders<T extends object>({
                   cursor: header.column.getCanSort() ? 'pointer' : 'none'
                 }}
               >
-                {header.column.getCanSort() ? (
-                  header.column.getNextSortingOrder() === 'asc' ? (
-                    <TextSortAscendingRegular />
-                  ) : header.column.getNextSortingOrder() === 'desc' ? (
-                    <TextSortDescendingRegular />
-                  ) : null
-                ) : undefined}
+                <FlexBox alignItems="center" gap={1}>
+                  {header.column.getCanSort() ? (
+                    header.column.getNextSortingOrder() === 'asc' ? (
+                      <TextSortAscendingRegular />
+                    ) : header.column.getNextSortingOrder() === 'desc' ? (
+                      <TextSortDescendingRegular />
+                    ) : null
+                  ) : undefined}
 
-                <Typography fontWeight={600}>
-                  {flexRender(column.columnDef.header, header.getContext())}
-                </Typography>
+                  <Typography fontWeight={600}>
+                    {flexRender(column.columnDef.header, header.getContext())}
+                  </Typography>
+                </FlexBox>
               </TableCell>
             );
           })}

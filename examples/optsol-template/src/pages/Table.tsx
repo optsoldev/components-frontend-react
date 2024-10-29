@@ -97,7 +97,7 @@ function TablePage() {
         enableRowSelection
         enableMultiRowSelection
         onRowSelectionChange={console.log}
-        columnOrder={['id', 'select', 'age', 'name']}
+        columnOrder={['id', 'select', 'name', 'age']}
         sorting={sorting}
         onSortingChange={setSorting}
         columns={[
