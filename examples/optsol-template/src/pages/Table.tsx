@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
-import { Table, TableRef } from '@optsol/react';
+import { Table, Table_v2, TableRef } from '@optsol/react';
 import { useCallback, useRef, useState } from 'react';
+import { Path } from 'react-hook-form';
 
 export interface Teste {
   id: number;
@@ -19,6 +20,9 @@ function TablePage() {
     { id: 7, name: 'John Smith', age: 35 },
     { id: 8, name: 'Jane Smith', age: 32 }
   ];
+  const [sorting, setSorting] = useState<{ id: Path<Teste>; desc: boolean }[]>(
+    []
+  );
   const [newList, setNewList] = useState<string[]>([]);
   const [permissoes, setPermissoes] = useState<Record<string, boolean>>({
     1: true,
@@ -40,9 +44,14 @@ function TablePage() {
     if (tableRef.current) {
       tableRef.current.removeSelectedRows();
     }
+
+    if (table_v2Ref.current) {
+      table_v2Ref.current.removeSelectedRows();
+    }
   }
 
   const tableRef = useRef<TableRef>(null);
+  const table_v2Ref = useRef<TableRef>(null);
 
   return (
     <Box p={2} display="flex" flex={1} flexDirection="column">
@@ -79,6 +88,32 @@ function TablePage() {
           console.log(value, isSelected)
         }
         selectedRowIds={permissoes}
+        disableMultipleSelection
+      />
+
+      <Table_v2
+        ref={table_v2Ref}
+        data={data}
+        enableRowSelection
+        enableMultiRowSelection
+        onRowSelectionChange={console.log}
+        columnOrder={['id', 'select', 'age', 'name']}
+        sorting={sorting}
+        onSortingChange={setSorting}
+        columns={[
+          { title: 'ID', field: 'id', hidden: true },
+          {
+            title: 'Name',
+            field: 'name',
+            hidden: false,
+            width: 400,
+            render: (value) => <p>{value.name}</p>
+          },
+          { title: 'Age', field: 'age', hidden: false, width: 400 }
+        ]}
+        TableRowProps={{
+          onClick: (value) => console.log(value)
+        }}
       />
     </Box>
   );
