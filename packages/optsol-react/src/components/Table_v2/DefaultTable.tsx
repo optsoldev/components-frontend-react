@@ -118,6 +118,7 @@ const TableInternal = <T extends object>(
         rowsPerPageOptions={[5, 10, 25, 50]}
         labelRowsPerPage="Linhas por página"
         onPageChange={(_, page) => {
+          setRowSelection({});
           table.setPageIndex(page);
         }}
         onRowsPerPageChange={(e) => {
