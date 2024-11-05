@@ -57,6 +57,8 @@ const ConfirmationDialogProvider = ({ children }: PropsWithChildren) => {
         maxWidth="xs"
         open={dialogOpen}
         title={dialogConfig?.title ?? ''}
+        confirmText={dialogConfig?.confirmText}
+        dismissText={dialogConfig?.dismissText}
         onConfirm={onConfirm}
         onDismiss={onDismiss}
       >
