@@ -20,6 +20,8 @@ const ConfirmationDialogContext = createContext<
 type DialogConfig = {
   title: string;
   Component: React.ReactNode;
+  confirmText?: string;
+  dismissText?: string;
   actionCallback: (result: boolean) => void;
 };
 
@@ -27,13 +29,10 @@ const ConfirmationDialogProvider = ({ children }: PropsWithChildren) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogConfig, setDialogConfig] = useState<DialogConfig>();
 
-  const openDialog = useCallback(
-    ({ title, Component, actionCallback }: DialogConfig) => {
-      setDialogOpen(true);
-      setDialogConfig({ title, Component, actionCallback });
-    },
-    []
-  );
+  const openDialog = useCallback((config: DialogConfig) => {
+    setDialogOpen(true);
+    setDialogConfig({ ...config });
+  }, []);
 
   const resetDialog = () => {
     setDialogOpen(false);
