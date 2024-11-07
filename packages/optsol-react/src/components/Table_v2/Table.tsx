@@ -114,13 +114,14 @@ function TableInternal<T extends object>(
 
   const tableColumns = React.useMemo(() => {
     const tableColumns: Array<ColumnDef<T>> = columns.map((column) => ({
+      id: column.field,
       header: column.title,
       accessorKey: column.field,
+      size: column.width ?? NaN,
       cell: (info) => {
         if (column.render) return column.render(info.row.original);
         return info.getValue();
-      },
-      size: column.width ?? NaN
+      }
     }));
 
     const selectColumn: ColumnDef<T> = {
