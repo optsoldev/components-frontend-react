@@ -6,7 +6,10 @@ import {
   TextField,
   UseAutocompleteProps
 } from '@mui/material';
-import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
+import Autocomplete, {
+  autocompleteClasses,
+  AutocompleteValue
+} from '@mui/material/Autocomplete';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
@@ -158,41 +161,38 @@ const StyledPopper = styled(Popper)({
   }
 });
 
-type PartiallyRequired<T, K extends keyof T> = Omit<T, K> &
-  Required<Pick<T, K>>;
-
-interface Props<
+type Props<
   T extends FieldValues,
   Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
   ChipComponent extends ElementType = ChipTypeMap['defaultComponent']
-> extends PartiallyRequired<
-      Omit<
-        UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
-        'defaultValue' | 'name' | 'renderInput' | 'options'
-      >,
-      'getOptionLabel' | 'isOptionEqualToValue'
-    >,
-    Omit<ControllerProps<T>, 'render'> {
-  ChipProps?: ChipProps<ChipComponent>;
-
-  label?: string;
-  placeholder?: string;
-  errors?: FieldError | string;
-  defaultInputValue?: string;
-  load:
-    | ((
-        req: PaginatedRequest,
-        signal?: AbortSignal
-      ) => Promise<PaginatedResponse<Value>>)
-    | Value[];
-}
-
+> = Omit<
+  UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
+  'defaultValue' | 'name' | 'renderInput' | 'options'
+> &
+  Omit<ControllerProps<T>, 'render'> & {
+    label?: string;
+    placeholder?: string;
+    errors?: FieldError | string;
+    ChipProps?: ChipProps<ChipComponent>;
+  } & (
+    | {
+        load?: never;
+        options: ReadonlyArray<Value>;
+      }
+    | {
+        options?: never;
+        load: (
+          req: PaginatedRequest,
+          signal?: AbortSignal
+        ) => Promise<PaginatedResponse<Value>>;
+      }
+  );
 export function ControlledAutocomplete<
   T extends FieldValues,
-  Value,
+  Value = unknown,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
@@ -205,30 +205,28 @@ export function ControlledAutocomplete<
   errors,
   load,
   name,
+  options,
   onChange,
-  isOptionEqualToValue,
   getOptionLabel,
+  isOptionEqualToValue,
   onInputChange: onAutocompleteInputChange,
   ...rest
 }: Props<T, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
   const [searchValue, setSearchValue] = useState('');
   const loadFn = useCallback(
-    (
-      req: PaginatedRequest,
-      signal?: AbortSignal
-    ): Promise<PaginatedResponse<Value>> => {
-      if (!Array.isArray(load)) return load(req, signal);
+    (req: PaginatedRequest, signal?: AbortSignal) => {
+      if (load) return load(req, signal);
 
       return Promise.resolve({
         page: 1,
-        items: load,
+        items: options ?? [],
         hasNextPage: false,
         hasPreviousPage: false,
-        pageSize: load.length,
-        totalCount: load.length
+        pageSize: options?.length ?? 0,
+        totalCount: options?.length ?? 0
       });
     },
-    [load]
+    [load, options]
   );
 
   const { items, loading, hasNext, lastElementRef } = useInfiniteScroll({
@@ -248,22 +246,31 @@ export function ControlledAutocomplete<
   const { errors: formErros } = useFormState<T>({ control });
   const error = get(formErros, name);
 
+  const formValue:
+    | AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo>
+    | undefined = watch(name);
+
   return (
     <FlexBox flexDirection="column" flexGrow={1}>
       <Controller
         name={name}
         control={control}
         render={() => (
-          <Autocomplete<Value, Multiple, DisableClearable, FreeSolo>
+          <Autocomplete<
+            Value,
+            Multiple,
+            DisableClearable,
+            FreeSolo,
+            ChipComponent
+          >
             disableListWrap
             options={items}
-            value={value ?? watch(name) ?? null}
+            value={value ?? formValue}
             getOptionLabel={getOptionLabel}
             isOptionEqualToValue={isOptionEqualToValue}
             noOptionsText="Sem dados a exibir"
             renderOption={(props, option, state) => {
               const lastElement = items.length - 1 === state.index;
-
               const ref = lastElement && hasNext ? lastElementRef : null;
 
               option = { ...option, ref };
