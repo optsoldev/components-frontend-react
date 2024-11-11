@@ -20,7 +20,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-
+    "noImplicitAny": true, // Ensures that any type is not implicitly used
+    "strictFunctionTypes": true, // Ensures function argument types are checked properly
+    
     /* Paths */
     "baseUrl": ".",
     "paths": {

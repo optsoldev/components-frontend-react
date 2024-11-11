@@ -52,15 +52,15 @@ const states = [
   { value: 'SE', description: 'SE - Sergipe' }
 ];
 
-const getOptions: AutocompleteLoadFunction<State> = async () => {
+const getOptions: AutocompleteLoadFunction<State> = async (_a: string, _b) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return Promise.resolve({
-    items: states,
-    pageSize: states.length,
     page: 1,
+    items: states,
     totalCount: 1000,
     hasNextPage: false,
-    hasPreviousPage: false
+    hasPreviousPage: false,
+    pageSize: states.length
   });
 };
 

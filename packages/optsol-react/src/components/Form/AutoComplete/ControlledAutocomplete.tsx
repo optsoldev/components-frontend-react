@@ -154,15 +154,12 @@ const ListboxComponent = forwardRef<
 const StyledPopper = styled(Popper)({
   [`& .${autocompleteClasses.listbox}`]: {
     boxSizing: 'border-box',
-    '& ul': {
-      padding: 0,
-      margin: 0
-    }
+    '& ul': { padding: 0, margin: 0 }
   }
 });
 
-export type AutocompleteLoadFunction<Value = unknown> = (
-  req: PaginatedRequest,
+export type AutocompleteLoadFunction<Value> = (
+  req: PaginatedRequest<Value>,
   signal?: AbortSignal
 ) => Promise<PaginatedResponse<Value>>;
 
@@ -231,7 +228,7 @@ export function ControlledAutocomplete<
     [load, options]
   );
 
-  const { items, loading, hasNext, lastElementRef } = useInfiniteScroll({
+  const { items, loading, hasNext, lastElementRef } = useInfiniteScroll<Value>({
     search: useMemo(() => ({ termo: searchValue }), [searchValue]),
     pageSize: 25,
     load: loadFn

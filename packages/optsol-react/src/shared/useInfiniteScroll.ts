@@ -1,13 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-export type PaginatedRequest<T = unknown, R = unknown> = Record<
-  string,
-  R | Date | string | number | boolean | null | undefined
-> & {
+export type PaginatedRequest<T = unknown, R = unknown> = {
   page: number;
   pageSize: number;
   sortColumn?: keyof T;
   sortOrder?: 'asc' | 'desc';
-};
+} & Record<string, R | Date | string | number | boolean | null | undefined>;
 
 export type PaginatedResponse<T = unknown> = {
   items: ReadonlyArray<T>;
