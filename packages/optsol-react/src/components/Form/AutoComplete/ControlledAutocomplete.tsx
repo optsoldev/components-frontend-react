@@ -161,6 +161,11 @@ const StyledPopper = styled(Popper)({
   }
 });
 
+export type AutocompleteLoadFunction<Value = unknown> = (
+  req: PaginatedRequest,
+  signal?: AbortSignal
+) => Promise<PaginatedResponse<Value>>;
+
 type Props<
   T extends FieldValues,
   Value,
@@ -184,15 +189,12 @@ type Props<
       }
     | {
         options?: never;
-        load: (
-          req: PaginatedRequest,
-          signal?: AbortSignal
-        ) => Promise<PaginatedResponse<Value>>;
+        load: AutocompleteLoadFunction<Value>;
       }
   );
 export function ControlledAutocomplete<
   T extends FieldValues,
-  Value = unknown,
+  Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,

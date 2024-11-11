@@ -2,11 +2,10 @@ import { Grid } from '@mui/material';
 import {
   Autocomplete,
   AutocompleteAsync,
+  AutocompleteLoadFunction,
   ControlledAutocomplete,
   ControlledDatePicker,
   ControlledInput,
-  PaginatedRequest,
-  PaginatedResponse,
   PatternInput,
   Select
 } from '@optsol/react';
@@ -18,6 +17,11 @@ import * as Yup from 'yup';
 import { useCEP } from '../../hooks';
 import { useYupFunctions } from '../../hooks/useYupFunctions';
 import { ENDERECO_DEFAULT, Endereco } from '../../models';
+
+type State = {
+  value: string;
+  description: string;
+};
 
 const states = [
   { value: 'AC', description: 'AC - Acre' },
@@ -48,9 +52,7 @@ const states = [
   { value: 'SE', description: 'SE - Sergipe' }
 ];
 
-const getOptions = async (
-  _request: PaginatedRequest
-): Promise<PaginatedResponse<{ value: string; description: string }>> => {
+const getOptions: AutocompleteLoadFunction<State> = async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return Promise.resolve({
     items: states,

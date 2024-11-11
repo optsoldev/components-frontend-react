@@ -1,8 +1,3 @@
-import {
-  Autocomplete,
-  AutocompleteAsync,
-  ControlledAutocomplete
-} from './AutoComplete';
 import { Checkbox, ControlledCheckbox } from './Checkbox';
 import ControlledDatePicker from './ControlledDatePicker';
 import { ControlledInput, Input, SearchInput } from './Input';
@@ -13,11 +8,9 @@ import RadioInput from './RadioInput';
 import { ControlledSelect, Select } from './Select';
 import { Switch } from './Switch';
 
+export * from './AutoComplete';
 export {
-  Autocomplete,
-  AutocompleteAsync,
   Checkbox,
-  ControlledAutocomplete,
   ControlledCheckbox,
   ControlledDatePicker,
   ControlledInput,
