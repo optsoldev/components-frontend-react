@@ -6,17 +6,17 @@ export default {
   output: [
     {
       file: './lib/cjs/index.js',
-      format: 'cjs',
+      format: 'cjs'
     },
     {
       file: './lib/esm/index.esm.js',
-      format: 'esm',
-    },
+      format: 'esm'
+    }
   ],
-  external: [...Object.keys(pkg.peerDependencies || {})],
+  external: ['react', ...Object.keys(pkg.peerDependencies, pkg.dependencies)],
   plugins: [
     typescript({
-      tsconfig: 'tsconfig.json',
-    }),
-  ],
+      tsconfig: 'tsconfig.json'
+    })
+  ]
 };

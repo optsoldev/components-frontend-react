@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import {
   Autocomplete,
   AutocompleteAsync,
+  AutocompleteLoadFunction,
   ControlledAutocomplete,
   ControlledDatePicker,
   ControlledInput,
@@ -16,6 +17,11 @@ import * as Yup from 'yup';
 import { useCEP } from '../../hooks';
 import { useYupFunctions } from '../../hooks/useYupFunctions';
 import { ENDERECO_DEFAULT, Endereco } from '../../models';
+
+type State = {
+  value: string;
+  description: string;
+};
 
 const states = [
   { value: 'AC', description: 'AC - Acre' },
@@ -46,17 +52,8 @@ const states = [
   { value: 'SE', description: 'SE - Sergipe' }
 ];
 
-const getOptions = async (
-  _request: any
-): Promise<{
-  items: { value: string; description: string }[];
-  pageSize: number;
-  page: number;
-  totalCount: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-}> => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+const getOptions: AutocompleteLoadFunction<State> = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return Promise.resolve({
     items: states,
     pageSize: states.length,
@@ -191,9 +188,9 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         <ControlledInput
           label="Rua"
           control={control}
-          placeholder={getPlaceholder('rua', 'Rua')}
           name="endereco.rua"
           inputProps={{ maxLength: 150 }}
+          placeholder={getPlaceholder('rua', 'Rua')}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
@@ -204,6 +201,20 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
           label="Número da residência"
           inputProps={{ maxLength: 5 }}
           placeholder={getPlaceholder('numero', 'Número')}
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+        <ControlledAutocomplete
+          control={control}
+          label="Estado"
+          name="endereco.estado"
+          load={getOptions}
+          placeholder={getPlaceholder('estado', 'Estado')}
+          getOptionLabel={(o) => (o ? o.description : '')}
+          isOptionEqualToValue={(option, value) =>
+            option?.value === value?.value
+          }
         />
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>

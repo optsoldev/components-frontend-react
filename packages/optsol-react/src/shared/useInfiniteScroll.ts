@@ -10,7 +10,7 @@ export type PaginatedRequest<T = unknown, R = unknown> = Record<
 };
 
 export type PaginatedResponse<T = unknown> = {
-  items: T[];
+  items: ReadonlyArray<T>;
   page: number;
   pageSize: number;
   totalCount: number;
@@ -50,7 +50,7 @@ export default function useInfiniteScroll<T = unknown, R = unknown>({
   const [error, setError] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [items, setItems] = useState<Array<T>>([]);
+  const [items, setItems] = useState<ReadonlyArray<T>>([]);
   const [paginaSelecionada, setPaginaSelecionada] = useState(firstPage);
 
   const observer = useRef<IntersectionObserver>();
