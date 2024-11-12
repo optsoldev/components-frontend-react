@@ -44,8 +44,7 @@ import { ListChildComponentProps, VariableSizeList } from 'react-window';
 import useInfiniteScroll, {
   PaginatedRequest,
   PaginatedResponse
-} from 'packages/optsol-react/src/shared/useInfiniteScroll';
-
+} from '../../../shared/useInfiniteScroll';
 import { FlexBox } from '../../Flexbox';
 import InputError from '../InputError';
 
@@ -159,7 +158,7 @@ const StyledPopper = styled(Popper)({
 });
 
 export type AutocompleteLoadFunction<Value> = (
-  req: PaginatedRequest<Value>,
+  request: PaginatedRequest,
   signal?: AbortSignal
 ) => Promise<PaginatedResponse<Value>>;
 
@@ -213,8 +212,8 @@ export function ControlledAutocomplete<
 }: Props<T, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
   const [searchValue, setSearchValue] = useState('');
   const loadFn = useCallback(
-    (req: PaginatedRequest, signal?: AbortSignal) => {
-      if (load) return load(req, signal);
+    (_req: PaginatedRequest, _signal?: AbortSignal) => {
+      //   if (load) return load(req, signal);
 
       return Promise.resolve({
         page: 1,

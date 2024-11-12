@@ -32,8 +32,7 @@ import { ListChildComponentProps, VariableSizeList } from 'react-window';
 import useInfiniteScroll, {
   PaginatedRequest,
   PaginatedResponse
-} from 'packages/optsol-react/src/shared/useInfiniteScroll';
-
+} from '../../../shared/useInfiniteScroll';
 import { FlexBox } from '../../Flexbox';
 import InputError from '../InputError';
 
@@ -142,10 +141,7 @@ const ListboxComponent = forwardRef<
 const StyledPopper = styled(Popper)({
   [`& .${autocompleteClasses.listbox}`]: {
     boxSizing: 'border-box',
-    '& ul': {
-      padding: 0,
-      margin: 0
-    }
+    '& ul': { padding: 0, margin: 0 }
   }
 });
 

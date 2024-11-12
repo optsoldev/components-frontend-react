@@ -20,9 +20,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true, // Ensures that any type is not implicitly used
-    "strictFunctionTypes": true, // Ensures function argument types are checked properly
-    
+
+    "noImplicitAny": true,  // Flags any implicit 'any' types
+    "alwaysStrict": true,  // Ensures files are in strict mode
     /* Paths */
     "baseUrl": ".",
     "paths": {

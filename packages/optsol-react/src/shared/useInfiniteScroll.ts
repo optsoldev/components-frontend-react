@@ -4,7 +4,9 @@ export type PaginatedRequest<T = unknown, R = unknown> = {
   pageSize: number;
   sortColumn?: keyof T;
   sortOrder?: 'asc' | 'desc';
-} & Record<string, R | Date | string | number | boolean | null | undefined>;
+} & {
+  [key: string]: R | Date | string | number | boolean | null | undefined;
+};
 
 export type PaginatedResponse<T = unknown> = {
   items: ReadonlyArray<T>;

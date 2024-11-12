@@ -2,10 +2,10 @@ import { Grid } from '@mui/material';
 import {
   Autocomplete,
   AutocompleteAsync,
-  AutocompleteLoadFunction,
   ControlledAutocomplete,
   ControlledDatePicker,
   ControlledInput,
+  PaginatedRequest,
   PatternInput,
   Select
 } from '@optsol/react';
@@ -23,7 +23,7 @@ type State = {
   description: string;
 };
 
-const states = [
+const states: State[] = [
   { value: 'AC', description: 'AC - Acre' },
   { value: 'AL', description: 'AL - Alagoas' },
   { value: 'AP', description: 'AP - Amapá' },
@@ -52,7 +52,7 @@ const states = [
   { value: 'SE', description: 'SE - Sergipe' }
 ];
 
-const getOptions: AutocompleteLoadFunction<State> = async (_a: string, _b) => {
+const getOptions = async (_request: PaginatedRequest) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return Promise.resolve({
     page: 1,
