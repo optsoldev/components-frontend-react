@@ -211,9 +211,13 @@ export function ControlledAutocomplete<
   ...rest
 }: Props<T, Value, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
   const [searchValue, setSearchValue] = useState('');
+
+  const { watch, setValue } = useFormContext<T>();
+  const { errors: formErros } = useFormState<T>({ control });
+
   const loadFn = useCallback(
-    (_req: PaginatedRequest, _signal?: AbortSignal) => {
-      //   if (load) return load(req, signal);
+    (req: PaginatedRequest, signal?: AbortSignal) => {
+      if (load) return load(req, signal);
 
       return Promise.resolve({
         page: 1,
@@ -237,16 +241,14 @@ export function ControlledAutocomplete<
     setSearchValue(value);
   }, []);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedChangeHandler = useCallback(debounce(changeHandler, 500), []);
-
-  const { watch, setValue } = useFormContext<T>();
-  const { errors: formErros } = useFormState<T>({ control });
   const error = get(formErros, name);
 
   const formValue:
     | AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo>
     | undefined = watch(name);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedChangeHandler = useCallback(debounce(changeHandler, 500), []);
 
   return (
     <FlexBox flexDirection="column" flexGrow={1}>
