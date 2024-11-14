@@ -68,7 +68,7 @@ export interface TableRowProps<T> {
 
 export type SelectionProps<T> =
   | {
-      enableRowSelection?: true;
+      enableRowSelection?: boolean;
       enableMultiRowSelection?: boolean;
       onRowSelectionChange: (row: T[]) => void;
     }
