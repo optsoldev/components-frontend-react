@@ -5,9 +5,9 @@ import {
   ControlledAutocomplete,
   ControlledDatePicker,
   ControlledInput,
+  ControlledSelect,
   PaginatedRequest,
-  PatternInput,
-  Select
+  PatternInput
 } from '@optsol/react';
 import debounce from 'lodash.debounce';
 import React, { useCallback, useRef } from 'react';
@@ -159,13 +159,6 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
-        <Select
-          label="Cidade"
-          placeholder={getPlaceholder('cidade', 'Cidade')}
-          name="endereco.cidade"
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
         <ControlledDatePicker
           label="Data"
           control={control}
@@ -230,12 +223,11 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
         />
       </Grid>
       <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
-        <ControlledInput
+        <ControlledSelect
           control={control}
           name="endereco.complemento"
           label="Complemento"
           placeholder={getPlaceholder('complemento', 'Complemento')}
-          inputProps={{ maxLength: 50 }}
         />
       </Grid>
     </Grid>

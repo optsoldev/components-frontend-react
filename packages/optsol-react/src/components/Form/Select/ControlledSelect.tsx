@@ -59,7 +59,7 @@ export default function ControlledSelect<
         name={name}
         control={control}
         render={({ field: { onChange: fieldOnChange, value: fieldValue } }) => (
-          <FormControl size="small">
+          <FormControl size="small" error={!!error}>
             <InputLabel
               sx={{ marginTop: 0.5 }}
               id={`${name}-select-small-label`}
@@ -70,7 +70,6 @@ export default function ControlledSelect<
               fullWidth
               label={label}
               size="small"
-              error={!!error}
               value={value ?? fieldValue}
               onChange={(e) => (onChange ? onChange(e) : fieldOnChange(e))}
               sx={{ marginTop: 0.5 }}
