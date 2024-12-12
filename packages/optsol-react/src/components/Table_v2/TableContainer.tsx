@@ -1,12 +1,19 @@
-import { Paper, TablePagination } from '@mui/material';
+import {
+  TableContainer as MuiTableContainer,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TablePagination,
+  TableRow
+} from '@mui/material';
 import {
   ColumnDef,
-  ColumnOrderState,
-  PaginationState,
-  SortingState,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
+  PaginationState,
   useReactTable
 } from '@tanstack/react-table';
 import React, {
@@ -16,27 +23,23 @@ import React, {
   useImperativeHandle
 } from 'react';
 
-import { TableControls, TableRef, TableRowProps } from './@types';
-import TableView from './TableView';
+import { TableControls, TableProps, TableRef } from './@types';
+import { TableHeaders } from './TableHeaders';
+import { TableRows } from './TableRows';
 
-export type InternalTableProps<T extends object> = {
-  controls: TableControls<T>;
+type DefaultTableProps<T extends object> = Omit<
+  TableProps<T>,
+  'columns' | 'data'
+>;
+
+export type InternalTableProps<T extends object> = DefaultTableProps<T> & {
   columns: ColumnDef<T>[];
+  controls: TableControls<T>;
   hiddenColumns?: { [key: string]: boolean };
   load: (pageIndex: number, pageSize: number) => void;
-  TableRowProps?: TableRowProps<T>;
-  columnOrder?: ColumnOrderState;
-} & {
-  enableRowSelection?: boolean;
-  enableMultiRowSelection?: boolean;
-  onRowSelectionChange?: (row: T[]) => void;
-} & {
-  sorting?: SortingState;
-  enableMultiSort?: boolean;
-  onSortingChange?: (sorting: SortingState) => void;
 };
 
-const TableInternal = <T extends object>(
+const TableContainerView = <T extends object>(
   {
     load,
     controls,
@@ -45,6 +48,8 @@ const TableInternal = <T extends object>(
     TableRowProps,
     columnOrder,
     sorting,
+    renderFooter,
+    HeaderProps,
     onSortingChange,
     onRowSelectionChange,
     enableRowSelection,
@@ -104,11 +109,45 @@ const TableInternal = <T extends object>(
 
   return (
     <Paper sx={{ width: '100%' }}>
-      <TableView
-        table={table}
-        controls={controls}
-        TableRowProps={TableRowProps}
-      />
+      <MuiTableContainer sx={{ maxHeight: 1 }}>
+        <Table stickyHeader size="small">
+          <TableHeaders
+            groups={table.getHeaderGroups()}
+            titlePosition={HeaderProps?.titlePosition}
+          />
+
+          <TableBody>
+            <TableRows table={table} TableRowProps={TableRowProps} />
+
+            {controls.loading && (
+              <TableRow>
+                <TableCell colSpan={10000} style={{ textAlign: 'center' }}>
+                  Carregando...
+                </TableCell>
+              </TableRow>
+            )}
+
+            {controls.error && (
+              <TableRow>
+                <TableCell colSpan={10000} style={{ textAlign: 'center' }}>
+                  Erro ao carregar registros
+                </TableCell>
+              </TableRow>
+            )}
+
+            {!controls.data.length && !controls.error && (
+              <TableRow>
+                <TableCell colSpan={10000} style={{ textAlign: 'center' }}>
+                  Não há registros a serem exibidos
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            {renderFooter && <>{renderFooter(controls.data)}</>}
+          </TableFooter>
+        </Table>
+      </MuiTableContainer>
       <TablePagination
         size="small"
         component="div"
@@ -130,6 +169,8 @@ const TableInternal = <T extends object>(
   );
 };
 
-export const DefaultTable = forwardRef(TableInternal) as <T extends object>(
+export const TableContainer = forwardRef(TableContainerView) as <
+  T extends object
+>(
   props: InternalTableProps<T> & { ref?: React.ForwardedRef<TableRef> }
-) => ReturnType<typeof TableInternal>;
+) => ReturnType<typeof TableContainerView>;

@@ -109,10 +109,7 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
   const getPlaceholder = (key: keyof Endereco, placeholder: string) =>
     (isFieldRequired(validationSchema, key) ? '*' : '').concat(placeholder);
 
-  const estado = watch('endereco.estado') ?? {
-    value: 'ES',
-    description: 'ES - Espírito Santo'
-  };
+  const estado = watch('endereco.estado') ?? null;
 
   return (
     <Grid container item spacing={3}>

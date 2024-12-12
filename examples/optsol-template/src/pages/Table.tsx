@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, TableCell, TableRow } from '@mui/material';
 import { Table, Table_v2, TableRef } from '@optsol/react';
 import { useCallback, useRef, useState } from 'react';
 import { Path } from 'react-hook-form';
@@ -111,6 +111,12 @@ function TablePage() {
           },
           { title: 'Age', field: 'age', hidden: false, width: 400 }
         ]}
+        renderFooter={(rows) => (
+          <TableRow>
+            <TableCell colSpan={2}>Total items</TableCell>
+            <TableCell colSpan={rows.length - 2}>{18} items :D</TableCell>
+          </TableRow>
+        )}
         TableRowProps={{
           onClick: (value) => console.log(value)
         }}
