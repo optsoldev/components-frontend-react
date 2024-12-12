@@ -15,7 +15,77 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "plugins": ["react-refresh"],
+  "plugins": ["boundaries","react-refresh"],
+  "settings": {
+    "boundaries/include": ["src/**/*"],
+    "boundaries/elements": [
+      {
+        "mode": "full",
+        "type": "shared",
+        "pattern": [
+          "src/components/**/*",
+          "src/assets/**/*",
+          "src/config/**/*",
+          "src/constant/**/*",
+          "src/context/**/*",
+          "src/hooks/**/*",
+          "src/infra/**/*",
+          "src/models/**/*",
+          "src/pages/**/*",
+          "src/routes/**/*",
+          "src/services/**/*"
+        ]
+      },
+      {
+        "mode": "full",
+        "type": "module",
+        "capture": ["moduleName"],
+        "pattern": ["src/modules/*/**/*"]
+      },
+      {
+        "mode": "full",
+        "type": "app",
+        "capture": ["_", "fileName"],
+        "pattern": ["src/app/**/*"]
+      },
+      {
+        "mode": "full",
+        "type": "neverImport",
+        "pattern": ["src/*", "src/tasks/**/*"]
+      }
+    ]
+  },
+  "rules": {
+    "boundaries/no-unknown": ["error"],
+    "boundaries/no-unknown-files": ["error"],
+    "boundaries/element-types": [
+      "error",
+      {
+        "default": "disallow",
+        "rules": [
+          {
+            "from": ["shared"],
+            "allow": ["shared"]
+          },
+          {
+            "from": ["module"],
+            "allow": [
+              "shared",
+              ["module", { "moduleName": "${from.moduleName}" }]
+            ]
+          },
+          {
+            "from": ["app", "neverImport"],
+            "allow": ["shared", "module"]
+          },
+          {
+            "from": ["app"],
+            "allow": [["app", { "fileName": "*.css" }]]
+          }
+        ]
+      }
+    ]
+  },
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],

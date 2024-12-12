@@ -9,16 +9,18 @@ import {
   TableRef,
   TableRequest
 } from './@types';
-import { DefaultTable } from './DefaultTable';
+import { TableContainer } from './TableContainer';
 
 function TableInternal<T extends object>(
   {
     data,
     columns,
+    columnOrder,
     TableRowProps,
+    HeaderProps,
+    renderFooter,
     // RowSelectionProps,
     enableRowSelection,
-    columnOrder,
     enableMultiRowSelection,
     onRowSelectionChange,
     // sorting,
@@ -152,7 +154,7 @@ function TableInternal<T extends object>(
   }, [columns, enableRowSelection]);
 
   return (
-    <DefaultTable
+    <TableContainer
       ref={ref}
       load={load}
       controls={controls}
@@ -160,12 +162,14 @@ function TableInternal<T extends object>(
       columnOrder={columnOrder}
       hiddenColumns={hiddenColumns}
       TableRowProps={TableRowProps}
+      HeaderProps={HeaderProps}
       enableRowSelection={enableRowSelection}
       enableMultiRowSelection={enableMultiRowSelection}
       onRowSelectionChange={onRowSelectionChange}
       sorting={sorting}
       enableMultiSort={enableMultiSort}
       onSortingChange={onSortingChange}
+      renderFooter={renderFooter}
     />
   );
 }

@@ -94,12 +94,17 @@ export type SortingProps<T> =
       onSortingChange?: never;
     };
 
+export type HeaderProps = {
+  titlePosition?: 'start' | 'center' | 'end';
+};
 export type TableProps<T = unknown> = SelectionProps<T> &
   SortingProps<T> & {
     columns: TableColumn<T>[];
     data: T[] | TableDataRequest<T>;
     TableRowProps?: TableRowProps<T>;
+    HeaderProps?: HeaderProps;
     columnOrder?: ColumnOrderState;
+    renderFooter?: (rows: T[]) => React.ReactNode;
   };
 
 export interface TableControls<T> {
