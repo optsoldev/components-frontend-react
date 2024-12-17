@@ -65,6 +65,7 @@ const TableContainerView = <T extends object>(
 
   const table = useReactTable<T>({
     columns,
+    getRowId: (row, index) => String('id' in row ? row.id : index),
     data: controls.data,
     enableRowSelection,
     enableMultiRowSelection,
@@ -101,6 +102,7 @@ const TableContainerView = <T extends object>(
   }, [load, pageIndex, pageSize]);
 
   useEffect(() => {
+    console.log('rowSelection', rowSelection);
     const { rows: selectedRows } = table.getSelectedRowModel();
     const rows = selectedRows.map((row) => row.original);
 
@@ -157,7 +159,6 @@ const TableContainerView = <T extends object>(
         rowsPerPageOptions={[5, 10, 25, 50]}
         labelRowsPerPage="Linhas por página"
         onPageChange={(_, page) => {
-          setRowSelection({});
           table.setPageIndex(page);
         }}
         onRowsPerPageChange={(e) => {

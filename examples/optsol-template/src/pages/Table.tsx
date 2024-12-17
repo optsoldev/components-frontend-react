@@ -24,12 +24,12 @@ function TablePage() {
     []
   );
   const [newList, setNewList] = useState<string[]>([]);
-  const [permissoes, setPermissoes] = useState<Record<string, boolean>>({
+  const permissoes: Record<string, boolean> = {
     1: true,
     2: false,
     3: true,
     4: false
-  });
+  };
 
   const funcTest = useCallback((list: string[]) => {
     setNewList((prevList) => {
@@ -96,7 +96,9 @@ function TablePage() {
         data={data}
         enableRowSelection
         enableMultiRowSelection
-        onRowSelectionChange={console.log}
+        onRowSelectionChange={(e) => {
+          console.log('onRowSelectionChange', e);
+        }}
         columnOrder={['id', 'select', 'name', 'age']}
         sorting={sorting}
         onSortingChange={setSorting}
