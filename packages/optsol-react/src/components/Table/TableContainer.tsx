@@ -58,8 +58,6 @@ const TableContainerView = <T extends object>(
   }: Readonly<InternalTableProps<T>>,
   ref: ForwardedRef<TableRef>
 ) => {
-  const loadFnRef = React.useRef(load);
-
   const [rowSelection, setRowSelection] = React.useState({});
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
@@ -106,8 +104,8 @@ const TableContainerView = <T extends object>(
   }, [table, load]);
 
   useEffect(() => {
-    loadFnRef.current(pageIndex, pageSize);
-  }, [pageIndex, pageSize]);
+    load(pageIndex, pageSize);
+  }, [load, pageIndex, pageSize]);
 
   useEffect(() => {
     const { rows: selectedRows } = table.getSelectedRowModel();
