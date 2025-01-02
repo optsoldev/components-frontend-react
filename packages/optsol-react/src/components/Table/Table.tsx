@@ -1,3 +1,4 @@
+import { Checkbox } from '@mui/material';
 import { ColumnDef } from '@tanstack/react-table';
 import React, { ForwardedRef, useCallback, useMemo, useState } from 'react';
 
@@ -8,18 +9,24 @@ import {
   TableRef,
   TableRequest
 } from './@types';
-import { DefaultTable } from './DefaultTable';
+import { TableContainer } from './TableContainer';
 
 function TableInternal<T extends object>(
   {
-    columns,
     data,
+    columns,
+    columnOrder,
     TableRowProps,
-    rowSelection = false,
-    selectedRowIds = {},
-    onSelectRow,
-    disableMultipleSelection,
-    onSelectedRows
+    HeaderProps,
+    renderFooter,
+    // RowSelectionProps,
+    enableRowSelection,
+    enableMultiRowSelection,
+    onRowSelectionChange,
+    // sorting,
+    enableMultiSort,
+    sorting,
+    onSortingChange
   }: TableProps<T>,
   ref: ForwardedRef<TableRef>
 ) {
@@ -107,33 +114,62 @@ function TableInternal<T extends object>(
     [columns]
   );
 
-  const internalColumns = React.useMemo(
-    (): ColumnDef<T>[] =>
-      columns.map((column) => ({
-        header: column.title,
-        accessorKey: column.field,
-        cell: (info) => {
-          if (column.render) return column.render(info.row.original);
-          return info.getValue();
-        },
-        size: column.width ?? NaN
-      })),
-    [columns]
-  );
+  const tableColumns = React.useMemo(() => {
+    const tableColumns: Array<ColumnDef<T>> = columns.map((column) => ({
+      id: column.field,
+      header: column.title,
+      accessorKey: column.field,
+      size: column.width ?? NaN,
+      cell: (info) => {
+        if (column.render) return column.render(info.row.original);
+        return info.getValue();
+      }
+    }));
+
+    const selectColumn: ColumnDef<T> = {
+      id: 'select',
+      size: 0,
+      header: ({ table }) => (
+        <Checkbox
+          sx={{ p: 0.5 }}
+          checked={table.getIsAllRowsSelected()}
+          indeterminate={table.getIsSomeRowsSelected()}
+          onChange={table.getToggleAllPageRowsSelectedHandler()}
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          sx={{ p: 0.5 }}
+          checked={row.getIsSelected()}
+          disabled={!row.getCanSelect()}
+          indeterminate={row.getIsSomeSelected()}
+          onChange={row.getToggleSelectedHandler()}
+        />
+      )
+    };
+
+    if (enableRowSelection) tableColumns.unshift(selectColumn);
+
+    return tableColumns;
+  }, [columns, enableRowSelection]);
 
   return (
-    <DefaultTable
+    <TableContainer
       ref={ref}
-      columns={internalColumns}
-      controls={controls}
-      hiddenColumns={hiddenColumns}
       load={load}
+      controls={controls}
+      columns={tableColumns}
+      columnOrder={columnOrder}
+      hiddenColumns={hiddenColumns}
       TableRowProps={TableRowProps}
-      rowSelection={rowSelection}
-      selectedRowIds={selectedRowIds}
-      onSelectRow={onSelectRow}
-      disableMultipleSelection={disableMultipleSelection}
-      onSelectedRows={onSelectedRows}
+      HeaderProps={HeaderProps}
+      enableRowSelection={enableRowSelection}
+      enableMultiRowSelection={enableMultiRowSelection}
+      onRowSelectionChange={onRowSelectionChange}
+      sorting={sorting}
+      enableMultiSort={enableMultiSort}
+      onSortingChange={onSortingChange}
+      renderFooter={renderFooter}
     />
   );
 }

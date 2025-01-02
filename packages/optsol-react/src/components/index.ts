@@ -16,6 +16,5 @@ export * from './Link';
 export * from './Loading';
 export * from './Sidebar';
 export * from './Table';
-export * from './Table_v2';
 export * from './TabPanel';
 export * from './Toolbar';
