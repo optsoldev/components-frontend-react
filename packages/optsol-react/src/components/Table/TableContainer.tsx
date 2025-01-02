@@ -20,7 +20,8 @@ import React, {
   ForwardedRef,
   forwardRef,
   useEffect,
-  useImperativeHandle
+  useImperativeHandle,
+  useLayoutEffect
 } from 'react';
 
 import { TableControls, TableProps, TableRef } from './@types';
@@ -57,6 +58,8 @@ const TableContainerView = <T extends object>(
   }: Readonly<InternalTableProps<T>>,
   ref: ForwardedRef<TableRef>
 ) => {
+  const loadFnRef = React.useRef(load);
+
   const [rowSelection, setRowSelection] = React.useState({});
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
@@ -65,6 +68,7 @@ const TableContainerView = <T extends object>(
 
   const table = useReactTable<T>({
     columns,
+    getRowId: (row, index) => String('id' in row ? row.id : index),
     data: controls.data,
     enableRowSelection,
     enableMultiRowSelection,
@@ -91,14 +95,19 @@ const TableContainerView = <T extends object>(
     ref,
     () => ({
       refresh: () => load(pageIndex, pageSize),
+      reload: () => table.setPageIndex(0),
       removeSelectedRows: () => setRowSelection({})
     }),
-    [pageIndex, pageSize, load]
+    [load, pageIndex, pageSize, table]
   );
 
+  useLayoutEffect(() => {
+    table.setPageIndex(0);
+  }, [table, load]);
+
   useEffect(() => {
-    load(pageIndex, pageSize);
-  }, [load, pageIndex, pageSize]);
+    loadFnRef.current(pageIndex, pageSize);
+  }, [pageIndex, pageSize]);
 
   useEffect(() => {
     const { rows: selectedRows } = table.getSelectedRowModel();
@@ -157,7 +166,6 @@ const TableContainerView = <T extends object>(
         rowsPerPageOptions={[5, 10, 25, 50]}
         labelRowsPerPage="Linhas por página"
         onPageChange={(_, page) => {
-          setRowSelection({});
           table.setPageIndex(page);
         }}
         onRowsPerPageChange={(e) => {

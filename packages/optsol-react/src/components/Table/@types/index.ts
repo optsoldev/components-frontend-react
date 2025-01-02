@@ -1,4 +1,7 @@
+import { ColumnOrderState } from '@tanstack/react-table';
+
 export interface TableRef {
+  reload: () => void;
   refresh: () => void;
   removeSelectedRows: () => void;
 }
@@ -64,25 +67,46 @@ export interface TableRowProps<T> {
   onClick?: (value: T, event?: React.MouseEvent<HTMLTableRowElement>) => void;
 }
 
-export type SelectionProps<T> = {
-  rowSelection?: boolean;
-  selectedRowIds?: Record<string, boolean>;
-  onSelectRow?: (row: T, isSelected: boolean) => void;
-  onSelectedRows?: (row: T[]) => void;
-  disableMultipleSelection?: boolean;
-} & {
-  rowSelection?: boolean;
-  selectedRowIds?: Record<string, boolean>;
-  onSelectRow?: (row: T, isSelected: boolean) => void;
-  onSelectedRows?: (row: T[]) => void;
-  disableMultipleSelection?: never | boolean;
-};
+export type SelectionProps<T> =
+  | {
+      enableRowSelection?: boolean;
+      enableMultiRowSelection?: boolean;
+      onRowSelectionChange: (row: T[]) => void;
+    }
+  | {
+      enableRowSelection?: false;
+      onRowSelectionChange?: never;
+      enableMultiRowSelection?: never;
+    };
 
-export type TableProps<T> = {
-  data: T[] | TableDataRequest<T>;
-  columns: TableColumn<T>[];
-  TableRowProps?: TableRowProps<T>;
-} & SelectionProps<T>;
+export type PathSortingState<T> = Array<{
+  id: Path<T>;
+  desc: boolean;
+}>;
+export type SortingProps<T> =
+  | {
+      enableMultiSort?: boolean;
+      sorting?: PathSortingState<T>;
+      onSortingChange: (sorting: PathSortingState<T>) => void;
+    }
+  | {
+      sorting?: never;
+      enableMultiSort?: never;
+      onSortingChange?: never;
+    };
+
+export type HeaderProps = {
+  titlePosition?: 'start' | 'center' | 'end';
+};
+export type TableProps<T = unknown> = SelectionProps<T> &
+  SortingProps<T> & {
+    columns: TableColumn<T>[];
+    data: T[] | TableDataRequest<T>;
+    TableRowProps?: TableRowProps<T>;
+    HeaderProps?: HeaderProps;
+    columnOrder?: ColumnOrderState;
+    renderFooter?: (rows: T[]) => React.ReactNode;
+  };
 
 export interface TableControls<T> {
   totalCount: number;
