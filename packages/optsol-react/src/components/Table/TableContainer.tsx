@@ -163,6 +163,9 @@ const TableContainerView = <T extends object>(
         count={controls.totalCount}
         rowsPerPageOptions={[5, 10, 25, 50]}
         labelRowsPerPage="Linhas por página"
+        labelDisplayedRows={({ from, to, count }) => {
+          return `${from}–${to} de ${count !== -1 ? count : `Mais de ${to}`}`;
+        }}
         onPageChange={(_, page) => {
           table.setPageIndex(page);
         }}
