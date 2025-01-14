@@ -1,10 +1,12 @@
-import { ColumnOrderState } from '@tanstack/react-table';
-
-export interface TableRef {
+import {
+  ColumnOrderState,
+  Table as TanstackTable
+} from '@tanstack/react-table';
+export type TableRef<T = unknown> = {
   reload: () => void;
   refresh: () => void;
   removeSelectedRows: () => void;
-}
+} & TanstackTable<T>;
 export interface TableResponse<T> {
   data: T[];
   total: number;
@@ -71,7 +73,7 @@ export type SelectionProps<T> =
   | {
       enableRowSelection?: boolean;
       enableMultiRowSelection?: boolean;
-      onRowSelectionChange: (row: T[]) => void;
+      onRowSelectionChange: (row: T, selected: boolean) => void;
     }
   | {
       enableRowSelection?: false;

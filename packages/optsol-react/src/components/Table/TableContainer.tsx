@@ -30,7 +30,7 @@ import { TableRows } from './TableRows';
 
 type DefaultTableProps<T extends object> = Omit<
   TableProps<T>,
-  'columns' | 'data'
+  'columns' | 'data' | 'onRowSelectionChange'
 >;
 
 export type InternalTableProps<T extends object> = DefaultTableProps<T> & {
@@ -52,11 +52,10 @@ const TableContainerView = <T extends object>(
     renderFooter,
     HeaderProps,
     onSortingChange,
-    onRowSelectionChange,
     enableRowSelection,
     enableMultiRowSelection
   }: Readonly<InternalTableProps<T>>,
-  ref: ForwardedRef<TableRef>
+  ref: ForwardedRef<TableRef<T>>
 ) => {
   const [rowSelection, setRowSelection] = React.useState({});
   const [pagination, setPagination] = React.useState<PaginationState>({
@@ -92,9 +91,10 @@ const TableContainerView = <T extends object>(
   useImperativeHandle(
     ref,
     () => ({
-      refresh: () => load(pageIndex, pageSize),
       reload: () => table.setPageIndex(0),
-      removeSelectedRows: () => setRowSelection({})
+      refresh: () => load(pageIndex, pageSize),
+      removeSelectedRows: () => setRowSelection({}),
+      ...table
     }),
     [load, pageIndex, pageSize, table]
   );
@@ -106,13 +106,6 @@ const TableContainerView = <T extends object>(
   useEffect(() => {
     load(pageIndex, pageSize);
   }, [load, pageIndex, pageSize]);
-
-  useEffect(() => {
-    const { rows: selectedRows } = table.getSelectedRowModel();
-    const rows = selectedRows.map((row) => row.original);
-
-    onRowSelectionChange?.(rows);
-  }, [table, onRowSelectionChange, rowSelection]);
 
   return (
     <Paper sx={{ width: '100%' }}>
@@ -181,5 +174,7 @@ const TableContainerView = <T extends object>(
 export const TableContainer = forwardRef(TableContainerView) as <
   T extends object
 >(
-  props: InternalTableProps<T> & { ref?: React.ForwardedRef<TableRef> }
+  props: InternalTableProps<T> & {
+    ref?: React.ForwardedRef<TableRef>;
+  }
 ) => ReturnType<typeof TableContainerView>;

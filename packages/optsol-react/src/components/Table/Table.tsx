@@ -143,7 +143,10 @@ function TableInternal<T extends object>(
           checked={row.getIsSelected()}
           disabled={!row.getCanSelect()}
           indeterminate={row.getIsSomeSelected()}
-          onChange={row.getToggleSelectedHandler()}
+          onChange={(e, checked) => {
+            row.getToggleSelectedHandler()(e);
+            onRowSelectionChange?.(row.original, checked);
+          }}
         />
       )
     };
@@ -151,7 +154,7 @@ function TableInternal<T extends object>(
     if (enableRowSelection) tableColumns.unshift(selectColumn);
 
     return tableColumns;
-  }, [columns, enableRowSelection]);
+  }, [columns, enableRowSelection, onRowSelectionChange]);
 
   return (
     <TableContainer
@@ -165,7 +168,6 @@ function TableInternal<T extends object>(
       HeaderProps={HeaderProps}
       enableRowSelection={enableRowSelection}
       enableMultiRowSelection={enableMultiRowSelection}
-      onRowSelectionChange={onRowSelectionChange}
       sorting={sorting}
       enableMultiSort={enableMultiSort}
       onSortingChange={onSortingChange}
@@ -175,5 +177,7 @@ function TableInternal<T extends object>(
 }
 
 export const Table = React.forwardRef(TableInternal) as <T extends object>(
-  props: TableProps<T> & { ref?: React.ForwardedRef<TableRef> }
+  props: TableProps<T> & {
+    ref?: React.ForwardedRef<TableRef>;
+  }
 ) => ReturnType<typeof TableInternal>;
