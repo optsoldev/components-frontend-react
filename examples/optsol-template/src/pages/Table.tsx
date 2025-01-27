@@ -127,6 +127,9 @@ function TablePage() {
             hidden: false,
             width: 400,
             render: (value) => <p>{value.name}</p>
+          },
+          {
+            title: 'Actions'
           }
         ]}
         renderFooter={(rows) => (

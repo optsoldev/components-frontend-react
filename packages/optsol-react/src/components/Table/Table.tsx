@@ -116,7 +116,7 @@ function TableInternal<T extends object>(
 
   const tableColumns = React.useMemo(() => {
     const tableColumns: Array<ColumnDef<T>> = columns.map((column) => ({
-      id: column.field,
+      id: column.field ?? column.title,
       header: column.title,
       accessorKey: column.field,
       size: column.width ?? NaN,

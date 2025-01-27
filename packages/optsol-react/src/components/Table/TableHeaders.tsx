@@ -30,12 +30,15 @@ export function TableHeaders<T extends object>({
                 colSpan={header.colSpan}
                 style={{ textAlign: titlePosition }}
                 onClick={header.column.getToggleSortingHandler()}
-                sx={{ cursor: header.column.getCanSort() ? 'pointer' : 'none' }}
+                sx={{ cursor: 'default' }}
+                /* sx={{
+                  cursor: header.column.getCanSort() ? 'pointer' : 'default'
+                }} */
               >
                 <FlexBox
                   alignItems="center"
                   gap={1}
-                  title={
+                  /* title={
                     header.column.getCanSort()
                       ? header.column.getNextSortingOrder() === 'asc'
                         ? 'Sort ascending'
@@ -43,7 +46,7 @@ export function TableHeaders<T extends object>({
                           ? 'Sort descending'
                           : 'Clear sort'
                       : undefined
-                  }
+                  } */
                 >
                   <Typography fontWeight={600}>
                     {flexRender(column.columnDef.header, header.getContext())}
