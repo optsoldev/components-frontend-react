@@ -32,9 +32,13 @@
           "src/hooks/**/*",
           "src/shared/**/*",
           "src/infra/**/*",
-          "src/models/**/*",
           "src/services/**/*"
         ]
+      },
+      {
+        "mode": "full",
+        "type": "models",
+        "pattern": ["src/models/**/*"]
       },
       {
         "mode": "full",
@@ -69,11 +73,12 @@
         "rules": [
           {
             "from": ["shared"],
-            "allow": ["shared"]
+            "allow": ["models", "shared"]
           },
           {
             "from": ["module"],
             "allow": [
+              "models",
               "shared",
               ["module", { "moduleName": "${from.moduleName}" }]
             ]
@@ -84,11 +89,11 @@
           },
           {
             "from": ["routes"],
-            "allow": ["routes", "pages"]
+            "allow": ["models", "routes", "pages"]
           },
           {
             "from": ["neverImport"],
-            "allow": ["shared", "module", "neverImport"]
+            "allow": ["module", "neverImport"]
           }
         ]
       }

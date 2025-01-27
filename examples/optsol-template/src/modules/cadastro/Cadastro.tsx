@@ -7,9 +7,9 @@ import {
   useForm
 } from 'react-hook-form';
 
-import { FormEndereco } from '../components/FormEndereco';
-import { ENDERECO_DEFAULT, EnderecoPJFormModelSchema } from '../models';
-import { Form, validation } from '../models/Form.model';
+import { FormEndereco } from '../../components/FormEndereco';
+import { ENDERECO_DEFAULT, EnderecoPJFormModelSchema } from '../../models';
+import { Form, validation } from '../../models/Form.model';
 
 function Cadastro() {
   const form = useForm<Form>({

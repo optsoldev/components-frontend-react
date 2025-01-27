@@ -4,14 +4,10 @@ import {
   DataPieRegular
 } from '@fluentui/react-icons';
 
-import Cadastro from '@/pages/Cadastro';
-
 import { CustomRoute } from '@/models/infra/routes.model';
-import { cadastroRoutes } from './cadastros.routes';
+import { CadastroPage } from '@/pages/Cadastro.page';
 
-enum Claim {
-  COMERCIAL = 'Comercial'
-}
+import { cadastroRoutes } from './cadastros.routes';
 
 export type CustomRoutes = {
   [key in keyof typeof Views]: CustomRoute;
@@ -29,7 +25,7 @@ export const routes: CustomRoutes = {
     path: '/',
     label: 'Home',
     icon: <DataPieRegular fontSize={28} />,
-    element: <Cadastro />,
+    element: <CadastroPage />,
     handle: {
       breadcrumb: () => 'Home',
       path: '/'
