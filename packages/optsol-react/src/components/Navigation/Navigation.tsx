@@ -4,7 +4,7 @@ import {
   useEffect,
   useLayoutEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
 
 import { Button } from '../Button';
@@ -21,7 +21,7 @@ const Navigation = ({
   bgcolor = 'white',
   onClose,
   onClick,
-  children,
+  children
 }: PropsWithChildren<NavigationProps>) => {
   const [width, setWidth] = useState(0);
   const navigationRef = useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ const Navigation = ({
       sx={{
         position: 'absolute',
         width: '100dvw',
-        left: width,
+        left: width
       }}
     >
       <Box
@@ -60,7 +60,7 @@ const Navigation = ({
         bgcolor={bgcolor}
         sx={{
           top: 0,
-          left: 0,
+          left: 0
         }}
       >
         {children}

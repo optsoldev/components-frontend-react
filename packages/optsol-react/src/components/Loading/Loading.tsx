@@ -7,7 +7,7 @@ export interface LoadingProps {
 
 export function Loading({
   size = 100,
-  color = 'primary',
+  color = 'primary'
 }: Readonly<LoadingProps>) {
   return (
     <div
@@ -18,7 +18,7 @@ export function Loading({
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: size,
-        flex: 1,
+        flex: 1
       }}
     >
       <CircularProgress size={size} color={color} />

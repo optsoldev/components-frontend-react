@@ -4,8 +4,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { PropsWithChildren } from 'react';
 
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { muiTheme } from './config/theme';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { muiTheme } from '@/config/theme';
 
 const AppProviders = ({ children }: PropsWithChildren) => {
   return (

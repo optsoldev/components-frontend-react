@@ -5,7 +5,7 @@ import {
   PropsWithChildren,
   useLayoutEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
 
 import { FlexBox } from '../Flexbox';
@@ -15,7 +15,7 @@ type ImageCarouselListProps = {
 };
 export const ImageCarouselList = ({
   itemWidth = 70,
-  children,
+  children
 }: PropsWithChildren<ImageCarouselListProps>) => {
   const [containerWidth, setContainerWidth] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -40,7 +40,7 @@ export const ImageCarouselList = ({
   const itensPerPage = Math.max(Math.floor(containerWidth / itemWidth) - 1, 1);
   const itens = Children.toArray(children).slice(
     currentPage * itensPerPage,
-    currentPage * itensPerPage + itensPerPage,
+    currentPage * itensPerPage + itensPerPage
   );
 
   const hidePreviousPage = currentPage === 0;
@@ -65,7 +65,7 @@ export const ImageCarouselList = ({
         justifyContent="center"
       >
         {Children.toArray(
-          itens.map((child) => <Box width={itemWidth}>{child}</Box>),
+          itens.map((child) => <Box width={itemWidth}>{child}</Box>)
         )}
       </FlexBox>
       <IconButton

@@ -2,8 +2,9 @@ import { DismissRegular } from '@fluentui/react-icons';
 import {
   IconButton,
   DialogTitle as MuiDialogTitle,
-  DialogTitleProps as MuiDialogTitleProps,
+  DialogTitleProps as MuiDialogTitleProps
 } from '@mui/material';
+
 import { FlexBox } from '../Flexbox';
 
 export type DialogTitleProps = MuiDialogTitleProps &

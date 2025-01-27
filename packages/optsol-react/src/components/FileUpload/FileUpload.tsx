@@ -24,7 +24,7 @@ const FileUpload = React.forwardRef<
 >(({ onChange, borderColor, value, children, ...props }, ref) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     onDrop: onChange,
-    ...props,
+    ...props
   });
 
   const currentFiles = value ?? acceptedFiles;

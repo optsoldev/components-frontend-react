@@ -2,7 +2,8 @@ export function validarCNPJ(cnpj?: string): boolean {
   if (!cnpj) return false;
 
   cnpj = cnpj.replace(/[^\d]+/g, '').padStart(14, '0');
-  if (cnpj === '' || cnpj.length !== 14 || !!cnpj.match(/(\d)\1{13}/)) return false;
+  if (cnpj === '' || cnpj.length !== 14 || !!cnpj.match(/(\d)\1{13}/))
+    return false;
 
   // Valida DVs
   let tamanho = cnpj.length - 2;

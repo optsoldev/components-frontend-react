@@ -9,7 +9,7 @@ export const ImageCarousel = forwardRef<HTMLDivElement, FlexBoxProps>(
         {children}
       </FlexBox>
     );
-  },
+  }
 );
 
 ImageCarousel.displayName = 'ImageCarousel';

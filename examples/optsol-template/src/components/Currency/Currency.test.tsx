@@ -1,5 +1,6 @@
 import { colors } from '@mui/material';
 import { render } from '@testing-library/react';
+
 import Currency from './Currency';
 
 test('renders currency with correct number format and prefix', () => {

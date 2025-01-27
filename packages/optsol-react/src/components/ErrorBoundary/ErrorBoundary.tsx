@@ -12,15 +12,15 @@ interface State {
 
 export class ErrorBoundary extends Component<PropsWithChildren<Props>, State> {
   public state: State = {
-    hasError: false,
+    hasError: false
   };
 
   public static getDerivedStateFromError(error: Error): State {
     return {
       hasError: true,
       error: {
-        message: error.message,
-      },
+        message: error.message
+      }
     };
   }
 

@@ -9,7 +9,7 @@ import {
 import { forwardRef } from 'react';
 
 import Logo from '@/assets/logo.svg';
-import { SIDEBAR_WIDTH } from '@/config/theme';
+import { SIDEBAR_WIDTH } from '@/constants';
 
 const AppBar = forwardRef<HTMLDivElement>((_, ref) => {
   const user = { name: '' };

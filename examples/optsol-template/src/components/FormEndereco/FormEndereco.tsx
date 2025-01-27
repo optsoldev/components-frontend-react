@@ -14,9 +14,9 @@ import React, { useCallback, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import * as Yup from 'yup';
 
-import { useCEP } from '../../hooks';
-import { useYupFunctions } from '../../hooks/useYupFunctions';
-import { ENDERECO_DEFAULT, Endereco } from '../../models';
+import { useCEP } from '@/hooks';
+import { useYupFunctions } from '@/hooks/useYupFunctions';
+import { ENDERECO_DEFAULT, Endereco } from '@/models';
 
 type State = {
   value: string;

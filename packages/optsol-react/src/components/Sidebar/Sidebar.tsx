@@ -9,7 +9,7 @@ type SidebarIconProps = {
 const SidebarIcon = ({
   title,
   onClick,
-  children,
+  children
 }: PropsWithChildren<SidebarIconProps>) => {
   return (
     <Tooltip title={title} placement="right">
@@ -33,7 +33,7 @@ interface SidebarProps {
 
 const Sidebar = ({
   children,
-  bgcolor = 'primary.main',
+  bgcolor = 'primary.main'
 }: PropsWithChildren<SidebarProps>) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -59,7 +59,7 @@ const Sidebar = ({
       position="fixed"
       bgcolor={bgcolor}
       sx={{
-        transition: 'width 0.3s ease',
+        transition: 'width 0.3s ease'
       }}
     >
       {children}

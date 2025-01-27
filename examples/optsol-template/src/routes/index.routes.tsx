@@ -4,9 +4,9 @@ import {
   Route
 } from 'react-router-dom';
 
-import { CustomRoute, CustomRoutes, routes } from './app.routes';
-
 import { Layout } from '@/components/Layout';
+
+import { CustomRoute, CustomRoutes, routes } from './app.routes';
 
 const createRoutes = (routes: CustomRoutes) => {
   const generateRoutesTree = (route: CustomRoute, parentKey: string) => {

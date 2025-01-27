@@ -1,8 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { Component, PropsWithChildren } from 'react';
 
-import AppError from '../assets/application-error.svg';
-
+import AppError from '@/assets/application-error.svg';
 import { ColorPalette } from '@/config/colors';
 
 interface Props {
@@ -47,7 +46,7 @@ export class ErrorBoundary extends Component<PropsWithChildren<Props>, State> {
           >
             <Typography
               color="secondary"
-              variant="h4"
+              variant="title3"
               fontWeight="bold"
               textAlign="center"
             >

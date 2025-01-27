@@ -2,7 +2,6 @@ import { createTheme } from '@mui/material';
 
 import { ColorPalette } from './colors';
 
-export const SIDEBAR_WIDTH: string = '48px';
 export const muiTheme = createTheme({
   palette: {
     primary: ColorPalette.primary,

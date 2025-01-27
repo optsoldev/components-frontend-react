@@ -3,28 +3,16 @@ import {
   CalendarRegular,
   DataPieRegular
 } from '@fluentui/react-icons';
-import { ReactElement } from 'react';
-import { RouteProps } from 'react-router-dom';
-
-import { cadastroRoutes } from './cadastros.routes';
 
 import Cadastro from '@/pages/Cadastro';
+
+import { CustomRoute } from '@/models/infra/routes.model';
+import { cadastroRoutes } from './cadastros.routes';
 
 enum Claim {
   COMERCIAL = 'Comercial'
 }
 
-export type CustomRoute = RouteProps & {
-  path: string;
-  label: string;
-  claim?: Claim;
-  icon?: ReactElement;
-  routes?: SubRoutes[];
-};
-
-export type SubRoutes = CustomRoute & {
-  internal?: boolean;
-};
 export type CustomRoutes = {
   [key in keyof typeof Views]: CustomRoute;
 };

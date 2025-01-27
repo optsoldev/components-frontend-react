@@ -15,7 +15,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "plugins": ["boundaries","react-refresh"],
+  "plugins": ["boundaries", "react-refresh"],
   "settings": {
     "boundaries/include": ["src/**/*"],
     "boundaries/elements": [
@@ -23,16 +23,16 @@
         "mode": "full",
         "type": "shared",
         "pattern": [
+          "src/@types/**/*",
           "src/components/**/*",
           "src/assets/**/*",
           "src/config/**/*",
-          "src/constant/**/*",
+          "src/constants/**/*",
           "src/context/**/*",
           "src/hooks/**/*",
+          "src/shared/**/*",
           "src/infra/**/*",
           "src/models/**/*",
-          "src/pages/**/*",
-          "src/routes/**/*",
           "src/services/**/*"
         ]
       },
@@ -40,18 +40,22 @@
         "mode": "full",
         "type": "module",
         "capture": ["moduleName"],
-        "pattern": ["src/modules/*/**/*"]
+        "pattern": ["src/modules/**/*"]
       },
       {
         "mode": "full",
-        "type": "app",
-        "capture": ["_", "fileName"],
-        "pattern": ["src/app/**/*"]
+        "type": "routes",
+        "pattern": ["src/routes/**/*"]
+      },
+      {
+        "mode": "full",
+        "type": "pages",
+        "pattern": ["src/pages/**/*"]
       },
       {
         "mode": "full",
         "type": "neverImport",
-        "pattern": ["src/*", "src/tasks/**/*"]
+        "pattern": ["src/*"]
       }
     ]
   },
@@ -75,12 +79,16 @@
             ]
           },
           {
-            "from": ["app", "neverImport"],
+            "from": ["pages"],
             "allow": ["shared", "module"]
           },
           {
-            "from": ["app"],
-            "allow": [["app", { "fileName": "*.css" }]]
+            "from": ["routes"],
+            "allow": ["routes", "pages"]
+          },
+          {
+            "from": ["neverImport"],
+            "allow": ["shared", "module", "neverImport"]
           }
         ]
       }
@@ -98,8 +106,14 @@
         "import/parsers": {
           "@typescript-eslint/parser": [".ts", ".tsx"]
         },
+
         "import/resolver": {
-          "typescript": {}
+          "typescript": {
+            "project": "./tsconfig.json"
+          },
+          "node": {
+            "project": "./tsconfig.json"
+          }
         }
       },
       "extends": [
@@ -152,12 +166,8 @@
         "@typescript-eslint/no-explicit-any": "off",
         "prettier/prettier": [
           "error",
-          {
-            "endOfLine": "auto"
-          },
-          {
-            "usePrettierrc": true
-          }
+          { "endOfLine": "auto" },
+          { "usePrettierrc": true }
         ]
       }
     }

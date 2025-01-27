@@ -14,13 +14,12 @@ import { FlexBox, FlexBoxProps, Link, Sidebar } from '@optsol/react';
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import AppBar from '../AppBar';
-
-import { SIDEBAR_WIDTH } from '@/config/theme';
-import { CustomRoute, CustomRoutes, SubRoutes } from '@/routes/app.routes';
+import AppBar from '@/components/AppBar';
+import { SIDEBAR_WIDTH } from '@/constants';
+import { CustomRoute, SubRoutes } from '@/models/infra/routes.model';
 
 type Props = {
-  routes: CustomRoutes;
+  routes: Record<PropertyKey, CustomRoute>;
   userClaim?: string;
   sidebarWidth?: number | string;
   color?: FlexBoxProps['color'];
@@ -75,7 +74,7 @@ export const Layout = ({
   const appBarHeigth = appBarRef.current?.getBoundingClientRect().height ?? 0;
 
   const hasAccess = useCallback(
-    (key: keyof CustomRoutes) => {
+    (key: PropertyKey) => {
       const { claim } = routes[key];
       if (!claim) return true;
       if (claim === userClaim) return true;
@@ -86,7 +85,7 @@ export const Layout = ({
   );
 
   const getRoute = useCallback(
-    (sub: keyof CustomRoutes) => {
+    (sub: PropertyKey) => {
       const { routes: children } = routes[sub];
       if (!children) return routes[sub].path;
 
@@ -103,7 +102,7 @@ export const Layout = ({
   );
 
   const getTitle = useCallback(
-    (sub: keyof CustomRoutes) => {
+    (sub: PropertyKey) => {
       const { children } = routes[sub];
       if (!children) return routes[sub].label;
       return '';
@@ -129,12 +128,11 @@ export const Layout = ({
             >
               {Object.entries(routes).map(([key, value]) => {
                 if (!(key in routes)) return;
-                const routesKey: keyof CustomRoutes = key as keyof CustomRoutes;
 
                 if (!value.icon) return null;
-                if (!hasAccess(routesKey)) return null;
+                if (!hasAccess(key)) return null;
 
-                const route = getRoute(routesKey);
+                const route = getRoute(key);
                 if (!route) return null;
 
                 return (
@@ -144,7 +142,7 @@ export const Layout = ({
                     onClick={handleClick}
                     onMouseEnter={(e) => onMouseEnter(e, value)}
                   >
-                    <Sidebar.Icon title={getTitle(routesKey)}>
+                    <Sidebar.Icon title={getTitle(key)}>
                       {value.icon}
                     </Sidebar.Icon>
                   </Link>

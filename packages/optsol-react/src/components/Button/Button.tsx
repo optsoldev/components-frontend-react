@@ -1,6 +1,6 @@
 import {
   Button as MuiButton,
-  ButtonProps as MuiButtonProps,
+  ButtonProps as MuiButtonProps
 } from '@mui/material';
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 type HTMLButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'>;

@@ -21,15 +21,15 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
 
-    "noImplicitAny": true,  // Flags any implicit 'any' types
-    "alwaysStrict": true,  // Ensures files are in strict mode
+    "noImplicitAny": true, // Flags any implicit 'any' types
+    "alwaysStrict": true, // Ensures files are in strict mode
     /* Paths */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/@types"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "src/@types/**/*.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

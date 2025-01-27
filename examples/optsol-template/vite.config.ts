@@ -1,17 +1,25 @@
-import * as path from 'path';
+import path from 'path';
 
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig, mergeConfig } from 'vite';
+import { defineConfig as defineVitestConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: '/',
-  resolve: {
-    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }]
-  },
-  server: {
-    open: true
-  },
-  plugins: [react(), tsconfigPaths()]
+const vitestConfig = defineVitestConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom'
+  }
 });
+
+const viteConfig = defineConfig({
+  base: '/',
+  plugins: [react()],
+  resolve: {
+    alias: { '@': path.resolve(__dirname, 'src') }
+  },
+  server: { open: true },
+  preview: { port: 5173 }
+});
+
+export default mergeConfig(viteConfig, vitestConfig);

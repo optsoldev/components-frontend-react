@@ -1,6 +1,7 @@
+import Table from '@/pages/Table';
+
 import { SubRoutes } from './app.routes';
 
-import Table from '@/pages/Table';
 export const cadastroRoutes: SubRoutes[] = [
   {
     label: 'Fabricante',

@@ -11,7 +11,7 @@ const Breadcrumbs = () => {
   const matches = useMatches();
 
   const hasBreadcrumbs = (
-    match: UIMatch<unknown, unknown>,
+    match: UIMatch<unknown, unknown>
   ): match is UIMatch<unknown, HandleType> => {
     if (match.handle === null) return false;
     if (typeof match.handle !== 'object') return false;
@@ -27,12 +27,12 @@ const Breadcrumbs = () => {
     .map((match) => ({
       breadcrumb: match.handle.breadcrumb(match.data),
       color: match.handle.color,
-      path: match.handle.path,
+      path: match.handle.path
     }));
 
   const lastBreadcrumbProps = {
     fontWeight: 'bold',
-    color: 'text.primary',
+    color: 'text.primary'
   };
 
   return (

@@ -1,14 +1,17 @@
 import { AxiosError } from 'axios';
 
-import { APIResponse } from '../../models/ApiResponse.model';
+import { APIResponse } from '../../models/api/ApiResponse.model';
 
-export default function handleAxiosResponseError(error: AxiosError<APIResponse<object>>) {
+export default function handleAxiosResponseError(
+  error: AxiosError<APIResponse<object>>
+) {
   if (error.response?.status === 401) {
     window.location.replace(window.location.origin);
     return;
   }
 
-  if (error.code === 'ERR_CANCELED') return { data: {} } as APIResponse<{ data: object }>;
+  if (error.code === 'ERR_CANCELED')
+    return { data: {} } as APIResponse<{ data: object }>;
 
   const { response } = error;
   if (!response || !response.data) throw error;
