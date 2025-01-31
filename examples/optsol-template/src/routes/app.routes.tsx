@@ -4,7 +4,7 @@ import {
   DataPieRegular
 } from '@fluentui/react-icons';
 import { ReactElement } from 'react';
-import { RouteProps } from 'react-router-dom';
+import { Location, RouteProps, UIMatch } from 'react-router-dom';
 
 import { cadastroRoutes } from './cadastros.routes';
 
@@ -20,6 +20,9 @@ export type CustomRoute = RouteProps & {
   claim?: Claim;
   icon?: ReactElement;
   routes?: SubRoutes[];
+  handle?: Pick<RouteProps, 'handle'> & {
+    breadcrumb?: (match: UIMatch, location: Location) => string;
+  };
 };
 
 export type SubRoutes = CustomRoute & {
@@ -43,16 +46,14 @@ export const routes: CustomRoutes = {
     icon: <DataPieRegular fontSize={28} />,
     element: <Cadastro />,
     handle: {
-      breadcrumb: () => 'Home',
-      path: '/'
+      breadcrumb: () => 'Home'
     }
   },
   [Views.CADASTROS]: {
     path: '/cadastros',
     label: 'Cadastros',
     handle: {
-      breadcrumb: () => 'Cadastros',
-      path: '/cadastros'
+      breadcrumb: () => 'Cadastros'
     },
     icon: <CalendarRegular fontSize={28} />,
     routes: cadastroRoutes
@@ -63,8 +64,7 @@ export const routes: CustomRoutes = {
     icon: <AddRegular fontSize={28} />,
     element: <span>Configurações</span>,
     handle: {
-      breadcrumb: () => 'Configurações',
-      path: '/configuracoes'
+      breadcrumb: () => 'Configurações'
     }
   },
   [Views.NOT_FOUND]: {

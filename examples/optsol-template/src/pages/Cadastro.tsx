@@ -6,12 +6,14 @@ import {
   SubmitHandler,
   useForm
 } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { FormEndereco } from '../components/FormEndereco';
 import { ENDERECO_DEFAULT, EnderecoPJFormModelSchema } from '../models';
 import { Form, validation } from '../models/Form.model';
 
 function Cadastro() {
+  const navigate = useNavigate();
   const form = useForm<Form>({
     defaultValues: { endereco: ENDERECO_DEFAULT },
     resolver: yupResolver(validation)
@@ -26,6 +28,20 @@ function Cadastro() {
 
   return (
     <Box p={2} display="flex" flex={1} flexDirection="column">
+      <Button
+        onClick={() => {
+          navigate('/cadastros/fabricante');
+        }}
+      >
+        Teste
+      </Button>
+      <Button
+        onClick={() => {
+          navigate('/cadastros/fabricante/2', { state: { readOnly: true } });
+        }}
+      >
+        Teste 2
+      </Button>
       <FormProvider {...form}>
         <FormEndereco validationSchema={EnderecoPJFormModelSchema} />
         <Box mt={2}>

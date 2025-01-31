@@ -7,8 +7,18 @@ export const cadastroRoutes: SubRoutes[] = [
     path: '/cadastros/fabricante',
     element: <Table />,
     handle: {
-      breadcrumb: () => 'Fabricante',
-      path: '/cadastros/fabricante'
+      breadcrumb: () => 'Fabricante'
+    }
+  },
+  {
+    label: 'Fabricante',
+    path: '/cadastros/fabricante/:id',
+    element: <Table />,
+    handle: {
+      breadcrumb: (_, location) => {
+        const readOnly = location.state?.readOnly;
+        return `${readOnly ? 'Visualizar' : 'Editar'} Fabricante`;
+      }
     }
   }
 ];

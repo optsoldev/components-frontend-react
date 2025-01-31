@@ -1,17 +1,23 @@
 import { Breadcrumbs as MuiBreadcrumbs, Typography } from '@mui/material';
-import { Link, UIMatch, useMatches } from 'react-router-dom';
+import {
+  Link,
+  Location,
+  UIMatch,
+  useLocation,
+  useMatches
+} from 'react-router-dom';
 
 interface HandleType {
-  breadcrumb: (param?: any) => React.ReactNode;
+  breadcrumb: (match: UIMatch, loaction: Location) => React.ReactNode;
   color?: string;
-  path?: string;
 }
 
 const Breadcrumbs = () => {
   const matches = useMatches();
+  const location = useLocation();
 
   const hasBreadcrumbs = (
-    match: UIMatch<unknown, unknown>,
+    match: UIMatch<unknown, unknown>
   ): match is UIMatch<unknown, HandleType> => {
     if (match.handle === null) return false;
     if (typeof match.handle !== 'object') return false;
@@ -25,14 +31,14 @@ const Breadcrumbs = () => {
     // now map them into an array of elements, passing the loader
     // data to each one
     .map((match) => ({
-      breadcrumb: match.handle.breadcrumb(match.data),
+      breadcrumb: match.handle.breadcrumb(match, location),
       color: match.handle.color,
-      path: match.handle.path,
+      path: match.pathname
     }));
 
   const lastBreadcrumbProps = {
     fontWeight: 'bold',
-    color: 'text.primary',
+    color: 'text.primary'
   };
 
   return (
