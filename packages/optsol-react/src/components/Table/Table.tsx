@@ -41,13 +41,19 @@ function TableInternal<T extends object>(
   });
 
   const loadRemote = useCallback(
-    (remoteData: TableDataRequest<T>, page: number, pageSize = 10) => {
+    (
+      remoteData: TableDataRequest<T>,
+      page: number,
+      pageSize = 10,
+      signal?: AbortSignal
+    ) => {
       const query: TableRequest = {
         orderBy: '',
         orderDirection: 'asc',
         page,
         pageSize,
-        search: ''
+        search: '',
+        signal
       };
 
       setControls((previous) => ({
@@ -98,8 +104,8 @@ function TableInternal<T extends object>(
   );
 
   const load = useCallback(
-    (pageIndex: number, pageSize: number) => {
-      if (!Array.isArray(data)) loadRemote(data, pageIndex, pageSize);
+    (pageIndex: number, pageSize: number, signal?: AbortSignal) => {
+      if (!Array.isArray(data)) loadRemote(data, pageIndex, pageSize, signal);
       else loadLocal(data, pageIndex, pageSize);
     },
     [loadLocal, loadRemote, data]

@@ -17,6 +17,7 @@ export interface TableRequest {
   pageSize: number;
   search: string;
   orderBy: string;
+  signal?: AbortSignal;
   orderDirection: 'asc' | 'desc';
 }
 

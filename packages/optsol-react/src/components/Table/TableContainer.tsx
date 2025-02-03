@@ -37,7 +37,7 @@ export type InternalTableProps<T extends object> = DefaultTableProps<T> & {
   columns: ColumnDef<T>[];
   controls: TableControls<T>;
   hiddenColumns?: { [key: string]: boolean };
-  load: (pageIndex: number, pageSize: number) => void;
+  load: (pageIndex: number, pageSize: number, signal?: AbortSignal) => void;
 };
 
 const TableContainerView = <T extends object>(
@@ -104,7 +104,9 @@ const TableContainerView = <T extends object>(
   }, [table, load]);
 
   useEffect(() => {
-    load(pageIndex, pageSize);
+    const controller = new AbortController();
+    load(pageIndex, pageSize, controller.signal);
+    return () => controller.abort();
   }, [load, pageIndex, pageSize]);
 
   return (
