@@ -52,7 +52,7 @@ const ControlledNumericInput = <T extends FieldValues>(
             sx={{ mt: 0.5 }}
             onChange={onChange}
             customInput={TextField}
-            value={field.value ? field.value : ''}
+            value={field.value ?? ''}
             onValueChange={(values, source) => {
               if (source.event) {
                 const { event } = source;
