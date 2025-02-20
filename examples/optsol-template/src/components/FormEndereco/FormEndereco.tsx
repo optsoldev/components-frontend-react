@@ -5,6 +5,7 @@ import {
   ControlledAutocomplete,
   ControlledDatePicker,
   ControlledInput,
+  ControlledNumericInput,
   ControlledSelect,
   PaginatedRequest,
   PatternInput
@@ -190,6 +191,16 @@ export default function FormEndereco({ validationSchema }: EnderecoProps) {
           name="endereco.numero"
           label="Número da residência"
           inputProps={{ maxLength: 5 }}
+          placeholder={getPlaceholder('numero', 'Número')}
+        />
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
+        <ControlledNumericInput
+          inputRef={numeroRef}
+          control={control}
+          name="endereco.numero"
+          label="Número da residência"
           placeholder={getPlaceholder('numero', 'Número')}
         />
       </Grid>

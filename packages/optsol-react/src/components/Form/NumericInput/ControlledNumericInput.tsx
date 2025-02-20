@@ -61,7 +61,7 @@ const ControlledNumericInput = <T extends FieldValues>(
                 let inputValue: string | number = '';
                 if (valueType === 'text') inputValue = value;
                 if (valueType === 'formatted') inputValue = formattedValue;
-                if (valueType === 'number') inputValue = floatValue ?? 0;
+                if (valueType === 'number') inputValue = floatValue ?? '';
 
                 field.onChange({
                   ...event,

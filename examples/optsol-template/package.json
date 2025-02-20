@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 8080",
     "test": "vitest",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -18,7 +18,7 @@
     "@hookform/resolvers": "^3.1.1",
     "@mui/material": "^5.13.5",
     "@mui/x-date-pickers": "^7.10.0",
-    "@optsol/react": "4.3.4",
+    "@optsol/react": "4.3.5",
     "axios": "^1.4.0",
     "date-fns": "^3.6.0",
     "lodash.debounce": "^4.0.8",
