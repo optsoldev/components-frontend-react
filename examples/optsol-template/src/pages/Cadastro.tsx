@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { Button } from '@optsol/react';
 import {
   FormProvider,
   SubmitErrorHandler,
@@ -46,6 +47,7 @@ function Cadastro() {
         <FormEndereco validationSchema={EnderecoPJFormModelSchema} />
         <Box mt={2}>
           <Button
+            loading
             fullWidth
             variant="contained"
             onClick={form.handleSubmit(handleSubmit, handleErrorSubmit)}
