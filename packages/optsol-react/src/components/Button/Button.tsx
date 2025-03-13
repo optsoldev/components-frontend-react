@@ -25,6 +25,7 @@ export type ButtonProps = PropsWithChildren<
 
 export const Button = ({
   children,
+  disabled,
   loading = false,
   ...props
 }: ButtonProps) => {
@@ -33,7 +34,11 @@ export const Button = ({
   );
 
   return (
-    <MuiButton sx={{ textTransform: 'none' }} {...props} disabled={loading}>
+    <MuiButton
+      sx={{ textTransform: 'none' }}
+      {...props}
+      disabled={disabled || loading}
+    >
       {loading ? Loading : children}
     </MuiButton>
   );
